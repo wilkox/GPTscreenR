@@ -154,3 +154,16 @@ as.vector.GPT_messages <- function(x, mode = "any") {
     character(1)
   )
 }
+
+#' A convenience function to send a message to GPT and capture the response
+#'
+#' @export
+say_GPT.GPT_messages <- function(x, content, role = "user") {
+  x <- add_message(x, role = role, content = content)
+  x <- complete_GPT(x)
+  x
+}
+
+say_GPT <- function(x, content, role = "user") {
+  UseMethod("say_GPT")
+}
