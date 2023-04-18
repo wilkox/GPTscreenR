@@ -84,12 +84,12 @@ screen_source <- function(study_objective, population, concept, context, title, 
 
   # Check recommendation is in required format
   if (! stringr::str_detect(recommendation_reply, "^(INCLUDE|EXCLUDE)$")) {
-    stop(str_c("GPT's recommendation could not be parsed: ", recommendation_reply, call. = FALSE))
+    warning(str_c("GPT's recommendation could not be parsed: ", recommendation_reply, call. = FALSE))
   }
 
   # Return result
   return(list(
-    messages = messages,
+    messages = list(messages),
     recommendation = recommendation_reply
   ))
 }

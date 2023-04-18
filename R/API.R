@@ -1,8 +1,18 @@
+#' Generic function for creating GPT chat completions
+complete_GPT <- function(messages) {
+  UseMethod("complete_GPT")
+}
+
 #' Create chat completions with the OpenAI API
 #'
-#  API endpoint is documented at
-#  \url{https://platform.openai.com/docs/api-reference/chat/create}
-create_chat_completion <- function(messages) {
+#' API endpoint is documented at
+#' \url{https://platform.openai.com/docs/api-reference/chat/create}
+#'
+#' @export
+complete_GPT.GPT_messages <- function(messages) {
+
+  # Must be a valid GPT_messages object
+  messages <- validate_GPT_messages(messages)
 
   # Retrieve and set API key
   openai_api_key <- Sys.getenv("OPENAI_API_KEY")
@@ -16,7 +26,7 @@ create_chat_completion <- function(messages) {
   # Set up params
   params <- list(
     model = model,
-    messages = messages
+    messages = as.data.frame(messages)
   )
 
   # POST to chat completion endpoint
@@ -44,5 +54,6 @@ create_chat_completion <- function(messages) {
 
   # Extract and return message content
   content <- httr::content(response)$choices[[1]]$message$content
-  return(content)
+  messages <- add_message(messages, role = "assistant", content = content)
+  return(messages)
 }
