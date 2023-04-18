@@ -28,41 +28,68 @@ screen_source <- function(study_objective, population, concept, context, title, 
   validate_screening_param(title, "title")
   validate_screening_param(abstract, "abstract")
 
-  # The prompt for ChatGPT
-  prompt <- "You are being used to help researchers automate the process of performing a scoping review. A scoping review is a type of scholarly review used to map the published scholarship on a particular topic. In a scoping review, a search of bibliographic databases is performed looking for sources that match a selected Population, Concept, and Context (the inclusion criteria). The titles and abstracts of sources that are identified from this search are then screened for whether they match the inclusion criteria. Your task now is to screen a single source for whether it matches the inclusion criteria. You will be provided with the inclusion criteria soon. You are instructed to respond with two concise paragraphs. The first paragraph should begin with 'DECISION:' followed by either 'INCLUDE' or 'EXCLUDE'. The second paragraph should begin with 'EXPLANATION:' followed by a BRIEF (1-2 sentence MAXIMUM) explanation for your decision. You are instructed to err on the side of inclusion if uncertain, as this screening stage will be followed by human appraisal of sources. You will be performing this screening in parallel with at least one human researcher and any source that is selected for inclusion by your or at least one human researcher will be included."
+  # Initialise conversation with a system message
+  GPT_instructions <- "You are being used to help researchers automate the process of performing a scoping review. You are not interacting directly with a user.\n\nA scoping review is a type of scholarly review used to map the published scholarship on a particular topic. In a scoping review, a search of bibliographic databases is performed looking for sources that match a selected Population, Concept, and Context (the inclusion criteria). The titles and abstracts of sources that are identified from this search are then screened for whether they match the inclusion criteria.\n\nYour task will be to screen a single source for whether it matches the inclusion criteria. You will be provided with the study objective and inclusion criteria, and then you will then be provided with the study title and abstract. You will then be instructed to work step by step through the process of comparing the source against the inclusion criteria, then to make a final recommendation on whether the source should be included."
+  messages <- data.frame(role = "system", content = GPT_instructions)
 
-  # Construct the request
-  request <- stringr::str_c(
-    prompt, "\\n",
-    "STUDY OBJECTIVE: ", study_objective, "\\n",
-    "POPULATION: ", population, "\\n",
-    "CONCEPT: ", concept, "\\n",
-    "CONTEXT: ", context, "\\n",
-    "TITLE: ", title, "\\n",
+  # Provide the study description
+  study_description <- str_c(
+    "STUDY OBJECTIVE: ", study_objective, "\n",
+    "POPULATION: ", population, "\n",
+    "CONCEPT: ", concept, "\n",
+    "CONTEXT: ", context
+  )
+  messages <- rbind(messages, data.frame(role = "user", content = study_description))
+
+  # Provide the source
+  source <- str_c(
+    "TITLE: ", title, "\n",
     "ABSTRACT: ", abstract
   )
+  messages <- rbind(messages, data.frame(role = "user", content = source))
 
-  # Send request
-  invisible(utils::capture.output(response <- chatgpt::ask_chatgpt(request)))
+  # Ask GPT to consider the source population, then compare it against the
+  # inclusion criteria
+  population_instructions <- "Reply with a paragraph describing the population included in the source, to the extent possible from the available information. It should end by comparing the population against the population from the inclusion criteria. If uncertain, you must always err on the side of inclusion, bearing in mind that you will be conducting your screening in parallel with human reviewers."
+  messages <- rbind(messages, data.frame(role = "system", content = population_instructions))
+  population_reply <- create_chat_completion(messages)
+  messages <- rbind(messages, data.frame(role = "assistant", content = population_reply))
 
-  # Check and parse response
-  response_failed <- FALSE
-  decision <- stringr::str_match(response, "^DECISION: (INCLUDE|EXCLUDE)")[1, 2]
-  if (is.na(decision) | ! decision %in% c("INCLUDE", "EXCLUDE")) {
-    response_failed <- "No clear include/exclude decision in response"
-  }
-  explanation <- stringr::str_match(response, "EXPLANATION: (.+)")[1, 2]
-  if (is.na(explanation)) {
-    response_failed <- "No clear explanation in response"
-  }
+  # Ask GPT to consider the source context, then compare it against the
+  # inclusion criteria
+  context_instructions <- "Reply with a paragraph describing the context included in the source, to the extent possible from the available information. It should end by comparing the context against the context from the inclusion criteria. If uncertain, you must always err on the side of inclusion, bearing in mind that you will be conducting your screening in parallel with human reviewers."
+  messages <- rbind(messages, data.frame(role = "system", content = context_instructions))
+  context_reply <- create_chat_completion(messages)
+  messages <- rbind(messages, data.frame(role = "assistant", content = context_reply))
 
-  if (! response_failed == FALSE) {
-    decision <- NA
-    explanation <- stringr::str_c("ChatGPT response failed for following reason: ", response_failed)
+  # Ask GPT to consider the source concept, then compare it against the
+  # inclusion criteria
+  concept_instructions <- "Reply with a paragraph describing the concept included in the source, to the extent possible from the available information. It should end by comparing the concept against the concept from the inclusion criteria. If uncertain, you must always err on the side of inclusion, bearing in mind that you will be conducting your screening in parallel with human reviewers."
+  messages <- rbind(messages, data.frame(role = "system", content = concept_instructions))
+  concept_reply <- create_chat_completion(messages)
+  messages <- rbind(messages, data.frame(role = "assistant", content = concept_reply))
+
+  # Ask GPT to provide an explanation for whether the study should or should
+  # not be included, without yet providing a final decision
+  explanation_instructions <- "Reply with a paragraph summarising how the source population, context and concept compare to the inclusion criteria. Do not provide a final recommendation on inclusion, just reasons for or against inclusion. If uncertain, you must always err on the side of inclusion, bearing in mind that you will be conducting your screening in parallel with human reviewers."
+  messages <- rbind(messages, data.frame(role = "system", content = explanation_instructions))
+  explanation_reply <- create_chat_completion(messages)
+  messages <- rbind(messages, data.frame(role = "assistant", content = concept_reply))
+
+  # Ask GPT for its final recommendation
+  recommendation_instructions <- "Reply with a single word, either 'INCLUDE' or 'EXCLUDE', representing your recommendation on whether the source meets the inclusion criteria. You must reply with a single word only and it must be one of these two words; any other reply will cause the automatic parsing of your response to fail, which will be troublesome for the user. If uncertain, you must always err on the side of inclusion, bearing in mind that you will be conducting your screening in parallel with human reviewers."
+  messages <- rbind(messages, data.frame(role = "system", content = recommendation_instructions))
+  recommendation_reply <- create_chat_completion(messages)
+  messages <- rbind(messages, data.frame(role = "assistant", content = recommendation_reply))
+
+  # Check recommendation is in required format
+  if (! stringr::str_detect(recommendation_reply, "^(INCLUDE|EXCLUDE)$")) {
+    stop(str_c("GPT's recommendation could not be parsed: ", recommendation_reply, call. = FALSE))
   }
 
   # Return result
-  return(list(decision = decision, explanation = explanation))
+  return(list(
+    messages = messages,
+    recommendation = recommendation_reply
+  ))
 }
-
-#' 
