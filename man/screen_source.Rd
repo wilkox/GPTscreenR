@@ -4,7 +4,15 @@
 \alias{screen_source}
 \title{Screen a source against study inclusion criteria}
 \usage{
-screen_source(study_objective, population, concept, context, title, abstract)
+screen_source(
+  study_objective,
+  population,
+  concept,
+  context,
+  title,
+  abstract,
+  .verbose = TRUE
+)
 }
 \arguments{
 \item{study_objective}{A brief description of the overall study objective, a

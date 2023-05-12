@@ -6,24 +6,13 @@
 #' @export
 print.GPT_messages <- function(x, ...) {
 
-  # Check if the terminal supports coloured output
-  term <- Sys.getenv()["TERM"]
-  can_colour <- term %in% c("xterm-color","xterm-256color", "screen", "screen-256color")
+  cli::cli_h1("Conversation with gpt-4")
 
   for (i in seq_len(length(x$role))) {
-    if (can_colour) {
-      cat(paste0("\033[0;31m", stringr::str_to_upper(x$role[i]), ": \033[0m"))
-    } else {
-      cat(paste0((stringr::str_to_upperx$role), ": "))
-    }
-    if (can_colour) {
-      cat(paste0("\033[0;34m", x$content[i], "\033[0m"))
-    } else {
-      cat(x$content)
-    }
-    cat("\n")
+    cli::cli_div(theme = list(span.message = list(color = dplyr::case_when(x$role[i] == "system" ~ "red", x$role[i] == "user" ~ "blue", x$role[i] == "assistant" ~ "yellow", TRUE ~ "white"))))
+    cli::cli_h2(stringr::str_to_upper(x$role[i]))
+    cli::cli_text("{.message {x$content[i]}}")
   }
-
 }
 
 #' A validator function for GPT_messages
@@ -62,6 +51,7 @@ new_GPT_messages <- function(x = list(role = character(), content = character())
 
 #' Helper to create GPT_messages objects
 #'
+#' @export
 GPT_messages <- function(role = character(), content = character()) {
   x <- list(role = role, content = content)
   x <- new_GPT_messages(x)
