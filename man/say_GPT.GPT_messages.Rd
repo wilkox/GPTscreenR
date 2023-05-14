@@ -6,6 +6,13 @@
 \usage{
 \method{say_GPT}{GPT_messages}(x, content, role = "user")
 }
+\arguments{
+\item{x}{A GPT_messages object}
+
+\item{content}{The content of the message}
+
+\item{role}{The role of the messsage (defaults to "user")}
+}
 \description{
 A convenience function to send a message to GPT and capture the response
 }

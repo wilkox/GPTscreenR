@@ -6,6 +6,9 @@
 \usage{
 \method{as_GPT_messages}{data.frame}(df = data.frame())
 }
+\arguments{
+\item{df}{A data frame with columns 'role' and 'content' of character type}
+}
 \description{
 Convert data frame to GPT_messages object
 }

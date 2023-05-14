@@ -6,6 +6,9 @@
 \usage{
 validate_GPT_messages(x)
 }
+\arguments{
+\item{x}{A GPT_messages object}
+}
 \description{
 A validator function for GPT_messages
 }

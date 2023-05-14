@@ -6,6 +6,9 @@
 \usage{
 \method{last_message}{GPT_messages}(x)
 }
+\arguments{
+\item{x}{A GPT_messages object}
+}
 \description{
 Return the last message from a GPT_messages object
 }

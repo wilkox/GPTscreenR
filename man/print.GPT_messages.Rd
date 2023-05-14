@@ -6,6 +6,11 @@
 \usage{
 \method{print}{GPT_messages}(x, ...)
 }
+\arguments{
+\item{x}{A GPT_messages object}
+
+\item{...}{Other arguments to be bassed to print()}
+}
 \description{
 Coloured output based on
 \url{https://github.com/r-lib/testthat/blob/717b02164def5c1f027d3a20b889dae35428b6d7/R/colour-text.r}

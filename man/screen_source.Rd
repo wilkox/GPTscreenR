@@ -11,7 +11,8 @@ screen_source(
   context,
   title,
   abstract,
-  .verbose = TRUE
+  .verbose = TRUE,
+  .dry_run = FALSE
 )
 }
 \arguments{
@@ -32,6 +33,10 @@ length 1}
 
 \item{abstract}{The abstract of the article to be screened, a character
 vector of length 1}
+
+\item{.verbose}{If FALSE, progress messages will be suppressed}
+
+\item{.dry_run}{If TRUE, calls to the GPT API will be skipped}
 }
 \description{
 Screen a source against study inclusion criteria

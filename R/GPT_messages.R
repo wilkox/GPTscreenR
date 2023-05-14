@@ -3,6 +3,9 @@
 #' Coloured output based on
 #' \url{https://github.com/r-lib/testthat/blob/717b02164def5c1f027d3a20b889dae35428b6d7/R/colour-text.r}
 #'
+#' @param x A GPT_messages object
+#' @param ... Other arguments to be bassed to print()
+#'
 #' @export
 print.GPT_messages <- function(x, ...) {
 
@@ -17,6 +20,7 @@ print.GPT_messages <- function(x, ...) {
 
 #' A validator function for GPT_messages
 #'
+#' @param x A GPT_messages object
 validate_GPT_messages <- function(x) {
 
   values <- unclass(x)
@@ -42,6 +46,7 @@ validate_GPT_messages <- function(x) {
 
 #' A constructor function for GPT_messages
 #'
+#' @param x A list contatining a character vector of roles and a character vector of messages
 new_GPT_messages <- function(x = list(role = character(), content = character())) {
   stopifnot(is.list(x))
   stopifnot(is.character(x$role))
@@ -51,6 +56,8 @@ new_GPT_messages <- function(x = list(role = character(), content = character())
 
 #' Helper to create GPT_messages objects
 #'
+#' @param role A character vector of roles in the conversation ("system", "user" or "assistant")
+#' @param content A character vector of messages in the conversation
 #' @export
 GPT_messages <- function(role = character(), content = character()) {
   x <- list(role = role, content = content)
@@ -60,6 +67,7 @@ GPT_messages <- function(role = character(), content = character()) {
 
 #' Convert data frame to GPT_messages object
 #'
+#' @param df A data frame with columns 'role' and 'content' of character type
 #' @export
 as_GPT_messages.data.frame <- function(df = data.frame()) {
   x <- new_GPT_messages(unclass(df))
@@ -72,13 +80,18 @@ as_GPT_messages <- function(df) {
 
 #' Convert GPT_messages object to data frame
 #'
+#' @param x A GPT_messages object
+#' @param ... Other arguments to be bassed to data.frame()
 #' @export
 as.data.frame.GPT_messages <- function(x, ...) {
-  data.frame(role = x$role, content = x$content)
+  data.frame(role = x$role, content = x$content, ...)
 }
 
 #' Add a message to a GPT_messages object
 #'
+#' @param x A GPT_messages object
+#' @param content The content of the message
+#' @param role The role of the message (defaults to "user")
 #' @export
 add_message.GPT_messages <- function(x, content, role = "user") {
 
@@ -99,12 +112,13 @@ add_message.GPT_messages <- function(x, content, role = "user") {
 
 }
 
-add_message <- function(x, role, content) {
+add_message <- function(x, content, role) {
   UseMethod("add_message")
 }
 
 #' Remove the last message from a GPT_messages object
 #'
+#' @param x A GPT_messages object
 #' @export
 remove_message.GPT_messages <- function(x) {
 
@@ -117,12 +131,13 @@ remove_message.GPT_messages <- function(x) {
 
 }
 
-remove_message <- function(x, role, content) {
+remove_message <- function(x) {
   UseMethod("remove_message")
 }
 
 #' Return the last message from a GPT_messages object
 #'
+#' @param x A GPT_messages object
 #' @export
 last_message.GPT_messages <- function(x) {
 
@@ -130,12 +145,14 @@ last_message.GPT_messages <- function(x) {
   return(x$content[length(x$content)])
 }
 
-last_message <- function(x, role, content) {
+last_message <- function(x) {
   UseMethod("last_message")
 }
 
 #' Convert GPT_messages object to a human-readable vector
 #'
+#' @param x A GPT_messages object
+#' @param mode For comptibility with as.vector(); ignored
 #' @export
 as.vector.GPT_messages <- function(x, mode = "any") {
   vapply(
@@ -147,6 +164,9 @@ as.vector.GPT_messages <- function(x, mode = "any") {
 
 #' A convenience function to send a message to GPT and capture the response
 #'
+#' @param x A GPT_messages object
+#' @param content The content of the message
+#' @param role The role of the messsage (defaults to "user")
 #' @export
 say_GPT.GPT_messages <- function(x, content, role = "user") {
   x <- add_message(x, role = role, content = content)

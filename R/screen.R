@@ -12,8 +12,10 @@
 #' length 1
 #' @param abstract The abstract of the article to be screened, a character
 #' vector of length 1
+#' @param .verbose If FALSE, progress messages will be suppressed
+#' @param .dry_run If TRUE, calls to the GPT API will be skipped
 #' @export
-screen_source <- function(study_objective, population, concept, context, title, abstract, .verbose = TRUE) {
+screen_source <- function(study_objective, population, concept, context, title, abstract, .verbose = TRUE, .dry_run = FALSE) {
 
   # Validate arguments
   validate_screening_param <- function(param, name) {
@@ -47,11 +49,12 @@ screen_source <- function(study_objective, population, concept, context, title, 
 
   # Instruct GPT to summarise the inclusion criteria as dot point statements
   if (.verbose) { cli::cli_progress_step("Asking GPT to summarise inclusion criteria") }
-  conversation <- say_GPT(
+  conversation <- add_message(
     conversation,
     role = "system",
     content = "Let's work step by step. First, generate a numbered list of statements that summarise the inclusion criteria for the scoping review, including the Population, Concept, and Context. The statements should be clear, comprehensive and complete. Any source for which all the statements are true is a source that meets the inclusion criteria. As a template, here are some example statements (these are a generic set of examples that are not related to the current scoping review):\n\n1. The source reports the results of a randomised control trial\n2. The source reports the results of a study in which:\n  2a. The participants were all male; AND\n  2b. The participants were all aged between 18 and 74 inclusive\n3. The source reports the results of a study conducted in the European Union.\n\nAspects of the inclusion criteria with multiple elements should be broken down into separate points where possible. For example, instead of:\n\n1. The source reports on a study of men who live in the European Union.\n\nYou should instead say:\n\n1. The source reports on a study of people who are:\n1a. Male; and\n1b: Living in the European Union."
   )
+  if (! .dry_run) conversation <- complete_GPT(conversation)
 
   # Provide the source
   conversation <- add_message(conversation, role = "system", "The next message will be from the user, and will contain the title and abstract of a study to be compared against the inclusion criteria.")
@@ -63,24 +66,30 @@ screen_source <- function(study_objective, population, concept, context, title, 
 
   # Ask GPT to compare the study title and abstract against the summarised inclusion criteria
   if (.verbose) { cli::cli_progress_step("Asking GPT to compare the source to the inclusion criteria") }
-  conversation <- say_GPT(
+  conversation <- add_message(
     conversation,
     role = "system",
     content = "Let's continue to work step by step. Refer back to the set of statements you developed summarising the inclusion criteria. For each statement, decide whether or not the statement is true for the study described by the title and abstract. You must select from the following permitted responses: TRUE, FALSE, LIKELY TRUE, LIKELY FALSE, or NOT APPLICABLE. No other response is permitted. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. There is a natural and normal amount of ambiguity in this process. For these situations, give your best guess, making use of your general knowledge, and deciding LIKELY TRUE or LIKELY FALSE. Responses like UNCLEAR or NOT ENOUGH INFORMATION are not permitted. After giving your response, give a one sentence explanation for your response."
   )
+  if (! .dry_run) conversation <- complete_GPT(conversation)
 
   # Ask GPT for its final recommendation
   if (.verbose) { cli::cli_progress_step("Asking GPT to provide a final recommendation") }
-  conversation <- say_GPT(
+  conversation <- add_message(
     conversation,
     role = "system",
     content = "Let's continue to work step by step. Consider your decisions on whether the title and abstract meet the conclusion criteria. Overall, is it likely true that the source meets the inclusion criteria? Reply with a single word, either INCLUDE or EXCLUDE, representing your recommendation on whether the source is likely to meet the inclusion criteria. You must reply with a single word only and it must be one of these two words; any other reply will cause the automatic parsing of your response to fail, which will be troublesome for the user."
   )
+  if (! .dry_run) conversation <- complete_GPT(conversation)
 
   # Check recommendation is in required format
-  recommendation <- last_message(conversation)
-  if (! stringr::str_detect(recommendation, "^(INCLUDE|EXCLUDE)$")) {
-    warning(str_c("GPT's recommendation could not be parsed: ", recommendation, call. = FALSE))
+  if (.dry_run) {
+    recommendation <- ""
+  } else {
+    recommendation <- last_message(conversation)
+    if (! stringr::str_detect(recommendation, "^(INCLUDE|EXCLUDE)$")) {
+      warning(stringr::str_c("GPT's recommendation could not be parsed: ", recommendation, call. = FALSE))
+    }
   }
 
   # Return result

@@ -6,6 +6,11 @@
 \usage{
 \method{as.data.frame}{GPT_messages}(x, ...)
 }
+\arguments{
+\item{x}{A GPT_messages object}
+
+\item{...}{Other arguments to be bassed to data.frame()}
+}
 \description{
 Convert GPT_messages object to data frame
 }

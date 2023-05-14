@@ -16,7 +16,9 @@ test_that("inputs are correctly validated", {
     context = context,
     concept = concept,
     title = title,
-    abstract = abstract
+    abstract = abstract,
+    .verbose = FALSE,
+    .dry_run = TRUE
   ))
 
   expect_no_warning(screen_source(
@@ -25,7 +27,9 @@ test_that("inputs are correctly validated", {
     context = context,
     concept = concept,
     title = title,
-    abstract = abstract
+    abstract = abstract,
+    .verbose = FALSE,
+    .dry_run = TRUE
   ))
 
   expect_error(screen_source(
@@ -34,7 +38,9 @@ test_that("inputs are correctly validated", {
     context = context,
     concept = concept,
     title = title,
-    abstract = abstract
+    abstract = abstract,
+    .verbose = FALSE,
+    .dry_run = TRUE
   ))
 
   expect_error(screen_source(
@@ -42,7 +48,9 @@ test_that("inputs are correctly validated", {
     context = context,
     concept = concept,
     title = title,
-    abstract = abstract
+    abstract = abstract,
+    .verbose = FALSE,
+    .dry_run = TRUE
   ))
 
   expect_warning(screen_source(
@@ -51,6 +59,22 @@ test_that("inputs are correctly validated", {
     context = context,
     concept = concept,
     title = title,
-    abstract = abstract
+    abstract = abstract,
+    .verbose = FALSE,
+    .dry_run = TRUE
   ))
+})
+
+test_that("Screening works", {
+
+  expect_no_error(screen_source(
+    study_objective = study_objective,
+    population = population,
+    context = context,
+    concept = concept,
+    title = title,
+    abstract = abstract,
+    .verbose = FALSE
+  ))
+
 })

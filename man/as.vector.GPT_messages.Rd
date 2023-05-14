@@ -6,6 +6,11 @@
 \usage{
 \method{as.vector}{GPT_messages}(x, mode = "any")
 }
+\arguments{
+\item{x}{A GPT_messages object}
+
+\item{mode}{For comptibility with as.vector(); ignored}
+}
 \description{
 Convert GPT_messages object to a human-readable vector
 }

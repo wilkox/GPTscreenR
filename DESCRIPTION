@@ -1,9 +1,9 @@
 Package: GPTscreenR
-Title: What the Package Does (One Line, Title Case)
+Title: GPT-assisted source screening for scoping reviews
 Version: 0.0.0.9000
 Authors@R: 
     person("David", "Wilkins", , "david@wilkox.org", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: GPT-assisted source screening for scoping reviews.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -17,6 +17,8 @@ Depends:
     R (>= 2.10)
 LazyData: true
 Imports: 
-    httr,
-    jsonlite,
-    stringr
+    httr (>= 1.4.6),
+    jsonlite (>= 1.8.4),
+    stringr (>= 1.5.0),
+    cli (>= 3.6.1),
+    dplyr (>= 1.1.2)

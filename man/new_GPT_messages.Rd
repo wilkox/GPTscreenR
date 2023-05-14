@@ -6,6 +6,9 @@
 \usage{
 new_GPT_messages(x = list(role = character(), content = character()))
 }
+\arguments{
+\item{x}{A list contatining a character vector of roles and a character vector of messages}
+}
 \description{
 A constructor function for GPT_messages
 }

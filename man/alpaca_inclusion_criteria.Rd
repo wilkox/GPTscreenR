@@ -3,7 +3,7 @@
 \docType{data}
 \name{alpaca_inclusion_criteria}
 \alias{alpaca_inclusion_criteria}
-\title{Example inclusion criteria for study screening}
+\title{Example inclusion criteria for source screening}
 \format{
 A list with four elements
 \describe{
@@ -18,5 +18,8 @@ alpaca_inclusion_criteria
 }
 \description{
 Inclusion criteria for a hypothetical scoping review
+}
+\seealso{
+alpaca_sources
 }
 \keyword{datasets}

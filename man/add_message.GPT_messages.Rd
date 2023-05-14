@@ -6,6 +6,13 @@
 \usage{
 \method{add_message}{GPT_messages}(x, content, role = "user")
 }
+\arguments{
+\item{x}{A GPT_messages object}
+
+\item{content}{The content of the message}
+
+\item{role}{The role of the message (defaults to "user")}
+}
 \description{
 Add a message to a GPT_messages object
 }

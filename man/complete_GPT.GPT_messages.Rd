@@ -4,7 +4,10 @@
 \alias{complete_GPT.GPT_messages}
 \title{Create chat completions with the OpenAI API}
 \usage{
-\method{complete_GPT}{GPT_messages}(messages)
+\method{complete_GPT}{GPT_messages}(x)
+}
+\arguments{
+\item{x}{A GPT_messages object}
 }
 \description{
 API endpoint is documented at

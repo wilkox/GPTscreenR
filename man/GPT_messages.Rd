@@ -6,6 +6,11 @@
 \usage{
 GPT_messages(role = character(), content = character())
 }
+\arguments{
+\item{role}{A character vector of roles in the conversation ("system", "user" or "assistant")}
+
+\item{content}{A character vector of messages in the conversation}
+}
 \description{
 Helper to create GPT_messages objects
 }

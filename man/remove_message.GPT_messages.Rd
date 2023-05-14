@@ -6,6 +6,9 @@
 \usage{
 \method{remove_message}{GPT_messages}(x)
 }
+\arguments{
+\item{x}{A GPT_messages object}
+}
 \description{
 Remove the last message from a GPT_messages object
 }
