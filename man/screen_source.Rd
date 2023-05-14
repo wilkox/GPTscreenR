@@ -5,10 +5,7 @@
 \title{Screen a source against study inclusion criteria}
 \usage{
 screen_source(
-  study_objective,
-  population,
-  concept,
-  context,
+  study_description,
   title,
   abstract,
   .verbose = TRUE,
@@ -16,17 +13,8 @@ screen_source(
 )
 }
 \arguments{
-\item{study_objective}{A brief description of the overall study objective, a
-character vector of length 1}
-
-\item{population}{A brief description of the overall study objective, a
-character vector of length 1}
-
-\item{concept}{A brief description of the overall study objective, a
-character vector of length 1}
-
-\item{context}{A brief description of the overall study objective, a
-character vector of length 1}
+\item{study_description}{A description of the study including objective and
+inclusion criteria, a character vector of length 1}
 
 \item{title}{The title of the article to be screened, a character vector of
 length 1}

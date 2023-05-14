@@ -1,13 +1,7 @@
 #' Screen a source against study inclusion criteria
 #'
-#' @param study_objective A brief description of the overall study objective, a
-#' character vector of length 1
-#' @param population A brief description of the overall study objective, a
-#' character vector of length 1
-#' @param concept A brief description of the overall study objective, a
-#' character vector of length 1
-#' @param context A brief description of the overall study objective, a
-#' character vector of length 1
+#' @param study_description A description of the study including objective and
+#' inclusion criteria, a character vector of length 1
 #' @param title The title of the article to be screened, a character vector of
 #' length 1
 #' @param abstract The abstract of the article to be screened, a character
@@ -15,7 +9,7 @@
 #' @param .verbose If FALSE, progress messages will be suppressed
 #' @param .dry_run If TRUE, calls to the GPT API will be skipped
 #' @export
-screen_source <- function(study_objective, population, concept, context, title, abstract, .verbose = TRUE, .dry_run = FALSE) {
+screen_source <- function(study_description, title, abstract, .verbose = TRUE, .dry_run = FALSE) {
 
   # Validate arguments
   validate_screening_param <- function(param, name) {
@@ -23,10 +17,7 @@ screen_source <- function(study_objective, population, concept, context, title, 
     if (! is.character(param) | ! length(param) == 1) { stop(name, " must be a character vector of length 1", call. = FALSE) }
     if (is.na(param) | stringr::str_length(param) == 0 ) { warning(name, " appears to have no content", call. = FALSE) }
   }
-  validate_screening_param(study_objective, "study_objective")
-  validate_screening_param(population, "population")
-  validate_screening_param(concept, "concept")
-  validate_screening_param(context, "context")
+  validate_screening_param(study_description, "study_description")
   validate_screening_param(title, "title")
   validate_screening_param(abstract, "abstract")
   if (.verbose) { cli::cli_h1("Screening source"); cli::cli_text("{.strong Title}: {title}") }
@@ -39,12 +30,6 @@ screen_source <- function(study_objective, population, concept, context, title, 
   )
 
   # Provide the study description
-  study_description <- stringr::str_c(
-    "STUDY OBJECTIVE: ", study_objective, "\n\n",
-    "POPULATION: ", population, "\n\n",
-    "CONCEPT: ", concept, "\n\n",
-    "CONTEXT: ", context
-  )
   conversation <- add_message(conversation, role = "user", content = study_description)
 
   # Instruct GPT to summarise the inclusion criteria as dot point statements
@@ -97,4 +82,37 @@ screen_source <- function(study_objective, population, concept, context, title, 
     conversation = list(conversation),
     recommendation = recommendation
   ))
+}
+
+#' Combine study objective and inclusion criteria into a formatted string
+#'
+#' @param objective A brief description of the overall study objective, a
+#' character vector of length 1
+#' @param population A brief description of the overall study objective, a
+#' character vector of length 1
+#' @param concept A brief description of the overall study objective, a
+#' character vector of length 1
+#' @param context A brief description of the overall study objective, a
+#' character vector of length 1
+study_description <- function(objective = NULL, population = NULL, concept = NULL, context = NULL) {
+
+  if (missing(objective) & missing(population) & missing(concept) & missing(context)) {
+    stop("No study information provided", call. = FALSE)
+  }
+
+  study_description <- ""
+  if (! missing(objective)) {
+    study_description <- stringr::str_c(study_description, "STUDY OBJECTIVE: ", objective, "\n\n")
+  }
+  if (! missing(population)) {
+    study_description <- stringr::str_c(study_description, "POPULATION:", population, "\n\n")
+  }
+  if (! missing(concept)) {
+    study_description <- stringr::str_c(study_description, "CONCEPT:", concept, "\n\n")
+  }
+  if (! missing(context)) {
+    study_description <- stringr::str_c(study_description, "CONTEXT:", context, "\n\n")
+  }
+
+  study_description
 }
