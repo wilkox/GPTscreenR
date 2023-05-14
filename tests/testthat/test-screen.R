@@ -5,9 +5,10 @@ context <- alpaca_inclusion_criteria$context
 concept <- alpaca_inclusion_criteria$concept
 study_description <- study_description(objective, population, context, concept)
 
-# Prepare example source
+# Prepare example sources
 title <- alpaca_sources[[1]]$title
 abstract <- alpaca_sources[[1]]$abstract
+sources <- data.frame(title = title, abstract = abstract)
 
 test_that("study_description() works", {
 
@@ -62,11 +63,10 @@ test_that("screen_source() inputs are correctly validated", {
 
 test_that("Screening works", {
 
-  expect_no_error(screen_source(
-    study_description = study_description,
-    title = title,
-    abstract = abstract,
-    .verbose = FALSE
-  ))
+  expect_no_error(screen_source(study_description = study_description, title = title, abstract = abstract, .verbose = FALSE))
+
+  expect_no_error(
+    screen_sources(sources = sources, study_description = study_description, .dry_run = TRUE)
+  ) 
 
 })

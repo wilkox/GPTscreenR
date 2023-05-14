@@ -23,7 +23,7 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
   if (.verbose) { cli::cli_h1("Screening source"); cli::cli_text("{.strong Title}: {title}") }
 
   # Initialise conversation with a system message
-  if (.verbose) { cli::cli_progress_step("Initiating conversation with GPT") }
+  if (.verbose) { cli::cli_alert_info("Initiating conversation with GPT") }
   conversation <- GPT_messages(
     role = "system",
     content = "You are being used to help researchers perform a scoping review. You are not interacting directly with a user.\n\nA scoping review is a type of systematic review used to map the published scholarship on a topic. To gather relevant sources for a scoping review, the researchers search bibliographic databases for sources that match a selected Population, Concept, and Context (the inclusion criteria). The titles and abstracts of sources that are found in this search search are then screened against the inclusion criteria.\n\nYour task is to screen a single source against the inclusion criteria. You will be provided with the study objective and inclusion criteria, and then you will then be provided with the study title and abstract. You will then be instructed to work step by step through the process of comparing the source against the inclusion criteria. Finally, you will instructed to make a recommendation on whether the source should be included.\n\nThe next message will be from the user, and will contain the scoping review objective and inclusion criteria."
@@ -69,7 +69,7 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
 
   # Check recommendation is in required format
   if (.dry_run) {
-    recommendation <- ""
+    recommendation <- NA
   } else {
     recommendation <- last_message(conversation)
     if (! stringr::str_detect(recommendation, "^(INCLUDE|EXCLUDE)$")) {
@@ -79,7 +79,7 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
 
   # Return result
   return(list(
-    conversation = list(conversation),
+    conversation = conversation,
     recommendation = recommendation
   ))
 }
@@ -115,4 +115,122 @@ study_description <- function(objective = NULL, population = NULL, concept = NUL
   }
 
   study_description
+}
+
+#' Screen multiple sources against study inclusion criteria
+#'
+#' To support multiple screening sessions, a cache of the sources list is
+#' written to a file.
+#'
+#' @param sources A data frame of sources to screen, containing at least
+#' 'title' and 'abstract' columns
+#' @param study_description A description of the study including objective and
+#' inclusion criteria, a character vector of length 1
+#' @param n Optional, a maximum number of sources to screen
+#' @param random A logical value indicating whether to randomise the order in
+#' which sources are screened, defaults to TRUE
+#' @param cache_file A file in which the sources list cache is kept (as RDS),
+#' either fs::path() or character vector of length 1
+#' @param .verbose If FALSE, progress messages will be suppressed
+#' @param .dry_run If TRUE, calls to the GPT API will be skipped
+screen_sources <- function(sources, study_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), .verbose = TRUE, .dry_run = FALSE) {
+
+  # Validate arguments
+  if (missing(sources) | missing(study_description)) {
+    stop("sources and study_description are required arguments", call. = FALSE)
+  }
+  if (! is.data.frame(sources)) {
+    stop("sources must be a data frame", call. = FALSE)
+  }
+
+  if (! is.character(study_description) | ! length(study_description) == 1) {
+    stop("study_description must be a character vector of length 1", call. = FALSE)
+  }
+
+  if (! missing(n)) {
+    if (! is.numeric(n)) {
+      stop("n must be numeric", call. = FALSE)
+    }
+    n <- as.integer(n)
+    if (n > nrow(sources)) {
+      warning("n is greater than the number of rows in sources", call. = FALSE)
+    }
+  } else {
+    n <- nrow(sources) 
+  }
+
+  if (! is.logical(random) | ! length(random) == 1) {
+    stop("random must be a logical vector of length 1", call. = FALSE)
+  }
+
+  if (! (is.character(cache_file) | "fs_path" %in% class(cache_file))) {
+    stop("cache_file must be a path", call. = FALSE)
+  }
+
+  # Remove redundant sources, if any
+  distinct_sources <- dplyr::distinct(sources)
+  if (! nrow(distinct_sources) == nrow(sources)) {
+    cli::cli_alert_warning("Removing {nrow(sources) - nrow(distinct_sources)} redundant sources")
+    sources <- distinct_sources
+  }
+
+  # If cache file already exists, load and join the sources list
+  cache_file <- fs::path(cache_file)
+  if (fs::file_exists(cache_file) & ! .dry_run) {
+    if (.verbose) cli::cli_alert_info("Loading source list from cache in {cache_file}")
+    cache <- readRDS(cache_file)
+    if (! all(c("title", "abstract", "GPT_conversation", "GPT_recommendation") %in% names(cache))) {
+      stop("Cache file does not seem to be well-formed", call. = FALSE)
+    }
+    sources <- dplyr::left_join(sources, cache, by = names(sources))
+
+  # If cache file does not already exist, create it
+  } else {
+
+    if (! "GPT_conversation" %in% names(sources)) {
+      sources$GPT_conversation <- rep(NA_character_, nrow(sources))
+    }
+
+    if (! "GPT_recommendation" %in% names(sources)) {
+      sources$GPT_recommendation <- rep(NA_character_, nrow(sources))
+    }
+
+    cli::cli_alert_info("Creating cache file {cache_file}")
+    if (! .dry_run) saveRDS(sources, cache_file)
+
+  }
+
+  # Main loop
+  while (TRUE) {
+
+    # Gather unscreened sources
+    unscreened_i <- which(is.na(sources$GPT_conversation) | is.na(sources$GPT_recommendation)) 
+    n_unscreened <- length(unscreened_i)
+    n_sources <- nrow(sources)
+    if (n_sources - n_unscreened >= n | n_unscreened == 0) break
+    if (.verbose) cli::cli_alert_info("{n_sources - n_unscreened} of {n_sources} screened")
+
+    # Select a source to screen
+    next_i <- ifelse(random, sample(unscreened_i, 1), unscreened_i[1])
+
+    # Screen the source and parse the response
+    response <- screen_source(study_description, 
+                              title = sources$title[next_i], abstract = sources$abstract[next_i], 
+                              .verbose = .verbose, .dry_run = .dry_run)
+    sources$GPT_conversation[next_i] <- paste0(as.vector(response$conversation), collapse = "\n\n* * *\n\n")
+    if (.dry_run) response$recommendation <- "INCLUDE"
+    sources$GPT_recommendation[next_i] <- response$recommendation
+    if (.verbose) cli::cli_alert_info("Recommendation: {response$recommendation}")
+
+    # Sync the sources list to the cache file
+    if (! .dry_run) saveRDS(sources, cache_file)
+  }
+
+  # Report on current state and exit
+  unscreened <- sources[which(is.na(sources$GPT_conversation) & is.na(sources$GPT_recommendation)), ]
+  n_unscreened <- nrow(unscreened)
+  n_sources <- nrow(sources)
+  if (.verbose) cli::cli_alert_success("{n_sources - n_unscreened} of {n_sources} screened")
+
+  return(sources)
 }
