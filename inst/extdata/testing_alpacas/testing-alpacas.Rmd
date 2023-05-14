@@ -1,0 +1,64 @@
+---
+title: GPTScreenR alpaca testing
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Required libraries
+
+```{r}
+library(tidyverse)
+library(printr)
+library(purrr)
+load_all()
+```
+
+# Screen titles and abstracts 
+
+```{r}
+sources <- list_rbind(map(alpaca_sources, as_tibble))
+sources$response <- pmap(sources, function(title, abstract, include, ...) {
+  response <- screen_source(
+    alpaca_inclusion_criteria$study_objective,
+    alpaca_inclusion_criteria$population,
+    alpaca_inclusion_criteria$concept,
+    alpaca_inclusion_criteria$context,
+    title,
+    abstract
+  )
+  as_tibble(response)
+})
+
+sources <- unnest(sources, response)
+
+sources <- sources %>%
+  mutate(recommendation = recommendation == "INCLUDE") %>%
+  rename(human_included = include, GPT_included = recommendation)
+```
+
+# Have a look at the summarised results
+
+```{r}
+select(sources, -conversation)
+```
+
+# Exploring where human and GPT disagreed
+
+```{r}
+sources %>%
+  filter(! human_included == GPT_included) %>%
+  pull(conversation) %>%
+  map(as.vector) %>%
+  map(paste0, collapse = "\n\n") %>%
+  paste0(collapse = "\n\n-----------------------\n\n") %>%
+  cat()
+```

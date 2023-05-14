@@ -1,0 +1,84 @@
+---
+title: GPTScreenR validation - smartphones study
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Required libraries
+
+```{r}
+library(tidyverse)
+library(printr)
+library(purrr)
+load_all()
+```
+
+# Overview of data source
+
+The dataset is from 'Smartphone Addiction Scoping Review' on OSF at \url{https://osf.io/jnxch}. The file `Scop_rev_full.csv` was downloaded on 14 May 2023. The associated publication is:
+
+> James, R. J. E., Dixon, G., Dragomir, M.-G., Thirlwell, E. & Hitcham, L. Understanding the construction of ‘behavior’ in smartphone addiction: A scoping review. Addict Behav 137, 107503 (2023).
+
+The study aims and inclusion criteria have been drawn verbatim from this publication.
+
+```{r}
+study_description <- "AIMS: The aims of this scoping review are fourfold: (1) to categorise what kinds of behavior are measured in the smartphone addiction literature, (2) identify how frequently behavior is measured, (3) how behavior is measured (self-report vs logged), and (4) whether these have changed over time.\n\nINCLUSION CRITERIA:\n- Was the paper focused on smartphone addiction? (i.e. did it include an addiction measure, and if not was the paper substantially focused on the topic e.g. for qualitative studies).\n- Did the paper report the use of primary data? i.e. not a literature review, theoretical paper, systematic review or meta-analysis, and not reporting data previously reported in the literature (e.g. reuse of data, secondary analysis of an existing data set). Secondary data were removed because reporting of data will be limited to key variables of interest and overlap. For longitudinal or intervention studies that were included, measurements were taken at baseline or the first wave that smartphone addiction was included as a variable.\n- Was the paper written in English?"
+```
+
+# Load and tidy list of sources
+
+```{r}
+sources <- read_csv("./Scop_rev_full.csv") %>%
+  select(title = `Article Title`, abstract = Abstract, include = `Include?`) %>%
+  mutate(include = include == 1) %>%
+  filter(! is.na(include))
+```
+
+# Screen titles and abstracts
+
+```{r}
+sources <- screen_sources(sources, study_description, n = 30, 
+                          cache_file = fs::path("./smartphones_sources.rds"))
+```
+
+# Summarise results
+
+```{r}
+result <- sources %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(human_recommendation = ifelse(include, "INCLUDE", "EXCLUDE")) %>%
+  count(human_recommendation, GPT_recommendation)
+
+result
+
+sensitivity <- result %>%
+  filter(human_recommendation == "INCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "INCLUDE") %>%
+  pull(percentage)
+
+sensitivity
+
+specificity <- result %>%
+  filter(human_recommendation == "EXCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "EXCLUDE") %>%
+  pull(percentage)
+
+specificity
+
+result %>%
+  mutate(GPT_correct = GPT_recommendation == human_recommendation) %>%
+  ggplot(aes(x = human_recommendation, fill = GPT_correct, y = n)) +
+    geom_col(position = "stack") +
+    coord_flip()
+```
