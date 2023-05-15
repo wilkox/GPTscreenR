@@ -13,17 +13,16 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
 
   # Validate arguments
   validate_screening_param <- function(param, name) {
-    if (missing(param)) { stop(name, " is missing", call. = FALSE) }
-    if (! is.character(param) | ! length(param) == 1) { stop(name, " must be a character vector of length 1", call. = FALSE) }
-    if (is.na(param) | stringr::str_length(param) == 0 ) { warning(name, " appears to have no content", call. = FALSE) }
+    if (missing(param)) { cli::cli_abort(name, " is missing") }
+    if (! is.character(param) | ! length(param) == 1) { cli::cli_abort("{name} must be a character vector of length 1") }
+    if (is.na(param) | stringr::str_length(param) == 0 ) { cli::cli_warn("{name} appears to have no content") }
   }
   validate_screening_param(study_description, "study_description")
   validate_screening_param(title, "title")
   validate_screening_param(abstract, "abstract")
-  if (.verbose) { cli::cli_h1("Screening source"); cli::cli_text("{.strong Title}: {title}") }
+  if (.verbose) { cli::cli_h2("Screening: {title}") }
 
   # Initialise conversation with a system message
-  if (.verbose) { cli::cli_alert_info("Initiating conversation with GPT") }
   conversation <- GPT_messages(
     role = "system",
     content = "You are being used to help researchers perform a scoping review. You are not interacting directly with a user.\n\nA scoping review is a type of systematic review used to map the published scholarship on a topic. To gather relevant sources for a scoping review, the researchers search bibliographic databases for sources that match a selected Population, Concept, and Context (the inclusion criteria). The titles and abstracts of sources that are found in this search search are then screened against the inclusion criteria.\n\nYour task is to screen a single source against the inclusion criteria. You will be provided with the study objective and inclusion criteria, and then you will then be provided with the study title and abstract. You will then be instructed to work step by step through the process of comparing the source against the inclusion criteria. Finally, you will instructed to make a recommendation on whether the source should be included.\n\nThe next message will be from the user, and will contain the scoping review objective and inclusion criteria."
@@ -73,15 +72,12 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
   } else {
     recommendation <- last_message(conversation)
     if (! stringr::str_detect(recommendation, "^(INCLUDE|EXCLUDE)$")) {
-      warning(stringr::str_c("GPT's recommendation could not be parsed: ", recommendation, call. = FALSE))
+      cli::cli_warn(c("GPT's recommendation could not be parsed:", recommendation))
     }
   }
 
   # Return result
-  return(list(
-    conversation = conversation,
-    recommendation = recommendation
-  ))
+  return(list(conversation = conversation, recommendation = recommendation))
 }
 
 #' Combine study objective and inclusion criteria into a formatted string
@@ -97,7 +93,7 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
 study_description <- function(objective = NULL, population = NULL, concept = NULL, context = NULL) {
 
   if (missing(objective) & missing(population) & missing(concept) & missing(context)) {
-    stop("No study information provided", call. = FALSE)
+    cli::cli_abort("No study information provided")
   }
 
   study_description <- ""
@@ -137,55 +133,52 @@ screen_sources <- function(sources, study_description, n = NULL, random = TRUE, 
 
   # Validate arguments
   if (missing(sources) | missing(study_description)) {
-    stop("sources and study_description are required arguments", call. = FALSE)
+    cli::cli_abort("sources and study_description are required arguments")
   }
   if (! is.data.frame(sources)) {
-    stop("sources must be a data frame", call. = FALSE)
+    cli::cli_abort("sources must be a data frame")
   }
 
   if (! is.character(study_description) | ! length(study_description) == 1) {
-    stop("study_description must be a character vector of length 1", call. = FALSE)
+    cli::cli_abort("study_description must be a character vector of length 1")
   }
 
   if (! missing(n)) {
     if (! is.numeric(n)) {
-      stop("n must be numeric", call. = FALSE)
+      cli::cli_abort("n must be numeric")
     }
     n <- as.integer(n)
     if (n > nrow(sources)) {
-      warning("n is greater than the number of rows in sources", call. = FALSE)
+      cli::cli_warn("n ({n}) is greater than the number of rows in sources ({nrow(sources)})")
     }
   } else {
     n <- nrow(sources) 
   }
 
   if (! is.logical(random) | ! length(random) == 1) {
-    stop("random must be a logical vector of length 1", call. = FALSE)
+    cli::cli_abort("random must be a logical vector of length 1")
   }
 
   if (! (is.character(cache_file) | "fs_path" %in% class(cache_file))) {
-    stop("cache_file must be a path", call. = FALSE)
+    cli::cli_abort("cache_file must be a path")
   }
 
-  # Remove redundant sources, if any
-  distinct_sources <- dplyr::distinct(sources)
-  if (! nrow(distinct_sources) == nrow(sources)) {
-    cli::cli_alert_warning("Removing {nrow(sources) - nrow(distinct_sources)} redundant sources")
-    sources <- distinct_sources
-  }
-
-  # If cache file already exists, load and join the sources list
+  # If cache file already exists, load and use it
+  if (.verbose) cli::cli_h1("Preparing sources list")
   cache_file <- fs::path(cache_file)
   if (fs::file_exists(cache_file) & ! .dry_run) {
-    if (.verbose) cli::cli_alert_info("Loading source list from cache in {cache_file}")
-    cache <- readRDS(cache_file)
-    if (! all(c("title", "abstract", "GPT_conversation", "GPT_recommendation") %in% names(cache))) {
-      stop("Cache file does not seem to be well-formed", call. = FALSE)
-    }
-    sources <- dplyr::left_join(sources, cache, by = names(sources))
+    if (.verbose) cli::cli_alert_info("Loading sources from cache in {cache_file} ({.arg sources} will be ignored)")
+    sources <- readRDS(cache_file)
 
   # If cache file does not already exist, create it
   } else {
+
+    # Remove redundant sources, if any
+    distinct_sources <- dplyr::distinct(sources)
+    if (! nrow(distinct_sources) == nrow(sources)) {
+      cli::cli_alert_warning("Removing {nrow(sources) - nrow(distinct_sources)} redundant source{?s}")
+      sources <- distinct_sources
+    }
 
     if (! "GPT_conversation" %in% names(sources)) {
       sources$GPT_conversation <- rep(NA_character_, nrow(sources))

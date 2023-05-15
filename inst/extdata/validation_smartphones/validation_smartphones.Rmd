@@ -20,6 +20,7 @@ library(tidyverse)
 library(printr)
 library(purrr)
 load_all()
+packageVersion("GPTscreenR")
 ```
 
 # Overview of data source
@@ -46,7 +47,7 @@ sources <- read_csv("./Scop_rev_full.csv") %>%
 # Screen titles and abstracts
 
 ```{r}
-sources <- screen_sources(sources, study_description, n = 30, 
+sources <- screen_sources(sources, study_description, n = 50, 
                           cache_file = fs::path("./smartphones_sources.rds"))
 ```
 
