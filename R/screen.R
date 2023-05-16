@@ -181,7 +181,7 @@ screen_sources <- function(sources, study_description, n = NULL, random = TRUE, 
     }
 
     if (! "GPT_conversation" %in% names(sources)) {
-      sources$GPT_conversation <- rep(NA_character_, nrow(sources))
+      sources$GPT_conversation <- as.list(rep(NA_character_, nrow(sources)))
     }
 
     if (! "GPT_recommendation" %in% names(sources)) {
@@ -210,7 +210,7 @@ screen_sources <- function(sources, study_description, n = NULL, random = TRUE, 
     response <- screen_source(study_description, 
                               title = sources$title[next_i], abstract = sources$abstract[next_i], 
                               .verbose = .verbose, .dry_run = .dry_run)
-    sources$GPT_conversation[next_i] <- paste0(as.vector(response$conversation), collapse = "\n\n* * *\n\n")
+    sources$GPT_conversation[next_i] <- response$conversation
     if (.dry_run) response$recommendation <- "INCLUDE"
     sources$GPT_recommendation[next_i] <- response$recommendation
     if (.verbose) cli::cli_alert_info("Recommendation: {response$recommendation}")
