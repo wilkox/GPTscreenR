@@ -1,0 +1,111 @@
+---
+title: GPTScreenR validation - solastalgia study
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Required libraries
+
+```{r}
+library(tidyverse)
+library(printr)
+library(purrr)
+library(readxl)
+load_all()
+packageVersion("GPTscreenR")
+```
+
+# Overview of data source
+
+The dataset is from the scoping review:
+
+> Breth-Petersen, M., Garay, J., Clancy, K., Dickson, M. & Angelo, C. Homesickness at Home: A Scoping Review of Solastalgia Experiences in Australia. Int J Environ Res Pu 20, 2541 (2023).
+
+The file `r Solastalgia re-screening and extraction spreadsheet Dec 2022.xlsx` was downloaded on 16 May 2023.
+
+The research questions and inclusion and exclusion criteria have been drawn from this publication.
+
+```{r}
+study_description <- str_c(
+  sep = "\n",
+  "Definitions:",
+  "- Solastalgia is a portmanteau of the words: solace (i.e., comfort), algos (i.e., pain or suffering) and nostalgia. Thus, solastalgia refers to the pain and distress caused by the loss or inability to derive solace when there is the lived experience of physical desolation in a home environment.",
+  "",
+  "Research questions:",
+  "1. How is solastalgia defined and differentiated from other eco-psychological terms in Australian literature?",
+  "2. What are the risk factors and protective factors for experiencing solastalgia in Australia?",
+  "3. How is solastalgia experienced by Aboriginal and Torres Strait Islander peoples?",
+  "4. How can solastalgia be addressed in Australia?",
+  "",
+  "Inclusion criteria:",
+  "- Peer-reviewed",
+  "- Published in English",
+  "- Specific to the Australian context",
+  "- Addresses 1 or more of the research questions",
+  "",
+  "Exclusion criteria:",
+  "- Not specific to the Australian context",
+  "- Secondary literature (i.e., reviews)"
+)
+```
+
+# Load and tidy list of sources
+
+```{r}
+all_sources <- read_excel("./Solastalgia re-screening and extraction spreadsheet Dec 2022.xlsx", sheet = "Search Results", range = "A2:J152")
+
+included_sources <- read_excel("./Solastalgia re-screening and extraction spreadsheet Dec 2022.xlsx", sheet = "Included papers", range = "A2:J20")
+```
+
+Check that the "Included sources" and "All sources" sheets match up as expected.
+
+```{r}
+all(included_sources$`Title` %in% all_sources$`Title`)
+```
+
+On manual inspection, this appears to be due to a minor typo in the title of one of the papers ("Solastalgia: a new concept in health and identity"). This will be manually reconciled.
+
+```{r}
+all_sources$`Title`[4] <- included_sources$`Title`[3]
+all(included_sources$`Title` %in% all_sources$`Title`)
+```
+
+```{r}
+all(included_sources$Abstract %in% all_sources$`Abstract`)
+```
+
+Again these seem to be due to minor typos. These will be manually reconciled.
+
+```{r}
+included_sources$`Abstract`[16] <- all_sources$`Abstract`[113]
+all_sources$`Abstract`[121] <- included_sources$`Abstract`[17]
+all(included_sources$Abstract %in% all_sources$`Abstract`)
+```
+
+The two sheets will now be combined.
+
+```{r}
+included_sources <- included_sources %>%
+  select(title = Title, abstract = Abstract) %>%
+  mutate(human_recommendation = "INCLUDE")
+all_sources <- all_sources %>%
+  select(human_1 = `#1 Students`, human_2 = `#2 MBP`, human_3 = `#3 KC`, title = Title, abstract = Abstract)
+sources <- left_join(all_sources, included_sources) %>%
+  mutate(human_recommendation = ifelse(is.na(human_recommendation), "EXCLUDE", "INCLUDE"))
+```
+
+# Screen titles and abstracts
+
+```{r}
+sources <- screen_sources(sources, study_description, n = 15,
+                          cache_file = fs::path("./solastalgia_sources.rds"))
+```

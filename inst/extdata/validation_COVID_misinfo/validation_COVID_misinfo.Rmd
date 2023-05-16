@@ -68,14 +68,14 @@ sources <- read_excel("./TITLE ABSTRACT FULL TEXT SCREENING DATA_CAIM COVID-19 S
 
 Loaded `r nrow(sources)`.
 
-`r sources %>% filter(human_recommendation == "Maybe"` sources had 'Maybe' as the human recommendation. These will be removed, as GPTscreenR is designed to provide only a binary include/exclude decision.
+`r sources %>% filter(human_recommendation == "Maybe") %>% nrow()` sources had 'Maybe' as the human recommendation. These will be removed, as GPTscreenR is designed to provide only a binary include/exclude decision.
 
 ```{r}
 sources <- sources %>%
   filter(! human_recommendation == "Maybe")
 ```
 
-A `r sources %>`mysterious number of sources had 'No DOI', these will be removed.
+`r sources %>% filter(DOI == "No DOI") %>% nrow()` sources had 'No DOI', these will be removed.
 
 ```{r}
 sources <- sources %>%
@@ -160,7 +160,7 @@ Only sources with an available abstract (`r sources %>% filter(! is.na(abstract)
 
 ```{r}
 sources <- sources %>% filter(! is.na(abstract))
-sources <- screen_sources(sources, study_description, n = 25,
+sources <- screen_sources(sources, study_description, n = 50,
                           cache_file = fs::path("./COVID_misinfo_sources.rds"))
 ```
 
@@ -169,7 +169,7 @@ sources <- screen_sources(sources, study_description, n = 25,
 ```{r}
 result <- sources %>%
   filter(! is.na(GPT_recommendation)) %>%
-  mutate(human_recommendation = ifelse(include, "INCLUDE", "EXCLUDE")) %>%
+  mutate(human_recommendation = ifelse(human_recommendation == "Yes", "INCLUDE", "EXCLUDE")) %>%
   count(human_recommendation, GPT_recommendation)
 
 result
