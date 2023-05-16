@@ -210,7 +210,7 @@ screen_sources <- function(sources, study_description, n = NULL, random = TRUE, 
     response <- screen_source(study_description, 
                               title = sources$title[next_i], abstract = sources$abstract[next_i], 
                               .verbose = .verbose, .dry_run = .dry_run)
-    sources$GPT_conversation[next_i] <- response$conversation
+    sources$GPT_conversation[[next_i]] <- response$conversation
     if (.dry_run) response$recommendation <- "INCLUDE"
     sources$GPT_recommendation[next_i] <- response$recommendation
     if (.verbose) cli::cli_alert_info("Recommendation: {response$recommendation}")

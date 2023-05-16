@@ -1,0 +1,198 @@
+---
+title: GPTScreenR validation - COVID-19 misinformation study
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+```
+
+# Required libraries
+
+```{r}
+library(tidyverse)
+library(printr)
+library(purrr)
+library(readxl)
+library(rcrossref)
+load_all()
+packageVersion("GPTscreenR")
+```
+
+# Overview of data source
+
+The dataset is from the preprint of:
+
+> Ng, J. Y. et al. Complementary, Alternative, and Integrative Medicine-Specific COVID-19 Misinformation on Social Media: A Scoping Review. (2023) doi:10.31219/osf.io/d2mkr.
+
+The file `TITLE ABSTRACT FULL TEXT SCREENING DATA_CAIM COVID-19 SM Misinfo_Mar2223.xlsx` was downloaded on 16 May 2023.
+
+The study aims and inclusion criteria have been drawn from the preprint manuscript.
+
+```{r}
+study_description <- str_c(
+  sep = "\n",
+  "RESEARCH QUESTION: With respect to studies exploring COVID-19 misinformation on social media, how many of them make mention of complementary, alternative, and integrative medicine (CAIM) and what do they report about these therapies?",
+  "INCLUSION CRITERIA:",
+  str_c(
+    sep = "\n",
+    "- The study specifically explored COVID-19 misinformation on social media",
+    "- In defining social media, we followed a formalized definition to remove ambiguity when determining study eligibility. Obar and Wildman, define social media by the following four characteristics: '1) social media services are (currently) applications that are Web 2.0 Internet-based; 2) the lifeblood of social media is user-generated content; 3) for a site or app designed and maintained by a social media service, individuals and groups create user-specific profiles, and; 4) the development of social networks online by connecting a profile with those of other individuals and/or groups is facilitated by social media services.'",
+    "- During title and abstract screening, studies were only selected for inclusion if the information provided in the title or abstract indicated that the study specifically explored COVID-19 misinformation on social media. This meant that a study was considered eligible regardless of whether CAIM was discussed in the article’s full text. This decision was made to avoid excluding relevant articles that include CAIM discussion in the full text, but not within the title or abstract.",
+    "- Only primary research articles are (e.g., cross-sectional studies, descriptive analyses, questionnaire based studies, etc.) were considered and included in this scoping review.",
+    "- Review articles were not eligible for inclusion in this review.",
+    "- Research protocols, abstracts, editorials, opinion pieces, commentaries, and any non-English texts were not eligible for inclusion in this scoping review."
+  )
+)
+```
+
+# Prepare sources list
+
+Load and tidy the sources list.
+
+```{r}
+sources <- read_excel("./TITLE ABSTRACT FULL TEXT SCREENING DATA_CAIM COVID-19 SM Misinfo_Mar2223.xlsx", sheet = "Title & Abstract Screening", range = "A2:G673") %>%
+  select(title = Title, authors = Authors, DOI, human_recommendation = `Final Decision`)
+```
+
+Loaded `r nrow(sources)`.
+
+`r sources %>% filter(human_recommendation == "Maybe"` sources had 'Maybe' as the human recommendation. These will be removed, as GPTscreenR is designed to provide only a binary include/exclude decision.
+
+```{r}
+sources <- sources %>%
+  filter(! human_recommendation == "Maybe")
+```
+
+A `r sources %>`mysterious number of sources had 'No DOI', these will be removed.
+
+```{r}
+sources <- sources %>%
+  filter(! DOI == "No DOI")
+```
+
+The remaining DOIs will be cleaned.
+
+```{r}
+sources <- sources %>%
+  mutate(DOI = map_chr(DOI, ~ str_match(.x, "https?://(dx\\.)?doi\\.org/(?<doi>.+)")[1,"doi"]))
+```
+
+Attempt to download abstracts.
+
+```{r}
+retrieve_abstract <- function(DOI, cache_file = NULL) {
+
+  cli::cli_h2("Attempting to retrieve abstract for {DOI}")
+
+  # Use cached abstract, if available
+  if (! is.null(cache_file)) {
+    if (fs::file_exists(cache_file)) {
+      cli::cli_alert_info("Checking cache file {cache_file}")
+      abstracts_cache <- readRDS(cache_file)
+      abstracts_cache <- abstracts_cache[which(abstracts_cache$DOI == DOI), ]
+      if (nrow(abstracts_cache) == 1) {
+        if (! is.na(abstracts_cache$abstract_source)) {
+          cli::cli_alert_success("Using cached abstract for {DOI}")
+          return(abstracts_cache[, c("abstract", "abstract_source")])
+        }
+      }
+    }
+  }
+
+  # Attempt to download abstract using the rcrossref package. Note that this
+  # relies on my email address being registered in an environmental variable; see
+  # https://rdocumentation.org/packages/rcrossref/versions/1.2.0
+  cli::cli_alert_info("Attempting to retrieve abstract from crossref")
+  safe_cr_abstract <- safely(rcrossref::cr_abstract)
+  cr_result <- safe_cr_abstract(DOI)
+  if (! is.null(cr_result$error)) {
+    cli::cli_alert_danger("Crossref retrieval failed with error: '{cr_result$error$message}'")
+    if (! is.null(cache_file)) {
+      result <- data.frame(DOI = DOI, abstract = NA_character_, abstract_source = "crossref_failure")
+      if (fs::file_exists(cache_file)) {
+        abstracts_cache <- readRDS(cache_file)
+        abstracts_cache <- dplyr::bind_rows(abstracts_cache, result)
+      } else {
+        abstracts_cache <- result
+      }
+      saveRDS(abstracts_cache, cache_file)
+    }
+  } else {
+    cli::cli_alert_success("Crossref retrieval succeeded")
+    result <- data.frame(DOI = DOI, abstract = cr_result$result, abstract_source = "crossref")
+    if (! is.null(cache_file)) {
+      if (fs::file_exists(cache_file)) {
+        abstracts_cache <- readRDS(cache_file)
+        abstracts_cache <- dplyr::bind_rows(abstracts_cache, result)
+      } else {
+        abstracts_cache <- result
+      }
+      saveRDS(abstracts_cache, cache_file)
+    }
+    return(result[,c("abstract", "abstract_source")])
+  }
+
+  # Return a failure, if things somehow get this far
+  data.frame(abstract = NA_character_, abstract_source = "general_failure")
+}
+
+sources <- sources %>%
+  mutate(abstract = map(DOI, retrieve_abstract, cache_file = "DOI_abstracts_cache.rds")) %>%
+  unnest(abstract)
+sources %>% count(is.na(abstract))
+```
+
+# Screen titles and abstracts
+
+Only sources with an available abstract (`r sources %>% filter(! is.na(abstract)) %>% nrow()`) will be screened.
+
+```{r}
+sources <- sources %>% filter(! is.na(abstract))
+sources <- screen_sources(sources, study_description, n = 25,
+                          cache_file = fs::path("./COVID_misinfo_sources.rds"))
+```
+
+# Summarise results
+
+```{r}
+result <- sources %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(human_recommendation = ifelse(include, "INCLUDE", "EXCLUDE")) %>%
+  count(human_recommendation, GPT_recommendation)
+
+result
+
+sensitivity <- result %>%
+  filter(human_recommendation == "INCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "INCLUDE") %>%
+  pull(percentage)
+
+sensitivity
+
+specificity <- result %>%
+  filter(human_recommendation == "EXCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "EXCLUDE") %>%
+  pull(percentage)
+
+specificity
+
+result %>%
+  mutate(GPT_correct = GPT_recommendation == human_recommendation) %>%
+  ggplot(aes(x = human_recommendation, fill = GPT_correct, y = n)) +
+    geom_col(position = "stack") +
+    coord_flip()
+```
