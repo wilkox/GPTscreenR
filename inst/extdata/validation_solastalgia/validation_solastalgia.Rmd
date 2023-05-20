@@ -30,7 +30,7 @@ The dataset is from the scoping review:
 
 > Breth-Petersen, M., Garay, J., Clancy, K., Dickson, M. & Angelo, C. Homesickness at Home: A Scoping Review of Solastalgia Experiences in Australia. Int J Environ Res Pu 20, 2541 (2023).
 
-The file `r Solastalgia re-screening and extraction spreadsheet Dec 2022.xlsx` was downloaded on 16 May 2023.
+The file `Solastalgia re-screening and extraction spreadsheet Dec 2022.xlsx` was downloaded on 16 May 2023.
 
 The research questions and inclusion and exclusion criteria have been drawn from this publication.
 
@@ -106,6 +106,38 @@ sources <- left_join(all_sources, included_sources) %>%
 # Screen titles and abstracts
 
 ```{r}
-sources <- screen_sources(sources, study_description, n = 15,
+sources <- screen_sources(sources, study_description, n = 50,
                           cache_file = fs::path("./solastalgia_sources.rds"))
+```
+
+# Summarise results
+
+```{r}
+result <- sources %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  count(human_recommendation, GPT_recommendation)
+
+result
+
+sensitivity <- result %>%
+  filter(human_recommendation == "INCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "INCLUDE") %>%
+  pull(percentage)
+
+sensitivity
+
+specificity <- result %>%
+  filter(human_recommendation == "EXCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "EXCLUDE") %>%
+  pull(percentage)
+
+specificity
+
+result %>%
+  mutate(GPT_correct = GPT_recommendation == human_recommendation) %>%
+  ggplot(aes(x = human_recommendation, fill = GPT_correct, y = n)) +
+    geom_col(position = "stack") +
+    coord_flip()
 ```
