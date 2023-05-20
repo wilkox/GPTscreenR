@@ -14,7 +14,8 @@ print.GPT_messages <- function(x, ...) {
   for (i in seq_len(length(x$role))) {
     cli::cli_div(theme = list(span.message = list(color = dplyr::case_when(x$role[i] == "system" ~ "red", x$role[i] == "user" ~ "blue", x$role[i] == "assistant" ~ "yellow", TRUE ~ "white"))))
     cli::cli_h2(stringr::str_to_upper(x$role[i]))
-    cli::cli_text("{.message {x$content[i]}}")
+    msg <- stringr::str_replace_all(x$content[i], "\n", "\u000c") # Let newlines be newlines
+    cli::cli_text("{.message {msg}}")
   }
 }
 
