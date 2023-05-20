@@ -1,0 +1,119 @@
+---
+title: "GPTscreenR validation - teachers' soft skills"
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+```
+
+# Required libraries
+
+```{r}
+library(tidyverse)
+library(printr)
+library(purrr)
+library(readxl)
+library(rcrossref)
+load_all()
+packageVersion("GPTscreenR")
+```
+
+# Overview of data source
+
+The dataset is from the preprint:
+
+> Manchini, N., Jiménez-Jiménez, Ó. & Ramos-Díaz, N. Teachers’ Soft Skills: a scoping review. (2022) doi:10.31234/osf.io/trjub.
+
+The file `Teachers´ Soft Skills a SR - Screening NM & OJ(1).xlsx` was downloaded from \url{https://osf.io/7eupv} on 20 May 2023.
+
+The study description has been drawn from the preprint manuscript.
+
+```{r}
+study_description <- str_c(
+  sep = "\n",
+  "Study objective: to identify quantitative literature focused on teachers' soft skills, and synthesize the definitions, examples, methods and instruments used to approach them, as well as their main results",
+  "Population:",
+  "- Inclusion criteria: teachers or pre-service teachers (PST)",
+  "- Exclusion criteria: other populations (students, engineers, nurses, etc.)",
+  "Design:",
+  "- Inclusion criteria: quantitative or mixed studies",
+  "- Exclusion criteria: qualitative studies; theoretical articles",
+  "Focus:",
+  "- Inclusion criteria: focused on teachers' soft skills",
+  "- Exclusion criteria: focus on other constructs or only laterally focused on soft skills"
+)
+```
+
+# Load and tidy sources list
+
+```{r}
+sources <- read_excel("./Teachers´ Soft Skills a SR - Screening NM & OJ(1).xlsx", sheet = "Búsqueda completa (seliminados)") %>%
+  select(title = Título, abstract = Abstract, human_recommendation = `Acuerdo (2=acuerdo en incluir, 0=acuerdo en excluir, 1=desacuerdo)`)
+```
+
+Two human reviews appraised the titles and abstracts for this study, and their recommendations are summarised as the count in the `human_recommendation` column, i.e. 2 means both agreed to include, 1 means there was disagreement, and 0 means both recommended exclusion.
+
+```{r}
+count(sources, human_recommendation)
+```
+
+There are only three studies on which the reviewers disagreed. The final decisions after discussion are recorded in comments written in Spanish in the sheet 'Desacuerdo' of the Excel file. The sources list will be manually recoded with these final decisions.
+
+```{r}
+sources[121, "human_recommendation"] <- 2
+sources[145, "human_recommendation"] <- 0
+sources[299, "human_recommendation"] <- 2
+
+sources <- mutate(sources, human_recommendation = ifelse(human_recommendation == 2, "INCLUDE", "EXCLUDE"))
+```
+
+# Screen titles and abstracts
+
+```{r}
+sources <- screen_sources(sources, study_description, n = 50,
+                          cache_file = fs::path("./teachers_sources.rds"))
+```
+
+# Summarise results
+
+```{r}
+result <- sources %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  count(human_recommendation, GPT_recommendation)
+
+result
+
+sensitivity <- result %>%
+  filter(human_recommendation == "INCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "INCLUDE") %>%
+  pull(percentage)
+
+sensitivity
+
+specificity <- result %>%
+  filter(human_recommendation == "EXCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "EXCLUDE") %>%
+  pull(percentage)
+
+specificity
+
+result %>%
+  mutate(GPT_correct = GPT_recommendation == human_recommendation) %>%
+  ggplot(aes(x = human_recommendation, fill = GPT_correct, y = n)) +
+    geom_col(position = "stack") +
+    coord_flip()
+```
