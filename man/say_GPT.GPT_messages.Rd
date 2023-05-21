@@ -4,7 +4,7 @@
 \alias{say_GPT.GPT_messages}
 \title{A convenience function to send a message to GPT and capture the response}
 \usage{
-\method{say_GPT}{GPT_messages}(x, content, role = "user")
+\method{say_GPT}{GPT_messages}(x, content, role = "user", .dry_run = FALSE)
 }
 \arguments{
 \item{x}{A GPT_messages object}
@@ -12,6 +12,8 @@
 \item{content}{The content of the message}
 
 \item{role}{The role of the messsage (defaults to "user")}
+
+\item{.dry_run}{If TRUE, will not make an actual call to the GPT API}
 }
 \description{
 A convenience function to send a message to GPT and capture the response

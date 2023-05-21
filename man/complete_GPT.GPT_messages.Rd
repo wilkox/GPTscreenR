@@ -4,10 +4,12 @@
 \alias{complete_GPT.GPT_messages}
 \title{Create chat completions with the OpenAI API}
 \usage{
-\method{complete_GPT}{GPT_messages}(x)
+\method{complete_GPT}{GPT_messages}(x, .dry_run = FALSE)
 }
 \arguments{
 \item{x}{A GPT_messages object}
+
+\item{.dry_run}{If TRUE, will not make an actual call to the GPT API}
 }
 \description{
 API endpoint is documented at

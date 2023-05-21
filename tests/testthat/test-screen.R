@@ -63,10 +63,12 @@ test_that("screen_source() inputs are correctly validated", {
 
 test_that("Screening works", {
 
-  expect_no_error(screen_source(study_description = study_description, title = title, abstract = abstract, .verbose = FALSE))
+  expect_no_error(screen_source(study_description = study_description, title = title, 
+                                abstract = abstract, .verbose = FALSE, .dry_run = TRUE))
 
   expect_no_error(
-    screen_sources(sources = sources, study_description = study_description, .dry_run = TRUE)
+    screen_sources(sources = sources, study_description = study_description, .dry_run = TRUE, 
+                   .verbose = FALSE)
   ) 
 
 })

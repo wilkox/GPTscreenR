@@ -9,7 +9,7 @@ test_that("create chat completion works", {
     data.frame(role = "user", content = "What is the Southern Cross")
   )
   messages <- as_GPT_messages(messages)
-  completion <- complete_GPT(messages)
+  completion <- complete_GPT(messages, .dry_run = TRUE)
   expect_no_error(completion)
   expect_type(completion, "list")
   expect_s3_class(completion, "GPT_messages")

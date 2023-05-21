@@ -168,13 +168,14 @@ as.vector.GPT_messages <- function(x, mode = "any") {
 #' @param x A GPT_messages object
 #' @param content The content of the message
 #' @param role The role of the messsage (defaults to "user")
+#' @param .dry_run If TRUE, will not make an actual call to the GPT API
 #' @export
-say_GPT.GPT_messages <- function(x, content, role = "user") {
+say_GPT.GPT_messages <- function(x, content, role = "user", .dry_run = FALSE) {
   x <- add_message(x, role = role, content = content)
-  x <- complete_GPT(x)
+  x <- complete_GPT(x, .dry_run = .dry_run)
   x
 }
 
-say_GPT <- function(x, content, role = "user") {
+say_GPT <- function(x, content, role = "user", .dry_run) {
   UseMethod("say_GPT")
 }
