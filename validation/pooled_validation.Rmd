@@ -1,0 +1,96 @@
+---
+title: Pooled results of GPTscreenR validation
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+library(glue)
+```
+
+# Load cached results from each validation run and pool
+
+```{r}
+COVID_misinfo <- readRDS("./validation_COVID_misinfo/COVID_misinfo_sources.rds") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(human_includes = human_recommendation == "Yes") %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  select(title, abstract, human_includes, GPT_includes) %>%
+  mutate(study = "COVID misinformation")
+
+smartphones <- readRDS("./validation_smartphones/smartphones_sources.rds") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  select(title, abstract, human_includes = include, GPT_includes) %>%
+  mutate(study = "Smartphones")
+
+solastalgia <- readRDS("./validation_solastalgia/solastalgia_sources.rds") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(human_includes = human_recommendation == "INCLUDE") %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  select(title, abstract, human_includes, GPT_includes) %>%
+  mutate(study = "Solastalgia")
+
+teachers <- readRDS("./validation_teachers/teachers_sources.rds") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(human_includes = human_recommendation == "INCLUDE") %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  select(title, abstract, human_includes, GPT_includes) %>%
+  mutate(study = "Teachers")
+
+pooled <- bind_rows(COVID_misinfo, smartphones, solastalgia, teachers)
+```
+
+# Pooled sensitivity and specificity
+
+```{r}
+sensitivity <- function(human_includes, GPT_includes) {
+  GPT_includes <- GPT_includes[human_includes]
+  sum(GPT_includes) / length(GPT_includes) * 100
+}
+
+specificity <- function(human_includes, GPT_includes) {
+  GPT_includes <- GPT_includes[! human_includes]
+  sum(! GPT_includes) / length(GPT_includes) * 100
+}
+
+pooled_ss <- pooled %>%
+  summarise(
+    sensitivity = sensitivity(human_includes, GPT_includes),
+    specificity = specificity(human_includes, GPT_includes)
+  )
+
+perstudy_ss <- pooled %>%
+  group_by(study) %>%
+  summarise(
+    Sensitivity = sensitivity(human_includes, GPT_includes),
+    Specificity = specificity(human_includes, GPT_includes)
+  ) %>%
+  pivot_longer(cols = c("Sensitivity", "Specificity"), names_to = "statistic")
+
+ggplot() +
+  geom_boxplot(data = perstudy_ss, aes(x = statistic, y = value)) +
+  geom_point(data = perstudy_ss, aes(x = statistic, y = value, colour = study)) +
+  theme_classic() +
+  labs(
+    x = NULL,
+    y = "%",
+    colour = "Study",
+    subtitle = glue(
+      "Pooled sensitivity: {signif(pooled_ss$sensitivity, 2)}%",
+      "\n",
+      "Pooled specificity: {signif(pooled_ss$specificity, 2)}%"
+    )
+  )
+```
