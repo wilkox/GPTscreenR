@@ -28,7 +28,7 @@ complete_GPT.GPT_messages <- function(x, .dry_run = FALSE) {
 
   # POST to chat completion endpoint
   if (.dry_run) {
-    response <- list(status_code = 200, content = "This is a placeholder response.")
+    response <- data.frame(status_code = 200, content = "This is a placeholder response.")
 
   } else {
     response <- httr::POST(
