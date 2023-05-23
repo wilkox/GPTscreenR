@@ -17,4 +17,4 @@ The set of documents in this folder describes the process of gathering studies t
 
 Parts of this process are time-consuming and flaky, because they involve web scraping or API calls. This is why the process has been split into multiple steps with caching of the results in between.
 
-The html files produced by compiling these documents should each contain a timestamp towards to top of the page, indicating when the html file was generated. This also serves to timestamp the intermediate files produced by each step.
+The html files produced by compiling these documents should each contain a timestamp towards to top of the page, indicating when the html file was generated. This also serves to timestamp the intermediate files produced by each step. Only the first step (searching the Open Science Framework for relevant studies) is likely to produce different results depending on  when it was run. So, the steps ater this one are memoised to allow for crashes and reruns.

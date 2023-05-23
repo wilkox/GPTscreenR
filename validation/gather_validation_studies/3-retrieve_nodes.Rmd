@@ -1,0 +1,74 @@
+---
+title: "3: Retrieve nodes"
+author: David Wilkins
+date: Generated `r lubridate::now()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+library(osfr)
+library(memoise)
+```
+
+For each node identifier found in the OSF search, use the `osfr` package to retrieve an `osf_tbl` object representing that node. 
+
+Note that the OSF API uses a personal authentication token (PAT) to allow a large number of requests; see [the osfr documentation](https://cran.r-project.org/web/packages/osfr/vignettes/auth.html) for more details. If you are trying to reproduce this analysis, you will either need to register for your own PAT or modify the code below to access the API without a PAT.
+
+```{r}
+osf_PAT <- Sys.getenv("OSF_PAT")
+osf_auth(osf_PAT)
+```
+
+Load the list of nodes.
+
+```{r}
+nodes <- read_tsv("./OSF_search_results.tsv")
+```
+
+Retrieve each node as a `osf_tbl` object. This step will be memosied as it is prone to API call failures, crashing etc.
+
+```{r}
+osf_retrieve_node <- insistently(osfr::osf_retrieve_node, rate = rate_backoff())
+osf_retrieve_node <- slowly(osf_retrieve_node, rate = rate_delay(0.1))
+osf_retrieve_node <- safely(osf_retrieve_node)
+osf_retrieve_node <- memoise(osf_retrieve_node, cache = cachem::cache_disk(dir = "cache"))
+
+nodes$node <- map(nodes$id, osf_retrieve_node)
+
+nodes <- nodes %>%
+  mutate(node_result = map(node, ~ .x$result)) %>%
+  mutate(node_error = map(node, ~ .x$error))
+```
+
+Some number of identifiers will fail retrieval, usually for unclear reasons.
+
+```{r}
+nodes <- nodes %>%
+  mutate(failed = ! map_lgl(node_error, is.null))
+
+count(nodes, failed)
+```
+
+These will be removed.
+
+```{r}
+nodes <- nodes %>%
+  filter(! failed) %>%
+  select(id, node = node_result)
+```
+
+Write the resulting tibble to file.
+
+```{r}
+saveRDS(nodes, "nodes.rds")
+```

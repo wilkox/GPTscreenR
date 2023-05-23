@@ -1,7 +1,7 @@
 ---
-title: "3: List files"
+title: "4: List files"
 author: David Wilkins
-date: Last updated `r lubridate::today()`
+date: Generated `r lubridate::now()`
 output:
   html_document:
     toc: true
@@ -18,48 +18,6 @@ library(tidyverse)
 library(printr)
 ```
 
-
-# Gather files
-
-For each identified node, use the `osfr` package to get a list of associated files. Note that the OSF API uses a personal authentication token (PAT) to allow a large number of requests; see [the osfr documentation](https://cran.r-project.org/web/packages/osfr/vignettes/auth.html) for more details. If you are trying to reproduce this analysis, you will either need to register for your own PAT or modify the code below to access the API without a PAT.
-
-```{r}
-osf_PAT <- Sys.getenv("OSF_PAT")
-osf_auth(osf_PAT)
-```
-
-First, retrieve each entity as `osf_tbl` representation.
-
-```{r}
-nodes <- tibble(id = identifiers)
-
-osf_retrieve_node <- insistently(osfr::osf_retrieve_node, rate = rate_backoff())
-osf_retrieve_node <- slowly(osf_retrieve_node, rate = rate_delay(0.1))
-osf_retrieve_node <- safely(osf_retrieve_node)
-
-nodes$node <- map(nodes$id, osf_retrieve_node)
-
-nodes <- nodes %>%
-  mutate(node_result = map(node, ~ .x$result)) %>%
-  mutate(node_error = map(node, ~ .x$error))
-```
-
-Some number of identifiers will fail retrieval, usually for unclear reasons.
-
-```{r}
-nodes <- nodes %>%
-  mutate(failed = ! map_lgl(node_error, is.null))
-
-count(nodes, failed)
-```
-
-These will be removed.
-
-```{r}
-nodes <- nodes %>%
-  filter(! failed) %>%
-  select(id, node = node_result)
-```
 
 Next, download the list of files associated with each node.
 

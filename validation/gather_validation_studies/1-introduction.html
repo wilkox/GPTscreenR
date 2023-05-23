@@ -363,7 +363,7 @@ display: none;
 
 <h1 class="title toc-ignore">1: Introduction</h1>
 <h4 class="author">David Wilkins</h4>
-<h4 class="date">Generated 2023-05-23 16:19:44.26037</h4>
+<h4 class="date">Generated 2023-05-23 17:23:09.537887</h4>
 
 </div>
 
@@ -378,7 +378,10 @@ split into multiple steps with caching of the results in between.</p>
 <p>The html files produced by compiling these documents should each
 contain a timestamp towards to top of the page, indicating when the html
 file was generated. This also serves to timestamp the intermediate files
-produced by each step.</p>
+produced by each step. Only the first step (searching the Open Science
+Framework for relevant studies) is likely to produce different results
+depending on when it was run. So, the steps ater this one are memoised
+to allow for crashes and reruns.</p>
 
 
 
