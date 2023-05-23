@@ -1,0 +1,109 @@
+---
+title: "3: List files"
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+```
+
+
+# Gather files
+
+For each identified node, use the `osfr` package to get a list of associated files. Note that the OSF API uses a personal authentication token (PAT) to allow a large number of requests; see [the osfr documentation](https://cran.r-project.org/web/packages/osfr/vignettes/auth.html) for more details. If you are trying to reproduce this analysis, you will either need to register for your own PAT or modify the code below to access the API without a PAT.
+
+```{r}
+osf_PAT <- Sys.getenv("OSF_PAT")
+osf_auth(osf_PAT)
+```
+
+First, retrieve each entity as `osf_tbl` representation.
+
+```{r}
+nodes <- tibble(id = identifiers)
+
+osf_retrieve_node <- insistently(osfr::osf_retrieve_node, rate = rate_backoff())
+osf_retrieve_node <- slowly(osf_retrieve_node, rate = rate_delay(0.1))
+osf_retrieve_node <- safely(osf_retrieve_node)
+
+nodes$node <- map(nodes$id, osf_retrieve_node)
+
+nodes <- nodes %>%
+  mutate(node_result = map(node, ~ .x$result)) %>%
+  mutate(node_error = map(node, ~ .x$error))
+```
+
+Some number of identifiers will fail retrieval, usually for unclear reasons.
+
+```{r}
+nodes <- nodes %>%
+  mutate(failed = ! map_lgl(node_error, is.null))
+
+count(nodes, failed)
+```
+
+These will be removed.
+
+```{r}
+nodes <- nodes %>%
+  filter(! failed) %>%
+  select(id, node = node_result)
+```
+
+Next, download the list of files associated with each node.
+
+```{r}
+nodes$file <- map(nodes$node, osf_ls_files)
+```
+
+Tidy up the results.
+
+```{r}
+files <- nodes %>%
+  mutate(osf_tbl_file = file) %>%
+  unnest(node, names_sep = "_") %>%
+  unnest(file, names_sep = "_") %>%
+  mutate(kind = map_chr(file_meta, ~ .x$attributes$kind)) %>%
+  select(-node_meta, -file_meta)
+```
+
+For results that are folders, download the list of files in that folder (will not try recursing deeper than one level).
+
+```{r}
+folders <- filter(files, kind == "folder")
+files <- filter(files, kind == "file")
+
+files <- files %>%
+  mutate(folder = NA_character_) %>%
+  select(-osf_tbl_file, -kind)
+
+if (nrow(folders) > 0) {
+  folders$file <- map(folders$osf_tbl_file, osf_ls_files)
+  folders <- folders %>%
+    rename(folder = file_name) %>%
+    select(-osf_tbl_file, -kind, -file_id) %>%
+    unnest(file, names_sep = "_") %>%
+    select(-file_meta)
+} else {
+  folders <- files[0, ]
+}
+
+files <- bind_rows(files, folders)
+```
+
+The final list will be written for manual analysis.
+
+```{r}
+saveRDS(files, "potential_validation_files.rds")
+```
