@@ -1,5 +1,5 @@
 ---
-title: "GPTscreenR validation - teachers' soft skills"
+title: "GPTscreenR testing - teachers' soft skills"
 author: David Wilkins
 date: Last updated `r lubridate::today()`
 output:

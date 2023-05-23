@@ -1,5 +1,5 @@
 ---
-title: GPTScreenR validation - solastalgia study
+title: GPTScreenR testing - solastalgia study
 author: David Wilkins
 date: Last updated `r lubridate::today()`
 output:

@@ -1,5 +1,5 @@
 ---
-title: GPTScreenR validation - COVID-19 misinformation study
+title: GPTScreenR testing - COVID-19 misinformation study
 author: David Wilkins
 date: Last updated `r lubridate::today()`
 output:

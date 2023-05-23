@@ -1,5 +1,5 @@
 ---
-title: GPTScreenR validation - smartphones study
+title: GPTScreenR testing - smartphones study
 author: David Wilkins
 date: Last updated `r lubridate::today()`
 output:
@@ -38,10 +38,57 @@ study_description <- "AIMS: The aims of this scoping review are fourfold: (1) to
 # Load and tidy list of sources
 
 ```{r}
-sources <- read_csv("./Scop_rev_full.csv") %>%
+sources <- read_csv(
+    "./Scop_rev_full.csv",
+    col_types = cols(
+      `Entry Number` = col_character(),
+      `Search Term` = col_character(),
+      Source = col_character(),
+      Authors = col_character(),
+      `Article Title` = col_character(),
+      `Source Title` = col_character(),
+      `Author Keywords` = col_character(),
+      `Keywords Plus` = col_character(),
+      Abstract = col_character(),
+      `Times Cited, WoK` = col_double(),
+      `Publication Year` = col_double(),
+      DOI = col_character(),
+      `Access?` = col_character(),
+      `Smartphone Use Paper?` = col_character(),
+      `Smartphone Addiction Paper?` = col_character(),
+      `Include?` = col_double(),
+      `Include_MA?` = col_character(),
+      Reason_Reject = col_character(),
+      `Paper type` = col_character(),
+      `Data type` = col_character(),
+      `Country of Study` = col_character(),
+      `Sample Type` = col_character(),
+      `Sampling method` = col_character(),
+      N = col_character(),
+      `Age M` = col_character(),
+      `Age SD` = col_character(),
+      `Gender (%F)` = col_character(),
+      `SA Measure` = col_character(),
+      `SA Range` = col_character(),
+      `SA %` = col_character(),
+      `SA M` = col_character(),
+      `SA SD` = col_character(),
+      Behaviour = col_character(),
+      `Behaviour M/%,/SD` = col_character(),
+      `Behaviour (Categories)` = col_character(),
+      `Self-Report or Logged?` = col_character()
+    ), progress = FALSE
+  ) %>% 
   select(title = `Article Title`, abstract = Abstract, include = `Include?`) %>%
-  mutate(include = include == 1) %>%
-  filter(! is.na(include))
+  mutate(human_includes = include == 1) %>%
+  select(-include)
+```
+
+One source did not have a human decision recorded; it will be removed.
+
+```{r}
+sources <- sources %>%
+  filter(! is.na(human_includes))
 ```
 
 # Screen titles and abstracts
