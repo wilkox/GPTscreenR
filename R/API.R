@@ -41,12 +41,12 @@ complete_GPT.GPT_messages <- function(x, .dry_run = FALSE) {
 
   # Check status code of response
   if (! response$status_code %in% 200:299) {
-    cli::cli_abort(
-        "The OpenAI API returned an error",
-        "Code: {response$status_code}",
-        "Type: {httr::content(response)$error$type}",
-        "Message: {httr::content(response)$error$message}"
-    )
+    cli::cli_abort(c(
+        "The OpenAI API returned an error:",
+        "!" = "  Code: {response$status_code}",
+        "!" = "  Type: {httr::content(response)$error$type}",
+        "!" = "  Message: {httr::content(response)$error$message}"
+    ))
   }
 
   # Extract and return message content
@@ -77,10 +77,11 @@ complete_GPT_tryCatch <- function(x, tries = 3, .dry_run = FALSE) {
       error = function(e) list(result = NULL, error = e)
     )
     if (is.null(r$result)) {
-      cli::cli_alert_warning("GPT API call failed with following error:")
-      cli::cli_text(r$error)
+      cli::cli_alert_warning("GPT API call failed:")
+      cli::cli_alert_warning(r$error$message)
+      for (b in r$error$body) cli::cli_alert_warning(b)
       tries <- tries - 1
-      if (tries > 0) cli::cli_alert_warning("Retrying ({tries} tries remaining)")
+      if (tries > 0) cli::cli_alert_warning("Retrying ({tries} tr{?y/ies} remaining)")
 
     } else {
       return(r$result)
