@@ -94,7 +94,7 @@ sources <- sources %>%
 # Screen titles and abstracts
 
 ```{r}
-sources <- screen_sources(sources, study_description, n = 50, 
+sources <- screen_sources(sources, study_description, n = 10, 
                           cache_file = fs::path("./smartphones_sources.rds"))
 ```
 
@@ -103,13 +103,12 @@ sources <- screen_sources(sources, study_description, n = 50,
 ```{r}
 result <- sources %>%
   filter(! is.na(GPT_recommendation)) %>%
-  mutate(human_recommendation = ifelse(include, "INCLUDE", "EXCLUDE")) %>%
-  count(human_recommendation, GPT_recommendation)
+  count(human_includes, GPT_recommendation)
 
 result
 
 sensitivity <- result %>%
-  filter(human_recommendation == "INCLUDE") %>%
+  filter(human_includes) %>%
   mutate(percentage = 100 * n / sum(n)) %>%
   filter(GPT_recommendation == "INCLUDE") %>%
   pull(percentage)
@@ -117,7 +116,7 @@ sensitivity <- result %>%
 sensitivity
 
 specificity <- result %>%
-  filter(human_recommendation == "EXCLUDE") %>%
+  filter(! human_includes) %>%
   mutate(percentage = 100 * n / sum(n)) %>%
   filter(GPT_recommendation == "EXCLUDE") %>%
   pull(percentage)
@@ -125,8 +124,9 @@ specificity <- result %>%
 specificity
 
 result %>%
-  mutate(GPT_correct = GPT_recommendation == human_recommendation) %>%
-  ggplot(aes(x = human_recommendation, fill = GPT_correct, y = n)) +
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  mutate(GPT_correct = GPT_includes == human_includes) %>%
+  ggplot(aes(x = human_includes, fill = GPT_correct, y = n)) +
     geom_col(position = "stack") +
     coord_flip()
 ```

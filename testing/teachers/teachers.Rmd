@@ -82,7 +82,7 @@ sources <- mutate(sources, human_recommendation = ifelse(human_recommendation ==
 # Screen titles and abstracts
 
 ```{r}
-sources <- screen_sources(sources, study_description, n = 50,
+sources <- screen_sources(sources, study_description, n = 10,
                           cache_file = fs::path("./teachers_sources.rds"))
 ```
 
