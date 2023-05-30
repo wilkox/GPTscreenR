@@ -1,0 +1,153 @@
+---
+title: "5: Evaluate files"
+author: David Wilkins
+date: Generated `r lubridate::now()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+library(fs)
+library(osfr)
+library(memoise)
+```
+
+The next step is to evaluate the list of potential validation files to see if they could contain data on source title/abstract screening results.
+
+To begin, load the list of potential validation files.
+
+```{r}
+files <- readRDS("potential_validation_files.rds")
+```
+
+There are some duplicates in the list; these will be removed.
+
+```{r}
+files <- distinct(files)
+```
+
+Extract the file extension for each listed file.
+
+```{r}
+files <- mutate(files, file_ext = fs::path_ext(file_name))
+
+count(files, file_ext)
+```
+
+Seven files have no extension. Let's look at these a bit more closely to figure out if this might be due to a parsing error.
+
+```{r}
+files %>%
+  filter(file_ext == "") %>%
+  pull(file_name)
+```
+
+None of these look like parsing errors, no do they look like potential appraisal results files. They can be safely ignored.
+
+Of the available extensions, "csv", "dta" and "xlsx" are likely to have the data sought. Let's filter to just these extensions, then take a close look at the file names.
+
+```{r}
+files <- files %>%
+  filter(file_ext %in% c("csv", "dta", "xlsx"))
+
+pull(files, file_name)
+```
+
+A number of these clearly contain the search strings used for database searching. These will be removed.
+
+```{r}
+files <- files %>%
+  filter(! str_detect(file_name, "(?i)search\\sstrings?"))
+```
+
+The remaining files will be downloaded for manual evaluation.
+
+```{r}
+osf_retrieve_file <- insistently(osfr::osf_retrieve_file)
+osf_retrieve_file <- memoise(osf_retrieve_file, cache = cachem::cache_disk(dir = "cache"))
+
+files$file <- map(files$file_id, osf_retrieve_file, .progress = TRUE)
+
+files$download_url <- map(files$file, ~ .x$meta[[1]]$links$download)
+
+download_dir <- "osf_files"
+if (! dir_exists(download_dir)) dir_create(download_dir)
+walk2(files$file_name, files$download_url, function(file_name, download_url) {
+  cli::cli_h2("Downloading {file_name}")
+
+  download_path <- path(download_dir, file_name)
+  cli::cli_alert_info("Download path is {download_path}")
+
+  if (file_exists(download_path)) {
+    cli::cli_alert_success("File already downloaded, skipping")
+    return()
+  }
+
+  download.file(download_url, destfile = download_path)
+
+  if (file_exists(download_path)) {
+    cli::cli_alert_success("Download successful")
+  } else {
+    cli::cli_abort("Download from {download_url} failed")
+  }
+})
+```
+
+## Interactive evaluation of files
+
+The next step is intended to be run interactively. It facilitates a process of opening each file (using the system "open" command), then prompting whether or not it looks like it will contain data on appraisal results. The results will be cached in a file.
+
+```{r}
+e_file <- "evaluations.rds"
+if (file_exists(e_file)) {
+  evaluations <- readRDS(e_file)
+} else {
+  evaluations <- files
+}
+
+if (! "include" %in% names(evaluations)) evaluations$include <- NA
+if (! "exclude_reason" %in% names(evaluations)) evaluations$exclude_reason <- NA_character_
+
+for (i in seq_len(nrow(evaluations))) {
+  
+  file_name <- evaluations$file_name[i]
+  cli::cli_h2("File {i} of {nrow(evaluations)}: {file_name}")
+
+  if (! is.na(evaluations$include[i])) {
+    cli::cli_alert_success("Already evaluated, skipping")
+    next
+  }
+
+  cli::cli_alert_info("Opening file...")
+  system2("open", str_c('"', path(download_dir, file_name), '"'))
+
+  include <- menu(choices = c("Yes", "No"), title = "Should the file be included?") == 1
+  evaluations$include[i] <- include
+
+  if (! include) {
+    reasons <- na.omit(unique(evaluations$exclude_reason))
+    reason <- menu(
+      choices = c(reasons, "Other"),
+      title = "What is the reason for excluding?"
+    )
+    if (reason == 0) cli::cli_abort("Invalid response!")
+    if (reason <= length(reasons)) {
+      exclude_reason <- reasons[reason]
+    } else {
+      exclude_reason <- readline("Reason for exclusion: ")
+    }
+    evaluations$exclude_reason[i] <- exclude_reason
+  }
+
+  saveRDS(evaluations, e_file)
+}
+```
