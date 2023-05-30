@@ -16,51 +16,133 @@ opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```{r message = FALSE}
 library(tidyverse)
 library(printr)
+library(osfr)
+library(memoise)
 ```
 
-
-Next, download the list of files associated with each node.
+The next step is to retrieve the list of files associated with each node.
 
 ```{r}
-nodes$file <- map(nodes$node, osf_ls_files)
+nodes <- readRDS("nodes.rds")
+```
+
+Note that the OSF API uses a personal authentication token (PAT) to allow a large number of requests; see [the osfr documentation](https://cran.r-project.org/web/packages/osfr/vignettes/auth.html) for more details. If you are trying to reproduce this analysis, you will either need to register for your own PAT or modify the code below to access the API without a PAT.
+
+```{r}
+osf_pat <- Sys.getenv("osf_pat")
+osf_auth(osf_pat)
+```
+
+Retrieve the file list for each node. This function will be memoised.
+
+```{r}
+osf_ls_files <- insistently(osfr::osf_ls_files)
+osf_ls_files <- safely(osf_ls_files)
+osf_ls_files <- memoise(osf_ls_files, cache = cachem::cache_disk(dir = "cache"))
+nodes$file <- map(nodes$node, osf_ls_files, .progress = TRUE)
 ```
 
 Tidy up the results.
 
 ```{r}
-files <- nodes %>%
-  mutate(osf_tbl_file = file) %>%
-  unnest(node, names_sep = "_") %>%
-  unnest(file, names_sep = "_") %>%
-  mutate(kind = map_chr(file_meta, ~ .x$attributes$kind)) %>%
-  select(-node_meta, -file_meta)
+nodes <- nodes %>%
+  mutate(file_result = map(file, ~ .x$result)) %>%
+  mutate(file_error = map(file, ~ .x$error)) %>%
+  select(-file)
 ```
 
-For results that are folders, download the list of files in that folder (will not try recursing deeper than one level).
+Some number of API calls fail, for unclear reasons.
+
+```{r}
+nodes %>%
+  mutate(failed = map_lgl(file_result, ~ is.null(.x[[1]]))) %>%
+  count(failed)
+```
+
+These will be removed.
+
+```{r}
+nodes <- nodes %>%
+  mutate(failed = map_lgl(file_result, ~ is.null(.x[[1]]))) %>%
+  filter(! failed) %>%
+  select(-failed)
+```
+
+Continue tidying up.
+
+```{r}
+files <- nodes %>%
+  select(-file_error) %>%
+  rename(file = file_result) %>%
+  unnest(file, names_sep = "_") %>%
+  mutate(kind = map_chr(file_meta, ~ .x$attributes$kind)) %>%
+  select(-file_meta)
+```
+
+Some of the 'files' are actually folders. A list of files in each folder will be downloaded. We won't recurse any deeper than one level of folders.
 
 ```{r}
 folders <- filter(files, kind == "folder")
 files <- filter(files, kind == "file")
 
-files <- files %>%
-  mutate(folder = NA_character_) %>%
-  select(-osf_tbl_file, -kind)
+folders <- folders %>%
+  rename(folder_name = file_name, folder_id = file_id)
 
-if (nrow(folders) > 0) {
-  folders$file <- map(folders$osf_tbl_file, osf_ls_files)
-  folders <- folders %>%
-    rename(folder = file_name) %>%
-    select(-osf_tbl_file, -kind, -file_id) %>%
-    unnest(file, names_sep = "_") %>%
-    select(-file_meta)
-} else {
-  folders <- files[0, ]
-}
-
-files <- bind_rows(files, folders)
+folders$file <- map2(folders$node, folders$folder_name, ~ osf_ls_files(x = .x, path = .y), .progress = TRUE)
 ```
 
-The final list will be written for manual analysis.
+Tidy up the results.
+
+```{r}
+folders <- folders %>%
+  mutate(file_result = map(file, ~ .x$result)) %>%
+  mutate(file_error = map(file, ~ .x$error)) %>%
+  select(-file)
+```
+
+Some number of API calls fail, for unclear reasons.
+
+```{r}
+folders %>%
+  mutate(failed = map_lgl(file_result, ~ is.null(.x[[1]]))) %>%
+  count(failed)
+```
+
+These will be removed.
+
+```{r}
+folders <- folders %>%
+  mutate(failed = map_lgl(file_result, ~ is.null(.x[[1]]))) %>%
+  filter(! failed) %>%
+  select(-failed)
+```
+
+Continue tidying up.
+
+```{r}
+folders <- folders %>%
+  select(-file_error) %>%
+  rename(file = file_result) %>%
+  unnest(file, names_sep = "_") %>%
+  mutate(kind = map_chr(file_meta, ~ .x$attributes$kind)) %>%
+  select(-file_meta)
+```
+
+Rejoin the 'files' and 'folders' tables.
+
+```{r}
+files <- files %>%
+  mutate(folder_name = NA_character_) %>%
+  mutate(folder_id = NA_character_) %>%
+  select(-kind)
+
+folders <- folders %>%
+  select(-kind)
+
+files <- bind_rows(folders, files)
+```
+
+The final list will be written to file.
 
 ```{r}
 saveRDS(files, "potential_validation_files.rds")
