@@ -1,0 +1,429 @@
+---
+title: "6: Manual evaluation of files and preparation for validation"
+author: David Wilkins
+date: Generated `r lubridate::now()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+library(readxl)
+library(fs)
+library(rentrez)
+library(XML)
+library(memoise)
+library(cli)
+library(rscopus)
+```
+
+At this step I'm going to go through each file manually and assess its suitability for inclusion in the validation set. If it appears suitable, I'll prepare the source list and study description for validation.
+
+First, let's load the shortlist of files that have passed evaluation to this point.
+
+```{r}
+files <- readRDS("./evaluations.rds") %>%
+  as_tibble() %>%
+  filter(include)
+```
+
+For reviews that are included in the validation set, the source list and study description will be stored in `validation_data`.
+
+```{r}
+if (! dir_exists ("validation_data")) dir_create("validation_data")
+```
+
+# Social Norms and Suicidality
+
+The first three files come from the project 'Social Norms and Suicidality - Scoping Review' (\url{https://osf.io/btpzc/}). A draft manuscript for the scoping review is available [here](https://osf.io/xbhuq); as far as I can tell it hasn't been published anywhere yet.
+
+My short name for this review will be `suicide_norms`.
+
+## Title and abstract screening results
+
+There are three files related to this project: `Nov 20 Stage 3 Review of full text - completed Feb21.xlsx`, `Nov20 Stage 2 Removal of duplicates and screenings.xlsx`, and `June 2022 Screenings Extraction TOP UP.xlsx`.
+
+`Nov20 Stage 2 Removal of duplicates and screenings.xlsx` contains a sheet 'Title Abstract screenings' which includes columns for title, abstract, and 'Screened IN/OUT - reason?'. I note that a lot of the abstracts seem to be missing but this is not an insurmountable problem. 
+
+I'll load and tidy this sheet.
+
+```{r}
+suicide_norms_tas <- read_excel("osf_files/Nov20 Stage 2 Removal of duplicates and screenings.xlsx", sheet = "Title Abstract screenings", range = "A1:G12411") %>%
+  select(title = Title, abstract = Abstract, decision_reason = `Screened IN/OUT - reason?`)
+```
+
+In the same file, there is also a sheet called 'Further Abstract Screens'. It's unclear how this differed from 'Title Abstract screenings', so I'll load this sheet and compare the two.
+
+```{r}
+suicide_norms_fas <- read_excel("osf_files/Nov20 Stage 2 Removal of duplicates and screenings.xlsx", sheet = "Further Abstract Screens", range = "A1:H1706") %>%
+  select(title = Title, abstract = Abstract, decision_reason = `Abstract Screen in/out`)
+```
+
+How many sources in each sheet?
+
+```{r}
+nrow(suicide_norms_tas)
+nrow(suicide_norms_fas)
+```
+
+So, does 'Further Abstract Screens' represent a secondary stage of screening sources that passed 'Title Abstract screenings'? To figure this out, I'll first try to parse the screening results in 'Title Abstract screenings'.
+
+```{r}
+suicide_norms_tas <- suicide_norms_tas %>%
+  mutate(decision = str_extract(decision_reason, "^(IN|OUT|UNSURE)"))
+
+count(suicide_norms_tas, decision)
+```
+
+The parsing appears to be successful. So, does 'Further Abstract Screens' only contain the sources that were not excluded at 'Title Abstract screenings'?
+
+```{r}
+passed_tas_titles <- suicide_norms_tas %>%
+  filter(decision %in% c("IN", "UNSURE")) %>%
+  pull(title)
+
+sum(! suicide_norms_fas$title %in% passed_tas_titles)
+```
+
+It seems that this is the case for all but one source. Let's take a close look at this source.
+
+```{r}
+suicide_norms_fas %>%
+  filter(! title %in% passed_tas_titles) %>%
+  pull(title)
+```
+
+After manually inspecting both sheets in MS Excel, it seems like this is due to a difference in the title; it appears as 'Suicidality correlates in Mexican Americans.' in 'Title Abstract screenings', with the other details being identical.
+
+A likely explanation for these two sheets is that 'Further Abstract Screens' represents cases where extra effort was made to retrieve abstracts that were not available at the stage of 'Title Abstract screenings'. This will also be relevant to the use of this review for validation, as of course the abstract is required for validation. Let's compare the availablity of abstracts between the two sheets to confirm this.
+
+```{r}
+suicide_norms_tas %>%
+  count(is.na(abstract))
+
+suicide_norms_fas %>%
+  count(is.na(abstract))
+```
+
+Surprisingly, there are still a large number of missing abstracts in 'Further Abstract Screens', including some for which the reason for exclusion was given as 'abstract not relevant'. There are also quite a few for which the abstract is given as '(No abstract)' or '(Can't paste abstract here)'. Nevertheless, it seems like this is the most appropriate list to use as the gold standard, since these are the sources for which a human actually looked at the title and abstract. I'll filter the list to remove missing abstracts including '(No abstract)' and similar.
+
+```{r}
+suicide_norms_fas <- suicide_norms_fas %>%
+  filter(! is.na(abstract))
+
+suicide_norms_fas %>%
+  count(is.na(title))
+
+suicide_norms_fas %>%
+  count(is.na(decision_reason))
+
+suicide_norms_fas %>%
+  count(abstract) %>%
+  filter(n > 1) %>%
+  arrange(desc(n))
+
+suicide_norms_fas <- suicide_norms_fas %>%
+  filter(! abstract %in% c("(No abstract)", "(Can't paste abstract here)", "No abstract", "(Book review)", "(LETTER)", "(Editorial)", "(no abstract?)", "No abstract?", "(Not English / no abstract)", "DUPLICATE"))
+
+suicide_norms_fas %>%
+  count(abstract) %>%
+  filter(n > 1) %>%
+  arrange(desc(n))
+```
+
+There still seem to be eight cases where the abstract is replicated, including one where it appears three times. Are the titles replicated for these examples too?
+
+```{r}
+suicide_norms_fas %>%
+  group_by(abstract) %>%
+  mutate(abstract_n = n()) %>%
+  ungroup() %>%
+  filter(abstract_n > 1) %>%
+  arrange(abstract)
+```
+
+Yes, it appears that the majority of these are accidental replicates, perhaps between between preprints and final publications. Given that there are some differences between the titles, I think the best way to handle this is to include them in the validation set, as they do represent places where the human reviewer could potentially have chosen differently (although in practice it seems they made the same decision for all these cases).
+
+As the final preparation step for this sources list, I'll normalise the human decisions.
+
+```{r}
+suicide_norms_fas <- suicide_norms_fas %>%
+  mutate(decision = str_extract(decision_reason, "^(IN|OUT)"))
+
+suicide_norms_fas %>%
+  count(decision)
+
+suicide_norms_fas <- suicide_norms_fas %>%
+  mutate(human_includes = decision == "IN") %>%
+  select(-decision_reason, -decision)
+```
+
+There are two other MS Excel files associated with this project that were shortlisted. `Nov 20 Stage 3 Review of full text - completed Feb21.xlsx`, as the name suggests, seems to be the results of full text screening, so this can be ignored. 
+
+`June 2022 Screenings Extraction TOP UP.xlsx` appears to contain the results of a second round of searches performed about a year and a half after the initial search. It's unclear to what extent this overlaps with the result of the initial search, so I'll load and tidy the sheet 'Title Abs Screening' to compare.
+
+```{r}
+suicide_norms_topup <- read_excel("osf_files/June 2022 Screenings Extraction TOP UP.xlsx", sheet = "Title Abs Screening", range = "A3:G1076") %>%
+  select(title = Title, abstract = Abstract, decision_reason = "Title/Abstract Screening")
+
+sum(suicide_norms_fas$title %in% suicide_norms_topup$title)
+sum(suicide_norms_topup$title %in% suicide_norms_fas$title)
+```
+
+It appears there is little overlap; this would fit with the following from the Methods of the draft manuscript:
+
+> Initial literature searches were restricted to articles published until the end of October 2020, with a top-up search conducted in June 2022 for articles published between November 2020 and May 2022. 
+
+So, I'll tidy the list of top up sources, removing missing abstracts, and add them to the pool.
+
+```{r}
+suicide_norms_topup <- suicide_norms_topup %>%
+  filter(! is.na(abstract))
+
+suicide_norms_topup %>%
+  group_by(abstract) %>%
+  mutate(abstract_n = n()) %>%
+  ungroup() %>%
+  filter(abstract_n > 1)
+
+suicide_norms_topup <- suicide_norms_topup %>%
+  mutate(decision = str_extract(decision_reason, "^(IN|OUT)"))
+
+suicide_norms_topup %>%
+  count(decision)
+
+suicide_norms_topup <- suicide_norms_topup %>%
+  mutate(human_includes = decision == "IN") %>%
+  select(-decision_reason, -decision)
+
+suicide_norms_sources <- bind_rows(suicide_norms_fas, suicide_norms_topup)
+saveRDS(suicide_norms_sources, "validation_data/suicide_norms_sources.rds")
+```
+
+## Study description
+
+I'll draw the study description and inclusion criteria from the draft manuscript.
+
+```{r}
+suicide_norms_study_description <- 
+"STUDY DESCRIPTION:
+
+Given that suicide can be conceptualised as a form of health-behaviour based on the formation of intentions, and considering the role of perceived social norms in determining other health-related behaviours and behavioural intentions, there remains a lack of reviews of the extent of the published research literature on the role of perceived social norms in suicidality and self-harm related outcomes. The present systematic scoping review aimed to identify the forms of perceived social norms which have been associated with self-harm and suicidality (i.e., suicidal thoughts, feelings, attempts, and help-seeking) and the role of perceived social norms in these outcomes.
+
+DEFINITIONS:
+
+Social norms are a key influence on personal behaviours and are broadly defined as 'rules and standards that are understood by members of a group, and that guide and/or constrain social behaviour without the force of law'. Social norms influence behavioural intention formation, the engagement in various behaviours, and are featured in a number of key models of health-related behaviour, most notably the Theory of Planned Behavior.
+
+INCLUSION CRITERIA:
+
+- Investigated the role of perceived social norms in the individual experience of suicide-related thoughts, feelings and/or behaviours including self-harm or non-suicidal self-injury (e.g. as an outcome variable in quantitative studies or part of a research question or an identified theme for qualitative studies)
+- Original empirical research
+- Published in the English language
+
+EXCLUSION CRITERIA:
+
+- Review articles or commentaries
+- Studies on suicide attacks (e.g., suicide bombings, suicide terrorism), murder-suicides, or assisted suicide (i.e., euthanasia)
+"
+saveRDS(suicide_norms_study_description, "validation_data/suicide_norms_study_description.rds")
+```
+
+# The bibliometric approach in scientific publications on thanatology
+
+A single file `REFERENCES FOR SCRINING.xlsx` comes from the project 'The bibliometric approach in scientific publications on thanatology: A scoping review.' (\url{https://osf.io/ukfpq/}). 
+
+After reviewing the project on OSF, searching on Google Scholar, and reviewing the publication history of the first author, I was unable to identify any published or draft manuscript associated with this project. So, unfortunately it cannot be used for validation.
+
+# Melanoma
+
+A single file `Melanoma Data.xlsx` comes from the project 'Scoping Review – Melanoma' (\url{https://osf.io/knje4/}). There is a protocol published [here](https://osf.io/feg5x) which contains sufficient information on the study objectives, inclusion and exclusion criteria.
+
+My short name for this review will be `melanoma`.
+
+## Title and abstract screening results
+
+`Melanoma Data.xlsx` contains a sheet 'Rayyan 2.0 Inclusions' which seems to summarise the results of title and abstract screening. However, on inspection it appears the 'abstract' column is blank. This is not insurmountable as the PubMed ID appears to be included for almost all sources, which means the abstract can be readily retrieved.
+
+```{r}
+melanoma_sources <- read_excel(
+  "osf_files/Melanoma Data.xlsx",
+  sheet = "Rayyan 2.0 Inclusions",
+  range = "A1:D136",
+  col_types = c("text", "numeric", "text", "text")
+) %>%
+  select(title, PMID = `Pubmed ID`, exclude_reason = `Exclude? w/ Reason`) %>%
+  mutate(PMID = as.character(PMID))
+```
+
+As suspected, none of the abstracts are provided. Can they be retrieved from PubMed?
+
+```{r}
+count(melanoma_sources, is.na(PMID))
+```
+
+There are 8 missing PubMed IDs. It's unclear whether the authors had access to the abstracts for these sources, but since each source included a URL to either a PubMed or Embase page for the source which normally would display the title and abstract, it is fair to assume they did. I'll try to manually find and splice in the missing values.
+
+```{r}
+melanoma_sources %>%
+  filter(is.na(PMID)) %>%
+  pull(title)
+
+missing_PMIDs <- tribble(
+  ~title, ~manual_PMID,
+  "Late-Stage Melanoma in New York State: Associations with Socioeconomic Factors and Healthcare Access at the County Level.", "33516743",
+  "Quantitative associations between health insurance and stage of melanoma at diagnosis among nonelderly adults in the United States.", "31714593",
+  "Rural melanoma patients in Maryland do not present with more advanced disease than urban patients.", "34118809",
+  "Socioeconomic status and survival for patients with melanoma in the United States: an NCDB analysis.", "29736922",
+  "The impact of demographics, socioeconomics, and health care access on melanoma outcomes.", "32783908",
+  "The ongoing racial disparities in melanoma: An analysis of the Surveillance, Epidemiology, and End Results database (1975-2016)", "32861710",
+  "The Role of Neighborhood Characteristics in Late Stage Melanoma Diagnosis among Hispanic Men in California, Texas, and Florida, 1996-2012", "28702054",
+  "Trends in malignant melanoma mortality in 31 countries from 1985 to 2015.", "32133614"
+)
+
+melanoma_sources <- melanoma_sources %>%
+  left_join(missing_PMIDs) %>% 
+  mutate(PMID = coalesce(PMID, manual_PMID)) %>%
+  select(-manual_PMID)
+```
+
+I'll now attempt to retrieve the abstracts, using the rentrez package. I'll memoise this function.
+
+```{r}
+get_pm_abstract <- function(PMID) {
+  entrez_fetch(db = "pubmed", id = PMID, rettype = "xml", parsed = T) %>%
+    xpathApply('//PubmedArticle//Article', function(x) xmlValue(xmlChildren(x)$Abstract)) %>%
+    unlist()
+}
+get_pm_abstract <- insistently(get_pm_abstract)
+get_pm_abstract <- possibly(get_pm_abstract, otherwise = NA_character_)
+get_pm_abstract <- memoise(get_pm_abstract, cache = cachem::cache_disk(dir = "cache"))
+
+melanoma_sources <- melanoma_sources %>%
+  mutate(abstract = map_chr(PMID, get_pm_abstract))
+
+melanoma_sources %>%
+  filter(is.na(abstract))
+```
+
+There are seven sources for which abstract fetching failed, including one with a missing PMID (for some reason this was given as a DOI in the original spreadsheet). Interestingly, there is a close but not perfect overlap with the sources that were missing PMIDs. On manual review, these are all sources with no abstracts (e.g. letters rather than articles). I'll remove them from the dataset.
+
+```{r}
+melanoma_sources <- melanoma_sources %>%
+  filter(! is.na(abstract))
+```
+
+I'll tidy up the decisions and save the sources list to file.
+
+```{r}
+melanoma_sources <- melanoma_sources %>%
+  mutate(human_includes = is.na(exclude_reason)) %>%
+  select(title, abstract, human_includes)
+
+saveRDS(melanoma_sources, "validation_data/melanoma_sources.rds")
+```
+
+## Study description
+
+I'll draw the study description and inclusion criteria from the protocol.
+
+```{r}
+melanoma_study_description <-
+"STUDY DESCRIPTION:
+
+Our study aims to identify the current gaps in literature surrounding dermatologic health inequities with the goal of providing insight for future research to better optimize patient care.
+
+To what degree are health inequities researched within the field of dermatology? The objective of this scoping review is to identify and map the different strengths and gaps in what is known about inequities in the topic of dermatology.
+
+DEFINITIONS:
+
+Health inequities can be defined as broad inequities in healthcare access, quality, and cost related to patient characteristics.
+
+INCLUSION AND EXCLUSION CRITERIA:
+
+The population of this review will include literature of the following study designs: clinical trials, retrospective database reviews, systematic reviews, meta-analysis, scoping reviews, literature reviews, cross-sectional analyses, cohort studies, and case-control studies. Commentaries and correspondences will be excluded, as they do not routinely report original research. To address the concept of the review, only studies pertaining to health inequities within dermatology will be included. To increase feasibility and quality of data extraction, only literature published in the English language will be included. Literature from all countries will be included. Finally, to address the context of this review, we will limit the inequities examined to: race and ethnicity, sex or gender, LGBTQ+ identity, underserved rural populations, education level, income, and occupation status. 
+
+Exclusion criteria will include any study: (1) that was published before 2017 or after 2021, (2) that was written in a language other than English, (3) that was conducted on a topic unrelated to 
+dermatology, (4) that failed to analyze one of the health inequities, and (5) that was written as a commentary, correspondence, or letter to the editor.
+"
+saveRDS(melanoma_study_description, "validation_data/melanoma_study_description.rds")
+```
+
+# Solastalgia
+
+The next file, `Solastalgia re-screening and extraction spreadsheet Dec 2022.xlsx`, relates to the solastalgia review that was used in the testing data so will be excluded.
+
+# Teachers' soft skills
+
+The next two files, `Teachers´ soft skills a Scoping Review - Data extraction.xlsx` and `Teachers´ Soft Skills a SR - Screening NM & OJ(1).xlsx`, relate to the teachers' soft skills review
+
+# Interventions for Organizational Climate
+
+The next file comes from the project 'Interventions for Organizational Climate: Scoping Review' (\url{https://osf.io/2w7ez/}). There is a single file associated with this project, `Vidak et al Excluded List.xlsx`. This only lists sources that were excluded in title and abstract screening. I included this in the hope that on closer analysis of the project there would also be a list of included sources or a list of all considered sources available, but unfortunately it seems this is not the case, so this review will be excluded from validation.
+
+# Data-sharing Policies
+
+The next file comes from the project 'Data-sharing Policies - A Scoping Review' (\url{https://osf.io/pz6vq/}). A protocol for the scoping review is available [here](https://osf.io/bf9pd).
+
+There is one file related to this project, `Bibliographic Data Extraction - Scoping Review (Responses).xlsx`. It has a sheet named 'final data - clean' which seems to summarise the results of source screening as well as act as a data extraction table. However, it is unclear whether the decisions recorded in this table relate to title and abstract screening only or to full text screeing. After looking at the files associated with the project this could still not be clarified, so unfortunately the review was excluded from validation.
+
+# Burden of OA in The Netherlands
+
+The next file comes from the project 'Burden of OA in The Netherlands: a scoping review' (\url{https://osf.io/vgx4n/}). A protocol for the scoping review is available [here](https://osf.io/cgbyw).
+
+There is a single file associated with this review, `Reason exclusion_FT screening_OA in NL.xlsx`. It only contains a list of sources excluded in screening. I had included it in the hope that on closer review of the project files, a full list of sources or list of included sources could be identified, but unfortunately this was not the case. So, unfortunately it will be excluded from validation.
+
+# Medication adherence in chronic diseases
+
+The next file comes from the project 'Medication Adherence in Chronic Diseases: A scoping review' (\url{https://osf.io/b3xe7/}). A preprint of the review was located [here](https://discovery.ucl.ac.uk/id/eprint/10136065/3/Kassianos_Main%20paper_final.pdf).
+
+My short name for this review will be `medication_adherence`.
+
+## Title and abstract screening results
+
+There is one file related to this project: `Screening_after duplicates_final.xlsx`. Sheet 'Sheet1' contains the results of title and abstract screening.
+
+```{r}
+medication_adherence_sources <- read_excel("osf_files/Screening_after duplicates_final.xlsx", sheet = "Sheet1") %>%
+  select(title = `Article Title`, title_decision = `Title screening`, abstract_decision = `Abstract screening`, URL)
+```
+
+It appears title-only screening then title and abstract screening was performed sequentially. So, I'll remove all the sources that failed title-only screening.
+
+```{r}
+medication_adherence_sources <- medication_adherence_sources %>%
+  filter(str_detect(title_decision, "[Ii]ncluded")) %>%
+  select(-title_decision)
+```
+
+To retrieve the abstracts, I'll first divide the sources into those with available PubMed IDs and those without.
+
+```{r}
+medication_adherence_sources <- medication_adherence_sources %>%
+  mutate(PMID = str_extract(URL, "pubmed/\\d+")) %>%
+  mutate(PMID = str_remove(PMID, "pubmed/"))
+
+mas_with_pmid <- filter(medication_adherence_sources, ! is.na(PMID))
+mas_without_pmid <- filter(medication_adherence_sources, is.na(PMID))
+```
+
+For those with PubMed IDs, I'll attempt to retrieve the abstracts with rentrez as above.
+
+```{r}
+mas_with_pmid <- mutate(mas_with_pmid, abstract = map_chr(PMID, get_pm_abstract))
+```
+
+For those without PubMed IDs, I'll try to retrive the abstracts from Scopus with the rscopus package. Note that this requires a private Elsevier API key stored in the environmental variable `Elsevier_API`; see \url{https://johnmuschelli.com/rscopus/index.html} for more details.
+
+After working on this for a while, it became clear that there was no reliable way to retrieve the abstracts with the Elsevier API. So, unfortunately this study cannot be used for validation.
+
+# Perception of Major Life Events and Depression
+
+The next file comes from the project 'Perception of Major Life Events and Depression: A Scoping Review' (\url{https://osf.io/dyr8z/}). There is one file associated with this review, `Review_Codingsheet_Results.xlsx`. On closer inspection of this file, it was clear that it could not be determined whether the results represented title and abstract screening or full text screening. So, unfortunately this study was excluded from validation.
