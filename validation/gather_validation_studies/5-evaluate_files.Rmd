@@ -109,7 +109,8 @@ The next step is intended to be run interactively. It facilitates a process of o
 ```{r}
 e_file <- "evaluations.rds"
 if (file_exists(e_file)) {
-  evaluations <- readRDS(e_file)
+  evaluations <- readRDS(e_file) %>% select(file_id, include, exclude_reason)
+  evaluations <- left_join(files, evaluations, by = "file_id")
 } else {
   evaluations <- files
 }
