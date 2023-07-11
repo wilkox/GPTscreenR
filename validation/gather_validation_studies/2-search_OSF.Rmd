@@ -20,7 +20,7 @@ library(rvest)
 library(RSelenium)
 ```
 
-The `rvest` and `RSelenium` packages will be used to scrape Open Science Framework (OSF) search results for the query `scoping review -protocol`. To gather a good sample, 250 pages of results will be scraped. The OSF identifier for each entity in the results will be collected.
+The `rvest` and `RSelenium` packages will be used to scrape Open Science Framework (OSF) search results for the query `scoping review -protocol`. To gather a good sample, 500 pages of results will be scraped. The OSF identifier for each entity in the results will be collected.
 
 Scraping will be clumped into batches of 20 pages, which reduces the chance of a crash.
 
@@ -36,72 +36,19 @@ scrape_osf_results <- function(page, browser) {
 }
 scrape_osf_results <- insistently(scrape_osf_results)
 
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers1 <- map(1:20, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
+scrape_osf_batch <- function(page_range) {
+  serverclient <- rsDriver(browser = 'firefox', port = 4444L)
+  browser <- serverclient[["client"]]
+  identifiers <- map(page_range, scrape_osf_results, browser = browser)
+  serverclient[["server"]]$stop()
+  return(identifiers)
+}
 
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers2 <- map(21:40, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
+scrape_osf_batch <- quietly(scrape_osf_batch)
 
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers3 <- map(41:60, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
+identifiers <- map(seq.int(from = 1, to = 481, by = 20), ~ scrape_osf_batch(.x:(.x+19))$result[[1]])
 
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers4 <- map(61:80, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers5 <- map(81:100, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers6 <- map(101:120, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers7 <- map(121:140, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers8 <- map(141:160, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers9 <- map(161:180, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers10 <- map(181:200, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers11 <- map(201:220, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers12 <- map(221:240, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-serverclient <- rsDriver(browser = 'firefox', port = 4444L)
-browser <- serverclient[["client"]]
-identifiers13 <- map(241:250, scrape_osf_results, browser = browser)
-serverclient[["server"]]$stop()
-
-results <- c(identifiers1, identifiers2, identifiers3, identifiers4, identifiers5, identifiers6, identifiers7, identifiers8, identifiers9, identifiers10, identifiers11, identifiers12, identifiers13) %>%
+results <- identifiers %>%
   unlist() %>% 
   str_remove_all("\\/") %>%
   tibble(id = .)

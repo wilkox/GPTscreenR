@@ -363,7 +363,7 @@ display: none;
 
 <h1 class="title toc-ignore">1: Introduction</h1>
 <h4 class="author">David Wilkins</h4>
-<h4 class="date">Generated 2023-05-23 17:23:09.537887</h4>
+<h4 class="date">Generated 2023-07-11 10:44:46.657024</h4>
 
 </div>
 
@@ -374,14 +374,17 @@ package. It is intended to provide a transparent and reproducible
 overview of the methods used.</p>
 <p>Parts of this process are time-consuming and flaky, because they
 involve web scraping or API calls. This is why the process has been
-split into multiple steps with caching of the results in between.</p>
+split into multiple steps with caching of the results in between, and
+many of the steps make heavy use of memoisation.</p>
 <p>The html files produced by compiling these documents should each
 contain a timestamp towards to top of the page, indicating when the html
 file was generated. This also serves to timestamp the intermediate files
 produced by each step. Only the first step (searching the Open Science
 Framework for relevant studies) is likely to produce different results
-depending on when it was run. So, the steps ater this one are memoised
-to allow for crashes and reruns.</p>
+depending on when it was run. In gathering the final set of validation
+studies used, this search was run a total of three times (increasing the
+number of results scraped each time) with the goal of gathering at least
+five eligible studies.</p>
 
 
 
