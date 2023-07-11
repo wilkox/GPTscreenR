@@ -363,7 +363,7 @@ display: none;
 
 <h1 class="title toc-ignore">2: Search OSF for scoping reviews</h1>
 <h4 class="author">David Wilkins</h4>
-<h4 class="date">Generated 2023-07-11 11:04:11.475327</h4>
+<h4 class="date">Generated 2023-07-11 12:29:13.390179</h4>
 
 </div>
 
@@ -400,7 +400,7 @@ scrape_osf_batch &lt;- function(page_range) {
 
 scrape_osf_batch &lt;- quietly(scrape_osf_batch)
 
-identifiers &lt;- map(seq.int(from = 1, to = 481, by = 20), ~ scrape_osf_batch(.x:(.x+19))$result[[1]])
+identifiers &lt;- map(seq.int(from = 1, to = 481, by = 20), ~ unlist(scrape_osf_batch(.x:(.x+19))$result))
 
 results &lt;- identifiers %&gt;%
   unlist() %&gt;% 

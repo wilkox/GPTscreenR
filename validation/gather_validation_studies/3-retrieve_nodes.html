@@ -363,7 +363,7 @@ display: none;
 
 <h1 class="title toc-ignore">3: Retrieve nodes</h1>
 <h4 class="author">David Wilkins</h4>
-<h4 class="date">Generated 2023-06-20 16:29:15.125386</h4>
+<h4 class="date">Generated 2023-07-11 13:49:24.867624</h4>
 
 </div>
 
@@ -402,11 +402,24 @@ reasons.</p>
   mutate(failed = ! map_lgl(node_error, is.null))
 
 count(nodes, failed)</code></pre>
-<pre><code>## # A tibble: 2 × 2
-##   failed     n
-##   &lt;lgl&gt;  &lt;int&gt;
-## 1 FALSE    975
-## 2 TRUE    1550</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">failed</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FALSE</td>
+<td align="right">1972</td>
+</tr>
+<tr class="even">
+<td align="left">TRUE</td>
+<td align="right">3081</td>
+</tr>
+</tbody>
+</table>
 <p>These will be removed.</p>
 <pre class="r"><code>nodes &lt;- nodes %&gt;%
   filter(! failed) %&gt;%

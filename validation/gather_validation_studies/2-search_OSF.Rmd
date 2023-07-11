@@ -46,7 +46,7 @@ scrape_osf_batch <- function(page_range) {
 
 scrape_osf_batch <- quietly(scrape_osf_batch)
 
-identifiers <- map(seq.int(from = 1, to = 481, by = 20), ~ scrape_osf_batch(.x:(.x+19))$result[[1]])
+identifiers <- map(seq.int(from = 1, to = 481, by = 20), ~ unlist(scrape_osf_batch(.x:(.x+19))$result))
 
 results <- identifiers %>%
   unlist() %>% 
