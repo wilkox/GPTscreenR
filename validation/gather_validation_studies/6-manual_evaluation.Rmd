@@ -242,6 +242,37 @@ A single file `REFERENCES FOR SCRINING.xlsx` comes from the project 'The bibliom
 
 After reviewing the project on OSF, searching on Google Scholar, and reviewing the publication history of the first author, I was unable to identify any published or draft manuscript associated with this project. So, unfortunately it cannot be used for validation.
 
+# Investigating the psychology of shipping among fans
+
+Two files, `1st Screening.xlsx` and `RawData.xlsx`, come from the project 'Investigating The Psychology of Shipping Among Fans: A Scoping Review' (\url{https://osf.io/yjs43/}). There is a [protocol](https://osf.io/tcd6g) associated with the project on OSF.
+
+## Title and abstract screening results
+
+Both spreadsheets contain a list of sources including titles and abstracts. The sources in '1st screening' appear to be a subset of those in 'RawData'. There is some colour coding of cells in both spreadsheets but no column that explicitly contains title and abstract screening results. It is likely that '1st screening' represents sources that passed initial title and abstract screening, but this is not clear enough to justify the use of this project for validation.
+
+# Open Science Practices in Gambling Research Publications 
+
+One file, `OS_scoping_eligible_references_from_database_search.xlsx`, comes from the project 'Open Science Practices in Gambling Research Publications: A Scoping Review' (\url{https://osf.io/xw7gf/}). There is a [preprint manuscript](https://osf.io/a82vn/) available associated with this project.
+
+## Title and abstract screening results
+
+On review of the file `OS_scoping_eligible_references_from_database_search.xlsx` as well as associated files on the project's OSF page, it is not clear if this file represents sources that have passed title and abstract screening or full text screening. It therefore cannot be used for validation.
+
+# Health care for people with disabilities in the Unified Health System in Brazil
+
+One file, `Análise das categorias - última etapa.xlsx`, comes from the project 'Scoping Review - Health care for people with disabilities in the Unified Health System in Brazil' (\url{https://osf.io/8mghk/}). The project has a [document giving PRISMA reporting items](https://osf.io/3qukm) which contains a brief summary of the study objectives and inclusion/exclusion criteria.
+
+On further review of the spreadsheet it is clearly a full coding table, not the results of title and abstract screening, and so cannot be used for validation.
+
+# Social relationships and their associations with affective symptoms of women with breast cancer
+
+One file, `review_113315_included_csv_20220615125644.csv`, comes from the project 'Social relationships and their associations with affective symptoms of women with breast cancer' (\url{https://osf.io/f3me9/}). This scoping review has been published as:
+
+Yang, Y. et al. Social relationships and their associations with affective symptoms of women with breast cancer: A scoping review. PLoS ONE 17, e0272649 (2022).
+
+On review of the file, it appears to list sources that passed title and abstract review only. So, unfortunately it cannot be used for validation.
+
+
 # Melanoma
 
 A single file `Melanoma Data.xlsx` comes from the project 'Scoping Review – Melanoma' (\url{https://osf.io/knje4/}). There is a protocol published [here](https://osf.io/feg5x) which contains sufficient information on the study objectives, inclusion and exclusion criteria.
@@ -420,10 +451,17 @@ For those with PubMed IDs, I'll attempt to retrieve the abstracts with rentrez a
 mas_with_pmid <- mutate(mas_with_pmid, abstract = map_chr(PMID, get_pm_abstract))
 ```
 
-For those without PubMed IDs, I'll try to retrive the abstracts from Scopus with the rscopus package. Note that this requires a private Elsevier API key stored in the environmental variable `Elsevier_API`; see \url{https://johnmuschelli.com/rscopus/index.html} for more details.
+For those without PubMed IDs, I'll try to retrieve the abstracts from Scopus with the rscopus package. Note that this requires a private Elsevier API key stored in the environmental variable `Elsevier_API`; see \url{https://johnmuschelli.com/rscopus/index.html} for more details.
 
 After working on this for a while, it became clear that there was no reliable way to retrieve the abstracts with the Elsevier API. So, unfortunately this study cannot be used for validation.
 
 # Perception of Major Life Events and Depression
 
 The next file comes from the project 'Perception of Major Life Events and Depression: A Scoping Review' (\url{https://osf.io/dyr8z/}). There is one file associated with this review, `Review_Codingsheet_Results.xlsx`. On closer inspection of this file, it was clear that it could not be determined whether the results represented title and abstract screening or full text screening. So, unfortunately this study was excluded from validation.
+
+# Vocal production of infants at risk for speech motor involvement 
+
+The single file `Interrater Reliability Title Abstract Screening 1.csv` comes from the project "Vocal production of infants at risk for speech motor involvement" (\url{https://osf.io/jf3u6/}). The project includes a review protocol at \url{https://osf.io/k8tnc}.
+
+On review of this file as well as the other files associated with the project, it is clear that the results of title and abstract screening are not available, so unfortunately this project will not be eligible for use in validation.
+
