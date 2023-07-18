@@ -23,6 +23,7 @@ library(XML)
 library(memoise)
 library(cli)
 library(rscopus)
+library(easyPubMed)
 ```
 
 At this step I'm going to go through each file manually and assess its suitability for inclusion in the validation set. If it appears suitable, I'll prepare the source list and study description for validation.
@@ -266,12 +267,115 @@ On further review of the spreadsheet it is clearly a full coding table, not the 
 
 # Social relationships and their associations with affective symptoms of women with breast cancer
 
-One file, `review_113315_included_csv_20220615125644.csv`, comes from the project 'Social relationships and their associations with affective symptoms of women with breast cancer' (\url{https://osf.io/f3me9/}). This scoping review has been published as:
+One file, `review_113315_included_csv_20220615125644.csv`, comes from the project 'Social relationships and their associations with affective symptoms of women with breast cancer' (\url{https://osf.io/f3me9/}). This scoping review has been published as:pr
 
 Yang, Y. et al. Social relationships and their associations with affective symptoms of women with breast cancer: A scoping review. PLoS ONE 17, e0272649 (2022).
 
 On review of the file, it appears to list sources that passed title and abstract review only. So, unfortunately it cannot be used for validation.
 
+# Documentation, process and implementation of advance care planning in the pediatric population
+
+One file, `S2_Irrelevant records excluded_2023May26.csv`, comes from the project 'Documentation, process and implementation of advance care planning in the pediatric population: A scoping review' (\url{https://osf.io/e6k8c/}). There is a [preprint scoping review protocol](https://osf.io/6ksv5/) associated with the project.
+
+## Title and abstract screening results
+
+The file `S2_Irrelevant records excluded_2023May26.csv`, as the name would suggest, includes only a list of the sources that failed title and abstract screening. However, the project data folder includes two other files, `S3_Full-text excluded_2023 May 26.csv` and `S5_Data Extraction Results_2023May18.csv`, which include the sources that failed and passed full-text screening respectively. From these, it should be possible to reconstruct the full list of sources that passed and failed title and abstract screening.
+
+However, on reviewing the information available in these files, I do not think it will be possible to reliably retrieve the abstracts for a representative sample of these sources. So, this project will be excluded from validation.
+
+# The ‘Eudaimonic Experience’: A Scoping Review of the Concept in Digital Games Research
+
+One file, `2_Eudaimonia rating & second screening of forward chaining searches_final.xlsx`, comes from the project 'The ‘Eudaimonic Experience’: A Scoping Review of the Concept in Digital Games Research' (\url{https://osf.io/q7kdv/}). There is a [preprint scoping review](https://osf.io/c7hny) associated with the project.
+
+## Title and abstract screening results
+
+On review of the files associated with this project, I could not see how to confidently extract title and abstract screening results. This project will therefore be excluded from validation.
+
+# Evaluations of the uptake and impact of the Preferred Reporting Items for Systematic reviews and Meta-Analyses (PRISMA) Statement and extensions
+
+One file, `PRISMA_title_abstract_screen.xlsx`, comes from the project 'Evaluations of the uptake and impact of the Preferred Reporting Items for Systematic reviews and Meta-Analyses (PRISMA) Statement and extensions' (\url{https://osf.io/7x2mp/}). There is a [published scoping review](https://systematicreviewsjournal.biomedcentral.com/articles/10.1186/s13643-017-0663-8) associated with the project.
+
+My short name for this review will be `PRISMA`.
+
+## Title and abstract screening results
+
+`PRISMA_title_abstract_screen.xlsx` does contain a clear list of references as well as whether or not they passed title and abstract screening. The question will be whether abstracts can be confidently retrieved from this list of references. I'll start by loading and cleaning the list of sources.
+
+```{r}
+PRISMA_sources <- read_excel("osf_files/PRISMA_title_abstract_screen.xlsx") %>%
+  rename(source = `Citation`, retrieve = `Retrieve?`)
+```
+
+I'll clean up the 'retrieve' column.
+
+```{r}
+PRISMA_sources %>%
+  distinct(retrieve)
+
+PRISMA_sources <- PRISMA_sources %>%
+  mutate(human_includes = retrieve == "Yes") %>%
+  select(-retrieve)
+```
+
+I'll check there are no sources appearing more than once in the sources list.
+
+```{r}
+PRISMA_sources %>%
+  count(source) %>%
+  filter(n > 1) %>%
+  nrow()
+```
+
+It turns out that there are 275 replicates. Is the human inclusion decision always replicated between these?
+
+```{r}
+PRISMA_sources %>%
+  count(source, human_includes) %>%
+  filter(n > 1) %>%
+  nrow()
+```
+
+Not always. I'll de-replicate the sources, and completely remove any source for which there is a conflicting human recommendation.
+
+```{r}
+PRISMA_sources <- PRISMA_sources %>%
+  group_by(source) %>%
+  mutate(conflicting = length(unique(human_includes)) > 1) %>%
+  ungroup() %>%
+  filter(! conflicting) %>%
+  select(-conflicting)
+
+PRISMA_sources <- PRISMA_sources %>%
+  distinct(source, human_includes)
+```
+
+Now, I'll try to retrieve the abstracts using the easyPubMed package. This function will be memoised.
+
+```{r}
+get_metadata_from_pubmed <- function(s) {
+  cli_alert_info("Getting metadata from PubMed for:")
+  cli_text(s)
+  my_pubmed_ids <- get_pubmed_ids(s)
+  my_data <- fetch_pubmed_data(my_pubmed_ids, encoding = "ASCII")
+  df <- table_articles_byAuth(my_data, included_authors = "first", max_chars = 2000, 
+                              encoding = "ASCII") %>% as_tibble()
+
+  if (nrow(df) > 1) {
+    cli_alert_warning("Multiple search results retrieved, returning top result only")
+    df <- df[1, ]
+  }
+  return(df)
+}
+get_metadata_from_pubmed <- slowly(get_metadata_from_pubmed, rate = rate_delay(0.1))
+get_metadata_from_pubmed <- memoise(get_metadata_from_pubmed)
+```
+
+This process turns out to be prohibitively slow. I will hold this project in reserve but for now will not include it for validation.
+
+
+# Complementary, Alternative, and Integrative Medicine-Specific COVID-19 Misinformation on Social Media
+
+This project (id ytz5e) has already been used for testing so is not eligible for use for validation.
 
 # Melanoma
 
@@ -386,6 +490,21 @@ dermatology, (4) that failed to analyze one of the health inequities, and (5) th
 "
 saveRDS(melanoma_study_description, "validation_data/melanoma_study_description.rds")
 ```
+
+# Vocal production of infants at risk for speech motor involvement
+
+One file, `Interrater Reliability Title Abstract Screening 1.csv`, comes from the project 'Vocal production of infants at risk for speech motor involvement: A scoping review' (\url{https://osf.io/jf3u6/}). There is a [scoping review protocol preprint](https://osf.io/k8tnc) available for the project.
+
+## Title and abstract screening
+
+The file `Interrater Reliability Title Abstract Screening 1.csv` contains only summary data about title and abstract screening, and a review of the other files associated with the project did not find any other useful data. It appears I included this file in error. The project is not suitable for use in validation.
+
+# Social And Psychological Determinants Of Infanticide In Low And Middle-Income Countries
+
+One file, `Search strategy tables-Scoping Review.xlsx`, comes from the project 'Social And Psychological Determinants Of Infanticide In Low And Middle-Income Countries: A Scoping Review' (\url{https://osf.io/9g4f5/}). There does not seem to be any draft, preprint, or final manuscript or protocol associated with the project. As the study description and inclusion/exclusion criteria are not available, the project is thereby not eligible for inclusion 
+
+
+9g4f5
 
 # Solastalgia
 
