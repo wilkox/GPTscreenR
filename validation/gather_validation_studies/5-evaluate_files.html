@@ -363,7 +363,7 @@ display: none;
 
 <h1 class="title toc-ignore">5: Evaluate files</h1>
 <h4 class="author">David Wilkins</h4>
-<h4 class="date">Generated 2023-06-23 16:42:05.272932</h4>
+<h4 class="date">Generated 2023-07-18 12:37:03.490142</h4>
 
 </div>
 
@@ -400,27 +400,43 @@ count(files, file_ext)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"></td>
-<td align="right">17</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">CSV</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">ENL</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">JPG</td>
-<td align="right">1</td>
+<td align="right">2</td>
 </tr>
 <tr class="odd">
+<td align="left">PDF</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
 <td align="left">PNG</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">R</td>
-<td align="right">7</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">Rmd</td>
+<td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">bib</td>
-<td align="right">1</td>
+<td align="right">7</td>
 </tr>
 <tr class="even">
 <td align="left">csv</td>
-<td align="right">21</td>
+<td align="right">44</td>
 </tr>
 <tr class="odd">
 <td align="left">do</td>
@@ -428,39 +444,47 @@ count(files, file_ext)</code></pre>
 </tr>
 <tr class="even">
 <td align="left">doc</td>
-<td align="right">5</td>
+<td align="right">15</td>
 </tr>
 <tr class="odd">
 <td align="left">docx</td>
-<td align="right">441</td>
+<td align="right">828</td>
 </tr>
 <tr class="even">
+<td align="left">dot</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
 <td align="left">dotx</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">dta</td>
-<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">enl</td>
+<td align="right">5</td>
 </tr>
 <tr class="even">
-<td align="left">enl</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
 <td align="left">enlx</td>
 <td align="right">5</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">html</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">jpg</td>
 <td align="right">5</td>
 </tr>
 <tr class="odd">
-<td align="left">jpg</td>
+<td align="left">md</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
-<td align="left">md</td>
-<td align="right">2</td>
+<td align="left">mp3</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">mx22</td>
@@ -472,31 +496,55 @@ count(files, file_ext)</code></pre>
 </tr>
 <tr class="odd">
 <td align="left">pdf</td>
-<td align="right">533</td>
+<td align="right">1016</td>
 </tr>
 <tr class="even">
-<td align="left">png</td>
+<td align="left">pkl</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
-<td align="left">pptx</td>
-<td align="right">3</td>
+<td align="left">png</td>
+<td align="right">4</td>
 </tr>
 <tr class="even">
-<td align="left">ris</td>
-<td align="right">8</td>
+<td align="left">pptx</td>
+<td align="right">5</td>
 </tr>
 <tr class="odd">
+<td align="left">ris</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
 <td align="left">rmd</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rtf</td>
 <td align="right">1</td>
 </tr>
+<tr class="even">
+<td align="left">sav</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">spd</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">spv</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">tif</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">tsv</td>
+<td align="right">26</td>
+</tr>
 <tr class="odd">
 <td align="left">txt</td>
-<td align="right">12</td>
+<td align="right">16</td>
 </tr>
 <tr class="even">
 <td align="left">xls</td>
@@ -508,11 +556,11 @@ count(files, file_ext)</code></pre>
 </tr>
 <tr class="even">
 <td align="left">xlsx</td>
-<td align="right">117</td>
+<td align="right">206</td>
 </tr>
 <tr class="odd">
 <td align="left">zip</td>
-<td align="right">6</td>
+<td align="right">8</td>
 </tr>
 </tbody>
 </table>
@@ -521,23 +569,25 @@ to figure out if this might be due to a parsing error.</p>
 <pre class="r"><code>files %&gt;%
   filter(file_ext == &quot;&quot;) %&gt;%
   pull(file_name)</code></pre>
-<pre><code>##  [1] &quot;Records retained after duplicates removed&quot;                                                
-##  [2] &quot;Records imported from EBSCO Discovery Service&quot;                                            
-##  [3] &quot;Records imported from Web of Science&quot;                                                     
-##  [4] &quot;Records downloaded from EBSCO Discovery Search&quot;                                           
-##  [5] &quot;Records downloaded from Web of Science&quot;                                                   
-##  [6] &quot;Top 10 tips for getting started with EndNote&quot;                                             
-##  [7] &quot;* Previous versions&quot;                                                                      
-##  [8] &quot;Methylphenidate Medication Trials Including Other Medications or Intervention&quot;            
-##  [9] &quot;Methylphenidate (ONLY INTERVENTION) Studies&quot;                                              
-## [10] &quot;Methylphenidate Modulated By Another Substance&quot;                                           
-## [11] &quot;Amphetamines (+ Derivatives) Studies&quot;                                                     
-## [12] &quot;Methylphenidate and Amphetamines Studies&quot;                                                 
-## [13] &quot;Definitions of TDF&quot;                                                                       
-## [14] &quot;Accepted Version: Medication Review Service Implementation in Community Pharmacy Settings&quot;
-## [15] &quot;Covidence data extraction 071622&quot;                                                         
-## [16] &quot;QUADRO. FLUXOGRAMA PRISMA 2022 (PORTUGUÊS)..pdf&quot;                                          
-## [17] &quot;Parental Counseling After Fetus Heart Disease Diagnosis&quot;</code></pre>
+<pre><code>##  [1] &quot;Records retained after duplicates removed&quot;                                                                                     
+##  [2] &quot;Records imported from EBSCO Discovery Service&quot;                                                                                 
+##  [3] &quot;Records imported from Web of Science&quot;                                                                                          
+##  [4] &quot;Records downloaded from EBSCO Discovery Search&quot;                                                                                
+##  [5] &quot;Records downloaded from Web of Science&quot;                                                                                        
+##  [6] &quot;Top 10 tips for getting started with EndNote&quot;                                                                                  
+##  [7] &quot;* Previous versions&quot;                                                                                                           
+##  [8] &quot;Definitions of TDF&quot;                                                                                                            
+##  [9] &quot;A scoping review to identify factors contributing to wellbeing in autistic individuals across the lifespan..docx&quot;              
+## [10] &quot;Search results&quot;                                                                                                                
+## [11] &quot;Accepted Version: Medication Review Service Implementation in Community Pharmacy Settings&quot;                                     
+## [12] &quot;Covidence data extraction 071622&quot;                                                                                              
+## [13] &quot;Parental Counseling After Fetus Heart Disease Diagnosis&quot;                                                                       
+## [14] &quot;Economic Evaluation of Nature-Based Therapy Interventions, A Scoping Review..docx&quot;                                             
+## [15] &quot;PROTOCOL Scoping review-Gantschnig-Baldissera-Friedli&quot;                                                                         
+## [16] &quot;Appendix C_Neoliberalism and Social Work Practice Topics Frequency_Effects of neoliberalism on social work practice..pdf&quot;      
+## [17] &quot;Inclusivity in research A scoping review on the mental health concerns of the youth amidst the COVID-19 pandemic in India..pdf&quot;
+## [18] &quot;Inclusivity in research A scoping review on the mental health concerns of the youth amidst the COVID-19 pandemic in India..pdf&quot;
+## [19] &quot;Protocolo Estrategias educativas..docx&quot;</code></pre>
 <p>None of these look like parsing errors, no do they look like
 potential appraisal results files. They can be safely ignored.</p>
 <p>Of the available extensions, “csv”, “dta” and “xlsx” are likely to
@@ -547,145 +597,258 @@ close look at the file names.</p>
   filter(file_ext %in% c(&quot;csv&quot;, &quot;dta&quot;, &quot;xlsx&quot;))
 
 pull(files, file_name)</code></pre>
-<pre><code>##   [1] &quot;Full Coding Table.xlsx&quot;                                                                         
-##   [2] &quot;Derm Embase Search Strings.csv&quot;                                                                 
-##   [3] &quot;Data Extraction.xlsx&quot;                                                                           
-##   [4] &quot;Dialysis Embase Search Strings.csv&quot;                                                             
-##   [5] &quot;Epilepsy Embase Search Strings.csv&quot;                                                             
-##   [6] &quot;COPD Embase Search Strings.csv&quot;                                                                 
-##   [7] &quot;KidneyTransplantation Embase Search Strings.csv&quot;                                                
-##   [8] &quot;Ophthalmology Embase Search Strings.csv&quot;                                                        
-##   [9] &quot;Scoping review CBD data.xlsx&quot;                                                                   
-##  [10] &quot;Opioid Embase Search Strings.csv&quot;                                                               
-##  [11] &quot;HPV Embase Search Strings.csv&quot;                                                                  
-##  [12] &quot;Orthopaedic trauma Embase Search Strings.csv&quot;                                                   
-##  [13] &quot;(5) Data_table_articles_categories.csv&quot;                                                         
-##  [14] &quot;Nov20 Stage 4 Data Extraction Final Sample - completed May21.xlsx&quot;                              
-##  [15] &quot;Nov 20 Stage 3 Review of full text - completed Feb21.xlsx&quot;                                      
-##  [16] &quot;Nov20 Stage 1 SNs Suicide Review MASTER searches.xlsx&quot;                                          
-##  [17] &quot;1. Search Hit Results Oct 2020.xlsx&quot;                                                            
-##  [18] &quot;Nov20 Stage 2 Removal of duplicates and screenings.xlsx&quot;                                        
-##  [19] &quot;June 2022 Screenings Extraction TOP UP.xlsx&quot;                                                    
-##  [20] &quot;June 2022 Number of hits TOP UP.xlsx&quot;                                                           
-##  [21] &quot;AUD Embase Search Strings.csv&quot;                                                                  
-##  [22] &quot;S2 File.xlsx&quot;                                                                                   
-##  [23] &quot;REFERENCES FOR SCRINING.xlsx&quot;                                                                   
-##  [24] &quot;Qualtrics survey - full paper review data extarct.xlsx&quot;                                         
-##  [25] &quot;TemporalNetworks_ScopingReview_ExtractedData_All.xlsx&quot;                                          
-##  [26] &quot;ScopingReview_ExtractedData_ForR_PerNetwork.csv&quot;                                                
-##  [27] &quot;ScopingReview_ExtractedData_ForR.csv&quot;                                                           
-##  [28] &quot;scopingreview_coder1.xlsx&quot;                                                                      
-##  [29] &quot;scopingreview_coder2.xlsx&quot;                                                                      
-##  [30] &quot;final sample coded.csv&quot;                                                                         
-##  [31] &quot;Bibliographic Database Search Screening_Jul2622.xlsx&quot;                                           
-##  [32] &quot;Data Extraction_Jul2622.xlsx&quot;                                                                   
-##  [33] &quot;Google.com Search Screening_Jul2622.xlsx&quot;                                                       
-##  [34] &quot;Gray Literature Screening_Jul2622.xlsx&quot;                                                         
-##  [35] &quot;YouTube Search Screening_Jul2622.xlsx&quot;                                                          
-##  [36] &quot;Stage 4 (charting the data)_scoping review of team resilience.xlsx&quot;                             
-##  [37] &quot;1st Screening.xlsx&quot;                                                                             
-##  [38] &quot;RawData.xlsx&quot;                                                                                   
-##  [39] &quot;20230201-extractionsheet-SR-RetailFoodWaste.xlsx&quot;                                               
-##  [40] &quot;OS_scoping_all_references_from_database_search.xlsx&quot;                                            
-##  [41] &quot;OS_scoping_funder_categories_all_500_studies_with_COIS_ID_3-29-2021.xlsx&quot;                       
-##  [42] &quot;COIS_Table_Final_9-28-2021.xlsx&quot;                                                                
-##  [43] &quot;OS_scoping_eligible_references_from_database_search.xlsx&quot;                                       
-##  [44] &quot;Análise das categorias - última etapa.xlsx&quot;                                                     
-##  [45] &quot;Summary Data.xlsx&quot;                                                                              
-##  [46] &quot;20191203_Smoking-and-disability-SR_Full-text-screen-and-reasons-for-exclusion_Wuerstl_Todd.xlsx&quot;
-##  [47] &quot;20210910_Smoking-and-disability-SR_Intervention-setting-extraction-form_Wuerstl.xlsx&quot;           
-##  [48] &quot;20191116_Smoking-and-disability-SR_BCT-extraction-form_Wuerstl.xlsx&quot;                            
-##  [49] &quot;20191120_Smoking-and-disability-SR_Theory-coding-scheme-extraction-form_Wuerstl.xlsx&quot;           
-##  [50] &quot;20210820_Smoking-and-disability-SR_Study-characteristics-extraction-form_Wuerstl.xlsx&quot;          
-##  [51] &quot;20210910_Smoking-and-disability-SR_Mode-of-delivery-extraction-form_Wuerstl.xlsx&quot;               
-##  [52] &quot;20210910_Smoking-and-disability-SR_Intervention-function-extraction-form_Wuerstl.xlsx&quot;          
-##  [53] &quot;20210910_Smoking-and-disability-SR_Intervention-source-extraction-form_Wuerstl.xlsx&quot;            
-##  [54] &quot;review_113315_included_csv_20220615125644.csv&quot;                                                  
-##  [55] &quot;Scoping_FullExtraction_2022-03-18.xlsx&quot;                                                         
-##  [56] &quot;SAXScoping_TechExtraction_OSF.xlsx&quot;                                                             
-##  [57] &quot;Scop_Rev_clean.csv&quot;                                                                             
-##  [58] &quot;Scop_rev_full.csv&quot;                                                                              
-##  [59] &quot;Melanoma Data.xlsx&quot;                                                                             
-##  [60] &quot;Supplementary 3_data extraction.xlsx&quot;                                                           
-##  [61] &quot;Supplementary 4_measure from speech, language, reading, perceptual collected.xlsx&quot;              
-##  [62] &quot;Quality assessment.xlsx&quot;                                                                        
-##  [63] &quot;Final Scopus records_for_Bibliographic Analysis.csv&quot;                                            
-##  [64] &quot;PA data extraction sheet.xlsx&quot;                                                                  
-##  [65] &quot;IDD_Search_Table.xlsx&quot;                                                                          
-##  [66] &quot;Epilepsy Data.xlsx&quot;                                                                             
-##  [67] &quot;COPD Scoping Review Data.xlsx&quot;                                                                  
-##  [68] &quot;fichamento de artigos.xlsx&quot;                                                                     
-##  [69] &quot;New Data Extraction Form 2.0  (Responses) (1).xlsx&quot;                                             
-##  [70] &quot;Ophthalmology Data.xlsx&quot;                                                                        
-##  [71] &quot;PRISMA checklist for scoping review (Caroline Clark) (1).xlsx&quot;                                  
-##  [72] &quot;Solastalgia re-screening and extraction spreadsheet Dec 2022.xlsx&quot;                              
-##  [73] &quot;New Data Extraction Form 2.0  (Responses).xlsx&quot;                                                 
-##  [74] &quot;3Included-Studies.xlsx&quot;                                                                         
-##  [75] &quot;Ortho Trauma Data Sheet.xlsx&quot;                                                                   
-##  [76] &quot;Systematic literature search _results secondary sceening.xlsx&quot;                                  
-##  [77] &quot;Teachers´ soft skills a Scoping Review - Data extraction.xlsx&quot;                                  
-##  [78] &quot;Teachers´ Soft Skills a SR - Screening NM &amp; OJ(1).xlsx&quot;                                         
-##  [79] &quot;Vidak et al Excluded List.xlsx&quot;                                                                 
-##  [80] &quot;ExtractionTemplateRP 2021-08-21 (Re-organized for tables).xlsx&quot;                                 
-##  [81] &quot;Estatística Quantitativa.xlsx&quot;                                                                  
-##  [82] &quot;Estatistica Qualitativa.xlsx&quot;                                                                   
-##  [83] &quot;Tabela de Resultados.xlsx&quot;                                                                      
-##  [84] &quot;Bibliographic Data Extraction - Scoping Review (Responses).xlsx&quot;                                
-##  [85] &quot;Top 10 Journals by Specialty.xlsx&quot;                                                              
-##  [86] &quot;Mapping of Bibliographic results.xlsx&quot;                                                          
-##  [87] &quot;Professional Organizations.xlsx&quot;                                                                
-##  [88] &quot;Supplementary_FullExtraction.xlsx&quot;                                                              
-##  [89] &quot;Reason exclusion_FT screening_OA in NL.xlsx&quot;                                                    
-##  [90] &quot;Appendix 1 - The final search strategy for Ovid Medline.xlsx&quot;                                   
-##  [91] &quot;Vedlegg 5 - Kategorisering av design i utvalget.xlsx&quot;                                           
-##  [92] &quot;Vedlegg 4 - Informasjon om studiene i utvalget.xlsx&quot;                                            
-##  [93] &quot;Vedlegg 6 - Informasjon om deltakerne.xlsx&quot;                                                     
-##  [94] &quot;Metadata_OSF_20210622.xlsx&quot;                                                                     
-##  [95] &quot;AUD Data.xlsx&quot;                                                                                  
-##  [96] &quot;scoping review data extraction_update.xlsx&quot;                                                     
-##  [97] &quot;data extraction grey lit.xlsx&quot;                                                                  
-##  [98] &quot;MAR Data.xlsx&quot;                                                                                  
-##  [99] &quot;Appendix B, Full dataset.2022.xlsx&quot;                                                             
-## [100] &quot;Full-text coding.xlsx&quot;                                                                          
-## [101] &quot;Screening_after duplicates_final.xlsx&quot;                                                          
-## [102] &quot;Data charting spreadsheet template  (2).xlsx&quot;                                                   
-## [103] &quot;Work Disability &amp; Suicide Scoping Review - data extraction table.xlsx&quot;                          
-## [104] &quot;Review_Codingsheet_Results.xlsx&quot;                                                                
-## [105] &quot;Supplementary Table 2 - Children and Youth Outdoor Play.xlsx&quot;                                   
-## [106] &quot;Supplementary Table 1 - Adult-Oriented Outdoor Play Publications.xlsx&quot;                          
-## [107] &quot;Data Extraction Sheet (Official).xlsx&quot;                                                          
-## [108] &quot;Updated Data Extraction Sheet (includes stats+calculations).xlsx&quot;                               
-## [109] &quot;STRIPE_Scopingreview_polio_06 07 2020.dta&quot;                                                      
-## [110] &quot;rxs-social-support-academic-achievement.xlsx&quot;                                                   
-## [111] &quot;rxs-social-support-academic-achievement_Update_2022-05-11.xlsx&quot;                                 
-## [112] &quot;Dyadic SR Summary Excel_Final_locked.xlsx&quot;                                                      
-## [113] &quot;Scoping review_SARS-CoV-2 vaccines in subgroups_included studies up to 2021-12-06.xlsx&quot;         
-## [114] &quot;Search records SCOPING REVIEW 2021.xlsx&quot;                                                        
-## [115] &quot;OSF_Data Charting Form_01072022.xlsx&quot;                                                           
-## [116] &quot;Psychotherapy Scoping Review Data Chart_AM_2021.12.03.xlsx&quot;                                     
-## [117] &quot;Included and Excluded Studies.xlsx&quot;                                                             
-## [118] &quot;Extraction form blank (supplementary file 1).xlsx&quot;                                              
-## [119] &quot;Extraction form MASTER - clean.xlsx&quot;                                                            
-## [120] &quot;Revisão de Escopo.xlsx&quot;                                                                         
-## [121] &quot;Search Strategy_2021-07-16_Draft.xlsx&quot;                                                          
-## [122] &quot;Annex 1.xlsx&quot;                                                                                   
-## [123] &quot;Data.xlsx&quot;                                                                                      
-## [124] &quot;05.03 Análise 3ª etapa revisão.xlsx&quot;                                                            
-## [125] &quot;Tabela instrumentos 05.03.20.xlsx&quot;                                                              
-## [126] &quot;data.csv&quot;                                                                                       
-## [127] &quot;COMBINED_ScopingReview_Original_Data.xlsx&quot;                                                      
-## [128] &quot;Interrater Reliability Title Abstract Screening 1.csv&quot;                                          
-## [129] &quot;Interrater Reliability Full Text Review 1.csv&quot;                                                  
-## [130] &quot;Raw Data_BMM Scoping Review Extraction Table.xlsx&quot;                                              
-## [131] &quot;BCTs-PA Programs-Midlife Women Extraction DATA (8.31.21).xlsx&quot;                                  
-## [132] &quot;Final version Data extraction COVID 19 impact.xlsx&quot;                                             
-## [133] &quot;Appendix A - Included Articles.xlsx&quot;                                                            
-## [134] &quot;Master Spreadsheet Final.xlsx&quot;                                                                  
-## [135] &quot;Adults brain tumors in Sub-Saharan A Scoping Review.xlsx&quot;                                       
-## [136] &quot;data charting form with example.xlsx&quot;                                                           
-## [137] &quot;Codebook.xlsx&quot;                                                                                  
-## [138] &quot;ReliTest.xlsx&quot;                                                                                  
-## [139] &quot;data_final.xlsx&quot;</code></pre>
+<pre><code>##   [1] &quot;Full Coding Table.xlsx&quot;                                                                                                                        
+##   [2] &quot;Derm Embase Search Strings.csv&quot;                                                                                                                
+##   [3] &quot;Data Extraction.xlsx&quot;                                                                                                                          
+##   [4] &quot;Dialysis Embase Search Strings.csv&quot;                                                                                                            
+##   [5] &quot;Epilepsy Embase Search Strings.csv&quot;                                                                                                            
+##   [6] &quot;COPD Embase Search Strings.csv&quot;                                                                                                                
+##   [7] &quot;KidneyTransplantation Embase Search Strings.csv&quot;                                                                                               
+##   [8] &quot;Ophthalmology Embase Search Strings.csv&quot;                                                                                                       
+##   [9] &quot;Scoping review CBD data.xlsx&quot;                                                                                                                  
+##  [10] &quot;Opioid Embase Search Strings.csv&quot;                                                                                                              
+##  [11] &quot;HPV Embase Search Strings.csv&quot;                                                                                                                 
+##  [12] &quot;(5) Data_table_articles_categories.csv&quot;                                                                                                        
+##  [13] &quot;Nov20 Stage 4 Data Extraction Final Sample - completed May21.xlsx&quot;                                                                             
+##  [14] &quot;Nov 20 Stage 3 Review of full text - completed Feb21.xlsx&quot;                                                                                     
+##  [15] &quot;Nov20 Stage 1 SNs Suicide Review MASTER searches.xlsx&quot;                                                                                         
+##  [16] &quot;1. Search Hit Results Oct 2020.xlsx&quot;                                                                                                           
+##  [17] &quot;Nov20 Stage 2 Removal of duplicates and screenings.xlsx&quot;                                                                                       
+##  [18] &quot;June 2022 Screenings Extraction TOP UP.xlsx&quot;                                                                                                   
+##  [19] &quot;June 2022 Number of hits TOP UP.xlsx&quot;                                                                                                          
+##  [20] &quot;Orthopaedic trauma Embase Search Strings.csv&quot;                                                                                                  
+##  [21] &quot;S2 File.xlsx&quot;                                                                                                                                  
+##  [22] &quot;AUD Embase Search Strings.csv&quot;                                                                                                                 
+##  [23] &quot;REFERENCES FOR SCRINING.xlsx&quot;                                                                                                                  
+##  [24] &quot;Qualtrics survey - full paper review data extarct.xlsx&quot;                                                                                        
+##  [25] &quot;TemporalNetworks_ScopingReview_ExtractedData_All.xlsx&quot;                                                                                         
+##  [26] &quot;ScopingReview_ExtractedData_ForR_PerNetwork.csv&quot;                                                                                               
+##  [27] &quot;ScopingReview_ExtractedData_ForR.csv&quot;                                                                                                          
+##  [28] &quot;scopingreview_coder1.xlsx&quot;                                                                                                                     
+##  [29] &quot;scopingreview_coder2.xlsx&quot;                                                                                                                     
+##  [30] &quot;final sample coded.csv&quot;                                                                                                                        
+##  [31] &quot;Bibliographic Database Search Screening_Jul2622.xlsx&quot;                                                                                          
+##  [32] &quot;Data Extraction_Jul2622.xlsx&quot;                                                                                                                  
+##  [33] &quot;Google.com Search Screening_Jul2622.xlsx&quot;                                                                                                      
+##  [34] &quot;Gray Literature Screening_Jul2622.xlsx&quot;                                                                                                        
+##  [35] &quot;YouTube Search Screening_Jul2622.xlsx&quot;                                                                                                         
+##  [36] &quot;Stage 4 (charting the data)_scoping review of team resilience.xlsx&quot;                                                                            
+##  [37] &quot;1st Screening.xlsx&quot;                                                                                                                            
+##  [38] &quot;RawData.xlsx&quot;                                                                                                                                  
+##  [39] &quot;20230201-extractionsheet-SR-RetailFoodWaste.xlsx&quot;                                                                                              
+##  [40] &quot;20230515_SUPPLY_data charting of study characteristics.xlsx&quot;                                                                                   
+##  [41] &quot;20230516_SUPPLY_Overview associated factors.xlsx&quot;                                                                                              
+##  [42] &quot;20230516_SUPPLY_Overview health effects.xlsx&quot;                                                                                                  
+##  [43] &quot;20221012_SUPPLY_data charting template.xlsx&quot;                                                                                                   
+##  [44] &quot;Análise das categorias - última etapa.xlsx&quot;                                                                                                    
+##  [45] &quot;Summary Data.xlsx&quot;                                                                                                                             
+##  [46] &quot;20191203_Smoking-and-disability-SR_Full-text-screen-and-reasons-for-exclusion_Wuerstl_Todd.xlsx&quot;                                               
+##  [47] &quot;20210910_Smoking-and-disability-SR_Intervention-setting-extraction-form_Wuerstl.xlsx&quot;                                                          
+##  [48] &quot;20191116_Smoking-and-disability-SR_BCT-extraction-form_Wuerstl.xlsx&quot;                                                                           
+##  [49] &quot;20191120_Smoking-and-disability-SR_Theory-coding-scheme-extraction-form_Wuerstl.xlsx&quot;                                                          
+##  [50] &quot;20210820_Smoking-and-disability-SR_Study-characteristics-extraction-form_Wuerstl.xlsx&quot;                                                         
+##  [51] &quot;20210910_Smoking-and-disability-SR_Mode-of-delivery-extraction-form_Wuerstl.xlsx&quot;                                                              
+##  [52] &quot;20210910_Smoking-and-disability-SR_Intervention-function-extraction-form_Wuerstl.xlsx&quot;                                                         
+##  [53] &quot;20210910_Smoking-and-disability-SR_Intervention-source-extraction-form_Wuerstl.xlsx&quot;                                                           
+##  [54] &quot;OS_scoping_all_references_from_database_search.xlsx&quot;                                                                                           
+##  [55] &quot;OS_scoping_funder_categories_all_500_studies_with_COIS_ID_3-29-2021.xlsx&quot;                                                                      
+##  [56] &quot;COIS_Table_Final_9-28-2021.xlsx&quot;                                                                                                               
+##  [57] &quot;OS_scoping_eligible_references_from_database_search.xlsx&quot;                                                                                      
+##  [58] &quot;review_113315_included_csv_20220615125644.csv&quot;                                                                                                 
+##  [59] &quot;Data_chartingTemplate_NB.xlsx&quot;                                                                                                                 
+##  [60] &quot;Results_ASReview_dataset_with_additional_studies.xlsx&quot;                                                                                         
+##  [61] &quot;Results_ASReview_original_dataset.xlsx&quot;                                                                                                        
+##  [62] &quot;Supp3_Data_Extraction_HZ.xlsx&quot;                                                                                                                 
+##  [63] &quot;Direct and Proxy Charts 19_04_2021.xlsx&quot;                                                                                                       
+##  [64] &quot;S2_Irrelevant records excluded_2023May26.csv&quot;                                                                                                  
+##  [65] &quot;S3_Full-text excluded_2023 May 26.csv&quot;                                                                                                         
+##  [66] &quot;S5_Data Extraction Results_2023May18.csv&quot;                                                                                                      
+##  [67] &quot;Economic evidence in MH - Extended data E4 Extracted data for included studies.xlsx&quot;                                                           
+##  [68] &quot;3_Summary file of final included records_final.xlsx&quot;                                                                                           
+##  [69] &quot;1_Search and coding files (first screening) of forward chaining searches_final.xlsx&quot;                                                           
+##  [70] &quot;2_Eudaimonia rating &amp; second screening of forward chaining searches_final.xlsx&quot;                                                                
+##  [71] &quot;PRISMA_adherence_studies_2010-2016_SRs.csv&quot;                                                                                                    
+##  [72] &quot;PRISMA_meta-research_evidence.csv&quot;                                                                                                             
+##  [73] &quot;PRISMA_adherence_studies_1989-2016_SRs.csv&quot;                                                                                                    
+##  [74] &quot;PRISMA_adherence_studies_1989-2016_SRs.xlsx&quot;                                                                                                   
+##  [75] &quot;PRISMA_meta-research_evidence.xlsx&quot;                                                                                                            
+##  [76] &quot;PRISMA_adherence_studies_characteristics.xlsx&quot;                                                                                                 
+##  [77] &quot;PRISMA_adherence_studies_2010-2016_SRs.xlsx&quot;                                                                                                   
+##  [78] &quot;PRISMA_title_abstract_screen.xlsx&quot;                                                                                                             
+##  [79] &quot;TITLE ABSTRACT FULL TEXT SCREENING DATA_CAIM COVID-19 SM Misinfo_Mar2223.xlsx&quot;                                                                 
+##  [80] &quot;Data Extraction Form v1.xlsx&quot;                                                                                                                  
+##  [81] &quot;Data.xlsx&quot;                                                                                                                                     
+##  [82] &quot;Appendix_IV_Rev.xlsx&quot;                                                                                                                          
+##  [83] &quot;Appendix_V.xlsx&quot;                                                                                                                               
+##  [84] &quot;APPENDIX IV.xlsx&quot;                                                                                                                              
+##  [85] &quot;APPENDIX Vb.xlsx&quot;                                                                                                                              
+##  [86] &quot;Process Description_includes codesheet.xlsx&quot;                                                                                                   
+##  [87] &quot;Codebook v2_2021.xlsx&quot;                                                                                                                         
+##  [88] &quot;Scoping review_ Table S1.csv&quot;                                                                                                                  
+##  [89] &quot;Scoping_FullExtraction_2022-03-18.xlsx&quot;                                                                                                        
+##  [90] &quot;SAXScoping_TechExtraction_OSF.xlsx&quot;                                                                                                            
+##  [91] &quot;Scop_Rev_clean.csv&quot;                                                                                                                            
+##  [92] &quot;Scop_rev_full.csv&quot;                                                                                                                             
+##  [93] &quot;Supplementary 3_data extraction.xlsx&quot;                                                                                                          
+##  [94] &quot;Supplementary 4_measure from speech, language, reading, perceptual collected.xlsx&quot;                                                             
+##  [95] &quot;Quality assessment.xlsx&quot;                                                                                                                       
+##  [96] &quot;Final Scopus records_for_Bibliographic Analysis.csv&quot;                                                                                           
+##  [97] &quot;PA data extraction sheet.xlsx&quot;                                                                                                                 
+##  [98] &quot;Melanoma Data.xlsx&quot;                                                                                                                            
+##  [99] &quot;IDD_Search_Table.xlsx&quot;                                                                                                                         
+## [100] &quot;Epilepsy Data.xlsx&quot;                                                                                                                            
+## [101] &quot;fichamento de artigos.xlsx&quot;                                                                                                                    
+## [102] &quot;COPD Scoping Review Data.xlsx&quot;                                                                                                                 
+## [103] &quot;New Data Extraction Form 2.0  (Responses) (1).xlsx&quot;                                                                                            
+## [104] &quot;Ophthalmology Data.xlsx&quot;                                                                                                                       
+## [105] &quot;PRISMA checklist for scoping review (Caroline Clark) (1).xlsx&quot;                                                                                 
+## [106] &quot;Solastalgia re-screening and extraction spreadsheet Dec 2022.xlsx&quot;                                                                             
+## [107] &quot;New Data Extraction Form 2.0  (Responses).xlsx&quot;                                                                                                
+## [108] &quot;Engineering_Education_Included_Studies_Data_Extraction.xlsx&quot;                                                                                   
+## [109] &quot;Methodology checklist.xlsx&quot;                                                                                                                    
+## [110] &quot;EngrEducationArticles_ScopingReview.xlsx&quot;                                                                                                      
+## [111] &quot;3Included-Studies.xlsx&quot;                                                                                                                        
+## [112] &quot;Systematic literature search _results secondary sceening.xlsx&quot;                                                                                 
+## [113] &quot;Teachers´ soft skills a Scoping Review - Data extraction.xlsx&quot;                                                                                 
+## [114] &quot;Teachers´ Soft Skills a SR - Screening NM &amp; OJ(1).xlsx&quot;                                                                                        
+## [115] &quot;Ortho Trauma Data Sheet.xlsx&quot;                                                                                                                  
+## [116] &quot;Vidak et al Excluded List.xlsx&quot;                                                                                                                
+## [117] &quot;ExtractionTemplateRP 2021-08-21 (Re-organized for tables).xlsx&quot;                                                                                
+## [118] &quot;Estatística Quantitativa.xlsx&quot;                                                                                                                 
+## [119] &quot;Estatistica Qualitativa.xlsx&quot;                                                                                                                  
+## [120] &quot;Tabela de Resultados.xlsx&quot;                                                                                                                     
+## [121] &quot;Bibliographic Data Extraction - Scoping Review (Responses).xlsx&quot;                                                                               
+## [122] &quot;Top 10 Journals by Specialty.xlsx&quot;                                                                                                             
+## [123] &quot;Mapping of Bibliographic results.xlsx&quot;                                                                                                         
+## [124] &quot;Professional Organizations.xlsx&quot;                                                                                                               
+## [125] &quot;Supplementary_FullExtraction.xlsx&quot;                                                                                                             
+## [126] &quot;Reason exclusion_FT screening_OA in NL.xlsx&quot;                                                                                                   
+## [127] &quot;Appendix 1 - The final search strategy for Ovid Medline.xlsx&quot;                                                                                  
+## [128] &quot;Vedlegg 5 - Kategorisering av design i utvalget.xlsx&quot;                                                                                          
+## [129] &quot;Vedlegg 4 - Informasjon om studiene i utvalget.xlsx&quot;                                                                                           
+## [130] &quot;Vedlegg 6 - Informasjon om deltakerne.xlsx&quot;                                                                                                    
+## [131] &quot;scoping review data extraction_update.xlsx&quot;                                                                                                    
+## [132] &quot;data extraction grey lit.xlsx&quot;                                                                                                                 
+## [133] &quot;Appendix B, Full dataset.2022.xlsx&quot;                                                                                                            
+## [134] &quot;MAR Data.xlsx&quot;                                                                                                                                 
+## [135] &quot;AUD Data.xlsx&quot;                                                                                                                                 
+## [136] &quot;Full-text coding.xlsx&quot;                                                                                                                         
+## [137] &quot;Screening_after duplicates_final.xlsx&quot;                                                                                                         
+## [138] &quot;Data charting spreadsheet template  (2).xlsx&quot;                                                                                                  
+## [139] &quot;Work Disability &amp; Suicide Scoping Review - data extraction table.xlsx&quot;                                                                         
+## [140] &quot;Supplementary Table 2 - Children and Youth Outdoor Play.xlsx&quot;                                                                                  
+## [141] &quot;Supplementary Table 1 - Adult-Oriented Outdoor Play Publications.xlsx&quot;                                                                         
+## [142] &quot;Data Extraction Sheet (Official).xlsx&quot;                                                                                                         
+## [143] &quot;Updated Data Extraction Sheet (includes stats+calculations).xlsx&quot;                                                                              
+## [144] &quot;Review_Codingsheet_Results.xlsx&quot;                                                                                                               
+## [145] &quot;STRIPE_Scopingreview_polio_06 07 2020.dta&quot;                                                                                                     
+## [146] &quot;rxs-social-support-academic-achievement.xlsx&quot;                                                                                                  
+## [147] &quot;rxs-social-support-academic-achievement_Update_2022-05-11.xlsx&quot;                                                                                
+## [148] &quot;Dyadic SR Summary Excel_Final_locked.xlsx&quot;                                                                                                     
+## [149] &quot;Scoping review_SARS-CoV-2 vaccines in subgroups_included studies up to 2021-12-06.xlsx&quot;                                                        
+## [150] &quot;Search records SCOPING REVIEW 2021.xlsx&quot;                                                                                                       
+## [151] &quot;OSF_Data Charting Form_01072022.xlsx&quot;                                                                                                          
+## [152] &quot;Psychotherapy Scoping Review Data Chart_AM_2021.12.03.xlsx&quot;                                                                                    
+## [153] &quot;Included and Excluded Studies.xlsx&quot;                                                                                                            
+## [154] &quot;Extraction form blank (supplementary file 1).xlsx&quot;                                                                                             
+## [155] &quot;Extraction form MASTER - clean.xlsx&quot;                                                                                                           
+## [156] &quot;Factors consistency_with updated papers_7 Feb 2023.xlsx&quot;                                                                                       
+## [157] &quot;Data Quantitative_Final 2023.csv&quot;                                                                                                              
+## [158] &quot;List of Included and Excluded Titles.xlsx&quot;                                                                                                     
+## [159] &quot;Data Qualitative_Final 2023.csv&quot;                                                                                                               
+## [160] &quot;Search Strategy_2021-07-16_Draft.xlsx&quot;                                                                                                         
+## [161] &quot;Annex 1.xlsx&quot;                                                                                                                                  
+## [162] &quot;Data.xlsx&quot;                                                                                                                                     
+## [163] &quot;data.csv&quot;                                                                                                                                      
+## [164] &quot;COMBINED_ScopingReview_Original_Data.xlsx&quot;                                                                                                     
+## [165] &quot;Interrater Reliability Title Abstract Screening 1.csv&quot;                                                                                         
+## [166] &quot;Interrater Reliability Full Text Review 1.csv&quot;                                                                                                 
+## [167] &quot;Raw Data_BMM Scoping Review Extraction Table.xlsx&quot;                                                                                             
+## [168] &quot;BCTs-PA Programs-Midlife Women Extraction DATA (8.31.21).xlsx&quot;                                                                                 
+## [169] &quot;Final version Data extraction COVID 19 impact.xlsx&quot;                                                                                            
+## [170] &quot;Search strategy tables-Scoping Review.xlsx&quot;                                                                                                    
+## [171] &quot;Appendix A - Included Articles.xlsx&quot;                                                                                                           
+## [172] &quot;Master Spreadsheet Final.xlsx&quot;                                                                                                                 
+## [173] &quot;Adults brain tumors in Sub-Saharan A Scoping Review.xlsx&quot;                                                                                      
+## [174] &quot;data charting form with example.xlsx&quot;                                                                                                          
+## [175] &quot;Codebook.xlsx&quot;                                                                                                                                 
+## [176] &quot;data_publication_20211130.dta&quot;                                                                                                                 
+## [177] &quot;Monetary Format Abstract Screening.xlsx&quot;                                                                                                       
+## [178] &quot;Monetary Format Full Text Screening.xlsx&quot;                                                                                                      
+## [179] &quot;ReliTest.xlsx&quot;                                                                                                                                 
+## [180] &quot;data_final.xlsx&quot;                                                                                                                               
+## [181] &quot;Risk Of Bias SYNTHESIS.xlsx&quot;                                                                                                                   
+## [182] &quot;Search results.xlsx&quot;                                                                                                                           
+## [183] &quot;draft_extraction_AI_HTA.xlsx&quot;                                                                                                                  
+## [184] &quot;draft_extraction_AI_HTA_2_updated_with_dict.xlsx&quot;                                                                                              
+## [185] &quot;HSSF Citations.xlsx&quot;                                                                                                                           
+## [186] &quot;Public Health_Citations.xlsx&quot;                                                                                                                  
+## [187] &quot;Data_Abstraction.xlsx&quot;                                                                                                                         
+## [188] &quot;Extraction Sheet.xlsx&quot;                                                                                                                         
+## [189] &quot;Full text extractions_Includes_Feb 2021.xlsx&quot;                                                                                                  
+## [190] &quot;Assessing+the+difficulties_costliness_March+15,+2022_13.33.csv&quot;                                                                                
+## [191] &quot;ScopingReview_References.csv&quot;                                                                                                                  
+## [192] &quot;ScopingReview_HH_GHG_Behavioural_Interv_Composto_Weber.csv&quot;                                                                                    
+## [193] &quot;CodingScheme.xlsx&quot;                                                                                                                             
+## [194] &quot;Excel file_after dublicates removal.xlsx&quot;                                                                                                      
+## [195] &quot;Data extraction.xlsx&quot;                                                                                                                          
+## [196] &quot;Data.xlsx&quot;                                                                                                                                     
+## [197] &quot;Planilha de textos selecionados para o resumo final .xlsx&quot;                                                                                     
+## [198] &quot;descritores tabela.xlsx&quot;                                                                                                                       
+## [199] &quot;MATERIAL_SUPLEMENTAR 30-01-23.xlsx&quot;                                                                                                            
+## [200] &quot;2_2_SHI_Social_Media_Reliability_Dataset.xlsx&quot;                                                                                                 
+## [201] &quot;3_3_SHI_Social_Media_Charting_Document.xlsx&quot;                                                                                                   
+## [202] &quot;Data extraction table.xlsx&quot;                                                                                                                    
+## [203] &quot;Durrant et al coding.xlsx&quot;                                                                                                                     
+## [204] &quot;EBA of Reactive Aggression 2023 Preprint Table 1.xlsx&quot;                                                                                         
+## [205] &quot;EBA of Reactive Aggression 2023 Preprint Table 2.xlsx&quot;                                                                                         
+## [206] &quot;Search_strings.xlsx&quot;                                                                                                                           
+## [207] &quot;scoping_review_data_2021-02-26.xlsx&quot;                                                                                                           
+## [208] &quot;scoping_review_data_2021-02-26.csv&quot;                                                                                                            
+## [209] &quot;DATA EXTRACTION OUTPATIENT.xlsx&quot;                                                                                                               
+## [210] &quot;INPATIENT - DATA EXTRACTION.xlsx&quot;                                                                                                              
+## [211] &quot;DATA EXTRACTION GRAY LITERATURE.xlsx&quot;                                                                                                          
+## [212] &quot;Data Extraction_OSF.xlsx&quot;                                                                                                                      
+## [213] &quot;Supplementary Tables.xlsx&quot;                                                                                                                     
+## [214] &quot;ProductSafety_Resolutions.csv&quot;                                                                                                                 
+## [215] &quot;COIS.csv&quot;                                                                                                                                      
+## [216] &quot;yr.csv&quot;                                                                                                                                        
+## [217] &quot;productsafety_studyfunders.csv&quot;                                                                                                                
+## [218] &quot;MFHT.csv&quot;                                                                                                                                      
+## [219] &quot;Excluded.Full.Texts.10.05.22.xlsx&quot;                                                                                                             
+## [220] &quot;Table S3 and S4 (as Excel) - Feng, Cho, &amp; Luk (2023).xlsx&quot;                                                                                     
+## [221] &quot;2_4_ Review of Reviews_LSI_AMSTAR2_Charting_Document.xlsx&quot;                                                                                     
+## [222] &quot;2_3_ Review of Reviews_LSI_Charting_Document.xlsx&quot;                                                                                             
+## [223] &quot;Data.xlsx&quot;                                                                                                                                     
+## [224] &quot;SUPPL_Reasons for excluding studies on full-text analysis_updated searches.xlsx&quot;                                                               
+## [225] &quot;SUPPL_Reasons for excluding studies on full-text analysis_initial searches_revised.xlsx&quot;                                                       
+## [226] &quot;Study Characteristics.xlsx&quot;                                                                                                                    
+## [227] &quot;Psychosocial Construct Searches - Final Searches.csv&quot;                                                                                          
+## [228] &quot;data file.csv&quot;                                                                                                                                 
+## [229] &quot;Scoping reivew_Data logs.xlsx&quot;                                                                                                                 
+## [230] &quot;Table 1a C_MLTC. Risk factors for individual conditions.xlsx&quot;                                                                                  
+## [231] &quot;Table 1b C_MLTC. Condition risk factors for long term conditions.xlsx&quot;                                                                         
+## [232] &quot;Abstraction.xlsx&quot;                                                                                                                              
+## [233] &quot;Raw data.xlsx&quot;                                                                                                                                 
+## [234] &quot;Data analysis and final results.xlsx&quot;                                                                                                          
+## [235] &quot;ONSD US QCC Supplement 1.xlsx&quot;                                                                                                                 
+## [236] &quot;Scoping Review Dataset_Version1.xlsx&quot;                                                                                                          
+## [237] &quot;database_OSF.csv&quot;                                                                                                                              
+## [238] &quot;imputed_database_OSF.csv&quot;                                                                                                                      
+## [239] &quot;HAP analysis (version 1).xlsb.xlsx&quot;                                                                                                            
+## [240] &quot;Scoping review HAP analysis.xlsb.xlsx&quot;                                                                                                         
+## [241] &quot;STAGE 1_2 Inclusion and exclusion of articles_ HAP_EP desk.xlsx&quot;                                                                               
+## [242] &quot;Process Description_Implementing Interventions_OSF Upload.xlsx&quot;                                                                                
+## [243] &quot;Process Description_Implementing Interventions_OSF Upload_Revised based on reviewer feedback v1.xlsx&quot;                                          
+## [244] &quot;Process Description_Implementing Interventions_OSF Upload_Revised based on reviewer feedback.xlsx&quot;                                             
+## [245] &quot;Two Decades in the Making_ A Scoping Review on Research on Digital Making and its Potential for Digital Empowerment in Non-formal Settings.csv&quot;
+## [246] &quot;Data extraction form.xlsx&quot;                                                                                                                     
+## [247] &quot;outcome_dataextraction.xlsx&quot;                                                                                                                   
+## [248] &quot;Design Processes.xlsx&quot;                                                                                                                         
+## [249] &quot;Final List of Included Papers.xlsx&quot;                                                                                                            
+## [250] &quot;Privitera_Scoping_Review_Extraction.xlsx&quot;                                                                                                      
+## [251] &quot;Nudge database.xlsx&quot;                                                                                                                           
+## [252] &quot;Annotated Bibliography .xlsx&quot;</code></pre>
 <p>A number of these clearly contain the search strings used for
 database searching. These will be removed.</p>
 <pre class="r"><code>files &lt;- files %&gt;%
