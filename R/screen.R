@@ -204,7 +204,11 @@ screen_sources <- function(sources, study_description, n = NULL, random = TRUE, 
     if (.verbose) cli::cli_alert_info("{n_sources - n_unscreened} of {n_sources} screened")
 
     # Select a source to screen
-    next_i <- ifelse(random, sample(unscreened_i, 1), unscreened_i[1])
+    if (n_unscreened == 1) {
+      next_i <- unscreened_i
+    } else {
+      next_i <- ifelse(random, sample(unscreened_i, 1), unscreened_i[1])
+    }
 
     # Screen the source and parse the response
     response <- screen_source(study_description, 
