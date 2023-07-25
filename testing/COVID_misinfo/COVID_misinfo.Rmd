@@ -13,11 +13,6 @@ library(knitr)
 opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-```{r message = FALSE}
-library(tidyverse)
-library(printr)
-```
-
 # Required libraries
 
 ```{r}
@@ -26,6 +21,8 @@ library(printr)
 library(purrr)
 library(readxl)
 library(rcrossref)
+library(rentrez)
+library(XML)
 load_all()
 packageVersion("GPTscreenR")
 ```
@@ -92,7 +89,7 @@ sources <- sources %>%
 Attempt to download abstracts.
 
 ```{r}
-retrieve_abstract <- function(DOI, cache_file = NULL) {
+retrieve_abstract_DOI <- function(DOI, cache_file = NULL) {
 
   cli::cli_h2("Attempting to retrieve abstract for {DOI}")
 
@@ -117,18 +114,35 @@ retrieve_abstract <- function(DOI, cache_file = NULL) {
   cli::cli_alert_info("Attempting to retrieve abstract from crossref")
   safe_cr_abstract <- safely(rcrossref::cr_abstract)
   cr_result <- safe_cr_abstract(DOI)
+
+  # In the case of crossref failure
   if (! is.null(cr_result$error)) {
     cli::cli_alert_danger("Crossref retrieval failed with error: '{cr_result$error$message}'")
-    if (! is.null(cache_file)) {
-      result <- data.frame(DOI = DOI, abstract = NA_character_, abstract_source = "crossref_failure")
-      if (fs::file_exists(cache_file)) {
-        abstracts_cache <- readRDS(cache_file)
-        abstracts_cache <- dplyr::bind_rows(abstracts_cache, result)
-      } else {
-        abstracts_cache <- result
+
+    # Try to retrieve the abstract from PubMed, with the rentrez package
+    cli::cli_alert_info("Attempting to retrieve abstract from PubMed")
+    entrez_result <- entrez_search(db = "pubmed", term = paste0(DOI, "[doi]"))
+    if (length(entrez_result$ids) == 1) {
+      abstract <- entrez_fetch(db = "pubmed", id = entrez_result$ids, 
+                               rettype = "xml", parsed = T) %>%
+        xpathApply('//PubmedArticle//Article', function(x) xmlValue(xmlChildren(x)$Abstract)) %>%
+        unlist()
+      cli::cli_alert_success("PubMed retrieval succeeded")
+      result <- data.frame(DOI = DOI, abstract = abstract, abstract_source = "pubmed")
+      if (! is.null(cache_file)) {
+        if (fs::file_exists(cache_file)) {
+          abstracts_cache <- readRDS(cache_file)
+          abstracts_cache <- dplyr::bind_rows(abstracts_cache, result)
+        } else {
+          abstracts_cache <- result
+        }
+        saveRDS(abstracts_cache, cache_file)
       }
-      saveRDS(abstracts_cache, cache_file)
+      return(result[,c("abstract", "abstract_source")])
     }
+    cli::cli_alert_danger("PubMed retrieval failed")
+
+  # In the case of crossref success
   } else {
     cli::cli_alert_success("Crossref retrieval succeeded")
     result <- data.frame(DOI = DOI, abstract = cr_result$result, abstract_source = "crossref")
@@ -144,12 +158,23 @@ retrieve_abstract <- function(DOI, cache_file = NULL) {
     return(result[,c("abstract", "abstract_source")])
   }
 
-  # Return a failure, if things somehow get this far
-  data.frame(abstract = NA_character_, abstract_source = "general_failure")
+  # If both methods fail
+  result <- data.frame(DOI = DOI, abstract = NA_character_, abstract_source = NA_character_)
+  if (! is.null(cache_file)) {
+    if (fs::file_exists(cache_file)) {
+      abstracts_cache <- readRDS(cache_file)
+      abstracts_cache <- dplyr::bind_rows(abstracts_cache, result)
+    } else {
+      abstracts_cache <- result
+    }
+    saveRDS(abstracts_cache, cache_file)
+  }
+
+  return(result[,c("abstract", "abstract_source")])
 }
 
 sources <- sources %>%
-  mutate(abstract = map(DOI, retrieve_abstract, cache_file = "DOI_abstracts_cache.rds")) %>%
+  mutate(abstract = map(DOI, retrieve_abstract_DOI, cache_file = "DOI_abstracts_cache.rds")) %>%
   unnest(abstract)
 sources %>% count(is.na(abstract))
 ```
@@ -159,8 +184,8 @@ sources %>% count(is.na(abstract))
 Only sources with an available abstract (`r sources %>% filter(! is.na(abstract)) %>% nrow()`) will be screened.
 
 ```{r}
-sources <- sources %>% filter(! is.na(abstract))
-sources <- screen_sources(sources, study_description, n = 10,
+qources <- sources %>% filter(! is.na(abstract))
+sources <- screen_sources(sources, study_description, n = 324,
                           cache_file = fs::path("./COVID_misinfo_sources.rds"))
 ```
 

@@ -91,10 +91,22 @@ sources <- sources %>%
   filter(! is.na(human_includes))
 ```
 
+```{r}
+sources %>%
+  count(is.na(abstract))
+```
+
+One hundred and sixty four sources are missing abstracts; these will be removed.
+
+```{r}
+sources <- sources %>%
+  filter(! is.na(abstract))
+```
+
 # Screen titles and abstracts
 
 ```{r}
-sources <- screen_sources(sources, study_description, n = 10, 
+sources <- screen_sources(sources, study_description, n = 257,
                           cache_file = fs::path("./smartphones_sources.rds"))
 ```
 

@@ -79,10 +79,22 @@ sources[299, "human_recommendation"] <- 2
 sources <- mutate(sources, human_recommendation = ifelse(human_recommendation == 2, "INCLUDE", "EXCLUDE"))
 ```
 
+```{r}
+sources %>%
+  count(is.na(abstract))
+```
+
+Eight sources have missing abstracts. These will be removed.
+
+```{r}
+sources <- sources %>%
+  filter(! is.na(abstract))
+```
+
 # Screen titles and abstracts
 
 ```{r}
-sources <- screen_sources(sources, study_description, n = 10,
+sources <- screen_sources(sources, study_description, n = 245,
                           cache_file = fs::path("./teachers_sources.rds"))
 ```
 
