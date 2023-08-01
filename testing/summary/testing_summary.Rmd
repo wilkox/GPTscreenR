@@ -1,0 +1,112 @@
+---
+title: Summary of GPTscreenR testing
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+```
+
+## Load and tidy results
+
+```{r}
+COVID <- readRDS("../COVID_misinfo/COVID_misinfo_sources.rds") %>%
+  as_tibble() %>%
+  mutate(human_includes = human_recommendation == "Yes") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  mutate(study = "COVID") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+melanoma <- readRDS("../melanoma/melanoma_sources.rds") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  mutate(study = "melanoma") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+smartphones <- readRDS("../smartphones/smartphones_sources.rds") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  mutate(study = "smartphones") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+solastalgia <- readRDS("../sostalgia/solastalgia_sources.rds") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  mutate(human_includes = human_recommendation == "INCLUDE") %>%
+  mutate(study = "solastalgia") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+suicide <- readRDS("../suicide/suicide_sources.rds") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  mutate(study = "suicide") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+teachers <- readRDS("../teachers/teachers_sources.rds") %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  mutate(human_includes = human_recommendation == "INCLUDE") %>%
+  mutate(study = "teachers") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+screening <- bind_rows(COVID, melanoma, smartphones, solastalgia, suicide, teachers)
+```
+
+## Per-study and pooled sensitivity and specificity
+
+```{r}
+
+sensitivity <- function(standard, test) {
+  sum(standard[test]) / sum(test)
+}
+
+specificity <- function(standard, test) {
+  sum(!standard[!test]) / sum(!test)
+}
+
+perstudy <- screening %>%
+  group_by(study) %>%
+  summarise(sensitivity = sensitivity(human_includes, GPT_includes),
+            specificity = specificity(human_includes, GPT_includes))
+
+perstudy
+
+pooled <- screening %>%
+  summarise(sensitivity = sensitivity(human_includes, GPT_includes),
+            specificity = specificity(human_includes, GPT_includes))
+
+pooled
+
+pooled %>%
+  mutate(study = "pooled") %>%
+  bind_rows(., perstudy) %>%
+  pivot_longer(c("sensitivity", "specificity"), names_to = "statistic", values_to = "value") %>%
+  ggplot(aes(x = statistic, y = value)) +
+    geom_boxplot() +
+    geom_point(aes(colour = study))
+```
+

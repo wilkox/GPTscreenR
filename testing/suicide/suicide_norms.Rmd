@@ -1,0 +1,261 @@
+---
+title: GPTscreenR testing - suicide study
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Required libraries
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+library(readxl)
+load_all()
+packageVersion("GPTscreenR")
+```
+
+## Study overview
+
+The project 'Social Norms and Suicidality - Scoping Review' is available on the OSF (\url{https://osf.io/btpzc/}). A draft manuscript for the scoping review is available [here](https://osf.io/xbhuq); as far as I can tell it hasn't been published anywhere yet.
+
+## Title and abstract screening results
+
+There are three files related to this project: `Nov20 Stage 3 Review of full text - completed Feb21.xlsx`, `Nov20 Stage 2 Removal of duplicates and screenings.xlsx`, and `June 2022 Screenings Extraction TOP UP.xlsx`.
+
+`Nov20 Stage 2 Removal of duplicates and screenings.xlsx` contains a sheet 'Title Abstract screenings' which includes columns for title, abstract, and 'Screened IN/OUT - reason?'. I note that a lot of the abstracts seem to be missing but this is not an insurmountable problem. 
+
+I'll load and tidy this sheet.
+
+```{r}
+tas <- read_excel("Nov20 Stage 2 Removal of duplicates and screenings.xlsx", 
+                  sheet = "Title Abstract screenings", range = "A1:G12411") %>%
+  select(title = Title, abstract = Abstract, decision_reason = `Screened IN/OUT - reason?`)
+```
+
+In the same file, there is also a sheet called 'Further Abstract Screens'. It's unclear how this differed from 'Title Abstract screenings', so I'll load this sheet and compare the two.
+
+```{r}
+fas <- read_excel("Nov20 Stage 2 Removal of duplicates and screenings.xlsx", 
+                  sheet = "Further Abstract Screens", range = "A1:H1706") %>%
+  select(title = Title, abstract = Abstract, decision_reason = `Abstract Screen in/out`)
+```
+
+How many sources in each sheet?
+
+```{r}
+nrow(tas)
+nrow(fas)
+```
+
+So, does 'Further Abstract Screens' represent a secondary stage of screening sources that passed 'Title Abstract screenings'? To figure this out, I'll first try to parse the screening results in 'Title Abstract screenings'.
+
+```{r}
+tas <- tas %>%
+  mutate(decision = str_extract(decision_reason, "^(IN|OUT|UNSURE)"))
+
+count(tas, decision)
+```
+
+The parsing appears to be successful. So, does 'Further Abstract Screens' only contain the sources that were not excluded at 'Title Abstract screenings'?
+
+```{r}
+passed_tas_titles <- tas %>%
+  filter(decision %in% c("IN", "UNSURE")) %>%
+  pull(title)
+
+sum(! fas$title %in% passed_tas_titles)
+```
+
+It seems that this is the case for all but one source. Let's take a close look at this source.
+
+```{r}
+fas %>%
+  filter(! title %in% passed_tas_titles) %>%
+  pull(title)
+```
+
+After manually inspecting both sheets in MS Excel, it seems like this is due to a difference in the title; it appears as 'Suicidality correlates in Mexican Americans.' in 'Title Abstract screenings', with the other details being identical.
+
+A likely explanation for these two sheets is that 'Further Abstract Screens' represents cases where extra effort was made to retrieve abstracts that were not available at the stage of 'Title Abstract screenings'. This will also be relevant to the use of this review for validation, as of course the abstract is required for validation. Let's compare the availablity of abstracts between the two sheets to confirm this.
+
+```{r}
+tas %>%
+  count(is.na(abstract))
+
+fas %>%
+  count(is.na(abstract))
+```
+
+Surprisingly, there are still a large number of missing abstracts in 'Further Abstract Screens', including some for which the reason for exclusion was given as 'abstract not relevant'. There are also quite a few for which the abstract is given as '(No abstract)' or '(Can't paste abstract here)'. Nevertheless, it seems like this is the most appropriate list to use as the gold standard, since these are the sources for which a human actually looked at the title and abstract. I'll filter the list to remove missing abstracts including '(No abstract)' and similar.
+
+```{r}
+fas <- fas %>%
+  filter(! is.na(abstract))
+
+fas %>%
+  count(is.na(title))
+
+fas %>%
+  count(is.na(decision_reason))
+
+fas %>%
+  count(abstract) %>%
+  filter(n > 1) %>%
+  arrange(desc(n))
+
+fas <- fas %>%
+  filter(! abstract %in% c("(No abstract)", "(Can't paste abstract here)", "No abstract", 
+                           "(Book review)", "(LETTER)", "(Editorial)", "(no abstract?)", 
+                           "No abstract?", "(Not English / no abstract)", "DUPLICATE"))
+
+fas %>%
+  count(abstract) %>%
+  filter(n > 1) %>%
+  arrange(desc(n))
+```
+
+There still seem to be eight cases where the abstract is replicated, including one where it appears three times. Are the titles replicated for these examples too?
+
+```{r}
+fas %>%
+  group_by(abstract) %>%
+  mutate(abstract_n = n()) %>%
+  ungroup() %>%
+  filter(abstract_n > 1) %>%
+  arrange(abstract)
+```
+
+Yes, it appears that the majority of these are accidental replicates, perhaps between between preprints and final publications. Given that there are some differences between the titles, I think the best way to handle this is to include them in the validation set, as they do represent places where the human reviewer could potentially have chosen differently (although in practice it seems they made the same decision for all these cases).
+
+As the final preparation step for this sources list, I'll normalise the human decisions.
+
+```{r}
+fas <- fas %>%
+  mutate(decision = str_extract(decision_reason, "^(IN|OUT)"))
+
+fas %>%
+  count(decision)
+
+fas <- fas %>%
+  mutate(human_includes = decision == "IN") %>%
+  select(-decision_reason, -decision)
+```
+
+There are two other MS Excel files associated with this project. `Nov 20 Stage 3 Review of full text - completed Feb21.xlsx`, as the name suggests, seems to be the results of full text screening, so this can be ignored. 
+
+`June 2022 Screenings Extraction TOP UP.xlsx` appears to contain the results of a second round of searches performed about a year and a half after the initial search. It's unclear to what extent this overlaps with the result of the initial search, so I'll load and tidy the sheet 'Title Abs Screening' to compare.
+
+```{r}
+topup <- read_excel("June 2022 Screenings Extraction TOP UP.xlsx", 
+                    sheet = "Title Abs Screening", range = "A3:G1076") %>%
+  select(title = Title, abstract = Abstract, decision_reason = "Title/Abstract Screening")
+
+sum(fas$title %in% topup$title)
+sum(topup$title %in% fas$title)
+```
+
+It appears there is little overlap; this would fit with the following from the Methods of the draft manuscript:
+
+> Initial literature searches were restricted to articles published until the end of October 2020, with a top-up search conducted in June 2022 for articles published between November 2020 and May 2022. 
+
+So, I'll tidy the list of top up sources, removing missing abstracts, and add them to the pool.
+
+```{r}
+topup <- topup %>%
+  filter(! is.na(abstract))
+
+topup %>%
+  group_by(abstract) %>%
+  mutate(abstract_n = n()) %>%
+  ungroup() %>%
+  filter(abstract_n > 1)
+
+topup <- topup %>%
+  mutate(decision = str_extract(decision_reason, "^(IN|OUT)"))
+
+topup %>%
+  count(decision)
+
+topup <- topup %>%
+  mutate(human_includes = decision == "IN") %>%
+  select(-decision_reason, -decision)
+
+sources <- bind_rows(fas, topup)
+```
+
+## Study description
+
+I'll draw the study description and inclusion criteria from the draft manuscript.
+
+```{r}
+study_description <- 
+"STUDY DESCRIPTION:
+
+Given that suicide can be conceptualised as a form of health-behaviour based on the formation of intentions, and considering the role of perceived social norms in determining other health-related behaviours and behavioural intentions, there remains a lack of reviews of the extent of the published research literature on the role of perceived social norms in suicidality and self-harm related outcomes. The present systematic scoping review aimed to identify the forms of perceived social norms which have been associated with self-harm and suicidality (i.e., suicidal thoughts, feelings, attempts, and help-seeking) and the role of perceived social norms in these outcomes.
+
+DEFINITIONS:
+
+Social norms are a key influence on personal behaviours and are broadly defined as 'rules and standards that are understood by members of a group, and that guide and/or constrain social behaviour without the force of law'. Social norms influence behavioural intention formation, the engagement in various behaviours, and are featured in a number of key models of health-related behaviour, most notably the Theory of Planned Behavior.
+
+INCLUSION CRITERIA:
+
+- Investigated the role of perceived social norms in the individual experience of suicide-related thoughts, feelings and/or behaviours including self-harm or non-suicidal self-injury (e.g. as an outcome variable in quantitative studies or part of a research question or an identified theme for qualitative studies)
+- Original empirical research
+- Published in the English language
+
+EXCLUSION CRITERIA:
+
+- Review articles or commentaries
+- Studies on suicide attacks (e.g., suicide bombings, suicide terrorism), murder-suicides, or assisted suicide (i.e., euthanasia)
+"
+```
+
+## Screening
+
+Let's run the screening.
+
+```{r}
+sources <- screen_sources(sources, study_description, n = 100,
+                          cache_file = fs::path("./suicide_sources.rds"))
+```
+## Summarise results
+
+```{r}
+result <- sources %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(human_recommendation = ifelse(human_includes, "INCLUDE", "EXCLUDE")) %>%
+  count(human_recommendation, GPT_recommendation)
+
+result
+
+sensitivity <- result %>%
+  filter(human_recommendation == "INCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "INCLUDE") %>%
+  pull(percentage)
+
+sensitivity
+
+specificity <- result %>%
+  filter(human_recommendation == "EXCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "EXCLUDE") %>%
+  pull(percentage)
+
+specificity
+
+result %>%
+  mutate(GPT_correct = GPT_recommendation == human_recommendation) %>%
+  ggplot(aes(x = human_recommendation, fill = GPT_correct, y = n)) +
+    geom_col(position = "stack") +
+    coord_flip()
+```

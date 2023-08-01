@@ -364,7 +364,7 @@ display: none;
 <h1 class="title toc-ignore">GPTScreenR testing - COVID-19
 misinformation study</h1>
 <h4 class="author">David Wilkins</h4>
-<h4 class="date">Last updated 2023-07-25</h4>
+<h4 class="date">Last updated 2023-08-01</h4>
 
 </div>
 
@@ -537,7 +537,7 @@ sources %&gt;% count(is.na(abstract))</code></pre>
 <div id="screen-titles-and-abstracts" class="section level1">
 <h1>Screen titles and abstracts</h1>
 <p>Only sources with an available abstract (458) will be screened.</p>
-<pre class="r"><code>qources &lt;- sources %&gt;% filter(! is.na(abstract))
+<pre class="r"><code>sources &lt;- sources %&gt;% filter(! is.na(abstract))
 sources &lt;- screen_sources(sources, study_description, n = 324,
                           cache_file = fs::path(&quot;./COVID_misinfo_sources.rds&quot;))</code></pre>
 </div>

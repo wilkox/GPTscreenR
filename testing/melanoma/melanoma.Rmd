@@ -1,0 +1,177 @@
+---
+title: GPTscreenR testing - melanoma study
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Required libraries
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+library(readxl)
+library(rentrez)
+library(memoise)
+load_all()
+packageVersion("GPTscreenR")
+```
+
+## Overview of the data source
+
+The dataset is from the project 'Scoping Review - Melanoma' (\url{https://osf.io/knje4/}). There is a protocol published [here](https://osf.io/feg5x) which contains sufficient information on the study objectives, inclusion and exclusion criteria.
+
+## Title and abstract screening results
+
+`Melanoma Data.xlsx` contains a sheet 'Rayyan 2.0 Inclusions' which seems to summarise the results of title and abstract screening. However, on inspection it appears the 'abstract' column is blank. This is not insurmountable as the PubMed ID appears to be included for almost all sources, which means the abstract can be readily retrieved.
+
+```{r}
+sources <- read_excel(
+    "Melanoma Data.xlsx",
+    sheet = "Rayyan 2.0 Inclusions",
+    range = "A1:D136",
+    col_types = c("text", "numeric", "text", "text")
+  ) %>%
+  select(title, PMID = `Pubmed ID`, exclude_reason = `Exclude? w/ Reason`) %>%
+  mutate(PMID = as.character(PMID))
+```
+
+As suspected, none of the abstracts are provided. Can they be retrieved from PubMed?
+
+```{r}
+count(sources, is.na(PMID))
+```
+
+There are 9 missing PubMed IDs. It's unclear whether the authors had access to the abstracts for these sources, but since each source included a URL to either a PubMed or Embase page for the source which normally would display the title and abstract, it is fair to assume they did. I'll try to manually find and splice in the missing values.
+
+```{r}
+sources %>%
+  filter(is.na(PMID)) %>%
+  pull(title)
+
+missing_PMIDs <- tribble(
+  ~title, ~manual_PMID,
+  "Late-Stage Melanoma in New York State: Associations with Socioeconomic Factors and Healthcare Access at the County Level.", "33516743",
+  "Quantitative associations between health insurance and stage of melanoma at diagnosis among nonelderly adults in the United States.", "31714593",
+  "Rural melanoma patients in Maryland do not present with more advanced disease than urban patients.", "34118809",
+  "Socioeconomic status and survival for patients with melanoma in the United States: an NCDB analysis.", "29736922",
+  "The impact of demographics, socioeconomics, and health care access on melanoma outcomes.", "32783908",
+  "The ongoing racial disparities in melanoma: An analysis of the Surveillance, Epidemiology, and End Results database (1975-2016)", "32861710",
+  "The Role of Neighborhood Characteristics in Late Stage Melanoma Diagnosis among Hispanic Men in California, Texas, and Florida, 1996-2012", "28702054",
+  "Trends in malignant melanoma mortality in 31 countries from 1985 to 2015.", "32133614"
+)
+
+sources <- sources %>%
+  left_join(missing_PMIDs) %>% 
+  mutate(PMID = coalesce(PMID, manual_PMID)) %>%
+  select(-manual_PMID)
+```
+
+I'll now attempt to retrieve the abstracts, using the rentrez package. I'll memoise this function.
+
+```{r}
+get_pm_abstract <- function(PMID) {
+  entrez_fetch(db = "pubmed", id = PMID, rettype = "xml", parsed = T) %>%
+    xpathApply('//PubmedArticle//Article', function(x) xmlValue(xmlChildren(x)$Abstract)) %>%
+    unlist()
+}
+get_pm_abstract <- insistently(get_pm_abstract)
+get_pm_abstract <- possibly(get_pm_abstract, otherwise = NA_character_)
+get_pm_abstract <- memoise(get_pm_abstract, cache = cachem::cache_disk(dir = "cache"))
+
+sources <- sources %>%
+  mutate(abstract = map_chr(PMID, get_pm_abstract))
+
+sources %>%
+  filter(is.na(abstract))
+```
+
+There are seven sources for which abstract fetching failed, including one with a missing PMID (for some reason this was given as a DOI in the original spreadsheet). Interestingly, there is a close but not perfect overlap with the sources that were missing PMIDs. On manual review, these are all sources with no abstracts (e.g. letters rather than articles). I'll remove them from the dataset.
+
+```{r}
+sources <- sources %>%
+  filter(! is.na(abstract))
+```
+
+I'll tidy up the decisions.
+
+```{r}
+sources <- sources %>%
+  mutate(human_includes = is.na(exclude_reason)) %>%
+  select(title, abstract, human_includes)
+```
+
+## Study description
+
+I'll draw the study description and inclusion criteria from the protocol.
+
+```{r}
+study_description <-
+"STUDY DESCRIPTION:
+
+Our study aims to identify the current gaps in literature surrounding dermatologic health inequities with the goal of providing insight for future research to better optimize patient care.
+
+To what degree are health inequities researched within the field of dermatology? The objective of this scoping review is to identify and map the different strengths and gaps in what is known about inequities in the topic of dermatology.
+
+DEFINITIONS:
+
+Health inequities can be defined as broad inequities in healthcare access, quality, and cost related to patient characteristics.
+
+INCLUSION AND EXCLUSION CRITERIA:
+
+The population of this review will include literature of the following study designs: clinical trials, retrospective database reviews, systematic reviews, meta-analysis, scoping reviews, literature reviews, cross-sectional analyses, cohort studies, and case-control studies. Commentaries and correspondences will be excluded, as they do not routinely report original research. To address the concept of the review, only studies pertaining to health inequities within dermatology will be included. To increase feasibility and quality of data extraction, only literature published in the English language will be included. Literature from all countries will be included. Finally, to address the context of this review, we will limit the inequities examined to: race and ethnicity, sex or gender, LGBTQ+ identity, underserved rural populations, education level, income, and occupation status. 
+
+Exclusion criteria will include any study: (1) that was published before 2017 or after 2021, (2) that was written in a language other than English, (3) that was conducted on a topic unrelated to 
+dermatology, (4) that failed to analyze one of the health inequities, and (5) that was written as a commentary, correspondence, or letter to the editor.
+"
+```
+
+## Screening
+
+Now I'll screen the sources.
+
+```{r}
+sources <- screen_sources(sources, study_description, n = 72,
+                          cache_file = fs::path("./melanoma_sources.rds"))
+```
+
+## Summarise results
+
+```{r}
+result <- sources %>%
+  filter(! is.na(GPT_recommendation)) %>%
+  mutate(human_recommendation = ifelse(human_includes, "INCLUDE", "EXCLUDE")) %>%
+  count(human_recommendation, GPT_recommendation)
+
+result
+
+sensitivity <- result %>%
+  filter(human_recommendation == "INCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "INCLUDE") %>%
+  pull(percentage)
+
+sensitivity
+
+specificity <- result %>%
+  filter(human_recommendation == "EXCLUDE") %>%
+  mutate(percentage = 100 * n / sum(n)) %>%
+  filter(GPT_recommendation == "EXCLUDE") %>%
+  pull(percentage)
+
+specificity
+
+result %>%
+  mutate(GPT_correct = GPT_recommendation == human_recommendation) %>%
+  ggplot(aes(x = human_recommendation, fill = GPT_correct, y = n)) +
+    geom_col(position = "stack") +
+    coord_flip()
+```

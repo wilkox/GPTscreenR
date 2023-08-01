@@ -184,7 +184,7 @@ sources %>% count(is.na(abstract))
 Only sources with an available abstract (`r sources %>% filter(! is.na(abstract)) %>% nrow()`) will be screened.
 
 ```{r}
-qources <- sources %>% filter(! is.na(abstract))
+sources <- sources %>% filter(! is.na(abstract))
 sources <- screen_sources(sources, study_description, n = 324,
                           cache_file = fs::path("./COVID_misinfo_sources.rds"))
 ```
