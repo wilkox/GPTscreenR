@@ -175,3 +175,19 @@ result %>%
     geom_col(position = "stack") +
     coord_flip()
 ```
+
+## High false negative rate
+
+This study seems to have an abnormally high false negative rate and therefore an outlier low specificity. To explore why, I'll look at GPT's reasoning in some of the particular cases where it disagreed with the human reviewers.
+
+```{r}
+set.seed(1)
+
+sources %>%
+  filter(GPT_recommendation == "EXCLUDE") %>%
+  filter(human_includes) %>%
+  sample_n(3) %>%
+  pull(GPT_conversation)
+```
+
+In all three of these examples, one of the reasons cited by GPT for rejecting the study was that it did not focus on health inequities, and on my review of the title and abstract it did seem that this was the case. My feeling is that GPT made a better decision than the human reviewers for at least these three examples.
