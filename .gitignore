@@ -3,5 +3,4 @@
 .Rdata
 .httr-oauth
 .DS_Store
-osf_files/
-cache/
+cache
