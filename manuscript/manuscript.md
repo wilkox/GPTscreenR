@@ -17,3 +17,10 @@ While LLMs are not yet widely used to screen sources for literature reviews, ear
 Both of these approaches made use of a single, fixed text prompt template, which the LLM then completes with additional text representing its response (the decision to include or exclude a source), a method sometimes called 'one-shot prompting'. Recent work has identified a number of methods which can be superior to one-shot prompting when using LLMs for tasks that require complex or multi-step reasoning. These methods include chain-of-thought prompting [@Wei.2022], in which a complex task is broken down into a series of intermediate steps that the model is prompted to complete in sequence, and the tree of thoughts strategy [@Yao.2023] in which multiple differing chains of thought are generated, compared, and integrated.
 
 In this paper, I introduce a package for the R programming language [@R.2023] called GPTscreenR, and evaluate its performance in screening titles and abstracts for scoping reviews. The aim of this package was is to assist and augment rather than replace human reviewers in performing scoping reviews. This paper and the associated package represent four novel developments in the use of LLMs for source screening in literature reviews. Firstly, they provide an open-source software package which can be downloaded and used as well as modified by reviewers. Secondly, they provide the first such application of LLMs specifically for scoping reviews, though pragmatically there is likely little difference in approach when compared to their use in systematic reviews. Thirdly, they provide to my knowledge the first report on the accuracy of this application using the most recent iteration of the GPT model lineage, GPT-4. Finally, they incorporate the use of chain-of-thought reasoning in an effort to maximise the accuracy of screening decisions.
+
+
+
+
+
+
+NB the testing was run with version XXXX, small changes have been made to the prompt in subsequent versions
