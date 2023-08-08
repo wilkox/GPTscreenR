@@ -172,8 +172,9 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
   if (.verbose) cli::cli_h1("Preparing sources list")
   cache_file <- fs::path(cache_file)
   if (fs::file_exists(cache_file) & ! .dry_run) {
-    if (.verbose) cli::cli_alert_info("Loading sources from cache in {cache_file} ({.arg sources} will be ignored)")
-    sources <- readRDS(cache_file)
+    if (.verbose) cli::cli_alert_info("Loading cached results from {cache_file}")
+    cached_sources <- readRDS(cache_file)
+    sources <- dplyr::left_join(sources, cached_sources, by = c("title", "abstract"))
 
   # If cache file does not already exist, create it
   } else {
