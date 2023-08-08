@@ -89,3 +89,24 @@ complete_GPT_tryCatch <- function(x, tries = 3, .dry_run = FALSE) {
   }
   cli::cli_abort("Too many failed calls to GPT API")
 }
+
+#' Check that the OPENAI_API_KEY environmental variable is set
+#'
+#' @param show_key If TRUE, and if the environmental variable is set, the key
+#' will be printed to the console. Defaults to FALSE.
+#'
+#' @export
+check_API_key <- function(show_key = FALSE) {
+
+  key <- Sys.getenv("OPENAI_API_KEY")
+
+  if (key == "") {
+    cli::cli_alert_danger("The {.envvar OPENAI_API_KEY} environmental variable is not set")
+    cli::cli_alert_info("This is required for GPTscreenR to access the OpenAI API")
+    cli::cli_alert_info("Run {.code vignette(\"api-key\")} for instructions")
+    return()
+  }
+
+  cli::cli_alert_success("The {.envvar OPENAI_API_KEY} environmental variable is set")
+  if (show_key) cli::cli_alert_info("Key: {.val {key}}")
+}

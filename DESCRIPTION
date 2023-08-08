@@ -1,6 +1,6 @@
 Package: GPTscreenR
 Title: GPT-assisted source screening for scoping reviews
-Version: 0.0.0.9006
+Version: 0.0.0.9007
 Authors@R: 
     person("David", "Wilkins", , "david@wilkox.org", role = c("aut", "cre"))
 Description: GPT-assisted source screening for scoping reviews.
@@ -11,6 +11,8 @@ RoxygenNote: 7.2.3
 URL: https://github.com/wilkox/GPTscreenR
 BugReports: https://github.com/wilkox/GPTscreenR/issues
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Depends: 
@@ -23,3 +25,4 @@ Imports:
     cli (>= 3.6.1),
     dplyr (>= 1.1.2),
     fs (>= 1.6.2)
+VignetteBuilder: knitr

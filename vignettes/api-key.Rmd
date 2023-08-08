@@ -1,0 +1,30 @@
+---
+title: "OpenAI API key"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{OpenAI API key}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Using GPTscreenR requires an OpenAI API key, which you must store in an R environmental variable called `OPENAI_API_KEY`. OpenAI charges fees to use their API. To obtain and set up an API key:
+
+1. [Create an OpenAI account](https://platform.openai.com/signup?launch), if you don't have one already.
+2. Once you have created and signed in to your account, go to the [View API Keys page](https://platform.openai.com/account/api-keys).
+3. Click on the 'Create new secret key' button.
+4. Give your new key a name, for example 'GPTscreenR', and click 'Create secret key'.
+5. The page will display your new secret API key. You must copy the key now, as it will never be displayed again.
+6. Store your API key in an R environmental variable by adding the following line to your `.Renviron` file: `OPENAI_API_KEY=<your secret API key goes here>`. There are a few different ways to edit this file:
+   a. On any operating system, you can use the function `usethis::edit_r_environ()` from [the usethis package](https://usethis.r-lib.org) to open and edit your `.Renviron` file.
+   b. On macOS or Linux, you can create or edit a file in your home directory called `~/.Renviron`.
+   c. You can also make an `.Renviron` file for a particular project. I strongly recommend that you *do not* check this file into a version control system like git, as this means other people with access to the repository (including the public, if the repository is publicly accessible) can see your secret key.
+
+To check that you have set the environmental variable successfully, open a new R session and load GPTscreenR with `library(GPTscreenR)`. You should see the following message:
+
+``✔ The `OPENAI_API_KEY` environmental variable is set``
+
+If instead you see:
+
+``✖ The `OPENAI_API_KEY` environmental variable is not set``
+
+this means the environmental variable has not been set correctly. Note that this does not check whether or not you have stored a valid key.
