@@ -1,7 +1,7 @@
-#' Screen a source against study inclusion criteria
+#' Screen a source against review inclusion criteria
 #'
-#' @param study_description A description of the study including objective and
-#' inclusion criteria, a character vector of length 1
+#' @param review_description A description of the review, including objective
+#' and inclusion criteria, a character vector of length 1
 #' @param title The title of the article to be screened, a character vector of
 #' length 1
 #' @param abstract The abstract of the article to be screened, a character
@@ -10,7 +10,7 @@
 #' @param .dry_run If TRUE, calls to the GPT API will be skipped
 #'
 #' @export
-screen_source <- function(study_description, title, abstract, .verbose = TRUE, .dry_run = FALSE) {
+screen_source <- function(review_description, title, abstract, .verbose = TRUE, .dry_run = FALSE) {
 
   # Validate arguments
   validate_screening_param <- function(param, name) {
@@ -18,7 +18,7 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
     if (! is.character(param) | ! length(param) == 1) { cli::cli_abort("{name} must be a character vector of length 1") }
     if (is.na(param) | stringr::str_length(param) == 0 ) { cli::cli_warn("{name} appears to have no content") }
   }
-  validate_screening_param(study_description, "study_description")
+  validate_screening_param(review_description, "review_description")
   validate_screening_param(title, "title")
   validate_screening_param(abstract, "abstract")
   if (.verbose) { cli::cli_h2("Screening: {title}") }
@@ -26,11 +26,11 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
   # Initialise conversation with a system message
   conversation <- GPT_messages(
     role = "system",
-    content = "You are being used to help researchers perform a scoping review. You are not interacting directly with a user.\n\nA scoping review is a type of systematic review used to map the published scholarship on a topic. To gather relevant sources for a scoping review, the researchers search bibliographic databases for sources that match a selected Population, Concept, and Context (the inclusion criteria). The titles and abstracts of sources that are found in this search search are then screened against the inclusion criteria.\n\nYour task is to screen a single source against the inclusion criteria. You will be provided with the study objective and inclusion criteria, and then you will then be provided with the study title and abstract. You will then be instructed to work step by step through the process of comparing the source against the inclusion criteria. Finally, you will instructed to make a recommendation on whether the source should be included.\n\nThe next message will be from the user, and will contain the scoping review objective and inclusion criteria."
+    content = "You are being used to help researchers perform a scoping review. You are not interacting directly with a user.\n\nA scoping review is a type of systematic review used to map the published scholarship on a topic. To gather relevant sources for a scoping review, the researchers search bibliographic databases for sources that match a selected Population, Concept, and Context (the inclusion criteria). The titles and abstracts of sources that are found in this search search are then screened against the inclusion criteria.\n\nYour task is to screen a single source against the inclusion criteria. You will be provided with the review objective and inclusion criteria, and then you will then be provided with the source title and abstract. You will then be instructed to work step by step through the process of comparing the source against the inclusion criteria. Finally, you will instructed to make a recommendation on whether the source should be included.\n\nThe next message will be from the user, and will contain the scoping review objective and inclusion criteria."
   )
 
-  # Provide the study description
-  conversation <- add_message(conversation, role = "user", content = study_description)
+  # Provide the review description
+  conversation <- add_message(conversation, role = "user", content = review_description)
 
   # Instruct GPT to summarise the inclusion criteria as dot point statements
   if (.verbose) { cli::cli_progress_step("Asking GPT to summarise inclusion criteria") }
@@ -42,19 +42,19 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
   if (! .dry_run) conversation <- complete_GPT_tryCatch(conversation, .dry_run = .dry_run)
 
   # Provide the source
-  conversation <- add_message(conversation, role = "system", "The next message will be from the user, and will contain the title and abstract of a study to be compared against the inclusion criteria.")
+  conversation <- add_message(conversation, role = "system", "The next message will be from the user, and will contain the title and abstract of a source to be compared against the inclusion criteria.")
  source <- stringr::str_c(
     "TITLE: ", title, "\n",
     "ABSTRACT: ", abstract
   )
   conversation <- add_message(conversation, role = "user", content = source)
 
-  # Ask GPT to compare the study title and abstract against the summarised inclusion criteria
+  # Ask GPT to compare the source title and abstract against the summarised inclusion criteria
   if (.verbose) { cli::cli_progress_step("Asking GPT to compare the source to the inclusion criteria") }
   conversation <- add_message(
     conversation,
     role = "system",
-    content = "Let's continue to work step by step. Refer back to the set of statements you developed summarising the inclusion criteria. For each statement, decide whether or not the statement is true for the study described by the title and abstract. You must select from the following permitted responses: TRUE, FALSE, LIKELY TRUE, LIKELY FALSE, or NOT APPLICABLE. No other response is permitted. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. There is a natural and normal amount of ambiguity in this process. For these situations, give your best guess, making use of your general knowledge, and deciding LIKELY TRUE or LIKELY FALSE. Responses like UNCLEAR or NOT ENOUGH INFORMATION are not permitted. After giving your response, give a one sentence explanation for your response."
+    content = "Let's continue to work step by step. Refer back to the set of statements you developed summarising the inclusion criteria. For each statement, decide whether or not the statement is true for the source described by the title and abstract. You must select from the following permitted responses: TRUE, FALSE, LIKELY TRUE, LIKELY FALSE, or NOT APPLICABLE. No other response is permitted. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. There is a natural and normal amount of ambiguity in this process. For these situations, give your best guess, making use of your general knowledge, and deciding LIKELY TRUE or LIKELY FALSE. Responses like UNCLEAR or NOT ENOUGH INFORMATION are not permitted. After giving your response, give a one sentence explanation for your response."
   )
   if (! .dry_run) conversation <- complete_GPT_tryCatch(conversation, .dry_run = .dry_run)
 
@@ -81,49 +81,49 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
   return(list(conversation = conversation, recommendation = recommendation))
 }
 
-#' Combine study objective and inclusion criteria into a formatted string
+#' Combine the review objective and inclusion criteria into a formatted string
 #'
-#' @param objective A brief description of the overall study objective, a
+#' @param objective A brief description of the overall review objective, a
 #' character vector of length 1
-#' @param population A brief description of the overall study objective, a
+#' @param population A brief description of the overall review objective, a
 #' character vector of length 1
-#' @param concept A brief description of the overall study objective, a
+#' @param concept A brief description of the overall review objective, a
 #' character vector of length 1
-#' @param context A brief description of the overall study objective, a
+#' @param context A brief description of the overall review objective, a
 #' character vector of length 1
 #'
 #' @export
-study_description <- function(objective = NULL, population = NULL, concept = NULL, context = NULL) {
+review_description <- function(objective = NULL, population = NULL, concept = NULL, context = NULL) {
 
   if (missing(objective) & missing(population) & missing(concept) & missing(context)) {
-    cli::cli_abort("No study information provided")
+    cli::cli_abort("No review information provided")
   }
 
-  study_description <- ""
+  review_description <- ""
   if (! missing(objective)) {
-    study_description <- stringr::str_c(study_description, "STUDY OBJECTIVE: ", objective, "\n\n")
+    review_description <- stringr::str_c(review_description, "STUDY OBJECTIVE: ", objective, "\n\n")
   }
   if (! missing(population)) {
-    study_description <- stringr::str_c(study_description, "POPULATION:", population, "\n\n")
+    review_description <- stringr::str_c(review_description, "POPULATION:", population, "\n\n")
   }
   if (! missing(concept)) {
-    study_description <- stringr::str_c(study_description, "CONCEPT:", concept, "\n\n")
+    review_description <- stringr::str_c(review_description, "CONCEPT:", concept, "\n\n")
   }
   if (! missing(context)) {
-    study_description <- stringr::str_c(study_description, "CONTEXT:", context, "\n\n")
+    review_description <- stringr::str_c(review_description, "CONTEXT:", context, "\n\n")
   }
 
-  study_description
+  review_description
 }
 
-#' Screen multiple sources against study inclusion criteria
+#' Screen multiple sources against review inclusion criteria
 #'
 #' To support multiple screening sessions, a cache of the sources list is
 #' written to a file.
 #'
 #' @param sources A data frame of sources to screen, containing at least
 #' 'title' and 'abstract' columns
-#' @param study_description A description of the study including objective and
+#' @param review_description A description of the review including objective and
 #' inclusion criteria, a character vector of length 1
 #' @param n Optional, a maximum number of sources to screen
 #' @param random A logical value indicating whether to randomise the order in
@@ -134,18 +134,18 @@ study_description <- function(objective = NULL, population = NULL, concept = NUL
 #' @param .dry_run If TRUE, calls to the GPT API will be skipped
 #'
 #' @export
-screen_sources <- function(sources, study_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), .verbose = TRUE, .dry_run = FALSE) {
+screen_sources <- function(sources, review_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), .verbose = TRUE, .dry_run = FALSE) {
 
   # Validate arguments
-  if (missing(sources) | missing(study_description)) {
-    cli::cli_abort("sources and study_description are required arguments")
+  if (missing(sources) | missing(review_description)) {
+    cli::cli_abort("sources and review_description are required arguments")
   }
   if (! is.data.frame(sources)) {
     cli::cli_abort("sources must be a data frame")
   }
 
-  if (! is.character(study_description) | ! length(study_description) == 1) {
-    cli::cli_abort("study_description must be a character vector of length 1")
+  if (! is.character(review_description) | ! length(review_description) == 1) {
+    cli::cli_abort("review_description must be a character vector of length 1")
   }
 
   if (! missing(n)) {
@@ -216,7 +216,7 @@ screen_sources <- function(sources, study_description, n = NULL, random = TRUE, 
     }
 
     # Screen the source and parse the response
-    response <- screen_source(study_description, 
+    response <- screen_source(review_description, 
                               title = sources$title[next_i], abstract = sources$abstract[next_i], 
                               .verbose = .verbose, .dry_run = .dry_run)
     sources$GPT_conversation[[next_i]] <- response$conversation

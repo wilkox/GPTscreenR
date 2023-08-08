@@ -2,10 +2,10 @@
 % Please edit documentation in R/screen.R
 \name{screen_source}
 \alias{screen_source}
-\title{Screen a source against study inclusion criteria}
+\title{Screen a source against review inclusion criteria}
 \usage{
 screen_source(
-  study_description,
+  review_description,
   title,
   abstract,
   .verbose = TRUE,
@@ -13,8 +13,8 @@ screen_source(
 )
 }
 \arguments{
-\item{study_description}{A description of the study including objective and
-inclusion criteria, a character vector of length 1}
+\item{review_description}{A description of the review, including objective
+and inclusion criteria, a character vector of length 1}
 
 \item{title}{The title of the article to be screened, a character vector of
 length 1}
@@ -27,5 +27,5 @@ vector of length 1}
 \item{.dry_run}{If TRUE, calls to the GPT API will be skipped}
 }
 \description{
-Screen a source against study inclusion criteria
+Screen a source against review inclusion criteria
 }

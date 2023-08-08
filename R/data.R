@@ -1,6 +1,6 @@
-#' Example study description for source screening
+#' Example review description for source screening
 #'
-#' Study description for a hypothetical scoping review.
+#' Description of a hypothetical scoping review.
 #' 
 #' @format
 #' A list with four elements
@@ -12,7 +12,7 @@
 #' }
 #'
 #' @seealso alpaca_sources alpaca_results
-"alpaca_study_description"
+"alpaca_review_description"
 
 #' Example sources for screening
 #'
@@ -24,10 +24,10 @@
 #'   \item{title}{The source title}
 #'   \item{abstract}{The source abstract}
 #'   \item{include}{Whether the source meets the description given in
-#'   `alpaca_study_description`}
+#'   `alpaca_review_description`}
 #' }
 #'
-#' @seealso alpaca_study_description alpaca_results
+#' @seealso alpaca_review_description alpaca_results
 "alpaca_sources"
 
 #' Example results of source screening
@@ -39,7 +39,7 @@
 #' \describe{
 #'   \item{title}{The source title}
 #'   \item{abstract}{The source abstract}
-#'   \item{include}{Whether the source meets the description given in `alpaca_study_description`}
+#'   \item{include}{Whether the source meets the description given in `alpaca_review_description`}
 #'   \item{GPT_conversation}{The conversation with GPT in which it is lead
 #'   through considering the source and making a recommendation to include or
 #'   exclude, a list-column of `GPT_mssg` objects}
@@ -47,5 +47,5 @@
 #'   or 'EXCLUDE'}
 #' }
 #'
-#' @seealso alpaca_study_description alpaca_sources
+#' @seealso alpaca_review_description alpaca_sources
 "alpaca_results"

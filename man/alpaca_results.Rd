@@ -9,7 +9,7 @@ A data frame with ten rows and five columns:
 \describe{
 \item{title}{The source title}
 \item{abstract}{The source abstract}
-\item{include}{Whether the source meets the description given in \code{alpaca_study_description}}
+\item{include}{Whether the source meets the description given in \code{alpaca_review_description}}
 \item{GPT_conversation}{The conversation with GPT in which it is lead
 through considering the source and making a recommendation to include or
 exclude, a list-column of \code{GPT_mssg} objects}
@@ -24,6 +24,6 @@ alpaca_results
 A data frame of example results from screening sources with the \code{screen_sources()} function.
 }
 \seealso{
-alpaca_study_description alpaca_sources
+alpaca_review_description alpaca_sources
 }
 \keyword{datasets}

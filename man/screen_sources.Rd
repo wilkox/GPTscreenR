@@ -2,11 +2,11 @@
 % Please edit documentation in R/screen.R
 \name{screen_sources}
 \alias{screen_sources}
-\title{Screen multiple sources against study inclusion criteria}
+\title{Screen multiple sources against review inclusion criteria}
 \usage{
 screen_sources(
   sources,
-  study_description,
+  review_description,
   n = NULL,
   random = TRUE,
   cache_file = fs::path("sources_cache.rds"),
@@ -18,7 +18,7 @@ screen_sources(
 \item{sources}{A data frame of sources to screen, containing at least
 'title' and 'abstract' columns}
 
-\item{study_description}{A description of the study including objective and
+\item{review_description}{A description of the review including objective and
 inclusion criteria, a character vector of length 1}
 
 \item{n}{Optional, a maximum number of sources to screen}

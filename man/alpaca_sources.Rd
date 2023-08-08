@@ -10,7 +10,7 @@ A data frame with ten rows and three columns:
 \item{title}{The source title}
 \item{abstract}{The source abstract}
 \item{include}{Whether the source meets the description given in
-\code{alpaca_study_description}}
+\code{alpaca_review_description}}
 }
 }
 \usage{
@@ -20,6 +20,6 @@ alpaca_sources
 A data frame of sources to be screened for a hypothetical scoping review.
 }
 \seealso{
-alpaca_study_description alpaca_results
+alpaca_review_description alpaca_results
 }
 \keyword{datasets}
