@@ -1,13 +1,13 @@
 # Prepare example study description
-objective <- alpaca_inclusion_criteria$objective
-population <- alpaca_inclusion_criteria$population
-context <- alpaca_inclusion_criteria$context
-concept <- alpaca_inclusion_criteria$concept
+objective <- alpaca_study_description$objective
+population <- alpaca_study_description$population
+context <- alpaca_study_description$context
+concept <- alpaca_study_description$concept
 study_description <- study_description(objective, population, context, concept)
 
 # Prepare example sources
-title <- alpaca_sources[[1]]$title
-abstract <- alpaca_sources[[1]]$abstract
+title <- alpaca_sources$title[1]
+abstract <- alpaca_sources$abstract[1]
 sources <- data.frame(title = title, abstract = abstract)
 
 test_that("study_description() works", {

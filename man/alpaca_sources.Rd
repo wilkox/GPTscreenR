@@ -5,20 +5,21 @@
 \alias{alpaca_sources}
 \title{Example sources for screening}
 \format{
-A list with ten elements, each contaning:
+A data frame with ten rows and three columns:
 \describe{
-\item{title}{The source title, a character vector of length 1}
-\item{abstract}{The source abstract, a character vector of length 1}
-\item{include}{Whether the source meets the inclusion criteria given in \code{alpaca_inclusion_criteria}, a logical vector of length 1}
+\item{title}{The source title}
+\item{abstract}{The source abstract}
+\item{include}{Whether the source meets the description given in
+\code{alpaca_study_description}}
 }
 }
 \usage{
 alpaca_sources
 }
 \description{
-Sources to be screened for a hypothetical scoping review
+A data frame of sources to be screened for a hypothetical scoping review.
 }
 \seealso{
-alpaca_inclusion_criteria
+alpaca_study_description alpaca_results
 }
 \keyword{datasets}

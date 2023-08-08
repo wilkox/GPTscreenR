@@ -1,6 +1,6 @@
 Package: GPTscreenR
 Title: GPT-assisted source screening for scoping reviews
-Version: 0.0.0.9005
+Version: 0.0.0.9006
 Authors@R: 
     person("David", "Wilkins", , "david@wilkox.org", role = c("aut", "cre"))
 Description: GPT-assisted source screening for scoping reviews.
