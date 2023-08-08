@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 # GPTscreenR
 
 <!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/wilkox/GPTscreenR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wilkox/GPTscreenR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 GPTscreenR is an R package that uses [OpenAI's GPT large language model](https://platform.openai.com/docs/guides/gpt) to screen titles and abstracts for [scoping reviews](https://en.wikipedia.org/wiki/Systematic_review#Scoping_reviews).
