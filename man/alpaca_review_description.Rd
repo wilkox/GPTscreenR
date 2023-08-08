@@ -17,7 +17,7 @@ A list with four elements
 alpaca_review_description
 }
 \description{
-Study description for a hypothetical scoping review.
+Description of a hypothetical scoping review.
 }
 \seealso{
 alpaca_sources alpaca_results

@@ -4,3 +4,7 @@
 .httr-oauth
 .DS_Store
 cache
+inst/doc
+/doc/
+/Meta/
+README.html

@@ -2,3 +2,6 @@
 ^LICENSE\.md$
 ^testing$
 ^manuscript$
+^README\.Rmd$
+^doc$
+^Meta$
