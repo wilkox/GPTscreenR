@@ -1,5 +1,7 @@
 test_that("create chat completion works", {
 
+  Sys.setenv(OPENAI_API_KEY = "fake-API-key")
+
   expect_error(complete_GPT(1))
 
   messages <- rbind(
