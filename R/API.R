@@ -5,7 +5,6 @@
 #'
 #' @param x A GPT_messages object
 #' @param .dry_run If TRUE, will not make an actual call to the GPT API
-#' @export
 complete_GPT.GPT_messages <- function(x, .dry_run = FALSE) {
 
   # Must be a valid GPT_messages object
@@ -101,12 +100,28 @@ check_API_key <- function(show_key = FALSE) {
   key <- Sys.getenv("OPENAI_API_KEY")
 
   if (key == "") {
-    cli::cli_alert_danger("The {.envvar OPENAI_API_KEY} environmental variable is not set")
-    cli::cli_alert_info("This is required for GPTscreenR to access the OpenAI API")
-    cli::cli_alert_info("Run {.code vignette(\"api-key\")} for instructions")
+    msg <- paste0(
+      cli::col_red("{cli::symbol$cross}"),
+      " The {.envvar OPENAI_API_KEY} environmental variable is not set\n",
+      cli::col_blue("{cli::symbol$info}"),
+      " This is required for GPTscreenR to access the OpenAI API\n",
+      cli::col_blue("{cli::symbol$info}"),
+      " Run {.code vignette(\"api-key\")} for instructions"
+    )
+    rlang::inform(cli::format_inline(msg), class = "packageStartupMessage")
     return()
   }
 
-  cli::cli_alert_success("The {.envvar OPENAI_API_KEY} environmental variable is set")
-  if (show_key) cli::cli_alert_info("Key: {.val {key}}")
+  msg <- paste0(
+    cli::col_green("{cli::symbol$tick}"),
+    " The {.envvar OPENAI_API_KEY} environmental variable is set"
+  )
+  if (show_key) msg <- paste0(
+    msg,
+    "\n",
+    cli::col_blue("{cli::symbol$info}"),
+    " Key: ",
+    "{.val {key}}"
+  )
+  rlang::inform(cli::format_inline(msg), class = "packageStartupMessage")
 }
