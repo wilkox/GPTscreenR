@@ -8,6 +8,7 @@
 #' vector of length 1
 #' @param .verbose If FALSE, progress messages will be suppressed
 #' @param .dry_run If TRUE, calls to the GPT API will be skipped
+#'
 #' @export
 screen_source <- function(study_description, title, abstract, .verbose = TRUE, .dry_run = FALSE) {
 
@@ -90,6 +91,8 @@ screen_source <- function(study_description, title, abstract, .verbose = TRUE, .
 #' character vector of length 1
 #' @param context A brief description of the overall study objective, a
 #' character vector of length 1
+#'
+#' @export
 study_description <- function(objective = NULL, population = NULL, concept = NULL, context = NULL) {
 
   if (missing(objective) & missing(population) & missing(concept) & missing(context)) {
@@ -129,6 +132,8 @@ study_description <- function(objective = NULL, population = NULL, concept = NUL
 #' either fs::path() or character vector of length 1
 #' @param .verbose If FALSE, progress messages will be suppressed
 #' @param .dry_run If TRUE, calls to the GPT API will be skipped
+#'
+#' @export
 screen_sources <- function(sources, study_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), .verbose = TRUE, .dry_run = FALSE) {
 
   # Validate arguments
