@@ -34,6 +34,7 @@ devtools::install_github("wilkox/GPTscreenR")
 
 ```{r load, echo = FALSE}
 library(GPTscreenR)
+library(cli)
 ```
 
 GPTscreenR is not currently available on CRAN.
@@ -114,12 +115,14 @@ The main function of GPTscreenR is `screen_sources()`. This takes the data frame
 
 ```{r screen_sources, eval = FALSE}
 alpaca_results <- screen_sources(alpaca_sources, alpaca_review_description)
+print(alpaca_results)
 ```
 
 ```{r print_screen_sources, echo = FALSE}
 df <- alpaca_results[7, ]
 df$GPT_conversation <- "`GPT_mssg`"
 df <- rbind(df, data.frame(title = "…", abstract = "…", include = "…", GPT_conversation = "…", GPT_recommendation = "…"))
+row.names(df) <- NULL
 knitr::kable(df)
 ```
 

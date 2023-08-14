@@ -152,6 +152,7 @@ interruptions.
 
 ``` r
 alpaca_results <- screen_sources(alpaca_sources, alpaca_review_description)
+print(alpaca_results)
 ```
 
 | title                                                                                                                                                    | abstract                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | include | GPT_conversation | GPT_recommendation |
