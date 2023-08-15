@@ -397,7 +397,7 @@ library(printr)</code></pre>
   mutate(GPT_includes = GPT_recommendation == &quot;INCLUDE&quot;) %&gt;%
   mutate(study = &quot;smartphones&quot;) %&gt;%
   select(study, title, abstract, human_includes, GPT_includes)</code></pre>
-<pre class="r"><code>solastalgia &lt;- readRDS(&quot;../sostalgia/solastalgia_sources.rds&quot;) %&gt;%
+<pre class="r"><code>solastalgia &lt;- readRDS(&quot;../solastalgia/solastalgia_sources.rds&quot;) %&gt;%
   filter(! is.na(GPT_recommendation)) %&gt;%
   mutate(GPT_includes = GPT_recommendation == &quot;INCLUDE&quot;) %&gt;%
   mutate(human_includes = human_recommendation == &quot;INCLUDE&quot;) %&gt;%

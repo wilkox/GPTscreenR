@@ -47,7 +47,7 @@ smartphones <- readRDS("../smartphones/smartphones_sources.rds") %>%
 ```
 
 ```{r}
-solastalgia <- readRDS("../sostalgia/solastalgia_sources.rds") %>%
+solastalgia <- readRDS("../solastalgia/solastalgia_sources.rds") %>%
   filter(! is.na(GPT_recommendation)) %>%
   mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
   mutate(human_includes = human_recommendation == "INCLUDE") %>%
