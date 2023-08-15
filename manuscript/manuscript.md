@@ -40,16 +40,10 @@ The `screen_source()` function returns a list comprising the complete transcript
 
 To validate GPTscreenR's approach, six scoping reviews were identified from the Open Science Framework (OSF; \url{https://osf.io}) where the review inclusion criteria and the results of title and abstract screening had been made publicly available. A summary of the review characteristics is provided in Table 1. Small random subsets of screened sources from four of the reviews (`COVID_misinfo`, `smartphones`, `solastalgia`, and `teachers`) were used during initial testing and refinement of the `screen_source()` function, while the full set or random subsets from all six reviews were used for final validation. Random subsets were used where the large number of sources available for screening was prohibitive in time or cost. The total number of sources available for screening and the number used for validation from each review are given in Table 1.
 
-Some of the reviews did not include the full abstract text in the publicly available files, and where these abstracts could not be obtained from external databases these sources were excluded from validation. There were also many cases where missing, malformed, or duplicate data required either manual correction or exclusion of sources. The scoping review data and the code used to prepare this data for validation are available in a reproducible form in the package repository on GitHub (\url{https://github.com/wilkox/GPTscreenR/tree/master/validation}).
+Some of the reviews did not include the full abstract text in the publicly available files, and where these abstracts could not be obtained from external databases these sources were excluded from validation. There were also many cases where missing, malformed, or duplicate data required either manual correction or exclusion of sources. The scoping review data, code used to prepare this data for validation, and code for calculating summary statistics are available in a reproducible form in the package repository on GitHub (\url{https://github.com/wilkox/GPTscreenR/tree/master/validation}).
 
-The final human reviewer decision at the title and abstract screening level was used as the gold standard outcome for each source. Sensitivity and specificity were calculated by comparing GPT's recommendation against the gold standard. Three of the scoping reviews (`COVID_misinfo`, `solastalgia`, and `teachers`) included individual human reviewer decisions in addition to the final decision in their publicly available datasets, and these were used to calculate intraobserver agreement (kappa).
+The final human reviewer decision at the title and abstract screening level was used as the gold standard outcome for each source. Sensitivity and specificity were calculated by comparing GPT's recommendation against the gold standard. Three of the scoping reviews (`COVID_misinfo`, `solastalgia`, and `teachers`) included individual human reviewer decisions in addition to the final decision in their publicly available datasets, and these were used to calculate intraobserver agreement (Cohen's kappa) using the R function `cohen.kappa()` from the `psych` package [@Revelle.2023].
 
 # Results
 
-1,138 sources were screened from the six scoping reviews. GPTscreenR achieved a pooled sensitivity 
-
-
-
-
-
-??? alternate_prompt branch
+1,138 sources were screened from the six scoping reviews. GPTscreenR achieved a weighted average sensitivity of 0.75 and weighted average specificity of 0.87. For the three reviews that provided individual reviewer decisions, the weighted average Cohen's kappa was 0.67, while the weighted average Cohen's kappa between human and GPT decisions was 0.53.

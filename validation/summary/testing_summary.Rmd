@@ -16,6 +16,8 @@ opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```{r message = FALSE}
 library(tidyverse)
 library(printr)
+library(psych)
+library(broom)
 ```
 
 ## Load and tidy results
@@ -76,9 +78,44 @@ teachers <- readRDS("../teachers/teachers_sources.rds") %>%
 screening <- bind_rows(COVID, melanoma, smartphones, solastalgia, suicide, teachers)
 ```
 
-## Per-study and pooled sensitivity and specificity
+## Kappa
 
 ```{r}
+kappas <- screening %>%
+  select(study, human_includes, GPT_includes) %>%
+  group_by(study) %>%
+  nest(decisions = c(human_includes, GPT_includes)) %>%
+  mutate(n = map_dbl(decisions, nrow)) %>%
+  mutate(decisions = map(decisions, as.matrix)) %>%
+  mutate(kappa = map(decisions, cohen.kappa)) %>%
+  mutate(kappa = map(kappa, tidy)) %>%
+  unnest(kappa) %>%
+  filter(type == "unweighted") %>%
+  select(study, estimate, n)
+
+print(kappas)
+
+weighted.mean(kappas$estimate, kappas$n)
+```
+
+## Per-study, pooled, and weight average stats
+
+```{r}
+screening %>%
+  mutate(accurate = human_includes == GPT_includes) %>%
+  summarise(pooled_accuracy = mean(accurate))
+
+screening %>%
+  mutate(accurate = human_includes == GPT_includes) %>%
+  group_by(study) %>%
+  summarise(accurate = mean(accurate), n = n())
+
+screening %>%
+  mutate(accurate = human_includes == GPT_includes) %>%
+  group_by(study) %>%
+  summarise(accurate = mean(accurate), n = n()) %>%
+  ungroup() %>%
+  summarise(wt_avg_accuracy = weighted.mean(accurate, n))
 
 sensitivity <- function(standard, test) {
   sum(standard[test]) / sum(test)
@@ -91,9 +128,16 @@ specificity <- function(standard, test) {
 perstudy <- screening %>%
   group_by(study) %>%
   summarise(sensitivity = sensitivity(human_includes, GPT_includes),
-            specificity = specificity(human_includes, GPT_includes))
+            specificity = specificity(human_includes, GPT_includes),
+            n = n())
 
 perstudy
+
+weighted_average <- perstudy %>%
+  summarise(wt_avg_sens = weighted.mean(sensitivity, n),
+            wt_avg_spec = weighted.mean(specificity, n))
+
+weighted_average
 
 pooled <- screening %>%
   summarise(sensitivity = sensitivity(human_includes, GPT_includes),
