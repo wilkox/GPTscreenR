@@ -1,0 +1,172 @@
+── Conversation with gpt-4 ────────────────────────────────────────────────────────────────────────────────────────────
+
+── SYSTEM ──
+
+You are being used to help researchers perform a scoping review. You are not interacting directly with a user.
+
+A scoping review is a type of systematic review used to map the published scholarship on a topic. To gather relevant
+sources for a scoping review, the researchers search bibliographic databases for sources that match a selected
+Population, Concept, and Context (the inclusion criteria). The titles and abstracts of sources that are found in this
+search search are then screened against the inclusion criteria.
+
+Your task is to screen a single source against the inclusion criteria. You will be provided with the review objective
+and inclusion criteria, and then you will then be provided with the source title and abstract. You will then be
+instructed to work step by step through the process of comparing the source against the inclusion criteria. Finally,
+you will instructed to make a recommendation on whether the source should be included.
+
+The next message will be from the user, and will contain the scoping review objective and inclusion criteria.
+
+── USER ──
+
+OBJECTIVE: This scoping review will examine the existing primary research on the role of therapy alpacas in enhancing
+the mental health and emotional well-being of elderly residential aged care facility residents
+POPULATION: Elderly people living in residential aged care facilities. 'Elderly' is defined as 65 years of age or
+older.
+CONTEXT: Residential aged care facilities that have used therapy alpacas as part of their programme of care for
+residents. 'Residential aged care facility' is defined as a residential setting intended as a long-term place of
+residence for elderly people which includes provision of support for activities of daily living (e.g. meal
+preparation, bathing, housekeeping) and nursing support (e.g. medication management). Such facilities will also
+typically offer other structured programmes and facilities to provide entertainment, diversion, and wellbeing. It
+excludes other residential settings intended for elderly people that do no provide daily living or nursing supports
+(e.g. independent living villages) or that are not long-term (e.g. hospitals or hospices).
+CONCEPT: The impact of therapy alpaca programmes on stress reduction, emotional well-being, mental health, overall
+life satisfaction, or similar outcomes for residents.
+
+── SYSTEM ──
+
+Let's work step by step. First, generate a numbered list of statements that summarise the inclusion criteria for the
+scoping review, including the Population, Concept, and Context. The statements should be clear, comprehensive and
+complete. Any source for which all the statements are true is a source that meets the inclusion criteria. As a
+template, here are some example statements (these are a generic set of examples that are not related to the current
+scoping review):
+
+1. The source reports the results of a randomised control trial
+2. The source reports the results of a study in which:
+2a. The participants were all male; AND
+2b. The participants were all aged between 18 and 74 inclusive
+3. The source reports the results of a study conducted in the European Union.
+
+Aspects of the inclusion criteria with multiple elements should be broken down into separate points where possible.
+For example, instead of:
+
+1. The source reports on a study of men who live in the European Union.
+
+You should instead say:
+
+1. The source reports on a study of people who are:
+1a. Male; and
+1b: Living in the European Union.
+
+── ASSISTANT ──
+
+1. The source includes primary research conducted on elderly people
+1a. 'Elderly' is defined as 65 years or older.
+2. The elderly people in the source reside in a residential aged care facilities
+2a. 'Residential aged care facility' is a long-term residence for elderly people providing support for activities of
+daily living and nursing support.
+2b. The facility offers structured programmes and facilities for entertainment, diversion, and well-being.
+2c. The facility does not include residential settings that do not provide daily living support or nursing support, or
+that are not for long-term residence.
+3. The residential aged care facilities mentioned in the source have implemented therapy alpaca programs as part of
+their care for residents.
+4. The source examines the impact of therapy alpaca programmes
+4a. The impact examined includes effects on stress reduction, emotional well-being, mental health, overall life
+satisfaction, or similar outcomes for residents.
+
+── SYSTEM ──
+
+The next message will be from the user, and will contain the title and abstract of a source to be compared against the
+inclusion criteria.
+
+── USER ──
+
+TITLE: Therapy Ungulate Visits Reduce Depression, Anxiety, and Stress in Australian Nursing Home Residents
+ABSTRACT: Nursing home residents typically have rates of depression, anxiety, and stress (DAS) significantly higher
+than those of equivalent populations living independently. As well as reducing quality of life and increasing
+morbidity and mortality, DAS significantly increases the burden on both nursing homes and health systems in caring for
+the elderly. Recent pilot trials of the use of therapy ungulates (alpacas, llamas, and camels) have shown promising
+initial results in reducing DAS among nursing home residents. We conducted a randomised control trial involving 8,124
+residents across 17 nursing homes in urban and rural Australia in which residents were randomised to either a weekly
+2-hour therapy camel visit or equivalent time in a television viewing lounge. Residents receiving the intervention had
+significantly (p < 0.01) reduced levels of depression (mean DASS-21 score for depression reduction 8.2 points),
+anxiety (mean reduction 11 points) and stress (mean reduction 13 points) compared to the control arm. This study
+represents the first large-scale randomised trial of ungulate therapy for nursing home residents, and provides strong
+support for its effectiveness in reducing DAS.
+
+── SYSTEM ──
+
+Let's continue to work step by step. Refer back to the set of statements you developed summarising the inclusion
+criteria. For each statement, decide whether or not the statement is true for the source described by the title and
+abstract. You must select from the following permitted responses: TRUE, FALSE, LIKELY TRUE, LIKELY FALSE, or NOT
+APPLICABLE. No other response is permitted. It is normal for the title and abstract to not have enough information to
+make a clear decision for every statement. There is a natural and normal amount of ambiguity in this process. For
+these situations, give your best guess, making use of your general knowledge, and deciding LIKELY TRUE or LIKELY
+FALSE. Responses like UNCLEAR or NOT ENOUGH INFORMATION are not permitted. After giving your response, give a one
+sentence explanation for your response.
+
+── ASSISTANT ──
+
+1. The source includes primary research conducted on elderly people.
+- LIKELY TRUE: While the age of the nursing home residents is not explicitly stated, it can be reasonably inferred
+that they are likely to be elderly.
+- Explanation: 'Nursing home residents' are generally senior individuals.
+
+1a. 'Elderly' is defined as 65 years or older.
+- LIKELY TRUE: Although the abstract does not explicitly define an age for "elderly", it is common understanding that
+elderly often refers to individuals who are 65 years or older.
+- Explanation: Although not explicit, the elderly population in most research is usually referred to those aged 65 or
+more.
+
+2. The elderly people in the source reside in a residential aged care facilities.
+- TRUE: The residents are shown to live in nursing homes, which qualifies as a type of residential aged care facility.
+- Explanation: Nursing homes are a type of residential aged care facility.
+
+2a. 'Residential aged care facility' is a long-term residence for elderly people providing support for activities of
+daily living and nursing support.
+- LIKELY TRUE: Although not specifically mentioned in the abstract, it is understood that nursing homes facilitate
+activities of daily living and nursing support for the elderly.
+- Explanation: It is widely known that nursing homes provide support for activities of daily living and nursing care.
+
+2b. The facility offers structured programmes and facilities for entertainment, diversion, and well-being.
+- TRUE: The abstract mentions pilot trials of therapy ungulates, suggesting the presence of structured programmes at
+the facility.
+- Explanation: The implementation of therapy ungulate trials indicates the existence of structured programs for the
+residents' well-being.
+
+2c. The facility does not include residential settings that do not provide daily living support or nursing support, or
+that are not for long-term residence.
+- LIKELY TRUE: Although not explicitly stated, nursing homes generally provide both daily living support and nursing
+care, and are meant for long-term residence of the elderly.
+- Explanation: As part of their operations, nursing homes generally provide these forms of supports and cater to
+long-term residents.
+
+3. The residential aged care facilities mentioned in the source have implemented therapy alpaca programmes as part of
+their care for residents.
+- TRUE: The abstract mentions the use of therapy ungulates, which includes alpacas, as part of their program.
+- Explanation: The abstract identifies therapy ungulates, including alpacas, being utilized in the nursing home.
+
+4. The source examines the impact of therapy alpaca programmes.
+- FALSE: Although the abstract mentions the use of therapy ungulates, it specifically mentions the use of therapy
+camels in the trial, not alpacas.
+- Explanation: The abstract does not mention the specific effects of therapy alpaca programs, but rather, the therapy
+camel program.
+
+4a. The impact examined includes effects on stress reduction, emotional well-being, mental health, overall life
+satisfaction, or similar outcomes for residents.
+- TRUE: The study indeed examines the impact on stress, depression, and anxiety in the nursing home residents.
+- Explanation: The abstract mentions that the study measures impact on stress reduction, depression, and anxiety,
+which can be seen as elements of mental health and emotional well-being.
+
+
+
+── SYSTEM ──
+
+Let's continue to work step by step. Consider your decisions on whether the title and abstract meet the conclusion
+criteria. Overall, is it likely true that the source meets the inclusion criteria? Reply with a single word, either
+INCLUDE or EXCLUDE, representing your recommendation on whether the source is likely to meet the inclusion criteria.
+You must reply with a single word only and it must be one of these two words; any other reply will cause the automatic
+parsing of your response to fail, which will be troublesome for the user.
+
+── ASSISTANT ──
+
+EXCLUDE
