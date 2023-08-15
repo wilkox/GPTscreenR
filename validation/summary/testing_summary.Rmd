@@ -110,3 +110,9 @@ pooled %>%
     geom_point(aes(colour = study))
 ```
 
+# Write results to file
+
+```{r}
+saveRDS(screening, "pooled_validation_results.rds")
+```
+
