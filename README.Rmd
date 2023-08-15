@@ -71,7 +71,7 @@ this means the environmental variable has not been set correctly. Note that this
 
 Begin by writing a description of your review and storing it in a variable. This can be as simple as a few sentences describing the aims of your review. However, the more detailed and specific your review description, the better GPT is likely to perform in screening sources, and if you are using GPT to screen sources in parallel with human reviewers it should be given the same guidelines that are given to the humans. If you have specific inclusion and exclusion criteria, for example for certain source types or languages, these should be included.
 
-The GPTscreenR package provides a function `review_description()` to help in compiling a review description using the [Population, Concept, and Context (PCC) framework](https://journals.lww.com/jbisrir/Fulltext/2023/03000/Recommendations_for_the_extraction,_analysis,_and.7.aspx) for scoping reviews. Here is an example of using `review_description()` to generate a PCC review description:
+The GPTscreenR package provides a function `review_description()` to help in compiling a review description using the [Population, Concept, and Context (PCC) framework](https://journals.lww.com/jbisrir/Fulltext/2020/10000/Updated_methodological_guidance_for_the_conduct_of.4.aspx) for scoping reviews. Here is an example of using `review_description()` to generate a PCC review description:
 
 ```{r generate_review_description}
 alpaca_review_description <- review_description(

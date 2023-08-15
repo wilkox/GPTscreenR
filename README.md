@@ -24,6 +24,8 @@ You can install the development version of GPTscreenR from
 devtools::install_github("wilkox/GPTscreenR")
 ```
 
+    #> ✔ The `OPENAI_API_KEY` environmental variable is set
+
 GPTscreenR is not currently available on CRAN.
 
 ## OpenAI API key
@@ -97,7 +99,7 @@ example for certain source types or languages, these should be included.
 The GPTscreenR package provides a function `review_description()` to
 help in compiling a review description using the [Population, Concept,
 and Context (PCC)
-framework](https://journals.lww.com/jbisrir/Fulltext/2023/03000/Recommendations_for_the_extraction,_analysis,_and.7.aspx)
+framework](https://journals.lww.com/jbisrir/Fulltext/2020/10000/Updated_methodological_guidance_for_the_conduct_of.4.aspx)
 for scoping reviews. Here is an example of using `review_description()`
 to generate a PCC review description:
 
