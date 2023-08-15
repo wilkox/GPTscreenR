@@ -1,6 +1,6 @@
 ^data-raw$
 ^LICENSE\.md$
-^testing$
+^validation$
 ^manuscript$
 ^README\.Rmd$
 ^doc$
