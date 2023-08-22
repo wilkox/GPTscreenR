@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{xparse}
+\usepackage{enumitem}
+\setlist[description]{
+  font={\sffamily\bfseries},
+  labelsep=0pt,
+  labelwidth=\transcriptlen,
+  leftmargin=\transcriptlen,
+}
+
+\newlength{\transcriptlen}
+
+\NewDocumentCommand {\setspeaker} { mo } {%
+  \IfNoValueTF{#2}
+  {\expandafter\newcommand\csname#1\endcsname{\item[#1:]}}%
+  {\expandafter\newcommand\csname#1\endcsname{\item[#2:]}}%
+  \IfNoValueTF{#2}
+  {\settowidth{\transcriptlen}{#1}}%
+  {\settowidth{\transcriptlen}{#2}}%
+}
+
+% Easiest to put the longest name last...
+\setspeaker{GPT}
+\setspeaker{User}
+\setspeaker{System}
+
+% How much of a gap between speakers and text?
+\addtolength{\transcriptlen}{1em}%
+
+\usepackage[paperheight=100cm]{geometry}
+
+\begin{document}
+\pagestyle{empty}
+\begin{description}
+
+    \System You are being used to help researchers perform a scoping review.
+    You are not interacting directly with a user.
+
+    A scoping review is a type of systematic review used to map the published
+    scholarship on a topic. To gather relevant sources for a scoping review,
+    the researchers search bibliographic databases for sources that match a
+    selected Population, Concept, and Context (the inclusion criteria). The
+    titles and abstracts of sources that are found in this search search are
+    then screened against the inclusion criteria.
+
+    Your task is to screen a single source against the inclusion criteria. You
+    will be provided with the review objective and inclusion criteria, and then
+    you will then be provided with the source title and abstract. You will then
+    be instructed to work step by step through the process of comparing the
+    source against the inclusion criteria. Finally, you will instructed to make
+    a recommendation on whether the source should be included.
+
+    The next message will be from the user, and will contain the scoping review
+    objective and inclusion criteria.
+
+    \User \textit{The user-generated review description.}
+
+    \System Let's work step by step. First, generate a numbered list of
+    statements that summarise the inclusion criteria for the scoping review,
+    including the Population, Concept, and Context. The statements should be
+    clear, comprehensive and complete. Any source for which all the statements
+    are true is a source that meets the inclusion criteria. As a template, here
+    are some example statements (these are a generic set of examples that are
+    not related to the current scoping review):
+
+    \begin{enumerate}[label=\arabic*.\ ]
+    \item The source reports the results of a randomised control trial
+    \item The source reports the results of a study in which:
+      \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
+      \item The participants were all male; AND
+      \item The participants were all aged between 18 and 74 inclusive
+      \end{enumerate}
+    \item The source reports the results of a study conducted in the European
+          Union.
+    \end{enumerate}
+
+    Aspects of the inclusion criteria with multiple elements should be broken
+    down into separate points where possible. For example, instead of:
+
+    \begin{enumerate}[label=\arabic*.\ ]
+      \item The source reports on a study of men who live in the European
+            Union.
+    \end{enumerate}
+
+    You should instead say:
+
+    \begin{enumerate}[label=\arabic*.\ ]
+    \item The source reports on a study of people who are:
+      \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
+        \item Male; and
+        \item Living in the European Union.
+      \end{enumerate}
+    \end{enumerate}
+
+    \GPT \textit{GPT replies with a summary of the inclusion criteria.}
+
+    \System The next message will be from the user, and will contain the title and abstract of a source to be compared against the inclusion criteria.
+
+    \User \textit{The source title and abstract.}
+
+    \System Let's continue to work step by step. Refer back to the set of statements you developed summarising the inclusion criteria. For each statement, decide whether or not the statement is true for the source described by the title and abstract. You must select from the following permitted responses: TRUE, FALSE, LIKELY TRUE, LIKELY FALSE, or NOT APPLICABLE. No other response is permitted. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. There is a natural and normal amount of ambiguity in this process. For these situations, give your best guess, making use of your general knowledge, and deciding LIKELY TRUE or LIKELY FALSE. Responses like UNCLEAR or NOT ENOUGH INFORMATION are not permitted. After giving your response, give a one sentence explanation for your response.
+
+    \GPT \textit{GPT replies with a decision and explanation for each of its summarised inclusion criteria.}
+
+    \System Let's continue to work step by step. Consider your decisions on whether the title and abstract meet the conclusion criteria. Overall, is it likely true that the source meets the inclusion criteria? Reply with a single word, either INCLUDE or EXCLUDE, representing your recommendation on whether the source is likely to meet the inclusion criteria. You must reply with a single word only and it must be one of these two words; any other reply will cause the automatic parsing of your response to fail, which will be troublesome for the user.
+
+    \GPT \textit{GPT replies with either \texttt{INCLUDE} or \texttt{EXCLUDE}.}
+
+\end{description}
+\end{document}
