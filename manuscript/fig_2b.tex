@@ -1,0 +1,54 @@
+% https://chat.openai.com/share/95f22bfc-1f00-439f-947f-22b6e7ae1ffa
+
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{xparse}
+\usepackage{enumitem}
+\setlist[description]{
+  font={\sffamily\bfseries},
+  labelsep=0pt,
+  labelwidth=\transcriptlen,
+  leftmargin=\transcriptlen,
+}
+
+\newlength{\transcriptlen}
+
+\NewDocumentCommand {\setspeaker} { mo } {%
+  \IfNoValueTF{#2}
+  {\expandafter\newcommand\csname#1\endcsname{\item[#1:]}}%
+  {\expandafter\newcommand\csname#1\endcsname{\item[#2:]}}%
+  \IfNoValueTF{#2}
+  {\settowidth{\transcriptlen}{#1}}%
+  {\settowidth{\transcriptlen}{#2}}%
+}
+
+% Easiest to put the longest name last...
+\setspeaker{GPT}
+\setspeaker{User}
+\setspeaker{System}
+
+% How much of a gap between speakers and text?
+\addtolength{\transcriptlen}{1em}%
+
+\usepackage[paperheight=100cm]{geometry}
+
+\begin{document}
+\pagestyle{empty}
+\begin{description}
+
+  \User This doesn't seem right. The inclusion criteria includes the concept of
+  therapy alpaca programmes, while the abstract describes a study of a therapy
+  camel programme. Can you explain your reasoning?
+
+  \GPT I apologize for the oversight. You're right. While the abstract mentions
+  "therapy ungulates" (which includes alpacas, llamas, and camels), the
+  specific intervention studied was therapy camel visits, not alpacas. Given
+  the specific criteria you've set for the scoping review, this study does not
+  directly address the role of therapy alpacas.
+
+  Based on this clarification, the correct recommendation would be:
+
+  EXCLUDE.
+
+\end{description}
+\end{document}
