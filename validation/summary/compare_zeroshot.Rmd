@@ -64,7 +64,28 @@ results %>%
   mutate(percentage = n / sum(n))
 ```
 
-Select cases where zero-shot got it wrong, but chain-of-thoughts got it right.
+Select cases where zero-shot got it right, but chain-of-thoughts got it wrong.
+
+```{r}
+cot_failures <- results %>%
+  filter(! GPT_includes_cot == human_includes) %>%
+  filter(GPT_includes_zs == human_includes)
+```
+
+Generate contingency table for chain-of-thoughts failures.
+
+```{r}
+cot_failures %>%
+  mutate(result = case_when(
+    human_includes & GPT_includes_cot ~ "True positive",
+    human_includes & ! GPT_includes_cot ~ "False negative",
+    ! human_includes & GPT_includes_cot ~ "False positive",
+    ! human_includes & ! GPT_includes_cot ~ "True negative")) %>%
+  count(result) %>%
+  mutate(percentage = n / sum(n))
+```
+
+Select cases where chain-of-thoughts got it right, but zero-shot got it wrong.
 
 ```{r}
 zs_failures <- results %>%
@@ -72,7 +93,7 @@ zs_failures <- results %>%
   filter(! GPT_includes_zs == human_includes)
 ```
 
-Generate contingency table for zero-shot in these cases.
+Generate contingency table for zero-shot failures.
 
 ```{r}
 zs_failures %>%
