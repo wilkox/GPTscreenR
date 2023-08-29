@@ -136,6 +136,17 @@ review_description <- function(objective = NULL, population = NULL, concept = NU
 #' @export
 screen_sources <- function(sources, review_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), .verbose = TRUE, .dry_run = FALSE) {
 
+  # Report the model being used
+  if (.verbose) {
+    model <- Sys.getenv("OPENAI_MODEL")
+    msg <- paste0(
+      cli::col_green("{cli::symbol$info}"),
+      " The model is set to ",
+      cli::col_blue(model)
+    )
+    rlang::inform(cli::format_inline(msg))
+  }
+
   # Validate arguments
   if (missing(sources) | missing(review_description)) {
     cli::cli_abort("sources and review_description are required arguments")
