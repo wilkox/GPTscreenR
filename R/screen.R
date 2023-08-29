@@ -59,7 +59,7 @@ Then, continue to work step by step. Refer back to the set of statements you dev
 2b. TRUE. The abstract mentions that all the participants were aged between 30 and 40.
 3. LIKELY TRUE. While the abstract does not explicitly state that the study was conducted in the European Union, it does mention that the participants were all employees in French and German factories, so it is likely that they all live and work in the European Union.
 
-Finally, consider your decisions on whether the title and abstract meet the conclusion criteria. Overall, is it likely true that the source meets the inclusion criteria? End your response with a single word on a new line, either INCLUDE or EXCLUDE, representing your recommendation on whether the source is likely to meet the inclusion criteria. The response must end with a line containing only one of these two words; any other reply will cause the automatic parsing of your response to fail, which will be troublesome for the user."
+Finally, consider your decisions on whether the title and abstract meet the conclusion criteria. Overall, is it likely true that the source meets the inclusion criteria? End your response with a single word on a new line, either INCLUDE or EXCLUDE, representing your recommendation on whether the source is likely to meet the inclusion criteria. The response must end with a line containing only one of these two words; any other reply will cause the automatic parsing of your response to fail, which will be troublesome for the user. The response must not end with a blank line."
   )
 
   # Provide the review description and source
@@ -255,6 +255,10 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
     response <- screen_source(review_description, 
                               title = sources$title[next_i], abstract = sources$abstract[next_i], 
                               .verbose = .verbose, .dry_run = .dry_run)
+    if (is.na(response$GPT_includes) & ! .dry_run) {
+      cli::cli_warn(c("GPT's recommendation could not be parsed. Discarding this response."))
+      next
+    }
     sources$conversation[[next_i]] <- response$conversation
     if (.dry_run) response$GPT_includes <- TRUE
     sources$GPT_includes[next_i] <- response$GPT_includes

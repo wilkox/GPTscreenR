@@ -6,6 +6,7 @@
 
 # Minor changes
 
+- Improve handling of malformed recommendations from GPT
 - Fix typo in screening prompt 'search search'
 - Fix bug in caching of sources with `screen_sources()`
 - Explicit setting of model from an environmental variable
