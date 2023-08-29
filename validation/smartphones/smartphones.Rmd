@@ -69,8 +69,6 @@ sources <- read_csv(
       `Age SD` = col_character(),
       `Gender (%F)` = col_character(),
       `SA Measure` = col_character(),
-      `SA Range` = col_character(),
-      `SA %` = col_character(),
       `SA M` = col_character(),
       `SA SD` = col_character(),
       Behaviour = col_character(),

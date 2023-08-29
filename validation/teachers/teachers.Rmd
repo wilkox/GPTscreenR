@@ -94,38 +94,6 @@ sources <- sources %>%
 # Screen titles and abstracts
 
 ```{r}
-sources <- screen_sources(sources, study_description, n = 245,
+sources <- screen_sources(sources, study_description, n = 20,
                           cache_file = fs::path("./teachers_sources.rds"))
-```
-
-# Summarise results
-
-```{r}
-result <- sources %>%
-  filter(! is.na(GPT_recommendation)) %>%
-  count(human_recommendation, GPT_recommendation)
-
-result
-
-sensitivity <- result %>%
-  filter(human_recommendation == "INCLUDE") %>%
-  mutate(percentage = 100 * n / sum(n)) %>%
-  filter(GPT_recommendation == "INCLUDE") %>%
-  pull(percentage)
-
-sensitivity
-
-specificity <- result %>%
-  filter(human_recommendation == "EXCLUDE") %>%
-  mutate(percentage = 100 * n / sum(n)) %>%
-  filter(GPT_recommendation == "EXCLUDE") %>%
-  pull(percentage)
-
-specificity
-
-result %>%
-  mutate(GPT_correct = GPT_recommendation == human_recommendation) %>%
-  ggplot(aes(x = human_recommendation, fill = GPT_correct, y = n)) +
-    geom_col(position = "stack") +
-    coord_flip()
 ```
