@@ -1,5 +1,3 @@
-% https://chat.openai.com/share/95f22bfc-1f00-439f-947f-22b6e7ae1ffa
-
 \documentclass{article}
 \usepackage[T1]{fontenc}
 \usepackage{xparse}
@@ -36,19 +34,23 @@
 \pagestyle{empty}
 \begin{description}
 
-  \User This doesn't seem right. The inclusion criteria includes the concept of
-  therapy alpaca programmes, while the abstract describes a study of a therapy
-  camel programme. Can you explain your reasoning?
+  \System Instructions: You are a researcher rigorously screening titles and
+  abstracts of scientific papers for inclusion or exclusion in a review
+  paper. Use the criteria below to inform your decision. If any exclusion
+  criteria are met or not all inclusion criteria are met, exclude the
+  article. If all inclusion criteria are met, include the article. Only type
+  ``INCLUDE'' or ``EXCLUDE'' to indicate your decision. Do not type anything
+  else.
 
-  \GPT I apologize for the oversight. You're right. While the abstract mentions
-  ``therapy ungulates'' (which includes alpacas, llamas, and camels), the
-  specific intervention studied was therapy camel visits, not alpacas. Given
-  the specific criteria you've set for the scoping review, this study does not
-  directly address the role of therapy alpacas.
+  Title: \textit{The source title}
 
-  Based on this clarification, the correct recommendation would be:
+  Abstract: \textit{The source abstract}
 
-  EXCLUDE.
+  Inclusion criteria: \textit{The inclusion criteria}
+
+  Exclusion criteria: \textit{The exclusion criteria}
+
+  \GPT \textit{GPT-4 replies with a decision.}
 
 \end{description}
 \end{document}

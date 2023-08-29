@@ -1,0 +1,114 @@
+---
+title: Examination of false negatives with zero-shot result
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+```
+
+Load and join the chain-of-thoughts and zero-shot method results.
+
+```{r}
+cot <- readRDS("./pooled_validation_results.rds") %>%
+  rename(GPT_includes_cot = GPT_includes)
+zs <- readRDS("./pooled_results_zeroshot.rds") %>%
+  rename(GPT_includes_zs = GPT_includes, GPT_conversation_zs = GPT_conversation)
+results <- full_join(cot, zs)
+```
+
+Filter for sources that were screened with both methods.
+
+```{r}
+results <- results %>%
+  filter(! is.na(GPT_includes_cot)) %>%
+  filter(! is.na(GPT_includes_zs))
+```
+
+Generate contingency tables for both methods.
+
+Chain-of-thoughts:
+
+```{r}
+results %>%
+  mutate(result = case_when(
+    human_includes & GPT_includes_cot ~ "True positive",
+    human_includes & ! GPT_includes_cot ~ "False negative",
+    ! human_includes & GPT_includes_cot ~ "False positive",
+    ! human_includes & ! GPT_includes_cot ~ "True negative")) %>%
+  count(result) %>%
+  mutate(percentage = n / sum(n))
+```
+
+Zero-shot:
+
+```{r}
+results %>%
+  mutate(result = case_when(
+    human_includes & GPT_includes_zs ~ "True positive",
+    human_includes & ! GPT_includes_zs ~ "False negative",
+    ! human_includes & GPT_includes_zs ~ "False positive",
+    ! human_includes & ! GPT_includes_zs ~ "True negative")) %>%
+  count(result) %>%
+  mutate(percentage = n / sum(n))
+```
+
+Select cases where zero-shot got it right, but chain-of-thoughts got it wrong.
+
+```{r}
+cot_failures <- results %>%
+  filter(! GPT_includes_cot == human_includes) %>%
+  filter(GPT_includes_zs == human_includes)
+```
+
+Generate contingency table for chain-of-thoughts failures.
+
+```{r}
+cot_failures %>%
+  mutate(result = case_when(
+    human_includes & GPT_includes_cot ~ "True positive",
+    human_includes & ! GPT_includes_cot ~ "False negative",
+    ! human_includes & GPT_includes_cot ~ "False positive",
+    ! human_includes & ! GPT_includes_cot ~ "True negative")) %>%
+  count(result) %>%
+  mutate(percentage = n / sum(n))
+```
+
+Select cases where chain-of-thoughts got it right, but zero-shot got it wrong.
+
+```{r}
+zs_failures <- results %>%
+  filter(GPT_includes_cot == human_includes) %>%
+  filter(! GPT_includes_zs == human_includes)
+```
+
+Generate contingency table for zero-shot failures.
+
+```{r}
+zs_failures %>%
+  mutate(result = case_when(
+    human_includes & GPT_includes_zs ~ "True positive",
+    human_includes & ! GPT_includes_zs ~ "False negative",
+    ! human_includes & GPT_includes_zs ~ "False positive",
+    ! human_includes & ! GPT_includes_zs ~ "True negative")) %>%
+  count(result) %>%
+  mutate(percentage = n / sum(n))
+```
+
+```{r}
+zs_failures %>%
+  sample_n(1) %>%
+  pull(GPT_conversation_zs)
+```
+

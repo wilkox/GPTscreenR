@@ -21,7 +21,7 @@
 }
 
 % Easiest to put the longest name last...
-\setspeaker{GPT}
+\setspeaker{GPT}[GPT-4]
 \setspeaker{User}
 \setspeaker{System}
 
@@ -93,7 +93,7 @@
       \end{enumerate}
     \end{enumerate}
 
-    \GPT \textit{GPT replies with a summary of the inclusion criteria.}
+    \GPT \textit{GPT-4 replies with a summary of the inclusion criteria.}
 
     \System The next message will be from the user, and will contain the title and abstract of a source to be compared against the inclusion criteria.
 
@@ -101,11 +101,11 @@
 
     \System Let's continue to work step by step. Refer back to the set of statements you developed summarising the inclusion criteria. For each statement, decide whether or not the statement is true for the source described by the title and abstract. You must select from the following permitted responses: TRUE, FALSE, LIKELY TRUE, LIKELY FALSE, or NOT APPLICABLE. No other response is permitted. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. There is a natural and normal amount of ambiguity in this process. For these situations, give your best guess, making use of your general knowledge, and deciding LIKELY TRUE or LIKELY FALSE. Responses like UNCLEAR or NOT ENOUGH INFORMATION are not permitted. After giving your response, give a one sentence explanation for your response.
 
-    \GPT \textit{GPT replies with a decision and explanation for each of its summarised inclusion criteria.}
+    \GPT \textit{GPT-4 replies with a decision and explanation for each of its summarised inclusion criteria.}
 
     \System Let's continue to work step by step. Consider your decisions on whether the title and abstract meet the conclusion criteria. Overall, is it likely true that the source meets the inclusion criteria? Reply with a single word, either INCLUDE or EXCLUDE, representing your recommendation on whether the source is likely to meet the inclusion criteria. You must reply with a single word only and it must be one of these two words; any other reply will cause the automatic parsing of your response to fail, which will be troublesome for the user.
 
-    \GPT \textit{GPT replies with either \texttt{INCLUDE} or \texttt{EXCLUDE}.}
+    \GPT \textit{GPT-4 replies with either \texttt{INCLUDE} or \texttt{EXCLUDE}.}
 
 \end{description}
-\end{document}
+\end {document}
