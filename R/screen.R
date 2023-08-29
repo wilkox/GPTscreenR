@@ -236,7 +236,13 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
     n_unscreened <- length(unscreened_i)
     n_sources <- nrow(sources)
     if (n_sources - n_unscreened >= n | n_unscreened == 0) break
-    if (.verbose) cli::cli_alert_info("{n_sources - n_unscreened} of {n_sources} screened")
+    if (.verbose) {
+      if (missing(n)) {
+        cli::cli_alert_info("{n_sources - n_unscreened} of {n_sources} screened")
+      } else {
+        cli::cli_alert_info("{n_sources - n_unscreened} of {n} screened (random subset of {n_sources})")
+      }
+    }
 
     # Select a source to screen
     if (n_unscreened == 1) {
