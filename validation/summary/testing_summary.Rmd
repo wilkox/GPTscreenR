@@ -118,11 +118,11 @@ screening %>%
   summarise(wt_avg_accuracy = weighted.mean(accurate, n))
 
 sensitivity <- function(standard, test) {
-  sum(standard[test]) / sum(test)
+  sum(standard & test) / sum(standard)
 }
 
 specificity <- function(standard, test) {
-  sum(!standard[!test]) / sum(!test)
+  sum(!standard & !test) / sum(!standard)
 }
 
 perstudy <- screening %>%
