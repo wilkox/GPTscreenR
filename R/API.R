@@ -16,8 +16,11 @@ complete_GPT.GPT_messages <- function(x, .dry_run = FALSE) {
     cli::cli_abort("Cannot find environmental variable {.envvar OPENAI_API_KEY}")
   }
 
-  # Set model
-  model <- "gpt-4"
+  # Retrieve and set model
+  model <- Sys.getenv("OPENAI_MODEL")
+  if (stringr::str_length(model) == 0 | is.na(model)) {
+    cli::cli_abort("Cannot find environmental variable {.envvar OPENAI_MODEL}")
+  }
 
   # Set up params
   params <- list(
@@ -87,6 +90,19 @@ complete_GPT_tryCatch <- function(x, tries = 3, .dry_run = FALSE) {
     }
   }
   cli::cli_abort("Too many failed calls to GPT API")
+}
+
+#' Set the GPT model to use
+#'
+set_model <- function() {
+  model <- "gpt-4"
+  Sys.setenv(OPENAI_MODEL = model)
+  msg <- paste0(
+    cli::col_green("{cli::symbol$tick}"),
+    " The model is set to ",
+    cli::col_blue(model)
+  )
+  rlang::inform(cli::format_inline(msg), class = "packageStartupMessage")
 }
 
 #' Check that the OPENAI_API_KEY environmental variable is set
