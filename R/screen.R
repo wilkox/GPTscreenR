@@ -86,7 +86,7 @@ Finally, consider your decisions on whether the title and abstract meet the conc
     GPT_includes <- NA
   } else if (! stringr::str_detect(last_message(conversation), 
                               "(INCLUDE|EXCLUDE)$")) {
-      cli::cli_warn(c("GPT's recommendation could not be parsed"))
+    if (.verbose) cli::cli_alert_warning(c("GPT's recommendation could not be parsed"))
     GPT_includes <- NA
   } else {
     GPT_includes <- stringr::str_extract(
@@ -255,8 +255,8 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
     response <- screen_source(review_description, 
                               title = sources$title[next_i], abstract = sources$abstract[next_i], 
                               .verbose = .verbose, .dry_run = .dry_run)
-    if (is.na(response$GPT_includes) & ! .dry_run) {
-      cli::cli_warn(c("GPT's recommendation could not be parsed. Discarding this response."))
+    if (is.na(response$GPT_includes) & ! .dry_run & .verbose) {
+      cli::cli_alert_warning(c("GPT's recommendation could not be parsed. Discarding this response."))
       next
     }
     sources$conversation[[next_i]] <- response$conversation
