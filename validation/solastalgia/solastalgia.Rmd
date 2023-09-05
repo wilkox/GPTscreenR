@@ -106,6 +106,6 @@ sources <- left_join(all_sources, included_sources) %>%
 # Screen titles and abstracts
 
 ```{r}
-sources <- screen_sources(sources, study_description, n = 20,
+sources <- screen_sources(sources, study_description, n = 50,
                           cache_file = fs::path("./solastalgia_sources.rds"))
 ```

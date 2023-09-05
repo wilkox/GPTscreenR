@@ -23,11 +23,10 @@ library(broom)
 ## Load and tidy results
 
 ```{r}
-COVID <- readRDS("../COVID_misinfo/COVID_misinfo_sources.rds") %>%
+COVID <- readRDS("../COVID/COVID_sources.rds") %>%
   as_tibble() %>%
   mutate(human_includes = human_recommendation == "Yes") %>%
-  filter(! is.na(GPT_recommendation)) %>%
-  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  filter(! is.na(GPT_includes)) %>%
   mutate(study = "COVID") %>%
   select(study, title, abstract, human_includes, GPT_includes)
 ```
@@ -42,16 +41,14 @@ melanoma <- readRDS("../melanoma/melanoma_sources.rds") %>%
 
 ```{r}
 smartphones <- readRDS("../smartphones/smartphones_sources.rds") %>%
-  filter(! is.na(GPT_recommendation)) %>%
-  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  filter(! is.na(GPT_includes)) %>%
   mutate(study = "smartphones") %>%
   select(study, title, abstract, human_includes, GPT_includes)
 ```
 
 ```{r}
 solastalgia <- readRDS("../solastalgia/solastalgia_sources.rds") %>%
-  filter(! is.na(GPT_recommendation)) %>%
-  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  filter(! is.na(GPT_includes)) %>%
   mutate(human_includes = human_recommendation == "INCLUDE") %>%
   mutate(study = "solastalgia") %>%
   select(study, title, abstract, human_includes, GPT_includes)
@@ -67,15 +64,15 @@ suicide <- readRDS("../suicide/suicide_sources.rds") %>%
 
 ```{r}
 teachers <- readRDS("../teachers/teachers_sources.rds") %>%
-  filter(! is.na(GPT_recommendation)) %>%
-  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  filter(! is.na(GPT_includes)) %>%
   mutate(human_includes = human_recommendation == "INCLUDE") %>%
   mutate(study = "teachers") %>%
   select(study, title, abstract, human_includes, GPT_includes)
 ```
 
 ```{r}
-screening <- bind_rows(COVID, melanoma, smartphones, solastalgia, suicide, teachers)
+# screening <- bind_rows(COVID, melanoma, smartphones, solastalgia, suicide, teachers)
+screening <- bind_rows(COVID, smartphones, solastalgia, teachers)
 ```
 
 ## Kappa

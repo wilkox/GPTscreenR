@@ -122,6 +122,8 @@ retrieve_abstract_DOI <- function(DOI, cache_file = NULL) {
     # Try to retrieve the abstract from PubMed, with the rentrez package
     cli::cli_alert_info("Attempting to retrieve abstract from PubMed")
     entrez_result <- entrez_search(db = "pubmed", term = paste0(DOI, "[doi]"))
+
+    # If PubMed retrieval succeeded
     if (length(entrez_result$ids) == 1) {
       abstract <- entrez_fetch(db = "pubmed", id = entrez_result$ids, 
                                rettype = "xml", parsed = T) %>%
@@ -139,8 +141,11 @@ retrieve_abstract_DOI <- function(DOI, cache_file = NULL) {
         saveRDS(abstracts_cache, cache_file)
       }
       return(result[,c("abstract", "abstract_source")])
+
+    # If PubMed retrieval failed
+    } else {
+      cli::cli_alert_danger("PubMed retrieval failed")
     }
-    cli::cli_alert_danger("PubMed retrieval failed")
 
   # In the case of crossref success
   } else {
@@ -159,7 +164,7 @@ retrieve_abstract_DOI <- function(DOI, cache_file = NULL) {
   }
 
   # If both methods fail
-  result <- data.frame(DOI = DOI, abstract = NA_character_, abstract_source = NA_character_)
+  result <- data.frame(DOI = DOI, abstract = NA_character_, abstract_source = "failed")
   if (! is.null(cache_file)) {
     if (fs::file_exists(cache_file)) {
       abstracts_cache <- readRDS(cache_file)
@@ -185,6 +190,6 @@ Only sources with an available abstract (`r sources %>% filter(! is.na(abstract)
 
 ```{r}
 sources <- sources %>% filter(! is.na(abstract))
-sources <- screen_sources(sources, study_description, n = 20,
+sources <- screen_sources(sources, study_description, n = 50,
                           cache_file = fs::path("./COVID_sources.rds"))
 ```
