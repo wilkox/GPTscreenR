@@ -79,8 +79,9 @@ I'll now attempt to retrieve the abstracts, using the rentrez package. I'll memo
 
 ```{r}
 get_pm_abstract <- function(PMID) {
+  message("Fetching abstract for PMID ", PMID)
   entrez_fetch(db = "pubmed", id = PMID, rettype = "xml", parsed = T) %>%
-    xpathApply('//PubmedArticle//Article', function(x) xmlValue(xmlChildren(x)$Abstract)) %>%
+    XML::xpathApply('//PubmedArticle//Article', function(x) XML::xmlValue(XML::xmlChildren(x)$Abstract)) %>%
     unlist()
 }
 get_pm_abstract <- insistently(get_pm_abstract)

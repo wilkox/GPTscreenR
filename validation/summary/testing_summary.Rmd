@@ -33,8 +33,7 @@ COVID <- readRDS("../COVID/COVID_sources.rds") %>%
 
 ```{r}
 melanoma <- readRDS("../melanoma/melanoma_sources.rds") %>%
-  filter(! is.na(GPT_recommendation)) %>%
-  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  filter(! is.na(GPT_includes)) %>%
   mutate(study = "melanoma") %>%
   select(study, title, abstract, human_includes, GPT_includes)
 ```
@@ -56,8 +55,7 @@ solastalgia <- readRDS("../solastalgia/solastalgia_sources.rds") %>%
 
 ```{r}
 suicide <- readRDS("../suicide/suicide_sources.rds") %>%
-  filter(! is.na(GPT_recommendation)) %>%
-  mutate(GPT_includes = GPT_recommendation == "INCLUDE") %>%
+  filter(! is.na(GPT_includes)) %>%
   mutate(study = "suicide") %>%
   select(study, title, abstract, human_includes, GPT_includes)
 ```
@@ -72,7 +70,7 @@ teachers <- readRDS("../teachers/teachers_sources.rds") %>%
 
 ```{r}
 # screening <- bind_rows(COVID, melanoma, smartphones, solastalgia, suicide, teachers)
-screening <- bind_rows(COVID, smartphones, solastalgia, teachers)
+screening <- bind_rows(COVID, smartphones, solastalgia, suicide)
 ```
 
 ## Kappa

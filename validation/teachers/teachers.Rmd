@@ -94,6 +94,6 @@ sources <- sources %>%
 # Screen titles and abstracts
 
 ```{r}
-sources <- screen_sources(sources, study_description, n = 50,
+sources <- screen_sources(sources, study_description, n = 245,
                           cache_file = fs::path("./teachers_sources.rds"))
 ```

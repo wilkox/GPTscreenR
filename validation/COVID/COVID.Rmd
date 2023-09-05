@@ -190,6 +190,6 @@ Only sources with an available abstract (`r sources %>% filter(! is.na(abstract)
 
 ```{r}
 sources <- sources %>% filter(! is.na(abstract))
-sources <- screen_sources(sources, study_description, n = 50,
+sources <- screen_sources(sources, study_description, n = 324,
                           cache_file = fs::path("./COVID_sources.rds"))
 ```
