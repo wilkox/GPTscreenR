@@ -69,8 +69,7 @@ teachers <- readRDS("../teachers/teachers_sources.rds") %>%
 ```
 
 ```{r}
-# screening <- bind_rows(COVID, melanoma, smartphones, solastalgia, suicide, teachers)
-screening <- bind_rows(COVID, smartphones, solastalgia, suicide)
+screening <- bind_rows(COVID, melanoma, smartphones, solastalgia, suicide, teachers)
 ```
 
 ## Kappa
