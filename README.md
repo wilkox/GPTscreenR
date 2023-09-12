@@ -24,8 +24,6 @@ You can install the development version of GPTscreenR from
 devtools::install_github("wilkox/GPTscreenR")
 ```
 
-    #> ✔ The `OPENAI_API_KEY` environmental variable is set
-
 GPTscreenR is not currently available on CRAN.
 
 ## OpenAI API key
@@ -171,3 +169,27 @@ conversation between the GPTscreenR packages and GPT. This can be useful
 for understanding how GPT came to a particular recommendation. The
 `GPT_recommendation` column contains either ‘INCLUDE’ or ‘EXCLUDE’,
 representing GPT’s recommendation for each source.
+
+## Contribute your scoping review data to GPTscreenR
+
+If you’ve used GPTscreenR to help screen sources for a scoping review,
+please consider contributing some data to help monitor GPTscreenR’s
+performance in real-world screening and guide future improvements to the
+package. All you need to contribute are:
+
+- The review description
+- The list of sources that were screened at the title and abstract
+  level, including at least:
+  - The title
+  - The abstract
+  - The consensus decision by human reviewers to include or exclude the
+    source
+
+In recognition of your contribution, a citation to your study will be
+added to the GPTscreenR README. Of course, you are not expected to
+release data publicly until your review is published.
+
+If you have any questions, or to contribute data now, send an email to
+<gptscreenr@fastmail.fm>, [open a new
+issue](https://github.com/wilkox/GPTscreenR/issues/new), or [open a new
+pull request](https://github.com/wilkox/GPTscreenR/compare).

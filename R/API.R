@@ -98,7 +98,7 @@ set_model <- function() {
   model <- "gpt-4"
   Sys.setenv(OPENAI_MODEL = model)
   msg <- paste0(
-    cli::col_green("{cli::symbol$tick}"),
+    cli::col_blue("{cli::symbol$info}"),
     " The model is set to ",
     cli::col_blue(model)
   )

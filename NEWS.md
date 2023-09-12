@@ -1,3 +1,9 @@
+# GPTscreenR (development version)
+
+## Minor changes
+
+- Add a plea to contribute scoping review data
+
 # GPTscreenR 0.0.2
 
 ## Major changes

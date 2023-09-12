@@ -154,15 +154,13 @@ review_description <- function(objective = NULL, population = NULL, concept = NU
 #' @export
 screen_sources <- function(sources, review_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), .verbose = TRUE, .dry_run = FALSE) {
 
+  if (.verbose) cli::cli_h1("Preparing to screen sources")
+
   # Report the model being used
   if (.verbose) {
     model <- Sys.getenv("OPENAI_MODEL")
-    msg <- paste0(
-      cli::col_green("{cli::symbol$info}"),
-      " The model is set to ",
-      cli::col_blue(model)
-    )
-    rlang::inform(cli::format_inline(msg))
+    cli::cli_div(theme = list(span.model = list(color = "blue")))
+    cli::cli_alert_info("The model is set to {.model {model}}")
   }
 
   # Validate arguments
@@ -198,7 +196,6 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
   }
 
   # If cache file already exists, load and use it
-  if (.verbose) cli::cli_h1("Preparing sources list")
   cache_file <- fs::path(cache_file)
   if (fs::file_exists(cache_file) & ! .dry_run) {
     if (.verbose) cli::cli_alert_info("Loading cached results from {cache_file}")
@@ -271,10 +268,23 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
     if (! .dry_run) saveRDS(sources, cache_file)
   }
 
-  # Report on current state and exit
+  # Report on current state
   unscreened <- sources[which(is.na(sources$conversation) & is.na(sources$GPT_includes)), ]
   n_unscreened <- nrow(unscreened)
   n_sources <- nrow(sources)
+  if (.verbose) cli::cli_h1("Please consider contributing your scoping review data")
+  if (.verbose) cli::cli_alert_info("If you've used GPTscreenR to help screen sources for a scoping review, please consider contributing some data to help monitor GPTscreenR's performance in real-world screening and guide future improvements to the package. All you need to contribute are:
+
+- The review description 
+- The list of sources that were screened at the title and abstract level, including at least:
+  - The title
+  - The abstract
+  - The consensus decision by human reviewers to include or exclude the source
+
+In recognition of your contribution, a citation to your review will be added to the GPTscreenR README. Of course, you are not expected to release data publicly until your review is published.
+
+If you have any questions, or to contribute data now, send an email to {.email gptscreenr@fastmail.fm} or open a new issue at {.url https://github.com/wilkox/GPTscreenR/issues/new}.")
+  if (.verbose) cli::cli_h1("Screening complete")
   if (.verbose) cli::cli_alert_success("{n_sources - n_unscreened} of {n_sources} screened")
 
   return(sources)

@@ -127,3 +127,17 @@ knitr::kable(df)
 ```
 
 The output of `screen_sources()` is a data frame identical to the data frame of sources but with two additional columns. 'GPT_conversation' is a [list-column](https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html), each element of which is a `GPT_mssg` object containing the full conversation between the GPTscreenR packages and GPT. This can be useful for understanding how GPT came to a particular recommendation. The `GPT_recommendation` column contains either 'INCLUDE' or 'EXCLUDE', representing GPT's recommendation for each source.
+
+## Please consider contributing your scoping review data
+
+If you've used GPTscreenR to help screen sources for a scoping review, please consider contributing some data to help monitor GPTscreenR's performance in real-world screening and guide future improvements to the package. All you need to contribute are:
+
+- The review description 
+- The list of sources that were screened at the title and abstract level, including at least:
+  - The title
+  - The abstract
+  - The consensus decision by human reviewers to include or exclude the source
+
+In recognition of your contribution, a citation to your review will be added to the GPTscreenR README. Of course, you are not expected to release data publicly until your review is published.
+
+If you have any questions, or to contribute data now, send an email to [gptscreenr@fastmail.fm](mailto:gptscreenr@fastmail.fm) or [open a new issue](https://github.com/wilkox/GPTscreenR/issues/new).
