@@ -1,10 +1,10 @@
-# GPTscreenR (development version)
+# GPTscreenR 0.0.2
 
 ## Major changes
 
 - Streamline chain-of-thoughts to single prompt
 
-# Minor changes
+## Minor changes
 
 - Improve handling of malformed recommendations from GPT
 - Fix typo in screening prompt 'search search'
