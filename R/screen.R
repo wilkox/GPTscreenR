@@ -23,55 +23,15 @@ screen_source <- function(review_description, title, abstract, .verbose = TRUE, 
   validate_screening_param(abstract, "abstract")
   if (.verbose) { cli::cli_h2("Screening: {title}") }
 
-  # Initialise conversation with the system message providing instructions on
-  # how to perform the screening
-  if (.verbose) { cli::cli_progress_step("Initiating conversation with GPT") }
+  # Initialise conversation with the prompt
+  if (.verbose) { cli::cli_progress_step("Communicating with GPT") }
   conversation <- GPT_messages(
     role = "system",
-    content = "You are helping academic researchers perform a scoping review. Your task is to screen a single source against the review criteria. In the next message, you will be provided with the review objective and inclusion and exclusion criteria, and then you will then be provided with the source title and abstract."
-  )
-
-  # Provide the review description and source
-  conversation <- add_message(
-    conversation,
-    role = "user",
-    content = stringr::str_c(
-      review_description, "\n",
-      "TITLE: ", title, "\n",
-      "ABSTRACT: ", abstract
-    )
-  )
-
-  # Instruct GPT to generate criteria
-  if (.verbose) { cli::cli_progress_step("GPT generating criteria") }
-  conversation <- add_message(
-    conversation,
-    role = "system",
-    content = "You must work step by step. FIRST, generate a numbered list of criteria that must be met for a source to be included."
-  )
-  if (! .dry_run) conversation <- complete_GPT_tryCatch(
-    conversation,
-    .dry_run = .dry_run
-  )
-
-  # Instruct GPT to compare source against criteria
-  if (.verbose) { cli::cli_progress_step("GPT comparing source against criteria") }
-  conversation <- add_message(
-    conversation,
-    role = "system",
-    content = "NEXT, for each numbered criterion, decide whether the criterion is TRUE or FALSE for the source. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. For these situations, give your best guess. After giving your response of TRUE or FALSE, give a one sentence explanation for your response."
-  )
-  if (! .dry_run) conversation <- complete_GPT_tryCatch(
-    conversation,
-    .dry_run = .dry_run
-  )
-
-  # Instruct GPT to give its final response
-  if (.verbose) { cli::cli_progress_step("GPT giving its final recommendation") }
-  conversation <- add_message(
-    conversation,
-    role = "system",
-    content = "FINALLY, consider your decisions on whether the source meets the conclusion criteria. Respond with a single word, either INCLUDE or EXCLUDE, representing your recommendation on whether the source meets the inclusion criteria. Do not write anything other than INCLUDE or EXCLUDE."
+    content = glue::glue(
+"Instructions: You are a researcher rigorously screening titles and abstracts of scientific papers for inclusion or exclusion in a review paper. Use the criteria below to inform your decision. If any exclusion criteria are met or not all inclusion criteria are met, exclude the article. If all inclusion criteria are met, include the article. Only type \"INCLUDE\" or \"EXCLUDE\" to indicate your decision. Do not type anything else.
+Title: {title}
+Abstract: {abstract}
+{review_description}")
   )
   if (! .dry_run) conversation <- complete_GPT_tryCatch(
     conversation,

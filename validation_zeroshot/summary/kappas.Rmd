@@ -1,0 +1,57 @@
+---
+title: "Cohen's kappas"
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+library(readxl)
+library(psych)
+library(broom)
+```
+
+```{r}
+COVID <- read_excel("../COVID_misinfo/TITLE ABSTRACT FULL TEXT SCREENING DATA_CAIM COVID-19 SM Misinfo_Mar2223.xlsx", 
+           sheet = "Title & Abstract Screening", range = "A2:G673") %>%
+  select(human1 = `Screener 1 Decision`, human2 = `Screener 2 Decision`) %>%
+  mutate_at(c("human1", "human2"), str_to_lower) %>%
+  as.matrix() 
+
+solastalgia <- read_excel("../solastalgia/Solastalgia re-screening and extraction spreadsheet Dec 2022.xlsx", 
+                          sheet = "Search Results", range = "A2:J152") %>%
+  select(human1 = `#2 MBP`, human2 = `#3 KC`) %>%
+  mutate_at(c("human1", "human2"), function(x) {
+    case_when(str_detect(x, "EXCLUDE") ~ "EXCLUDE",
+              str_detect(x, "INCLUDE") ~ "INCLUDE",
+              str_detect(x, "Unsure") ~ "UNSURE",
+              str_detect(x, "I think so?") ~ "UNSURE",
+              TRUE ~ x) }) %>%
+  as.matrix() 
+
+teachers <- read_excel("../teachers/Teachers´ Soft Skills a SR - Screening NM & OJ(1).xlsx", sheet = "Búsqueda completa (seliminados)") %>%
+  select(human1 = `Inclusión NM`, human2 = `Inclusión OJ`) %>%
+  as.matrix() 
+
+kappas <- tibble(review = c("COVID", "solastalgia", "teachers"), decisions = list(COVID, solastalgia, teachers)) %>%
+  mutate(n = map_dbl(decisions, nrow)) %>%
+  mutate(kappa = map(decisions, cohen.kappa)) %>%
+  mutate(kappa = map(kappa, tidy)) %>%
+  unnest(kappa) %>%
+  filter(type == "unweighted") %>%
+  select(review, estimate, n)
+
+print(kappas)
+
+weighted.mean(kappas$estimate, kappas$n)
+```

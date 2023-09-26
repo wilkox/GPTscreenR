@@ -1,0 +1,156 @@
+---
+title: Summary of GPTscreenR testing (zeroshot)
+author: David Wilkins
+date: Last updated `r lubridate::today()`
+output:
+  html_document:
+    toc: true
+    theme: readable
+---
+
+```{r global_options, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r message = FALSE}
+library(tidyverse)
+library(printr)
+library(psych)
+library(broom)
+```
+
+## Load and tidy results
+
+```{r}
+COVID <- readRDS("../COVID/zeroshot_cache.rds") %>%
+  as_tibble() %>%
+  mutate(human_includes = human_recommendation == "Yes") %>%
+  filter(! is.na(GPT_includes)) %>%
+  mutate(study = "COVID") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+melanoma <- readRDS("../melanoma/zeroshot_cache.rds") %>%
+  filter(! is.na(GPT_includes)) %>%
+  mutate(study = "melanoma") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+smartphones <- readRDS("../smartphones/zeroshot_cache.rds") %>%
+  filter(! is.na(GPT_includes)) %>%
+  mutate(study = "smartphones") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+solastalgia <- readRDS("../solastalgia/zeroshot_cache.rds") %>%
+  filter(! is.na(GPT_includes)) %>%
+  mutate(human_includes = human_recommendation == "INCLUDE") %>%
+  mutate(study = "solastalgia") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+suicide <- readRDS("../suicide/zeroshot_cache.rds") %>%
+  filter(! is.na(GPT_includes)) %>%
+  mutate(study = "suicide") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+teachers <- readRDS("../teachers/zeroshot_cache.rds") %>%
+  filter(! is.na(GPT_includes)) %>%
+  mutate(human_includes = human_recommendation == "INCLUDE") %>%
+  mutate(study = "teachers") %>%
+  select(study, title, abstract, human_includes, GPT_includes)
+```
+
+```{r}
+screening <- bind_rows(COVID, melanoma, smartphones, solastalgia, suicide, teachers)
+```
+
+## Kappa
+
+```{r}
+kappas <- screening %>%
+  select(study, human_includes, GPT_includes) %>%
+  group_by(study) %>%
+  nest(decisions = c(human_includes, GPT_includes)) %>%
+  mutate(n = map_dbl(decisions, nrow)) %>%
+  mutate(decisions = map(decisions, as.matrix)) %>%
+  mutate(kappa = map(decisions, cohen.kappa)) %>%
+  mutate(kappa = map(kappa, tidy)) %>%
+  unnest(kappa) %>%
+  filter(type == "unweighted") %>%
+  select(study, estimate, n)
+
+print(kappas)
+
+weighted.mean(kappas$estimate, kappas$n)
+```
+
+## Per-study, pooled, and weight average stats
+
+```{r}
+screening %>%
+  mutate(accurate = human_includes == GPT_includes) %>%
+  summarise(pooled_accuracy = mean(accurate))
+
+screening %>%
+  mutate(accurate = human_includes == GPT_includes) %>%
+  group_by(study) %>%
+  summarise(accurate = mean(accurate), n = n())
+
+screening %>%
+  mutate(accurate = human_includes == GPT_includes) %>%
+  group_by(study) %>%
+  summarise(accurate = mean(accurate), n = n()) %>%
+  ungroup() %>%
+  summarise(wt_avg_accuracy = weighted.mean(accurate, n))
+
+sensitivity <- function(standard, test) {
+  sum(standard & test) / sum(standard)
+}
+
+specificity <- function(standard, test) {
+  sum(!standard & !test) / sum(!standard)
+}
+
+perstudy <- screening %>%
+  group_by(study) %>%
+  summarise(sensitivity = sensitivity(human_includes, GPT_includes),
+            specificity = specificity(human_includes, GPT_includes),
+            n = n())
+
+perstudy
+
+weighted_average <- perstudy %>%
+  summarise(wt_avg_sens = weighted.mean(sensitivity, n),
+            wt_avg_spec = weighted.mean(specificity, n))
+
+weighted_average
+
+pooled <- screening %>%
+  summarise(sensitivity = sensitivity(human_includes, GPT_includes),
+            specificity = specificity(human_includes, GPT_includes))
+
+pooled
+
+pooled %>%
+  mutate(study = "pooled") %>%
+  bind_rows(., perstudy) %>%
+  pivot_longer(c("sensitivity", "specificity"), names_to = "statistic", values_to = "value") %>%
+  ggplot(aes(x = statistic, y = value)) +
+    geom_boxplot() +
+    geom_point(aes(colour = study))
+```
+
+# Write results to file
+
+```{r}
+saveRDS(screening, "pooled_validation_results.rds")
+```
+
