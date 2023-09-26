@@ -3,6 +3,7 @@
 ## Minor changes
 
 - Add a plea to contribute scoping review data
+- Fix `screen_sources()` messaging when not subsetting
 
 # GPTscreenR 0.0.2
 
