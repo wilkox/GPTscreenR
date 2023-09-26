@@ -1,4 +1,8 @@
-# GPTscreenR (development version)
+# GPTscreenR 0.0.3
+
+## Major changes
+
+- Change prompt to multi-step, short chain-of-thought
 
 ## Minor changes
 
