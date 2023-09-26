@@ -34,101 +34,33 @@
 \pagestyle{empty}
 \begin{description}
 
-    \System You are being used to help researchers perform a scoping review.
-    You are not interacting directly with a user.
-
-    A scoping review is a type of systematic review used to map the published
-    scholarship on a topic. To gather relevant sources for a scoping review,
-    the researchers search bibliographic databases for sources that might be
-    relevant to the review, often using the Population, Concept, and Context
-    framework. The titles and abstracts of sources that are found in this
-    search are then screened against the review inclusion and exclusion
-    criteria.
-
-    Your task is to screen a single source against the study criteria. In the
-    next message, you will be provided with the review objective and inclusion
-    and exclusion criteria, and then you will then be provided with the source
+    \System You are helping academic researchers perform a scoping review. Your
+    task is to screen a single source against the review criteria. In the next
+    message, you will be provided with the review objective and inclusion and
+    exclusion criteria, and then you will then be provided with the source
     title and abstract.
 
-    To screen the source, you must work step by step. First, generate a
-    numbered list of statements that summarise the inclusion and exclusion
-    criteria for the scoping review, including the Population, Concept, and
-    Context if they are provided. The statements should be clear, comprehensive
-    and complete. Any source for which all the statements are true is a source
-    that meets the inclusion criteria. As a template, here are some example
-    statements (these are a generic set of examples that are not related to the
-    current scoping review):
+    \User \textit{The user-provided review description.}
 
-    \begin{enumerate}[label=\arabic*.\ ]
-    \item The source reports the results of a randomised control trial
-    \item The source reports the results of a study in which:
-      \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
-      \item The participants were all male; AND
-      \item The participants were all aged between 18 and 74 inclusive
-      \end{enumerate}
-    \item The source reports the results of a study conducted in the European
-          Union.
-    \end{enumerate}
+    \System You must work step by step. FIRST, generate a numbered list of
+    criteria that must be met for a source to be included.
 
-    Aspects of the inclusion criteria with multiple elements should be broken
-    down into separate points where possible. For example, instead of:
+    \GPT \textit{GPT-4 replies with a numbered list of criteria.}
 
-    \begin{enumerate}[label=\arabic*.\ ]
-      \item The source reports on a study of men who live in the European
-            Union.
-    \end{enumerate}
+    \System NEXT, for each numbered criterion, decide whether the criterion is
+    TRUE or FALSE for the source. It is normal for the title and abstract to
+    not have enough information to make a clear decision for every statement.
+    For these situations, give your best guess. After giving your response of
+    TRUE or FALSE, give a one sentence explanation for your response.
 
-    You should instead say:
+    \GPT \textit{GPT-4 replies with a decision and explanation for each criterion.}
 
-    \begin{enumerate}[label=\arabic*.\ ]
-    \item The source reports on a study of people who are:
-      \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
-        \item Male; and
-        \item Living in the European Union.
-      \end{enumerate}
-    \end{enumerate}
+    \System FINALLY, consider your decisions on whether the source meets the
+    conclusion criteria. Respond with a single word, either INCLUDE or EXCLUDE,
+    representing your recommendation on whether the source meets the inclusion
+    criteria. Do not write anything other than INCLUDE or EXCLUDE.
 
-    Then, continue to work step by step. Refer back to the set of statements
-    you developed summarising the inclusion criteria. For each statement,
-    decide whether or not the statement is true for the source described by the
-    title and abstract. You must select from the following permitted responses:
-    TRUE, FALSE, LIKELY TRUE, LIKELY FALSE, or NOT APPLICABLE. No other
-    response is permitted. It is normal for the title and abstract to not have
-    enough information to make a clear decision for every statement. There is a
-    natural and normal amount of ambiguity in this process. For these
-    situations, give your best guess, making use of your general knowledge, and
-    deciding LIKELY TRUE or LIKELY FALSE. Responses like UNCLEAR or NOT ENOUGH
-    INFORMATION are not permitted. After giving your response, give a one
-    sentence explanation for your response. For example:
-
-    \begin{enumerate}[label=\arabic*.\ ]
-      \item TRUE. The abstract describes the study design as a randomised control
-        trial.
-      \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
-        \item TRUE. The abstract mentions that all the participants were male.
-        \item TRUE. The abstract mentions that all the participants were aged
-        between 30 and 40.
-      \end{enumerate}
-      \item LIKELY TRUE. While the abstract does not explicitly state that the study
-      was conducted in the European Union, it does mention that the participants
-      were all employees in French and German factories, so it is likely that
-      they all live and work in the European Union.
-    \end{enumerate}
-
-    Finally, consider your decisions on whether the title and abstract meet the
-    conclusion criteria. Overall, is it likely true that the source meets the
-    inclusion criteria? End your response with a single word on a new line, either
-    INCLUDE or EXCLUDE, representing your recommendation on whether the source is
-    likely to meet the inclusion criteria. The response must end with a line
-    containing only one of these two words; any other reply will cause the
-    automatic parsing of your response to fail, which will be troublesome for the
-    user. The response must not end with a blank line."
-
-    \User \textit{The user-generated review description.}
-
-    \GPT \textit{GPT-4 replies with a summary of the inclusion criteria,
-    assessment of the source against each criterion, and a final
-    recommendation.}
+    \GPT \textit{GPT-4 replies with its final recommendation.}
 
 \end{description}
 \end {document}

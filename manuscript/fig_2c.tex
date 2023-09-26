@@ -34,179 +34,102 @@
 \pagestyle{empty}
 \begin{description}
 
-    \System You are being used to help researchers perform a scoping review.
-    You are not interacting directly with a user.
-
-    A scoping review is a type of systematic review used to map the published
-    scholarship on a topic. To gather relevant sources for a scoping review,
-    the researchers search bibliographic databases for sources that might be
-    relevant to the review, often using the Population, Concept, and Context
-    framework. The titles and abstracts of sources that are found in this
-    search are then screened against the review inclusion and exclusion
-    criteria.
-
-    Your task is to screen a single source against the study criteria. In the
-    next message, you will be provided with the review objective and inclusion
-    and exclusion criteria, and then you will then be provided with the source
+    \System You are helping academic researchers perform a scoping review. Your
+    task is to screen a single source against the review criteria. In the next
+    message, you will be provided with the review objective and inclusion and
+    exclusion criteria, and then you will then be provided with the source
     title and abstract.
 
-    To screen the source, you must work step by step. First, generate a
-    numbered list of statements that summarise the inclusion and exclusion
-    criteria for the scoping review, including the Population, Concept, and
-    Context if they are provided. The statements should be clear, comprehensive
-    and complete. Any source for which all the statements are true is a source
-    that meets the inclusion criteria. As a template, here are some example
-    statements (these are a generic set of examples that are not related to the
-    current scoping review):
+    \User OBJECTIVE: This scoping review will examine the existing primary
+    research on the role of therapy alpacas in enhancing the mental health and
+    emotional well-being of elderly residential aged care facility residents
+    
+    POPULATION: Elderly people living in residential aged care facilities.
+    `Elderly' is defined as 65 years of age or older. 
 
-    \begin{enumerate}[label=\arabic*.\ ]
-    \item The source reports the results of a randomised control trial
-    \item The source reports the results of a study in which:
-      \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
-      \item The participants were all male; AND
-      \item The participants were all aged between 18 and 74 inclusive
-      \end{enumerate}
-    \item The source reports the results of a study conducted in the European
-          Union.
+    CONTEXT: Residential aged care facilities that have used therapy alpacas as
+    part of their programme of care for residents. `Residential aged care
+    facility' is defined as a residential setting intended as a long-term place
+    of residence for elderly people which includes provision of support for
+    activities of daily living (e.g. meal preparation, bathing, housekeeping) and
+    nursing support (e.g. medication management). Such facilities will also
+    typically offer other structured programmes and facilities to provide
+    entertainment, diversion, and wellbeing. It excludes other residential
+    settings intended for elderly people that do no provide daily living or
+    nursing supports (e.g. independent living villages) or that are not long-term
+    (e.g. hospitals or hospices). 
+
+    CONCEPT: The impact of therapy alpaca programmes on stress reduction,
+    emotional well-being, mental health, overall life satisfaction, or similar
+    outcomes for residents.
+
+    TITLE: Therapy Ungulate Visits Reduce Depression, Anxiety, and Stress
+    in Australian Nursing Home Residents
+
+    ABSTRACT: Nursing home residents typically have rates of depression, anxiety,
+    and stress (DAS) significantly higher than those of equivalent populations
+    living independently. As well as reducing quality of life and increasing
+    morbidity and mortality, DAS significantly increases the burden on both
+    nursing homes and health systems in caring for the elderly. Recent pilot
+    trials of the use of therapy ungulates (alpacas, llamas, and camels) have
+    shown promising initial results in reducing DAS among nursing home residents.
+    We conducted a randomised control trial involving 8,124 residents across 17
+    nursing homes in urban and rural Australia in which residents were randomised
+    to either a weekly 2-hour therapy camel visit or equivalent time in a
+    television viewing lounge. Residents receiving the intervention had
+    significantly (p < 0.01) reduced levels of depression (mean DASS-21 score for
+    depression reduction 8.2 points), anxiety (mean reduction 11 points) and
+    stress (mean reduction 13 points) compared to the control arm. This study
+    represents the first large-scale randomised trial of ungulate therapy for
+    nursing home residents, and provides strong support for its effectiveness in
+    reducing DAS.
+
+    \System You must work step by step. FIRST, generate a numbered list of
+    criteria that must be met for a source to be included.
+
+    \GPT \begin{enumerate}
+      \item{The research study must involve elderly people aged 65 years or older.}
+      \item{The study's population must be residents of residential aged care
+        facilities.}
+      \item{The context of the study must involve the use of therapy alpacas as
+        a part of a programme of care in residential aged care facilities.}
+      \item{The study must examine the impact of therapy alpaca programmes on
+        outcomes such as stress reduction, emotional well-being, mental health,
+        or overall life satisfaction for the residents.}
+      \item{The study must be primary research, not purely theoretical or
+        hypothetical work. It must be based on new research and data
+        collection, not a review or summary of previous studies.}
     \end{enumerate}
 
-    Aspects of the inclusion criteria with multiple elements should be broken
-    down into separate points where possible. For example, instead of:
+    \System NEXT, for each numbered criterion, decide whether the criterion is
+    TRUE or FALSE for the source. It is normal for the title and abstract to
+    not have enough information to make a clear decision for every statement.
+    For these situations, give your best guess. After giving your response of
+    TRUE or FALSE, give a one sentence explanation for your response.
 
-    \begin{enumerate}[label=\arabic*.\ ]
-      \item The source reports on a study of men who live in the European
-            Union.
+    \GPT \begin{enumerate}
+      \item{TRUE - The research study involves elderly individuals as it is
+        focused on nursing home residents, who are typically over 65 years of
+        age.}
+      \item{TRUE - The population of the study constitutes residents of nursing
+        homes, which are a type of residential aged care facilities.}
+      \item{FALSE - The study does involve therapy ungulates, but it
+        specifically mentions therapy camels being used, not therapy alpacas.}
+      \item{TRUE - The study examines the impact of therapy ungulate programmes
+        on reducing depression, anxiety, and stress in nursing home residents,
+        which falls within the scope of emotional well-being and mental health
+        outcomes.}
+      \item{TRUE - The study is primary research, as it reports fresh findings
+        from a randomized control trial rather than summarizing or reviewing
+        previous studies.}
     \end{enumerate}
 
-    You should instead say:
+    \System FINALLY, consider your decisions on whether the source meets the
+    conclusion criteria. Respond with a single word, either INCLUDE or EXCLUDE,
+    representing your recommendation on whether the source meets the inclusion
+    criteria. Do not write anything other than INCLUDE or EXCLUDE.
 
-    \begin{enumerate}[label=\arabic*.\ ]
-    \item The source reports on a study of people who are:
-      \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
-        \item Male; and
-        \item Living in the European Union.
-      \end{enumerate}
-    \end{enumerate}
-
-    Then, continue to work step by step. Refer back to the set of statements
-    you developed summarising the inclusion criteria. For each statement,
-    decide whether or not the statement is true for the source described by the
-    title and abstract. You must select from the following permitted responses:
-    TRUE, FALSE, LIKELY TRUE, LIKELY FALSE, or NOT APPLICABLE. No other
-    response is permitted. It is normal for the title and abstract to not have
-    enough information to make a clear decision for every statement. There is a
-    natural and normal amount of ambiguity in this process. For these
-    situations, give your best guess, making use of your general knowledge, and
-    deciding LIKELY TRUE or LIKELY FALSE. Responses like UNCLEAR or NOT ENOUGH
-    INFORMATION are not permitted. After giving your response, give a one
-    sentence explanation for your response. For example:
-
-    \begin{enumerate}[label=\arabic*.\ ]
-      \item TRUE. The abstract describes the study design as a randomised control
-        trial.
-      \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
-        \item TRUE. The abstract mentions that all the participants were male.
-        \item TRUE. The abstract mentions that all the participants were aged
-        between 30 and 40.
-      \end{enumerate}
-      \item LIKELY TRUE. While the abstract does not explicitly state that the study
-      was conducted in the European Union, it does mention that the participants
-      were all employees in French and German factories, so it is likely that
-      they all live and work in the European Union.
-    \end{enumerate}
-
-    Finally, consider your decisions on whether the title and abstract meet the
-    conclusion criteria. Overall, is it likely true that the source meets the
-    inclusion criteria? End your response with a single word on a new line, either
-    INCLUDE or EXCLUDE, representing your recommendation on whether the source is
-    likely to meet the inclusion criteria. The response must end with a line
-    containing only one of these two words; any other reply will cause the
-    automatic parsing of your response to fail, which will be troublesome for the
-    user. The response must not end with a blank line."
-
-  \User OBJECTIVE: This scoping review will examine the existing primary
-  research on the role of therapy alpacas in enhancing the mental health and
-  emotional well-being of elderly residential aged care facility residents
-  
-  POPULATION: Elderly people living in residential aged care facilities.
-  `Elderly' is defined as 65 years of age or older. 
-
-  CONTEXT: Residential aged care facilities that have used therapy alpacas as
-  part of their programme of care for residents. `Residential aged care
-  facility' is defined as a residential setting intended as a long-term place
-  of residence for elderly people which includes provision of support for
-  activities of daily living (e.g. meal preparation, bathing, housekeeping) and
-  nursing support (e.g. medication management). Such facilities will also
-  typically offer other structured programmes and facilities to provide
-  entertainment, diversion, and wellbeing. It excludes other residential
-  settings intended for elderly people that do no provide daily living or
-  nursing supports (e.g. independent living villages) or that are not long-term
-  (e.g. hospitals or hospices). 
-
-  CONCEPT: The impact of therapy alpaca programmes on stress reduction,
-  emotional well-being, mental health, overall life satisfaction, or similar
-  outcomes for residents.
-
-  TITLE: Therapy Ungulate Visits Reduce Depression, Anxiety, and Stress
-  in Australian Nursing Home Residents
-
-  ABSTRACT: Nursing home residents typically have rates of depression, anxiety,
-  and stress (DAS) significantly higher than those of equivalent populations
-  living independently. As well as reducing quality of life and increasing
-  morbidity and mortality, DAS significantly increases the burden on both
-  nursing homes and health systems in caring for the elderly. Recent pilot
-  trials of the use of therapy ungulates (alpacas, llamas, and camels) have
-  shown promising initial results in reducing DAS among nursing home residents.
-  We conducted a randomised control trial involving 8,124 residents across 17
-  nursing homes in urban and rural Australia in which residents were randomised
-  to either a weekly 2-hour therapy camel visit or equivalent time in a
-  television viewing lounge. Residents receiving the intervention had
-  significantly (p < 0.01) reduced levels of depression (mean DASS-21 score for
-  depression reduction 8.2 points), anxiety (mean reduction 11 points) and
-  stress (mean reduction 13 points) compared to the control arm. This study
-  represents the first large-scale randomised trial of ungulate therapy for
-  nursing home residents, and provides strong support for its effectiveness in
-  reducing DAS.
-
-  \GPT Inclusion and exclusion criteria:
-
-  \begin{enumerate}[label=\arabic*.\ ]
-    \item The source reports on a study of people who are:
-    \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
-      \item 65 years old or older; and
-      \item Living in residential aged care facilities; and
-      \item Not living in settings intended for elderly people that do not
-        provide daily living or nursing supports or that are not long-term.
-    \end{enumerate}
-    \item The source reports on a study conducted in Residential aged care
-      facilities that have used therapy alpacas as a part of their programme of
-      care for residents.
-    \item The source reports on the impact of therapy alpacas programmes on
-      stress reduction, emotional well-being, mental health, overall life
-      satisfaction, or similar outcomes for residents.
-  \end{enumerate}
-
-  Screening of the source:
-
-  \begin{enumerate}[label=\arabic*.\ ]
-    \item 
-    \begin{enumerate}[label=\arabic{enumi}\alph*.\ ]
-      \item LIKELY TRUE. The ages of the participants are not mentioned
-        specifically, but since they are referred to as "nursing home
-        residents", it can be assumed that most are likely 65 or older.
-      \item TRUE. The participants were all living in nursing homes.
-      \item LIKELY TRUE. The study was conducted in nursing homes, which
-        generally include provision of support for activities of daily living
-        and nursing support, making them likely to fit the definition given.
-    \end{enumerate}
-  \item FALSE. While the utilizing therapy animals, the animals used in this
-    study were camels, not alpacas.
-  \item TRUE. The study reported on the impact of the therapy involving camels
-    on depression, anxiety, and stress levels in nursing home residents.
-  \end{enumerate}
-
-  RECOMMENDATION:
-  EXCLUDE
+    \GPT EXCLUDE
 
 \end{description}
 \end{document}

@@ -363,7 +363,7 @@ display: none;
 
 <h1 class="title toc-ignore">Cohen’s kappas</h1>
 <h4 class="author">David Wilkins</h4>
-<h4 class="date">Last updated 2023-08-15</h4>
+<h4 class="date">Last updated 2023-09-26</h4>
 
 </div>
 
@@ -373,7 +373,7 @@ library(printr)
 library(readxl)
 library(psych)
 library(broom)</code></pre>
-<pre class="r"><code>COVID &lt;- read_excel(&quot;../COVID_misinfo/TITLE ABSTRACT FULL TEXT SCREENING DATA_CAIM COVID-19 SM Misinfo_Mar2223.xlsx&quot;, 
+<pre class="r"><code>COVID &lt;- read_excel(&quot;../COVID/TITLE ABSTRACT FULL TEXT SCREENING DATA_CAIM COVID-19 SM Misinfo_Mar2223.xlsx&quot;, 
            sheet = &quot;Title &amp; Abstract Screening&quot;, range = &quot;A2:G673&quot;) %&gt;%
   select(human1 = `Screener 1 Decision`, human2 = `Screener 2 Decision`) %&gt;%
   mutate_at(c(&quot;human1&quot;, &quot;human2&quot;), str_to_lower) %&gt;%
