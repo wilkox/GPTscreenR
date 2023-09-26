@@ -229,12 +229,13 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
     unscreened_i <- which(is.na(sources$conversation) | is.na(sources$GPT_includes)) 
     n_unscreened <- length(unscreened_i)
     n_sources <- nrow(sources)
-    if (n_sources - n_unscreened >= n | n_unscreened == 0) break
+    n_screened <- n_sources - n_unscreened
+    if (n_screened >= n | n_unscreened == 0) break
     if (.verbose) {
-      if (missing(n)) {
-        cli::cli_alert_info("{n_sources - n_unscreened} of {n_sources} screened")
+      if (n == n_sources) {
+        cli::cli_alert_info("{n_screened} of {n_sources} screened")
       } else {
-        cli::cli_alert_info("{n_sources - n_unscreened} of {n} screened (random subset of {n_sources})")
+        cli::cli_alert_info("{n_screened} of {n} screened (random subset of {n_sources})")
       }
     }
 
