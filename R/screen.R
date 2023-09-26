@@ -25,45 +25,13 @@ screen_source <- function(review_description, title, abstract, .verbose = TRUE, 
 
   # Initialise conversation with the system message providing instructions on
   # how to perform the screening
+  if (.verbose) { cli::cli_progress_step("Initiating conversation with GPT") }
   conversation <- GPT_messages(
     role = "system",
-    content = 
-"You are being used to help researchers perform a scoping review. You are not interacting directly with a user.
-
-A scoping review is a type of systematic review used to map the published scholarship on a topic. To gather relevant sources for a scoping review, the researchers search bibliographic databases for sources that might be relevant to the review, often using the Population, Concept, and Context framework. The titles and abstracts of sources that are found in this search are then screened against the review inclusion and exclusion criteria.
-
-Your task is to screen a single source against the study criteria. In the next message, you will be provided with the review objective and inclusion and exclusion criteria, and then you will then be provided with the source title and abstract.
-
-To screen the source, you must work step by step. First, generate a numbered list of statements that summarise the inclusion and exclusion criteria for the scoping review, including the Population, Concept, and Context if they are provided. The statements should be clear, comprehensive and complete. Any source for which all the statements are true is a source that meets the inclusion criteria. As a template, here are some example statements (these are a generic set of examples that are not related to the current scoping review):
-
-1. The source reports the results of a randomised control trial
-2. The source reports the results of a study in which:
-  2a. The participants were all male; AND
-  2b. The participants were all aged between 18 and 74 inclusive
-3. The source reports the results of a study conducted in the European Union.
-
-Aspects of the inclusion criteria with multiple elements should be broken down into separate points where possible. For example, instead of:
-
-1. The source reports on a study of men who live in the European Union.
-
-You should instead say:
-
-1. The source reports on a study of people who are:
-  1a. Male; and
-  1b: Living in the European Union.
-
-Then, continue to work step by step. Refer back to the set of statements you developed summarising the inclusion criteria. For each statement, decide whether or not the statement is true for the source described by the title and abstract. You must select from the following permitted responses: TRUE, FALSE, LIKELY TRUE, LIKELY FALSE, or NOT APPLICABLE. No other response is permitted. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. There is a natural and normal amount of ambiguity in this process. For these situations, give your best guess, making use of your general knowledge, and deciding LIKELY TRUE or LIKELY FALSE. Responses like UNCLEAR or NOT ENOUGH INFORMATION are not permitted. After giving your response, give a one sentence explanation for your response. For example:
-
-1. TRUE. The abstract describes the study design as a randomised control trial.
-2a. TRUE. The abstract mentions that all the participants were male.
-2b. TRUE. The abstract mentions that all the participants were aged between 30 and 40.
-3. LIKELY TRUE. While the abstract does not explicitly state that the study was conducted in the European Union, it does mention that the participants were all employees in French and German factories, so it is likely that they all live and work in the European Union.
-
-Finally, consider your decisions on whether the title and abstract meet the conclusion criteria. Overall, is it likely true that the source meets the inclusion criteria? End your response with a single word on a new line, either INCLUDE or EXCLUDE, representing your recommendation on whether the source is likely to meet the inclusion criteria. The response must end with a line containing only one of these two words; any other reply will cause the automatic parsing of your response to fail, which will be troublesome for the user. The response must not end with a blank line."
+    content = "You are helping academic researchers perform a scoping review. Your task is to screen a single source against the review criteria. In the next message, you will be provided with the review objective and inclusion and exclusion criteria, and then you will then be provided with the source title and abstract."
   )
 
   # Provide the review description and source
-  if (.verbose) { cli::cli_progress_step("Initiating conversation with GPT") }
   conversation <- add_message(
     conversation,
     role = "user",
@@ -74,8 +42,37 @@ Finally, consider your decisions on whether the title and abstract meet the conc
     )
   )
 
-  # Ask GPT for its response
-  if (.verbose) { cli::cli_progress_step("Waiting for GPT response") }
+  # Instruct GPT to generate criteria
+  if (.verbose) { cli::cli_progress_step("GPT generating criteria") }
+  conversation <- add_message(
+    conversation,
+    role = "system",
+    content = "You must work step by step. FIRST, generate a numbered list of criteria that must be met for a source to be included."
+  )
+  if (! .dry_run) conversation <- complete_GPT_tryCatch(
+    conversation,
+    .dry_run = .dry_run
+  )
+
+  # Instruct GPT to compare source against criteria
+  if (.verbose) { cli::cli_progress_step("GPT comparing source against criteria") }
+  conversation <- add_message(
+    conversation,
+    role = "system",
+    content = "NEXT, for each numbered criterion, decide whether the criterion is TRUE or FALSE for the source. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. For these situations, give your best guess. After giving your response of TRUE or FALSE, give a one sentence explanation for your response."
+  )
+  if (! .dry_run) conversation <- complete_GPT_tryCatch(
+    conversation,
+    .dry_run = .dry_run
+  )
+
+  # Instruct GPT to give its final response
+  if (.verbose) { cli::cli_progress_step("GPT giving its final recommendation") }
+  conversation <- add_message(
+    conversation,
+    role = "system",
+    content = "FINALLY, consider your decisions on whether the source meets the conclusion criteria. Respond with a single word, either INCLUDE or EXCLUDE, representing your recommendation on whether the source meets the inclusion criteria. Do not write anything other than INCLUDE or EXCLUDE."
+  )
   if (! .dry_run) conversation <- complete_GPT_tryCatch(
     conversation,
     .dry_run = .dry_run
@@ -85,13 +82,13 @@ Finally, consider your decisions on whether the title and abstract meet the conc
   if (.dry_run) {
     GPT_includes <- NA
   } else if (! stringr::str_detect(last_message(conversation), 
-                              "(INCLUDE|EXCLUDE)$")) {
+                              "(INCLUDE|EXCLUDE)")) {
     if (.verbose) cli::cli_alert_warning(c("GPT's recommendation could not be parsed"))
     GPT_includes <- NA
   } else {
     GPT_includes <- stringr::str_extract(
       last_message(conversation),
-      "(INCLUDE|EXCLUDE)$"
+      "(INCLUDE|EXCLUDE)"
     ) == "INCLUDE"
   }
 
