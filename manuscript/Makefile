@@ -1,7 +1,7 @@
 all: manuscript.pdf
 
-manuscript.pdf: manuscript.md fig_1.pdf fig_2a.pdf fig_2b.pdf fig_2c.pdf fig_3.pdf fig_4.pdf
-	pandoc --citeproc manuscript.md -o manuscript.pdf
+manuscript.pdf: manuscript.tex fig_1.pdf fig_2a.pdf fig_2b.pdf fig_2c.pdf fig_3.pdf fig_4.pdf bibliography.bib
+	R -e 'tinytex::pdflatex("manuscript.tex")'
 
 fig_4.pdf: fig_4.R
 	Rscript --no-save --vanilla fig_4.R
