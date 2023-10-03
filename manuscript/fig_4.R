@@ -40,4 +40,4 @@ perstudy %>%
     labs(x = "Statistic", y = "Value (%)", colour = "Study") +
     theme_classic() +
     scale_colour_brewer(palette = "Set2")
-ggsave("fig_4.pdf", width = 5, height = 5)
+ggsave("fig_4.pdf", width = 4, height = 4)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.3)  3 OCT 2023 15:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.3)  3 OCT 2023 16:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -188,35 +188,280 @@ Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
 \TX@delta=\dimen166
 \TX@cols=\count275
 \TX@ftn=\toks19
-) (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/preprint/authblk.sty
+Package: authblk 2001/02/27 1.3 (PWD)
+\affilsep=\skip53
+\@affilsep=\skip54
+\c@Maxaffil=\count276
+\c@authors=\count277
+\c@affil=\count278
+) (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count279
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+)) (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count280
+\c@listtotal=\count281
+\c@listcount=\count282
+\c@liststart=\count283
+\c@liststop=\count284
+\c@citecount=\count285
+\c@citetotal=\count286
+\c@multicitecount=\count287
+\c@multicitetotal=\count288
+\c@instcount=\count289
+\c@maxnames=\count290
+\c@minnames=\count291
+\c@maxitems=\count292
+\c@minitems=\count293
+\c@citecounter=\count294
+\c@maxcitecounter=\count295
+\c@savedcitecounter=\count296
+\c@uniquelist=\count297
+\c@uniquename=\count298
+\c@refsection=\count299
+\c@refsegment=\count300
+\c@maxextratitle=\count301
+\c@maxextratitleyear=\count302
+\c@maxextraname=\count303
+\c@maxextradate=\count304
+\c@maxextraalpha=\count305
+\c@abbrvpenalty=\count306
+\c@highnamepenalty=\count307
+\c@lownamepenalty=\count308
+\c@maxparens=\count309
+\c@parenlevel=\count310
+\blx@tempcnta=\count311
+\blx@tempcntb=\count312
+\blx@tempcntc=\count313
+\c@blx@maxsection=\count314
+\blx@maxsegment@0=\count315
+\blx@notetype=\count316
+\blx@parenlevel@text=\count317
+\blx@parenlevel@foot=\count318
+\blx@sectionciteorder@0=\count319
+\blx@sectionciteorderinternal@0=\count320
+\blx@entrysetcounter=\count321
+\blx@biblioinstance=\count322
+\labelnumberwidth=\skip55
+\labelalphawidth=\skip56
+\biblabelsep=\skip57
+\bibitemsep=\skip58
+\bibnamesep=\skip59
+\bibinitsep=\skip60
+\bibparsep=\skip61
+\bibhang=\skip62
+\blx@bcfin=\read2
+\blx@bcfout=\write3
+\blx@langwohyphens=\language3
+\c@mincomprange=\count323
+\c@maxcomprange=\count324
+\c@mincompwidth=\count325
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'numeric.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count326
+\c@savedafterword=\count327
+\c@annotator=\count328
+\c@savedannotator=\count329
+\c@author=\count330
+\c@savedauthor=\count331
+\c@bookauthor=\count332
+\c@savedbookauthor=\count333
+\c@commentator=\count334
+\c@savedcommentator=\count335
+\c@editor=\count336
+\c@savededitor=\count337
+\c@editora=\count338
+\c@savededitora=\count339
+\c@editorb=\count340
+\c@savededitorb=\count341
+\c@editorc=\count342
+\c@savededitorc=\count343
+\c@foreword=\count344
+\c@savedforeword=\count345
+\c@holder=\count346
+\c@savedholder=\count347
+\c@introduction=\count348
+\c@savedintroduction=\count349
+\c@namea=\count350
+\c@savednamea=\count351
+\c@nameb=\count352
+\c@savednameb=\count353
+\c@namec=\count354
+\c@savednamec=\count355
+\c@translator=\count356
+\c@savedtranslator=\count357
+\c@shortauthor=\count358
+\c@savedshortauthor=\count359
+\c@shorteditor=\count360
+\c@savedshorteditor=\count361
+\c@labelname=\count362
+\c@savedlabelname=\count363
+\c@institution=\count364
+\c@savedinstitution=\count365
+\c@lista=\count366
+\c@savedlista=\count367
+\c@listb=\count368
+\c@savedlistb=\count369
+\c@listc=\count370
+\c@savedlistc=\count371
+\c@listd=\count372
+\c@savedlistd=\count373
+\c@liste=\count374
+\c@savedliste=\count375
+\c@listf=\count376
+\c@savedlistf=\count377
+\c@location=\count378
+\c@savedlocation=\count379
+\c@organization=\count380
+\c@savedorganization=\count381
+\c@origlocation=\count382
+\c@savedoriglocation=\count383
+\c@origpublisher=\count384
+\c@savedorigpublisher=\count385
+\c@publisher=\count386
+\c@savedpublisher=\count387
+\c@language=\count388
+\c@savedlanguage=\count389
+\c@origlanguage=\count390
+\c@savedoriglanguage=\count391
+\c@pageref=\count392
+\c@savedpageref=\count393
+\shorthandwidth=\skip63
+\shortjournalwidth=\skip64
+\shortserieswidth=\skip65
+\shorttitlewidth=\skip66
+\shortauthorwidth=\skip67
+\shorteditorwidth=\skip68
+\locallabelnumberwidth=\skip69
+\locallabelalphawidth=\skip70
+\localshorthandwidth=\skip71
+\localshortjournalwidth=\skip72
+\localshortserieswidth=\skip73
+\localshorttitlewidth=\skip74
+\localshortauthorwidth=\skip75
+\localshorteditorwidth=\skip76
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load BibTeX backend compatibility...
+Package biblatex Info: ... file 'blx-bibtex.def' found.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-bibtex.def
+File: blx-bibtex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+
+Package biblatex Warning: Using fall-back bibtex backend:
+(biblatex)                functionality may be reduced/unavailable.
+
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+\c@textcitecount=\count394
+\c@textcitetotal=\count395
+\c@textcitemaxnames=\count396
+\c@biburlbigbreakpenalty=\count397
+\c@biburlbreakpenalty=\count398
+\c@biburlnumpenalty=\count399
+\c@biburlucpenalty=\count400
+\c@biburllcpenalty=\count401
+\biburlbigskip=\muskip17
+\biburlnumskip=\muskip18
+\biburlucskip=\muskip19
+\biburllcskip=\muskip20
+\c@smartand=\count402
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count403
+\c@bbx:relatedtotal=\count404
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Document encoding is UTF8 ....
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2023-08-29 L3 programming layer (loader) 
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count276
+\l__color_backend_stack_int=\count405
 \l__pdf_internal_box=\box53
-) (./manuscript.aux)
+))
+Package biblatex Info: ... and expl3
+(biblatex)             2023-08-29 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2023-08-29 L3 Experimental document command parser
+)
+Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
+))
+\@quotelevel=\count406
+\@quotereset=\count407
+(./manuscript.aux)
 \openout1 = `manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-Package hyperref Info: Link coloring OFF on input line 8.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+Package hyperref Info: Link coloring OFF on input line 11.
 (./manuscript.out) (./manuscript.out)
-\@outlinefile=\write3
-\openout3 = `manuscript.out'.
+\@outlinefile=\write4
+\openout4 = `manuscript.out'.
 
 (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -224,20 +469,38 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 13.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 13.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 13.
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+(/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Data encoding 'utf8' specified.
+(biblatex)             No need to reencode data.
+\openout3 = `manuscript-blx.bib'.
 
-Underfull \hbox (badness 5345) in paragraph at lines 20--21
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'manuscript.bbl' found.
+(./manuscript.bbl)
+Package biblatex Info: Reference section=0 on input line 11.
+Package biblatex Info: Reference segment=0 on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 16.
+
+Underfull \hbox (badness 5345) in paragraph at lines 24--25
 \OT1/cmr/m/n/10 (LLM) by Ope-nAI (San Fran-cisco, Cal-i-for-
  []
 
 
-Underfull \hbox (badness 1540) in paragraph at lines 20--21
-\OT1/cmr/m/n/10 nia, United States of Amer-ica) in 2018 [[]],
+Underfull \hbox (badness 1540) in paragraph at lines 24--25
+\OT1/cmr/m/n/10 nia, United States of Amer-ica) in 2018 [[]15[]],
  []
 
 [1{/Users/wilkox/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
@@ -245,218 +508,215 @@ Underfull \hbox (badness 1540) in paragraph at lines 20--21
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 32.
+(Font)              <7> on input line 36.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 32.
+(Font)              <5> on input line 36.
 
-Underfull \hbox (badness 1137) in paragraph at lines 38--39
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 42--43
 []\OT1/cmr/m/n/10 The \OT1/cmtt/m/n/10 screen[]source() \OT1/cmr/m/n/10 func-tion per-forms the
  []
 
-<./fig_1.pdf, id=108, 450.68375pt x 302.12875pt>
+[2]
+<./fig_1.pdf, id=121, 450.68375pt x 302.12875pt>
 File: ./fig_1.pdf Graphic file (type pdf)
 <use ./fig_1.pdf>
-Package pdftex.def Info: ./fig_1.pdf  used on input line 42.
+Package pdftex.def Info: ./fig_1.pdf  used on input line 46.
 (pdftex.def)             Requested size: 452.0pt x 303.02696pt.
-[2] [3 <./fig_1.pdf>]
-<./fig_2a.pdf, id=227, 450.68375pt x 576.1525pt>
+<./fig_2a.pdf, id=127, 450.68375pt x 576.1525pt>
 File: ./fig_2a.pdf Graphic file (type pdf)
 <use ./fig_2a.pdf>
-Package pdftex.def Info: ./fig_2a.pdf  used on input line 56.
+Package pdftex.def Info: ./fig_2a.pdf  used on input line 60.
 (pdftex.def)             Requested size: 397.62756pt x 508.30365pt.
-
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.57 ... influence GPT-4 towards making an error.}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.57 ... influence GPT-4 towards making an error.}
-                                                  
-<./fig_2b.pdf, id=228, 450.68375pt x 140.525pt>
+<./fig_2b.pdf, id=128, 450.68375pt x 140.525pt>
 File: ./fig_2b.pdf Graphic file (type pdf)
 <use ./fig_2b.pdf>
-Package pdftex.def Info: ./fig_2b.pdf  used on input line 63.
+Package pdftex.def Info: ./fig_2b.pdf  used on input line 67.
 (pdftex.def)             Requested size: 452.0pt x 140.94276pt.
-<./fig_2c.pdf, id=231, 450.68375pt x 952.55875pt>
+<./fig_2c.pdf, id=131, 450.68375pt x 952.55875pt>
 File: ./fig_2c.pdf Graphic file (type pdf)
 <use ./fig_2c.pdf>
-Package pdftex.def Info: ./fig_2c.pdf  used on input line 70.
+Package pdftex.def Info: ./fig_2c.pdf  used on input line 74.
 (pdftex.def)             Requested size: 240.49794pt x 508.31303pt.
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 81.
+               Default added (so using `tbp') on input line 85.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 Sources
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 Complementary,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 Al-ter-na-tive,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 and In-te-gra-tive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 Medicine-Specific
  []
 
 
-Underfull \hbox (badness 7415) in paragraph at lines 96--96
+Underfull \hbox (badness 7415) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 COVID-19 Mis-in-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 `TITLE AB-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 STRACT FULL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 TEXT SCREEN-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 COVID-19
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 SM Mis-
  []
 
 
-Underfull \hbox (badness 1189) in paragraph at lines 96--96
+Underfull \hbox (badness 1189) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 Scoping Re-view {
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 `Melanoma
  []
 
 
-Underfull \hbox (badness 4403) in paragraph at lines 96--96
+Underfull \hbox (badness 4403) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 tion Scop-ing Re-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 Australian So-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 lastal-gia Scop-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 `Solastalgia
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 re-screening
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 and ex-trac-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 spread-sheet Dec
  []
 
 
-Underfull \hbox (badness 1087) in paragraph at lines 96--96
+Underfull \hbox (badness 1087) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 Social Norms and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 ings Ex-trac-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 TOP UP.xlsx`,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 `Nov20 Stage
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 2 Re-moval of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 du-pli-cates and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 Teachers' soft
  []
 
 
-Underfull \hbox (badness 2080) in paragraph at lines 96--96
+Underfull \hbox (badness 2080) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 skills: a Scop-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 []|\OT1/cmr/m/n/10 `Teachers\TS1/cmr/m/n/10 ´ \OT1/cmr/m/n/10 Soft
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--96
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 Skills a SR -
  []
 
 
-Underfull \hbox (badness 4543) in paragraph at lines 96--96
+Underfull \hbox (badness 4543) in paragraph at lines 100--100
 \OT1/cmr/m/n/10 Screen-ing NM &
  []
 
-[4] [5 <./fig_2a.pdf>] [6]
-<./fig_3.pdf, id=370, 449.68pt x 145.54375pt>
+[3] [4 <./fig_1.pdf>] [5
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.107 \subsection
+                 {Comparison to zero-shot method} <./fig_2a.pdf>] [6]
+<./fig_3.pdf, id=371, 449.68pt x 145.54375pt>
 File: ./fig_3.pdf Graphic file (type pdf)
 <use ./fig_3.pdf>
-Package pdftex.def Info: ./fig_3.pdf  used on input line 112.
+Package pdftex.def Info: ./fig_3.pdf  used on input line 116.
 (pdftex.def)             Requested size: 449.6789pt x 145.54338pt.
-<./fig_4.pdf, id=374, 361.35pt x 361.35pt>
+<./fig_4.pdf, id=375, 289.08pt x 289.08pt>
 File: ./fig_4.pdf Graphic file (type pdf)
 <use ./fig_4.pdf>
-Package pdftex.def Info: ./fig_4.pdf  used on input line 123.
-(pdftex.def)             Requested size: 221.0pt x 221.00212pt.
+Package pdftex.def Info: ./fig_4.pdf  used on input line 127.
+(pdftex.def)             Requested size: 221.0pt x 220.99991pt.
 
-Underfull \hbox (badness 3199) in paragraph at lines 136--136
+Underfull \hbox (badness 3199) in paragraph at lines 140--140
 []\OT1/cmr/bx/n/12 Comparison to the zero-shot
  []
 
@@ -467,78 +727,104 @@ Underfull \vbox (badness 1584) has occurred while \output is active []
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.141 
+l.145 
        <./fig_3.pdf> <./fig_4.pdf>]
-Underfull \hbox (badness 1009) in paragraph at lines 150--151
+Underfull \hbox (badness 1009) in paragraph at lines 154--155
 \OT1/cmr/m/n/10 The use of Large Lan-guage Mod-els to screen
  []
 
-(./manuscript.bbl
-Underfull \hbox (badness 1009) in paragraph at lines 4--7
-[]\OT1/cmr/m/n/10 Hilary Ark-sey and Lisa O'Malley.  Scop-
- []
 
-
-Underfull \hbox (badness 2189) in paragraph at lines 24--27
-\OT1/cmr/m/n/10 Stephanie Holm-gren, Kather-ine E. Pelch,
- []
-
-
-Underfull \hbox (badness 1762) in paragraph at lines 24--27
-\OT1/cmr/m/n/10 Vickie Walker, An-drew A. Rooney, Mal-
- []
-
-
-Underfull \hbox (badness 2103) in paragraph at lines 39--42
-[]\OT1/cmr/m/n/10 Michael L. Mortensen, Gae-len P. Adam,
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [10]
-Underfull \hbox (badness 1975) in paragraph at lines 54--57
-[]\OT1/cmr/m/n/10 Micah D. J. Pe-ters, Casey Marnie, An-
+Underfull \hbox (badness 2050) in paragraph at lines 159--159
+[]\OT1/cmr/m/n/10 Takeshi Ko-jima et al. ``Large Lan-guage
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 54--57
-\OT1/cmr/m/n/10 drea C Tricco, Danielle Pol-lock, Zachary
+Underfull \hbox (badness 1253) in paragraph at lines 159--159
+[]\OT1/cmr/m/n/10 Michael L. Mortensen et al. ``An ex-plo-
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 74--77
-\OT1/cmr/m/n/10 i-mans, Ilya Sutskever, et al.  Im-prov-ing
+Underfull \hbox (badness 2376) in paragraph at lines 159--159
+[]\OT1/cmr/m/n/10 Alec Rad-ford et al. \OT1/cmr/m/it/10 Im-prov-ing lan-guage
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--87
+Underfull \hbox (badness 4266) in paragraph at lines 159--159
+\OT1/cmr/m/it/10 un-der-stand-ing by gen-er-a-tive pre-training\OT1/cmr/m/n/10 .
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 159--159
+\OT1/cmr/m/n/10 "[]$\OT1/cmtt/m/n/10 https : / / openai . com / research /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 159--159
 []\OT1/cmr/m/n/10 Claire Stans-field, James Thomas, and
  []
 
 
-Underfull \hbox (badness 3179) in paragraph at lines 99--102
+Underfull \hbox (badness 3977) in paragraph at lines 159--159
+\OT1/cmr/m/n/10 Josephine Ka-vanagh. ```Clus-ter-ing' doc-u-
+ []
+
+
+Underfull \hbox (badness 3407) in paragraph at lines 159--159
+\OT1/cmr/m/n/10 ments au-to-mat-i-cally to sup-port scop-ing
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 159--159
+\OT1/cmr/m/n/10 re-views of re-search: a case study''. In:
+ []
+
+
+Underfull \hbox (badness 4752) in paragraph at lines 159--159
+\OT1/cmr/m/it/10 Re-search Syn-the-sis Meth-ods \OT1/cmr/m/n/10 4.3 (2013),
+ []
+
+
+Underfull \hbox (badness 1303) in paragraph at lines 159--159
 \OT1/cmr/m/it/10 Briggs In-sti-tute Re-view-ers' Man-ual 2015:
  []
 
-) [11] (./manuscript.aux)
+
+Underfull \hbox (badness 1117) in paragraph at lines 159--159
+\OT1/cmr/m/n/10 ing Elic-its Rea-son-ing in Large Lan-guage
+ []
+
+
+Underfull \hbox (badness 2486) in paragraph at lines 159--159
+\OT1/cmr/m/it/10 cho-log-i-cal, Psy-cho-me-t-ric, and Per-son-al-ity
+ []
+
+[11] (./manuscript.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: 364280F066AB5EE3B4AD1346D18BAC10;1675.
+Package logreq Info: Writing requests to 'manuscript.run.xml'.
+\openout1 = `manuscript.run.xml'.
+
  ) 
 Here is how much of TeX's memory you used:
- 8393 strings out of 476894
- 132107 string characters out of 5808272
+ 15851 strings out of 476894
+ 284033 string characters out of 5808272
  1941791 words of memory out of 5000000
- 29554 multiletter control sequences out of 15000+600000
- 562865 words of font info for 52 fonts, out of 8000000 for 9000
+ 36951 multiletter control sequences out of 15000+600000
+ 563166 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,11n,79p,1996b,541s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </Users/wilkox/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on manuscript.pdf (11 pages, 263898 bytes).
+ 75i,11n,81p,1996b,1445s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </Users/wilkox/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on manuscript.pdf (11 pages, 285330 bytes).
 PDF statistics:
- 712 PDF objects out of 1000 (max. 8388607)
- 283 compressed objects within 3 object streams
+ 756 PDF objects out of 1000 (max. 8388607)
+ 322 compressed objects within 4 object streams
  53 named destinations out of 1000 (max. 500000)
  127 words of extra memory for PDF output out of 10000 (max. 10000000)
 
