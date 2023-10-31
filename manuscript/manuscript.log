@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.3)  3 OCT 2023 16:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.18)  31 OCT 2023 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **manuscript.tex
 (./manuscript.tex
 LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
+L3 programming layer <2023-10-10>
 (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -420,18 +420,18 @@ File: biblatex.cfg
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Document encoding is UTF8 ....
 (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2023-08-29 L3 programming layer (loader) 
+Package: expl3 2023-10-10 L3 programming layer (loader) 
 (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2023-10-10 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count405
 \l__pdf_internal_box=\box53
 ))
 Package biblatex Info: ... and expl3
-(biblatex)             2023-08-29 L3 programming layer (loader) 
+(biblatex)             2023-10-10 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
 (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (/Users/wilkox/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2023-08-29 L3 Experimental document command parser
+Package: xparse 2023-10-10 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
 ))
@@ -710,11 +710,11 @@ File: ./fig_3.pdf Graphic file (type pdf)
 <use ./fig_3.pdf>
 Package pdftex.def Info: ./fig_3.pdf  used on input line 116.
 (pdftex.def)             Requested size: 449.6789pt x 145.54338pt.
-<./fig_4.pdf, id=375, 289.08pt x 289.08pt>
+<./fig_4.pdf, id=375, 289.08pt x 216.81pt>
 File: ./fig_4.pdf Graphic file (type pdf)
 <use ./fig_4.pdf>
 Package pdftex.def Info: ./fig_4.pdf  used on input line 127.
-(pdftex.def)             Requested size: 221.0pt x 220.99991pt.
+(pdftex.def)             Requested size: 221.0pt x 165.74992pt.
 
 Underfull \hbox (badness 3199) in paragraph at lines 140--140
 []\OT1/cmr/bx/n/12 Comparison to the zero-shot
@@ -804,7 +804,7 @@ Underfull \hbox (badness 2486) in paragraph at lines 159--159
 [11] (./manuscript.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
+L3 programming layer <2023-10-10>
  ***********
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: 364280F066AB5EE3B4AD1346D18BAC10;1675.
@@ -813,15 +813,15 @@ Package logreq Info: Writing requests to 'manuscript.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 15851 strings out of 476894
- 284033 string characters out of 5808272
- 1941791 words of memory out of 5000000
- 36951 multiletter control sequences out of 15000+600000
+ 15851 strings out of 476470
+ 284038 string characters out of 5801435
+ 1944040 words of memory out of 5000000
+ 37375 multiletter control sequences out of 15000+600000
  563166 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,11n,81p,1996b,1445s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,81p,1996b,1447s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/wilkox/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/wilkox/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on manuscript.pdf (11 pages, 285330 bytes).
+Output written on manuscript.pdf (11 pages, 285449 bytes).
 PDF statistics:
  756 PDF objects out of 1000 (max. 8388607)
  322 compressed objects within 4 object streams
