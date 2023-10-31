@@ -16,7 +16,7 @@
   {}
 \endgroup
 
-\datalist[entry]{nyt/global//global/global}
+\datalist[entry]{none/global//global/global}
   \entry{Arksey.2005}{article}{}
     \name{author}{2}{}{%
       {{hash=AH}{%
@@ -36,8 +36,6 @@
     \strng{fullhash}{AHOL1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{A}
-    \field{sortinithash}{A}
     \verb{doi}
     \verb 10.1080/1364557032000119616
     \endverb
@@ -49,487 +47,58 @@
     \field{year}{2005}
   \endentry
 
-  \entry{Chai.2021}{article}{}
-    \name{author}{4}{}{%
-      {{hash=CKEK}{%
-         family={Chai},
-         familyi={C\bibinitperiod},
-         given={Kevin E.\bibnamedelima K.},
-         giveni={K\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim K\bibinitperiod},
+  \entry{Pham.2014}{article}{}
+    \name{author}{6}{}{%
+      {{hash=PMT}{%
+         family={Pham},
+         familyi={P\bibinitperiod},
+         given={Mai\bibnamedelima T.},
+         giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod},
       }}%
-      {{hash=LRLJ}{%
-         family={Lines},
-         familyi={L\bibinitperiod},
-         given={Robin L.\bibnamedelima J.},
-         giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim J\bibinitperiod},
-      }}%
-      {{hash=GDF}{%
-         family={Gucciardi},
-         familyi={G\bibinitperiod},
-         given={Daniel\bibnamedelima F.},
-         giveni={D\bibinitperiod\bibinitdelim F\bibinitperiod},
-      }}%
-      {{hash=NL}{%
-         family={Ng},
-         familyi={N\bibinitperiod},
-         given={Leo},
-         giveni={L\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{CKEK+1}
-    \strng{fullhash}{CKEKLRLJGDFNL1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{C}
-    \field{sortinithash}{C}
-    \verb{doi}
-    \verb 10.1186/s13643-021-01635-3
-    \endverb
-    \field{number}{1}
-    \field{pages}{93}
-    \field{title}{{Research Screener: a machine learning tool to semi-automate abstract screening for systematic reviews}}
-    \field{volume}{10}
-    \field{journaltitle}{Systematic Reviews}
-    \field{year}{2021}
-  \endentry
-
-  \entry{Gates.2019}{article}{}
-    \name{author}{7}{}{%
-      {{hash=GA}{%
-         family={Gates},
-         familyi={G\bibinitperiod},
-         given={Allison},
+      {{hash=RA}{%
+         family={Rajić},
+         familyi={R\bibinitperiod},
+         given={Andrijana},
          giveni={A\bibinitperiod},
       }}%
-      {{hash=GS}{%
-         family={Guitard},
+      {{hash=GJD}{%
+         family={Greig},
          familyi={G\bibinitperiod},
-         given={Samantha},
-         giveni={S\bibinitperiod},
+         given={Judy\bibnamedelima D.},
+         giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
       }}%
-      {{hash=PJ}{%
-         family={Pillay},
+      {{hash=SJM}{%
+         family={Sargeant},
+         familyi={S\bibinitperiod},
+         given={Jan\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Papadopoulos},
          familyi={P\bibinitperiod},
-         given={Jennifer},
-         giveni={J\bibinitperiod},
+         given={Andrew},
+         giveni={A\bibinitperiod},
       }}%
-      {{hash=ESA}{%
-         family={Elliott},
-         familyi={E\bibinitperiod},
-         given={Sarah\bibnamedelima A.},
+      {{hash=MSA}{%
+         family={McEwen},
+         familyi={M\bibinitperiod},
+         given={Scott\bibnamedelima A.},
          giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod},
       }}%
-      {{hash=DMP}{%
-         family={Dyson},
-         familyi={D\bibinitperiod},
-         given={Michele\bibnamedelima P.},
-         giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
-      }}%
-      {{hash=NAS}{%
-         family={Newton},
-         familyi={N\bibinitperiod},
-         given={Amanda\bibnamedelima S.},
-         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-      {{hash=HL}{%
-         family={Hartling},
-         familyi={H\bibinitperiod},
-         given={Lisa},
-         giveni={L\bibinitperiod},
-      }}%
     }
-    \strng{namehash}{GA+1}
-    \strng{fullhash}{GAGSPJESADMPNASHL1}
+    \strng{namehash}{PMT+1}
+    \strng{fullhash}{PMTRAGJDSJMPAMSA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{G}
-    \field{sortinithash}{G}
     \verb{doi}
-    \verb 10.1186/s13643-019-1222-2
+    \verb 10.1002/jrsm.1123
     \endverb
-    \field{number}{1}
-    \field{pages}{278}
-    \field{title}{{Performance and usability of machine learning for screening in systematic reviews: a comparative evaluation of three tools}}
-    \field{volume}{8}
-    \field{journaltitle}{Systematic Reviews}
-    \field{year}{2019}
-  \endentry
-
-  \entry{Guo.2023}{article}{}
-    \name{author}{6}{}{%
-      {{hash=GE}{%
-         family={Guo},
-         familyi={G\bibinitperiod},
-         given={Eddie},
-         giveni={E\bibinitperiod},
-      }}%
-      {{hash=GM}{%
-         family={Gupta},
-         familyi={G\bibinitperiod},
-         given={Mehul},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=DJ}{%
-         family={Deng},
-         familyi={D\bibinitperiod},
-         given={Jiawen},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=PYJ}{%
-         family={Park},
-         familyi={P\bibinitperiod},
-         given={Ye-Jean},
-         giveni={Y\bibinithyphendelim J\bibinitperiod},
-      }}%
-      {{hash=PM}{%
-         family={Paget},
-         familyi={P\bibinitperiod},
-         given={Mike},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=NC}{%
-         family={Naugler},
-         familyi={N\bibinitperiod},
-         given={Christopher},
-         giveni={C\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{GE+1}
-    \strng{fullhash}{GEGMDJPYJPMNC1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{G}
-    \field{sortinithash}{G}
-    \verb{doi}
-    \verb 10.48550/arxiv.2305.00844
-    \endverb
-    \field{title}{Automated Paper Screening for Clinical Reviews Using Large Language Models}
-    \field{journaltitle}{arXiv}
-    \field{year}{2023}
-  \endentry
-
-  \entry{Howard.2016}{article}{}
-    \name{author}{13}{}{%
-      {{hash=HBE}{%
-         family={Howard},
-         familyi={H\bibinitperiod},
-         given={Brian\bibnamedelima E.},
-         giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod},
-      }}%
-      {{hash=PJ}{%
-         family={Phillips},
-         familyi={P\bibinitperiod},
-         given={Jason},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=MK}{%
-         family={Miller},
-         familyi={M\bibinitperiod},
-         given={Kyle},
-         giveni={K\bibinitperiod},
-      }}%
-      {{hash=TA}{%
-         family={Tandon},
-         familyi={T\bibinitperiod},
-         given={Arpit},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=MD}{%
-         family={Mav},
-         familyi={M\bibinitperiod},
-         given={Deepak},
-         giveni={D\bibinitperiod},
-      }}%
-      {{hash=SMR}{%
-         family={Shah},
-         familyi={S\bibinitperiod},
-         given={Mihir\bibnamedelima R.},
-         giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
-      }}%
-      {{hash=HS}{%
-         family={Holmgren},
-         familyi={H\bibinitperiod},
-         given={Stephanie},
-         giveni={S\bibinitperiod},
-      }}%
-      {{hash=PKE}{%
-         family={Pelch},
-         familyi={P\bibinitperiod},
-         given={Katherine\bibnamedelima E.},
-         giveni={K\bibinitperiod\bibinitdelim E\bibinitperiod},
-      }}%
-      {{hash=WV}{%
-         family={Walker},
-         familyi={W\bibinitperiod},
-         given={Vickie},
-         giveni={V\bibinitperiod},
-      }}%
-      {{hash=RAA}{%
-         family={Rooney},
-         familyi={R\bibinitperiod},
-         given={Andrew\bibnamedelima A.},
-         giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod},
-      }}%
-      {{hash=MM}{%
-         family={Macleod},
-         familyi={M\bibinitperiod},
-         given={Malcolm},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=SRR}{%
-         family={Shah},
-         familyi={S\bibinitperiod},
-         given={Ruchir\bibnamedelima R.},
-         giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod},
-      }}%
-      {{hash=TK}{%
-         family={Thayer},
-         familyi={T\bibinitperiod},
-         given={Kristina},
-         giveni={K\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{HBE+1}
-    \strng{fullhash}{HBEPJMKTAMDSMRHSPKEWVRAAMMSRRTK1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{H}
-    \field{sortinithash}{H}
-    \verb{doi}
-    \verb 10.1186/s13643-016-0263-z
-    \endverb
-    \field{number}{1}
-    \field{pages}{87}
-    \field{title}{{SWIFT-Review: a text-mining workbench for systematic review}}
+    \field{number}{4}
+    \field{pages}{371\bibrangedash 385}
+    \field{title}{{A scoping review of scoping reviews: advancing the approach and enhancing the consistency}}
     \field{volume}{5}
-    \field{journaltitle}{Systematic Reviews}
-    \field{year}{2016}
-  \endentry
-
-  \entry{Khalil.2022}{article}{}
-    \name{author}{3}{}{%
-      {{hash=KH}{%
-         family={Khalil},
-         familyi={K\bibinitperiod},
-         given={Hanan},
-         giveni={H\bibinitperiod},
-      }}%
-      {{hash=AD}{%
-         family={Ameen},
-         familyi={A\bibinitperiod},
-         given={Daniel},
-         giveni={D\bibinitperiod},
-      }}%
-      {{hash=ZA}{%
-         family={Zarnegar},
-         familyi={Z\bibinitperiod},
-         given={Armita},
-         giveni={A\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{KHADZA1}
-    \strng{fullhash}{KHADZA1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \verb{doi}
-    \verb 10.1016/j.jclinepi.2021.12.005
-    \endverb
-    \field{pages}{22\bibrangedash 42}
-    \field{title}{{Tools to support the automation of systematic reviews: a scoping review}}
-    \field{volume}{144}
-    \field{journaltitle}{Journal of Clinical Epidemiology}
-    \field{year}{2022}
-  \endentry
-
-  \entry{Kojima.2022}{article}{}
-    \name{author}{5}{}{%
-      {{hash=KT}{%
-         family={Kojima},
-         familyi={K\bibinitperiod},
-         given={Takeshi},
-         giveni={T\bibinitperiod},
-      }}%
-      {{hash=GSS}{%
-         family={Gu},
-         familyi={G\bibinitperiod},
-         given={Shixiang\bibnamedelima Shane},
-         giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-      {{hash=RM}{%
-         family={Reid},
-         familyi={R\bibinitperiod},
-         given={Machel},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=MY}{%
-         family={Matsuo},
-         familyi={M\bibinitperiod},
-         given={Yutaka},
-         giveni={Y\bibinitperiod},
-      }}%
-      {{hash=IY}{%
-         family={Iwasawa},
-         familyi={I\bibinitperiod},
-         given={Yusuke},
-         giveni={Y\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{KT+1}
-    \strng{fullhash}{KTGSSRMMYIY1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \verb{doi}
-    \verb 10.48550/arxiv.2205.11916
-    \endverb
-    \field{title}{Large Language Models are Zero-Shot Reasoners}
-    \field{journaltitle}{arXiv}
-    \field{year}{2022}
-  \endentry
-
-  \entry{Mortensen.2017}{article}{}
-    \name{author}{5}{}{%
-      {{hash=MML}{%
-         family={Mortensen},
-         familyi={M\bibinitperiod},
-         given={Michael\bibnamedelima L.},
-         giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
-      }}%
-      {{hash=AGP}{%
-         family={Adam},
-         familyi={A\bibinitperiod},
-         given={Gaelen\bibnamedelima P.},
-         giveni={G\bibinitperiod\bibinitdelim P\bibinitperiod},
-      }}%
-      {{hash=TTA}{%
-         family={Trikalinos},
-         familyi={T\bibinitperiod},
-         given={Thomas\bibnamedelima A.},
-         giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod},
-      }}%
-      {{hash=KT}{%
-         family={Kraska},
-         familyi={K\bibinitperiod},
-         given={Tim},
-         giveni={T\bibinitperiod},
-      }}%
-      {{hash=WBC}{%
-         family={Wallace},
-         familyi={W\bibinitperiod},
-         given={Byron\bibnamedelima C.},
-         giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{MML+1}
-    \strng{fullhash}{MMLAGPTTAKTWBC1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{M}
-    \field{sortinithash}{M}
-    \verb{doi}
-    \verb 10.1002/jrsm.1252
-    \endverb
-    \field{number}{3}
-    \field{pages}{366\bibrangedash 386}
-    \field{title}{{An exploration of crowdsourcing citation screening for systematic reviews}}
-    \field{volume}{8}
     \field{journaltitle}{Research Synthesis Methods}
-    \field{year}{2017}
-  \endentry
-
-  \entry{OpenAI.2023}{misc}{}
-    \name{author}{1}{}{%
-      {{hash=O}{%
-         family={OpenAI},
-         familyi={O\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{O1}
-    \strng{fullhash}{O1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{O}
-    \field{sortinithash}{O}
-    \field{howpublished}{"\url{https://openai.com/blog/chatgpt}"}
-    \field{title}{Introducing ChatGPT}
-    \field{year}{2023}
-  \endentry
-
-  \entry{Peters.2020}{article}{}
-    \name{author}{9}{}{%
-      {{hash=PMDJ}{%
-         family={Peters},
-         familyi={P\bibinitperiod},
-         given={Micah D.\bibnamedelima J.},
-         giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim J\bibinitperiod},
-      }}%
-      {{hash=MC}{%
-         family={Marnie},
-         familyi={M\bibinitperiod},
-         given={Casey},
-         giveni={C\bibinitperiod},
-      }}%
-      {{hash=TAC}{%
-         family={Tricco},
-         familyi={T\bibinitperiod},
-         given={Andrea\bibnamedelima C},
-         giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
-      }}%
-      {{hash=PD}{%
-         family={Pollock},
-         familyi={P\bibinitperiod},
-         given={Danielle},
-         giveni={D\bibinitperiod},
-      }}%
-      {{hash=MZ}{%
-         family={Munn},
-         familyi={M\bibinitperiod},
-         given={Zachary},
-         giveni={Z\bibinitperiod},
-      }}%
-      {{hash=AL}{%
-         family={Alexander},
-         familyi={A\bibinitperiod},
-         given={Lyndsay},
-         giveni={L\bibinitperiod},
-      }}%
-      {{hash=MP}{%
-         family={McInerney},
-         familyi={M\bibinitperiod},
-         given={Patricia},
-         giveni={P\bibinitperiod},
-      }}%
-      {{hash=GCM}{%
-         family={Godfrey},
-         familyi={G\bibinitperiod},
-         given={Christina\bibnamedelima M},
-         giveni={C\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-      {{hash=KH}{%
-         family={Khalil},
-         familyi={K\bibinitperiod},
-         given={Hanan},
-         giveni={H\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{PMDJ+1}
-    \strng{fullhash}{PMDJMCTACPDMZALMPGCMKH1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{P}
-    \field{sortinithash}{P}
-    \verb{doi}
-    \verb 10.11124/jbies-20-00167
-    \endverb
-    \field{number}{10}
-    \field{pages}{2119–2126}
-    \field{title}{Updated methodological guidance for the conduct of scoping reviews}
-    \field{volume}{18}
-    \field{journaltitle}{JBI Evidence Synthesis}
-    \field{year}{2020}
+    \field{year}{2014}
   \endentry
 
   \entry{Peters.2021}{article}{}
@@ -617,8 +186,6 @@
     \strng{fullhash}{PMDJMCCHGCMHSHTLEVLEOKKTOWMGZWTAC1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{P}
-    \field{sortinithash}{P}
     \verb{doi}
     \verb 10.1186/s13643-021-01821-3
     \endverb
@@ -628,6 +195,138 @@
     \field{volume}{10}
     \field{journaltitle}{Systematic Reviews}
     \field{year}{2021}
+  \endentry
+
+  \entry{Sutton.2019}{article}{}
+    \name{author}{4}{}{%
+      {{hash=SA}{%
+         family={Sutton},
+         familyi={S\bibinitperiod},
+         given={Anthea},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CM}{%
+         family={Clowes},
+         familyi={C\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PL}{%
+         family={Preston},
+         familyi={P\bibinitperiod},
+         given={Louise},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Booth},
+         familyi={B\bibinitperiod},
+         given={Andrew},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SA+1}
+    \strng{fullhash}{SACMPLBA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1111/hir.12276
+    \endverb
+    \field{number}{3}
+    \field{pages}{202\bibrangedash 222}
+    \field{title}{{Meeting the review family: exploring review types and associated information retrieval requirements}}
+    \field{volume}{36}
+    \field{journaltitle}{Health Information \& Libraries Journal}
+    \field{year}{2019}
+  \endentry
+
+  \entry{JBI.2015}{book}{}
+    \name{author}{1}{}{%
+      {{hash=T}{%
+         family={{The Joanna Briggs Institute}},
+         familyi={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {The Joanna Briggs Institute}%
+    }
+    \strng{namehash}{T1}
+    \strng{fullhash}{T1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{The Joanna Briggs Institute Reviewers’ Manual 2015: Methodology for JBI Scoping Reviews}
+    \field{year}{2015}
+  \endentry
+
+  \entry{Peters.2020}{article}{}
+    \name{author}{9}{}{%
+      {{hash=PMDJ}{%
+         family={Peters},
+         familyi={P\bibinitperiod},
+         given={Micah D.\bibnamedelima J.},
+         giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=MC}{%
+         family={Marnie},
+         familyi={M\bibinitperiod},
+         given={Casey},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=TAC}{%
+         family={Tricco},
+         familyi={T\bibinitperiod},
+         given={Andrea\bibnamedelima C},
+         giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=PD}{%
+         family={Pollock},
+         familyi={P\bibinitperiod},
+         given={Danielle},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=MZ}{%
+         family={Munn},
+         familyi={M\bibinitperiod},
+         given={Zachary},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=AL}{%
+         family={Alexander},
+         familyi={A\bibinitperiod},
+         given={Lyndsay},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=MP}{%
+         family={McInerney},
+         familyi={M\bibinitperiod},
+         given={Patricia},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=GCM}{%
+         family={Godfrey},
+         familyi={G\bibinitperiod},
+         given={Christina\bibnamedelima M},
+         giveni={C\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=KH}{%
+         family={Khalil},
+         familyi={K\bibinitperiod},
+         given={Hanan},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PMDJ+1}
+    \strng{fullhash}{PMDJMCTACPDMZALMPGCMKH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.11124/jbies-20-00167
+    \endverb
+    \field{number}{10}
+    \field{pages}{2119–2126}
+    \field{title}{Updated methodological guidance for the conduct of scoping reviews}
+    \field{volume}{18}
+    \field{journaltitle}{JBI Evidence Synthesis}
+    \field{year}{2020}
   \endentry
 
   \entry{JBI.2020}{inbook}{}
@@ -690,8 +389,6 @@
     \strng{fullhash}{PMDGCMPMZTACKH1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{P}
-    \field{sortinithash}{P}
     \field{booktitle}{JBI Manual for Evidence Synthesis}
     \verb{doi}
     \verb 10.46658/jbimes-20-12
@@ -702,128 +399,6 @@
     \verb https://synthesismanual.jbi.global/
     \endverb
     \field{year}{2020}
-  \endentry
-
-  \entry{Pham.2014}{article}{}
-    \name{author}{6}{}{%
-      {{hash=PMT}{%
-         family={Pham},
-         familyi={P\bibinitperiod},
-         given={Mai\bibnamedelima T.},
-         giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod},
-      }}%
-      {{hash=RA}{%
-         family={Rajić},
-         familyi={R\bibinitperiod},
-         given={Andrijana},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=GJD}{%
-         family={Greig},
-         familyi={G\bibinitperiod},
-         given={Judy\bibnamedelima D.},
-         giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
-      }}%
-      {{hash=SJM}{%
-         family={Sargeant},
-         familyi={S\bibinitperiod},
-         given={Jan\bibnamedelima M.},
-         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-      {{hash=PA}{%
-         family={Papadopoulos},
-         familyi={P\bibinitperiod},
-         given={Andrew},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=MSA}{%
-         family={McEwen},
-         familyi={M\bibinitperiod},
-         given={Scott\bibnamedelima A.},
-         giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{PMT+1}
-    \strng{fullhash}{PMTRAGJDSJMPAMSA1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{P}
-    \field{sortinithash}{P}
-    \verb{doi}
-    \verb 10.1002/jrsm.1123
-    \endverb
-    \field{number}{4}
-    \field{pages}{371\bibrangedash 385}
-    \field{title}{{A scoping review of scoping reviews: advancing the approach and enhancing the consistency}}
-    \field{volume}{5}
-    \field{journaltitle}{Research Synthesis Methods}
-    \field{year}{2014}
-  \endentry
-
-  \entry{R.2023}{manual}{}
-    \name{author}{1}{}{%
-      {{hash=R}{%
-         family={{R Core Team}},
-         familyi={R\bibinitperiod},
-      }}%
-    }
-    \list{organization}{1}{%
-      {R Foundation for Statistical Computing}%
-    }
-    \strng{namehash}{R1}
-    \strng{fullhash}{R1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{R}
-    \field{sortinithash}{R}
-    \field{title}{R: A Language and Environment for Statistical Computing}
-    \verb{url}
-    \verb https://www.R-project.org/
-    \endverb
-    \list{location}{1}{%
-      {Vienna, Austria}%
-    }
-    \field{year}{2023}
-  \endentry
-
-  \entry{Radford.2018}{misc}{}
-    \true{moreauthor}
-    \true{morelabelname}
-    \name{author}{4}{}{%
-      {{hash=RA}{%
-         family={Radford},
-         familyi={R\bibinitperiod},
-         given={Alec},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=NK}{%
-         family={Narasimhan},
-         familyi={N\bibinitperiod},
-         given={Karthik},
-         giveni={K\bibinitperiod},
-      }}%
-      {{hash=ST}{%
-         family={Salimans},
-         familyi={S\bibinitperiod},
-         given={Tim},
-         giveni={T\bibinitperiod},
-      }}%
-      {{hash=SI}{%
-         family={Sutskever},
-         familyi={S\bibinitperiod},
-         given={Ilya},
-         giveni={I\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{RA+1}
-    \strng{fullhash}{RANKSTSI+1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{R}
-    \field{sortinithash}{R}
-    \field{howpublished}{"\url{https://openai.com/research/language-unsupervised}"}
-    \field{title}{Improving language understanding by generative pre-training}
-    \field{year}{2018}
   \endentry
 
   \entry{Shemilt.2014}{article}{}
@@ -881,8 +456,6 @@
     \strng{fullhash}{SISAHGJMTMODOAKMPTJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
     \verb{doi}
     \verb 10.1002/jrsm.1093
     \endverb
@@ -892,6 +465,144 @@
     \field{volume}{5}
     \field{journaltitle}{Research Synthesis Methods}
     \field{year}{2014}
+  \endentry
+
+  \entry{Howard.2016}{article}{}
+    \name{author}{13}{}{%
+      {{hash=HBE}{%
+         family={Howard},
+         familyi={H\bibinitperiod},
+         given={Brian\bibnamedelima E.},
+         giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Phillips},
+         familyi={P\bibinitperiod},
+         given={Jason},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Miller},
+         familyi={M\bibinitperiod},
+         given={Kyle},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Tandon},
+         familyi={T\bibinitperiod},
+         given={Arpit},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MD}{%
+         family={Mav},
+         familyi={M\bibinitperiod},
+         given={Deepak},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SMR}{%
+         family={Shah},
+         familyi={S\bibinitperiod},
+         given={Mihir\bibnamedelima R.},
+         giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=HS}{%
+         family={Holmgren},
+         familyi={H\bibinitperiod},
+         given={Stephanie},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=PKE}{%
+         family={Pelch},
+         familyi={P\bibinitperiod},
+         given={Katherine\bibnamedelima E.},
+         giveni={K\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=WV}{%
+         family={Walker},
+         familyi={W\bibinitperiod},
+         given={Vickie},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=RAA}{%
+         family={Rooney},
+         familyi={R\bibinitperiod},
+         given={Andrew\bibnamedelima A.},
+         giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Macleod},
+         familyi={M\bibinitperiod},
+         given={Malcolm},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SRR}{%
+         family={Shah},
+         familyi={S\bibinitperiod},
+         given={Ruchir\bibnamedelima R.},
+         giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=TK}{%
+         family={Thayer},
+         familyi={T\bibinitperiod},
+         given={Kristina},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HBE+1}
+    \strng{fullhash}{HBEPJMKTAMDSMRHSPKEWVRAAMMSRRTK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1186/s13643-016-0263-z
+    \endverb
+    \field{number}{1}
+    \field{pages}{87}
+    \field{title}{{SWIFT-Review: a text-mining workbench for systematic review}}
+    \field{volume}{5}
+    \field{journaltitle}{Systematic Reviews}
+    \field{year}{2016}
+  \endentry
+
+  \entry{Chai.2021}{article}{}
+    \name{author}{4}{}{%
+      {{hash=CKEK}{%
+         family={Chai},
+         familyi={C\bibinitperiod},
+         given={Kevin E.\bibnamedelima K.},
+         giveni={K\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=LRLJ}{%
+         family={Lines},
+         familyi={L\bibinitperiod},
+         given={Robin L.\bibnamedelima J.},
+         giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=GDF}{%
+         family={Gucciardi},
+         familyi={G\bibinitperiod},
+         given={Daniel\bibnamedelima F.},
+         giveni={D\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=NL}{%
+         family={Ng},
+         familyi={N\bibinitperiod},
+         given={Leo},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CKEK+1}
+    \strng{fullhash}{CKEKLRLJGDFNL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1186/s13643-021-01635-3
+    \endverb
+    \field{number}{1}
+    \field{pages}{93}
+    \field{title}{{Research Screener: a machine learning tool to semi-automate abstract screening for systematic reviews}}
+    \field{volume}{10}
+    \field{journaltitle}{Systematic Reviews}
+    \field{year}{2021}
   \endentry
 
   \entry{Stansfield.2013}{article}{}
@@ -919,8 +630,6 @@
     \strng{fullhash}{SCTJKJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
     \verb{doi}
     \verb 10.1002/jrsm.1082
     \endverb
@@ -932,48 +641,252 @@
     \field{year}{2013}
   \endentry
 
-  \entry{Sutton.2019}{article}{}
-    \name{author}{4}{}{%
-      {{hash=SA}{%
-         family={Sutton},
-         familyi={S\bibinitperiod},
-         given={Anthea},
-         giveni={A\bibinitperiod},
+  \entry{Mortensen.2017}{article}{}
+    \name{author}{5}{}{%
+      {{hash=MML}{%
+         family={Mortensen},
+         familyi={M\bibinitperiod},
+         given={Michael\bibnamedelima L.},
+         giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
       }}%
-      {{hash=CM}{%
-         family={Clowes},
-         familyi={C\bibinitperiod},
-         given={Mark},
-         giveni={M\bibinitperiod},
+      {{hash=AGP}{%
+         family={Adam},
+         familyi={A\bibinitperiod},
+         given={Gaelen\bibnamedelima P.},
+         giveni={G\bibinitperiod\bibinitdelim P\bibinitperiod},
       }}%
-      {{hash=PL}{%
-         family={Preston},
-         familyi={P\bibinitperiod},
-         given={Louise},
-         giveni={L\bibinitperiod},
+      {{hash=TTA}{%
+         family={Trikalinos},
+         familyi={T\bibinitperiod},
+         given={Thomas\bibnamedelima A.},
+         giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod},
       }}%
-      {{hash=BA}{%
-         family={Booth},
-         familyi={B\bibinitperiod},
-         given={Andrew},
+      {{hash=KT}{%
+         family={Kraska},
+         familyi={K\bibinitperiod},
+         given={Tim},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=WBC}{%
+         family={Wallace},
+         familyi={W\bibinitperiod},
+         given={Byron\bibnamedelima C.},
+         giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MML+1}
+    \strng{fullhash}{MMLAGPTTAKTWBC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1002/jrsm.1252
+    \endverb
+    \field{number}{3}
+    \field{pages}{366\bibrangedash 386}
+    \field{title}{{An exploration of crowdsourcing citation screening for systematic reviews}}
+    \field{volume}{8}
+    \field{journaltitle}{Research Synthesis Methods}
+    \field{year}{2017}
+  \endentry
+
+  \entry{Khalil.2022}{article}{}
+    \name{author}{3}{}{%
+      {{hash=KH}{%
+         family={Khalil},
+         familyi={K\bibinitperiod},
+         given={Hanan},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=AD}{%
+         family={Ameen},
+         familyi={A\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=ZA}{%
+         family={Zarnegar},
+         familyi={Z\bibinitperiod},
+         given={Armita},
          giveni={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{SA+1}
-    \strng{fullhash}{SACMPLBA1}
+    \strng{namehash}{KHADZA1}
+    \strng{fullhash}{KHADZA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
     \verb{doi}
-    \verb 10.1111/hir.12276
+    \verb 10.1016/j.jclinepi.2021.12.005
     \endverb
-    \field{number}{3}
-    \field{pages}{202\bibrangedash 222}
-    \field{title}{{Meeting the review family: exploring review types and associated information retrieval requirements}}
-    \field{volume}{36}
-    \field{journaltitle}{Health Information \& Libraries Journal}
+    \field{pages}{22\bibrangedash 42}
+    \field{title}{{Tools to support the automation of systematic reviews: a scoping review}}
+    \field{volume}{144}
+    \field{journaltitle}{Journal of Clinical Epidemiology}
+    \field{year}{2022}
+  \endentry
+
+  \entry{Gates.2019}{article}{}
+    \name{author}{7}{}{%
+      {{hash=GA}{%
+         family={Gates},
+         familyi={G\bibinitperiod},
+         given={Allison},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Guitard},
+         familyi={G\bibinitperiod},
+         given={Samantha},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Pillay},
+         familyi={P\bibinitperiod},
+         given={Jennifer},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ESA}{%
+         family={Elliott},
+         familyi={E\bibinitperiod},
+         given={Sarah\bibnamedelima A.},
+         giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=DMP}{%
+         family={Dyson},
+         familyi={D\bibinitperiod},
+         given={Michele\bibnamedelima P.},
+         giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=NAS}{%
+         family={Newton},
+         familyi={N\bibinitperiod},
+         given={Amanda\bibnamedelima S.},
+         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=HL}{%
+         family={Hartling},
+         familyi={H\bibinitperiod},
+         given={Lisa},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GA+1}
+    \strng{fullhash}{GAGSPJESADMPNASHL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1186/s13643-019-1222-2
+    \endverb
+    \field{number}{1}
+    \field{pages}{278}
+    \field{title}{{Performance and usability of machine learning for screening in systematic reviews: a comparative evaluation of three tools}}
+    \field{volume}{8}
+    \field{journaltitle}{Systematic Reviews}
     \field{year}{2019}
+  \endentry
+
+  \entry{Radford.2018}{misc}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{4}{}{%
+      {{hash=RA}{%
+         family={Radford},
+         familyi={R\bibinitperiod},
+         given={Alec},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=NK}{%
+         family={Narasimhan},
+         familyi={N\bibinitperiod},
+         given={Karthik},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=ST}{%
+         family={Salimans},
+         familyi={S\bibinitperiod},
+         given={Tim},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=SI}{%
+         family={Sutskever},
+         familyi={S\bibinitperiod},
+         given={Ilya},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RA+1}
+    \strng{fullhash}{RANKSTSI+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{"\url{https://openai.com/research/language-unsupervised}"}
+    \field{title}{Improving language understanding by generative pre-training}
+    \field{year}{2018}
+  \endentry
+
+  \entry{OpenAI.2023}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=O}{%
+         family={OpenAI},
+         familyi={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{O1}
+    \strng{fullhash}{O1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{"\url{https://openai.com/blog/chatgpt}"}
+    \field{title}{Introducing ChatGPT}
+    \field{year}{2023}
+  \endentry
+
+  \entry{Guo.2023}{article}{}
+    \name{author}{6}{}{%
+      {{hash=GE}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Eddie},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Gupta},
+         familyi={G\bibinitperiod},
+         given={Mehul},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DJ}{%
+         family={Deng},
+         familyi={D\bibinitperiod},
+         given={Jiawen},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PYJ}{%
+         family={Park},
+         familyi={P\bibinitperiod},
+         given={Ye-Jean},
+         giveni={Y\bibinithyphendelim J\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Paget},
+         familyi={P\bibinitperiod},
+         given={Mike},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NC}{%
+         family={Naugler},
+         familyi={N\bibinitperiod},
+         given={Christopher},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GE+1}
+    \strng{fullhash}{GEGMDJPYJPMNC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.48550/arxiv.2305.00844
+    \endverb
+    \field{title}{Automated Paper Screening for Clinical Reviews Using Large Language Models}
+    \field{journaltitle}{arXiv}
+    \field{year}{2023}
   \endentry
 
   \entry{Syriani.2023}{article}{}
@@ -1001,31 +914,9 @@
     \strng{fullhash}{SEDIKG1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
     \field{title}{Assessing the Ability of ChatGPT to Screen Articles for Systematic Reviews}
     \field{journaltitle}{arXiv}
     \field{year}{2023}
-  \endentry
-
-  \entry{JBI.2015}{book}{}
-    \name{author}{1}{}{%
-      {{hash=T}{%
-         family={{The Joanna Briggs Institute}},
-         familyi={T\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {The Joanna Briggs Institute}%
-    }
-    \strng{namehash}{T1}
-    \strng{fullhash}{T1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{T}
-    \field{sortinithash}{T}
-    \field{title}{The Joanna Briggs Institute Reviewers’ Manual 2015: Methodology for JBI Scoping Reviews}
-    \field{year}{2015}
   \endentry
 
   \entry{Wei.2022}{article}{}
@@ -1089,41 +980,12 @@
     \strng{fullhash}{WJWXSDBMIBXFCELQZD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{W}
-    \field{sortinithash}{W}
     \verb{doi}
     \verb 10.48550/arxiv.2201.11903
     \endverb
     \field{title}{Chain of Thought Prompting Elicits Reasoning in Large Language Models}
     \field{journaltitle}{arXiv}
     \field{year}{2022}
-  \endentry
-
-  \entry{Revelle.2023}{manual}{}
-    \name{author}{1}{}{%
-      {{hash=W}{%
-         family={{William Revelle}},
-         familyi={W\bibinitperiod},
-      }}%
-    }
-    \list{organization}{1}{%
-      {Northwestern University}%
-    }
-    \strng{namehash}{W1}
-    \strng{fullhash}{W1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{W}
-    \field{sortinithash}{W}
-    \field{note}{R package version 2.3.6}
-    \field{title}{psych: Procedures for Psychological, Psychometric, and Personality Research}
-    \verb{url}
-    \verb https://CRAN.R-project.org/package=psych
-    \endverb
-    \list{location}{1}{%
-      {Evanston, Illinois}%
-    }
-    \field{year}{2023}
   \endentry
 
   \entry{Yao.2023}{article}{}
@@ -1175,13 +1037,105 @@
     \strng{fullhash}{YSYDZJSIGTLCYNK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{Y}
-    \field{sortinithash}{Y}
     \field{title}{Tree of Thoughts: Deliberate Problem Solving with Large Language Models}
     \verb{url}
     \verb https://arxiv.org/abs/2305.10601
     \endverb
     \field{journaltitle}{arXiv}
+    \field{year}{2023}
+  \endentry
+
+  \entry{R.2023}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=R}{%
+         family={{R Core Team}},
+         familyi={R\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {R Foundation for Statistical Computing}%
+    }
+    \strng{namehash}{R1}
+    \strng{fullhash}{R1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{R: A Language and Environment for Statistical Computing}
+    \verb{url}
+    \verb https://www.R-project.org/
+    \endverb
+    \list{location}{1}{%
+      {Vienna, Austria}%
+    }
+    \field{year}{2023}
+  \endentry
+
+  \entry{Kojima.2022}{article}{}
+    \name{author}{5}{}{%
+      {{hash=KT}{%
+         family={Kojima},
+         familyi={K\bibinitperiod},
+         given={Takeshi},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=GSS}{%
+         family={Gu},
+         familyi={G\bibinitperiod},
+         given={Shixiang\bibnamedelima Shane},
+         giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Reid},
+         familyi={R\bibinitperiod},
+         given={Machel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MY}{%
+         family={Matsuo},
+         familyi={M\bibinitperiod},
+         given={Yutaka},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=IY}{%
+         family={Iwasawa},
+         familyi={I\bibinitperiod},
+         given={Yusuke},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KT+1}
+    \strng{fullhash}{KTGSSRMMYIY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.48550/arxiv.2205.11916
+    \endverb
+    \field{title}{Large Language Models are Zero-Shot Reasoners}
+    \field{journaltitle}{arXiv}
+    \field{year}{2022}
+  \endentry
+
+  \entry{Revelle.2023}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=W}{%
+         family={{William Revelle}},
+         familyi={W\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Northwestern University}%
+    }
+    \strng{namehash}{W1}
+    \strng{fullhash}{W1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{R package version 2.3.6}
+    \field{title}{psych: Procedures for Psychological, Psychometric, and Personality Research}
+    \verb{url}
+    \verb https://CRAN.R-project.org/package=psych
+    \endverb
+    \list{location}{1}{%
+      {Evanston, Illinois}%
+    }
     \field{year}{2023}
   \endentry
 \enddatalist
