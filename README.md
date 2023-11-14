@@ -71,6 +71,13 @@ If instead you see:
 this means the environmental variable has not been set correctly. Note
 that this does not check whether or not you have stored a valid key.
 
+## Model
+
+The ‘gpt-4’ model is used by default. To use a different model, set the
+name of the model in an R environmental variable called ‘OPENAI_MODEL’
+(see previous section for instructions on setting an environmental
+variable).
+
 ## Screening sources
 
 ‘Source’ is the term used in GPTscreenR for any published scholarly
@@ -170,7 +177,7 @@ for understanding how GPT came to a particular recommendation. The
 `GPT_recommendation` column contains either ‘INCLUDE’ or ‘EXCLUDE’,
 representing GPT’s recommendation for each source.
 
-## Contribute your scoping review data to GPTscreenR
+## Please consider contributing your scoping review data
 
 If you’ve used GPTscreenR to help screen sources for a scoping review,
 please consider contributing some data to help monitor GPTscreenR’s
@@ -185,11 +192,10 @@ package. All you need to contribute are:
   - The consensus decision by human reviewers to include or exclude the
     source
 
-In recognition of your contribution, a citation to your study will be
+In recognition of your contribution, a citation to your review will be
 added to the GPTscreenR README. Of course, you are not expected to
 release data publicly until your review is published.
 
 If you have any questions, or to contribute data now, send an email to
-<gptscreenr@fastmail.fm>, [open a new
-issue](https://github.com/wilkox/GPTscreenR/issues/new), or [open a new
-pull request](https://github.com/wilkox/GPTscreenR/compare).
+<gptscreenr@fastmail.fm> or [open a new
+issue](https://github.com/wilkox/GPTscreenR/issues/new).

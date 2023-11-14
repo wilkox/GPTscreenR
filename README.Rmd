@@ -32,7 +32,7 @@ You can install the development version of GPTscreenR from [GitHub](https://gith
 devtools::install_github("wilkox/GPTscreenR")
 ```
 
-```{r load, echo = FALSE}
+```{r load, echo = FALSE, message = FALSE}
 library(GPTscreenR)
 library(cli)
 ```
@@ -62,6 +62,10 @@ If instead you see:
 ``✖ The `OPENAI_API_KEY` environmental variable is not set``
 
 this means the environmental variable has not been set correctly. Note that this does not check whether or not you have stored a valid key.
+
+## Model
+
+The 'gpt-4' model is used by default. To use a different model, set the name of the model in an R environmental variable called 'OPENAI\_MODEL' (see previous section for instructions on setting an environmental variable).
 
 ## Screening sources
 

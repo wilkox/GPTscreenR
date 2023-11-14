@@ -1,3 +1,10 @@
+# GPTscreenR (development version)
+
+## Minor changes
+
+- Users can now set the model to use with the `OPENAI_MODEL` environmental
+  variable
+
 # GPTscreenR 0.0.3
 
 ## Major changes
