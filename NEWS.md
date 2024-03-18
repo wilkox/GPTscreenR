@@ -1,5 +1,9 @@
 # GPTscreenR (development version)
 
+## Major changes
+
+- OpenAI API code moved to the lemur package (https://github.com/wilkox/lemur)
+
 ## Minor changes
 
 - Users can now set the model to use with the `OPENAI_MODEL` environmental

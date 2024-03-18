@@ -17,6 +17,14 @@ reviews](https://en.wikipedia.org/wiki/Systematic_review#Scoping_reviews).
 
 ## Installation
 
+GPTscreenR requires the [lemur
+package](https://github.com/wilkox/lemur). You can install the
+development version of lemur from [GitHub](https://github.com/) with:
+
+``` r
+devtools::install_github("wilkox/lemur")
+```
+
 You can install the development version of GPTscreenR from
 [GitHub](https://github.com/) with:
 

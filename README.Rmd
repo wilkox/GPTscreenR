@@ -26,6 +26,12 @@ GPTscreenR is an R package that uses [OpenAI's GPT large language model](https:/
 
 ## Installation
 
+GPTscreenR requires the [lemur package](https://github.com/wilkox/lemur). You can install the development version of lemur from [GitHub](https://github.com/) with:
+
+```{r install_lemur, eval=FALSE}
+devtools::install_github("wilkox/lemur")
+```
+
 You can install the development version of GPTscreenR from [GitHub](https://github.com/) with:
 
 ```{r install, eval=FALSE}
