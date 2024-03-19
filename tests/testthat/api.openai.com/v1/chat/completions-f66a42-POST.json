@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-94KEgIR9m9E5m6EJ2F9LYroH36hYZ",
+    "object": "chat.completion",
+    "created": 1710818126,
+    "model": "gpt-4-0613",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "1. The study population must be elderly people over the age of 65.\n2. The elderly people in the study must be living in residential aged care facilities that provide care and support for daily living activities and nursing services.\n3. Residential care in this context does not include independent living villages, hospitals, or hospices. It should be long-term.\n4. The study should have integrated therapy alpacas into their program of care for the residents.\n5. The study should be focused on examining the impact of therapy alpaca programs on stress reduction, emotional well-being, mental health, overall life satisfaction, or similar outcomes for residents."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 591,
+        "completion_tokens": 129,
+        "total_tokens": 720
+    },
+    "system_fingerprint": null
+}

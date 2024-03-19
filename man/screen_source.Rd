@@ -4,13 +4,7 @@
 \alias{screen_source}
 \title{Screen a source against review inclusion criteria}
 \usage{
-screen_source(
-  review_description,
-  title,
-  abstract,
-  .verbose = TRUE,
-  .dry_run = FALSE
-)
+screen_source(review_description, title, abstract, .verbose = TRUE)
 }
 \arguments{
 \item{review_description}{A description of the review, including objective
@@ -23,8 +17,6 @@ length 1}
 vector of length 1}
 
 \item{.verbose}{If FALSE, progress messages will be suppressed}
-
-\item{.dry_run}{If TRUE, calls to the GPT API will be skipped}
 }
 \description{
 Screen a source against review inclusion criteria

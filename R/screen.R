@@ -7,10 +7,9 @@
 #' @param abstract The abstract of the article to be screened, a character
 #' vector of length 1
 #' @param .verbose If FALSE, progress messages will be suppressed
-#' @param .dry_run If TRUE, calls to the GPT API will be skipped
 #'
 #' @export
-screen_source <- function(review_description, title, abstract, .verbose = TRUE, .dry_run = FALSE) {
+screen_source <- function(review_description, title, abstract, .verbose = TRUE) {
 
   # Validate arguments
   validate_screening_param <- function(param, name) {
@@ -49,10 +48,7 @@ screen_source <- function(review_description, title, abstract, .verbose = TRUE, 
     role = "system",
     content = "You must work step by step. FIRST, generate a numbered list of criteria that must be met for a source to be included."
   )
-  if (! .dry_run) conversation <- complete_GPT_tryCatch(
-    conversation,
-    .dry_run = .dry_run
-  )
+  conversation <- complete_GPT_tryCatch(conversation)
 
   # Instruct GPT to compare source against criteria
   if (.verbose) { cli::cli_progress_step("GPT comparing source against criteria") }
@@ -61,10 +57,7 @@ screen_source <- function(review_description, title, abstract, .verbose = TRUE, 
     role = "system",
     content = "NEXT, for each numbered criterion, decide whether the criterion is TRUE or FALSE for the source. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. For these situations, give your best guess. After giving your response of TRUE or FALSE, give a one sentence explanation for your response."
   )
-  if (! .dry_run) conversation <- complete_GPT_tryCatch(
-    conversation,
-    .dry_run = .dry_run
-  )
+  conversation <- complete_GPT_tryCatch(conversation)
 
   # Instruct GPT to give its final response
   if (.verbose) { cli::cli_progress_step("GPT giving its final recommendation") }
@@ -73,15 +66,10 @@ screen_source <- function(review_description, title, abstract, .verbose = TRUE, 
     role = "system",
     content = "FINALLY, consider your decisions on whether the source meets the conclusion criteria. Respond with a single word, either INCLUDE or EXCLUDE, representing your recommendation on whether the source meets the inclusion criteria. Do not write anything other than INCLUDE or EXCLUDE."
   )
-  if (! .dry_run) conversation <- complete_GPT_tryCatch(
-    conversation,
-    .dry_run = .dry_run
-  )
+  conversation <- complete_GPT_tryCatch(conversation)
 
   # Check recommendation is in required format
-  if (.dry_run) {
-    GPT_includes <- NA
-  } else if (! stringr::str_detect(last_message(conversation), 
+  if (! stringr::str_detect(last_message(conversation), 
                               "(INCLUDE|EXCLUDE)")) {
     if (.verbose) cli::cli_alert_warning(c("GPT's recommendation could not be parsed"))
     GPT_includes <- NA
@@ -146,10 +134,9 @@ review_description <- function(objective = NULL, population = NULL, concept = NU
 #' @param cache_file A file in which the sources list cache is kept (as RDS),
 #' either fs::path() or character vector of length 1
 #' @param .verbose If FALSE, progress messages will be suppressed
-#' @param .dry_run If TRUE, calls to the GPT API will be skipped
 #'
 #' @export
-screen_sources <- function(sources, review_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), .verbose = TRUE, .dry_run = FALSE) {
+screen_sources <- function(sources, review_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), .verbose = TRUE) {
 
   if (.verbose) cli::cli_h1("Preparing to screen sources")
 
@@ -194,7 +181,7 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
 
   # If cache file already exists, load and use it
   cache_file <- fs::path(cache_file)
-  if (fs::file_exists(cache_file) & ! .dry_run) {
+  if (fs::file_exists(cache_file)) {
     if (.verbose) cli::cli_alert_info("Loading cached results from {cache_file}")
     cached_sources <- readRDS(cache_file)
     sources <- dplyr::left_join(sources, cached_sources)
@@ -218,7 +205,7 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
     }
 
     if (.verbose) cli::cli_alert_info("Creating cache file {cache_file}")
-    if (! .dry_run) saveRDS(sources, cache_file)
+    saveRDS(sources, cache_file)
 
   }
 
@@ -249,13 +236,12 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
     # Screen the source and parse the response
     response <- screen_source(review_description, 
                               title = sources$title[next_i], abstract = sources$abstract[next_i], 
-                              .verbose = .verbose, .dry_run = .dry_run)
-    if (is.na(response$GPT_includes) & ! .dry_run & .verbose) {
+                              .verbose = .verbose)
+    if (is.na(response$GPT_includes) & .verbose) {
       cli::cli_alert_warning(c("GPT's recommendation could not be parsed. Discarding this response."))
       next
     }
     sources$conversation[[next_i]] <- response$conversation
-    if (.dry_run) response$GPT_includes <- TRUE
     sources$GPT_includes[next_i] <- response$GPT_includes
     if (.verbose) cli::cli_alert_info(stringr::str_c(
       "GPT recommends ",
@@ -263,7 +249,7 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
     ))
 
     # Sync the sources list to the cache file
-    if (! .dry_run) saveRDS(sources, cache_file)
+    saveRDS(sources, cache_file)
   }
 
   # Report on current state

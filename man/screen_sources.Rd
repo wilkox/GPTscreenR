@@ -10,8 +10,7 @@ screen_sources(
   n = NULL,
   random = TRUE,
   cache_file = fs::path("sources_cache.rds"),
-  .verbose = TRUE,
-  .dry_run = FALSE
+  .verbose = TRUE
 )
 }
 \arguments{
@@ -30,8 +29,6 @@ which sources are screened, defaults to TRUE}
 either fs::path() or character vector of length 1}
 
 \item{.verbose}{If FALSE, progress messages will be suppressed}
-
-\item{.dry_run}{If TRUE, calls to the GPT API will be skipped}
 }
 \description{
 To support multiple screening sessions, a cache of the sources list is

@@ -8,6 +8,8 @@
 
 - Users can now set the model to use with the `OPENAI_MODEL` environmental
   variable
+- Now using the httptest package for testing, all `.dry_run` arguments have
+  been removed
 
 # GPTscreenR 0.0.3
 

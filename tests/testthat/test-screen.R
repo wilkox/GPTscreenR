@@ -19,56 +19,50 @@ test_that("review_description() works", {
 
 })
 
-test_that("screen_source() inputs are correctly validated", {
+with_mock_api({ test_that("screen_source() inputs are correctly validated", {
 
   expect_no_error(screen_source(
     review_description = review_description,
     title = title,
     abstract = abstract,
-    .verbose = FALSE,
-    .dry_run = TRUE
+    .verbose = FALSE
   ))
 
   expect_no_warning(screen_source(
     review_description = review_description,
     title = title,
     abstract = abstract,
-    .verbose = FALSE,
-    .dry_run = TRUE
+    .verbose = FALSE
   ))
 
   expect_error(screen_source(
     review_description = FALSE,
     title = title,
     abstract = abstract,
-    .verbose = FALSE,
-    .dry_run = TRUE
+    .verbose = FALSE
   ))
 
   expect_error(screen_source(
     title = title,
     abstract = abstract,
-    .verbose = FALSE,
-    .dry_run = TRUE
+    .verbose = FALSE
   ))
 
   expect_warning(screen_source(
     review_description = "",
     title = title,
     abstract = abstract,
-    .verbose = FALSE,
-    .dry_run = TRUE
+    .verbose = FALSE
   ))
-})
+}) })
 
-test_that("Screening works", {
+with_mock_api({ test_that("Screening works", {
 
   expect_no_error(screen_source(review_description = review_description, title = title, 
-                                abstract = abstract, .verbose = FALSE, .dry_run = TRUE))
+                                abstract = abstract, .verbose = FALSE))
 
   expect_no_error(
-    screen_sources(sources = sources, review_description = review_description, .dry_run = TRUE, 
+    screen_sources(sources = sources, review_description = review_description,
                    .verbose = FALSE)
   ) 
-
-})
+}) })

@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-94KDomZIpwwzfNWYBqF5Jw56bRQb8",
+    "object": "chat.completion",
+    "created": 1710818072,
+    "model": "gpt-4-0613",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Review Objective: To review sources that focus on non-pharmacological interventions for reducing depression, anxiety and stress in nursing home residents.\n\nFor a source to be included, it must meet the following criteria:\n\n1. The source must focus specifically on non-pharmacological interventions for addressing depression, anxiety, and stress.\n2. The population targeted in the study must be nursing home residents.\n3. The source must present original research, not a review or opinion piece.\n4. The study presented in the source must use randomized trials or experiment.\n5. The source must be published in a reputable scholarly journal or by a respected research institution.\n6. The source must provide significant findings and substantial evidence to back up their conclusions.\n7. The intervention addressed in the study must be feasible and practical for implementation within the nursing home environment.\n8. The source must provide objective and reliable information on the effectiveness of the non-pharmacological intervention.\n9. The source must include quantitative data on the reduction of depression, anxiety, and stress in nursing home residents.\n10. The source must be written in English."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 350,
+        "completion_tokens": 218,
+        "total_tokens": 568
+    },
+    "system_fingerprint": null
+}
