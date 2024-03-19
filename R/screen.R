@@ -25,7 +25,7 @@ screen_source <- function(review_description, title, abstract, .verbose = TRUE) 
   # Initialise conversation with the system message providing instructions on
   # how to perform the screening
   if (.verbose) { cli::cli_progress_step("Initiating conversation with GPT") }
-  conversation <- GPT_messages(
+  conversation <- chat(
     role = "system",
     content = "You are helping academic researchers perform a scoping review. Your task is to screen a single source against the review criteria. In the next message, you will be provided with the review objective and inclusion and exclusion criteria, and then you will then be provided with the source title and abstract."
   )
