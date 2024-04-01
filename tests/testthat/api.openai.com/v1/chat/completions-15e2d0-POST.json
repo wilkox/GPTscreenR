@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-98zuEoTPjX5tCFd7JTb0NjXwD7ROQ",
+    "object": "chat.completion",
+    "created": 1711931618,
+    "model": "gpt-4-0125-preview",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "1. The source must focus on primary research regarding the use of therapy alpacs in enhancing the mental health and emotional well-being of elderly individuals.\n2. The population of interest is elderly people living in residential aged care facilities, defined as 65 years of age or older.\n3. The concept centers around residential aged care facilities that have utilized therapy alpacas as part of their care programs for residents.\n4. Residential aged care facilities are specifically defined as long-term places of residence that include support for activities of daily living (e.g., meal preparation, bathing, housekeeping) and nursing support (e.g., medication management), as well as other structured programs for entertainment and well-being.\n5. The study must exclude settings not offering daily living or nursing supports (e.g., independent living villages), or that are not intended for long-term residence for the elderly (e.g., hospitals or hospices).\n6. The context for inclusion is studies or trials examining the impact of therapy alpaca programs on outcomes such as stress reduction, emotional well-being, mental health, and overall life satisfaction of elderly residents."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 591,
+        "completion_tokens": 223,
+        "total_tokens": 814
+    },
+    "system_fingerprint": "fp_f38f4d6482"
+}

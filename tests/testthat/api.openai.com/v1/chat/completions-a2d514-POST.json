@@ -1,0 +1,23 @@
+{
+    "id": "chatcmpl-98ztLOleLxCuducAfZTGWUHH6PU89",
+    "object": "chat.completion",
+    "created": 1711931563,
+    "model": "gpt-4-0125-preview",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Certainly, here's a structured approach to devising inclusion and exclusion criteria for a scoping review, assuming a general objective related to evaluating interventions to reduce depression, anxiety, and stress in nursing home residents:\n\n### Inclusion Criteria:\n1. **Population**: Studies involving nursing home residents or similarly institutionalized elderly populations.\n2. **Intervention**: Research on interventions designed to reduce depression, anxiety, and stress (DAS).\n3. **Comparison/Control Group**: Studies that include a comparison or control group to assess the effectiveness of the intervention.\n4. **Outcomes**: Studies must measure outcomes related to depression, anxiety, and stress, using validated tools or scales.\n5. **Study Design**: Randomized Control Trials (RCTs), pilot trials, observational studies, case-control studies, cohort studies, and qualitative studies to capture a broad range of evidence.\n6. **Geographical Location**: No restrictions, to include a wide perspective.\n7. **Publication Date**: Studies published within the last 20 years, to ensure relevance and recency of data.\n8. **Language**: Studies published in English, due to language proficiency constraints of the review team.\n\n### Exclusion Criteria:\n1. **Population**: Studies focusing exclusively on populations not living in nursing homes or similar institutional care settings (e.g., community-dwelling elderly, hospitalized patients).\n2. **Intervention**: Studies examining interventions unrelated to reducing DAS (e.g., physical rehabilitation, dietary interventions without a mental health focus).\n3. **Outcomes**: Studies not measuring depression, anxiety, and stress as primary or secondary outcomes.\n4. **Study Design**: Editorials, opinion pieces, reviews, or conference abstracts, as these do not provide original research data.\n5. **Incomplete Data**: Studies with incomplete outcomes data or lacking clear methodology reporting.\n6. **Single Case Reports**: Due to the difficulty in generalizing findings from single individual experiences.\n\nThis set of criteria provides a structured approach to including and excluding sources for a comprehensive scoping review focused on interventions to mitigate depression, anxiety, and stress in elderly nursing home residents."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 350,
+        "completion_tokens": 421,
+        "total_tokens": 771
+    },
+    "system_fingerprint": "fp_166a8e22c6"
+}
