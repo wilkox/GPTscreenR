@@ -1,0 +1,27 @@
+{
+    "id": "chatcmpl-ADPqjoCw783a5P4VNmAgXPIq0kd8y",
+    "object": "chat.completion",
+    "created": 1727760993,
+    "model": "gpt-4o-2024-05-13",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "### Screening Against Review Criteria\n\n**Review Objective**: To examine primary research on the role of therapy alpacas in enhancing the mental health and emotional well-being of elderly residential aged care facility residents.\n\n**Inclusion Criteria**:\n1. **Population**: Elderly people (65 years or older) in residential aged care facilities.\n2. **Concept**: Use of therapy alpacas in residential aged care facilities, offering both daily living and nursing support.\n3. **Context**: Studies evaluating impact on mental health, emotional well-being, stress reduction, or life satisfaction.\n\n**Exclusion Criteria**:\n1. Studies involving younger populations or those in non-residential settings without daily living/nursing support.\n2. Settings that are short-term (e.g., hospitals or hospices) or independent living villages.\n\n### Source Details\n\n**Title**: Therapy Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing Home Residents\n\n**Abstract**: \n- **Population**: Nursing home residents (elderly, 65+ years).\n- **Concept**: Weekly 2-hour therapy alpaca visits versus television viewing lounge.\n- **Context**: Focus on reducing depression, anxiety, and stress (DAS) among residents.\n- **Study Design**: Randomized control trial with 8,124 residents across 17 nursing homes in urban and rural Australia.\n- **Outcomes**: Significant reduction in depression, anxiety, and stress levels for those in the alpaca intervention group.\n\n### Screening Decision\n\n**Inclusion**: Yes\n\n**Rationale**:\n- The study population matches the inclusion criteria as it involves elderly people (65+) residing in nursing homes.\n- The concept aligns as therapy alpacas were used in residential aged care facilities that provide both daily living and nursing supports.\n- The context is appropriate as the research investigates the impact on mental health outcomes (depression, anxiety, stress).\n- Additionally, the study is primary research and includes a large-scale randomized controlled trial, providing robust evidence to inform the review objective.\n\nThe source should be included in the scoping review based on the provided criteria.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 571,
+        "completion_tokens": 426,
+        "total_tokens": 997,
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_c17d3befe7"
+}

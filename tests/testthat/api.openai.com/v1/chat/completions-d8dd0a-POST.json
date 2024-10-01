@@ -1,0 +1,27 @@
+{
+    "id": "chatcmpl-ADPrzf4lG0IWK3xJX1kZfc1lSYQye",
+    "object": "chat.completion",
+    "created": 1727761071,
+    "model": "gpt-4o-2024-05-13",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "1. **Population:** TRUE\n   - The study involves nursing home residents in Australia, who are part of the elderly population.\n\n2. **Intervention:** TRUE\n   - The study examines therapy alpaca visits, which is a non-pharmacological intervention.\n\n3. **Outcomes:** TRUE\n   - The study measures outcomes related to depression, anxiety, and stress (DAS).\n\n4. **Study Design:** TRUE\n   - The study is a randomized controlled trial (RCT), which is specified in the abstract.\n\n5. **Language:** TRUE\n   - The abstract is written in English.\n\n6. **Population Exclusion:** TRUE\n   - The study does not focus on populations that are not residing in nursing homes.\n\n7. **Intervention Exclusion:** TRUE\n   - The study does not involve pharmacological interventions.\n\n8. **Publication Type Exclusion:** TRUE\n   - The study is not a review, meta-analysis, editorial, commentary, or case report.\n\n9. **Completeness Exclusion:** TRUE\n   - The study presents complete data, with significant results reported in the abstract.\n\n10. **Outcome Exclusion:** TRUE\n    - The study measures at least one outcome related to depression, anxiety, and stress.\n\n11. **Language Exclusion:** TRUE\n    - The study is published in English, as indicated by the abstract.\n\nAll the criteria for inclusion are met by the source based on the abstract provided.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 1295,
+        "completion_tokens": 292,
+        "total_tokens": 1587,
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_057232b607"
+}

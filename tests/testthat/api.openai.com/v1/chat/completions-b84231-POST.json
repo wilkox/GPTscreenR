@@ -1,0 +1,27 @@
+{
+    "id": "chatcmpl-ADPqMmUnEDhNRgu16d8ysOHP1Jvej",
+    "object": "chat.completion",
+    "created": 1727760970,
+    "model": "gpt-4o-2024-05-13",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "INCLUDE",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 1552,
+        "completion_tokens": 2,
+        "total_tokens": 1554,
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_c17d3befe7"
+}

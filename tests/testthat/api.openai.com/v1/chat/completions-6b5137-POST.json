@@ -1,0 +1,27 @@
+{
+    "id": "chatcmpl-ADPrwmASbxPYtuOpMHMp92szDQUsa",
+    "object": "chat.completion",
+    "created": 1727761068,
+    "model": "gpt-4o-2024-05-13",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Here is the numbered list of criteria that must be met for a source to be included in the scoping review:\n\n1. **Population:** The study involves elderly populations residing in nursing homes.\n2. **Intervention:** The study examines non-pharmacological interventions.\n3. **Outcomes:** The study measures outcomes related to depression, anxiety, and/or stress (DAS).\n4. **Study Design:** The study is a randomized controlled trial (RCT), controlled before-and-after study, or observational study.\n5. **Language:** The study is published in English.\n\nAdditionally, it must not meet any of the exclusion criteria:\n\n6. **Population Exclusion:** The study does not focus on populations not residing in nursing homes.\n7. **Intervention Exclusion:** The study does not involve pharmacological interventions.\n8. **Publication Type Exclusion:** The study is not a review, meta-analysis, editorial, commentary, or case report.\n9. **Completeness Exclusion:** The study is complete and has published data.\n10. **Outcome Exclusion:** The study measures at least one DAS outcome.\n11. **Language Exclusion:** The study is not published in a language other than English.\n\nConsidering these criteria will ensure a comprehensive and relevant inclusion/exclusion process for the scoping review.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 959,
+        "completion_tokens": 260,
+        "total_tokens": 1219,
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_057232b607"
+}

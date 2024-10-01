@@ -1,0 +1,27 @@
+{
+    "id": "chatcmpl-ADPqBzQcUS8kNLgP74kBEL4GxmJZj",
+    "object": "chat.completion",
+    "created": 1727760959,
+    "model": "gpt-4o-2024-05-13",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Based on the review objective and the inclusion and exclusion criteria provided, let's screen the given source:\n\n**TITLE**: Therapy Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing Home Residents  \n**ABSTRACT**: Nursing home residents typically have rates of depression, anxiety, and stress (DAS) significantly higher than those of equivalent populations living independently. As well as reducing quality of life and increasing morbidity and mortality, DAS significantly increases the burden on both nursing homes and health systems in caring for the elderly. Recent pilot trials of the use of therapy alpacas have shown promising initial results in reducing DAS among nursing home residents. We conducted a randomised control trial involving 8,124 residents across 17 nursing homes in urban and rural Australia in which residents were randomised to either a weekly 2-hour therapy alpaca visit or equivalent time in a television viewing lounge. Residents receiving the alpaca intervention had significantly (p < 0.01) reduced levels of depression (mean DASS-21 score for depression reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean reduction 13 points) compared to the control arm. This study represents the first large-scale randomised trial of alpaca therapy for nursing home residents, and provides strong support for its effectiveness in reducing DAS.\n\n**SCREENING DECISION**: **Include**\n\n**RATIONALE**:\n1. **Population**: The source specifically investigates elderly people living in residential aged care facilities (nursing homes), which fits the population criterion.\n2. **Concept**: The source focuses on therapy alpacas used within the care program of these facilities, aligning with the concept requirement.\n3. **Context**: The study measures the impact of therapy alpacas on depression, anxiety, and stress—relevant outcomes in assessing emotional well-being and mental health in residents.\n\nOverall, the study meets all the required criteria for inclusion in the scoping review.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 578,
+        "completion_tokens": 390,
+        "total_tokens": 968,
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_c17d3befe7"
+}

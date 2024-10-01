@@ -1,0 +1,27 @@
+{
+    "id": "chatcmpl-ADPro5m7AI3gdhvjJHr3esU8QAq70",
+    "object": "chat.completion",
+    "created": 1727761060,
+    "model": "gpt-4o-2024-05-13",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Understood. Please go ahead and provide the review objective, inclusion and exclusion criteria, and the source title and abstract.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 64,
+        "completion_tokens": 24,
+        "total_tokens": 88,
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_c17d3befe7"
+}

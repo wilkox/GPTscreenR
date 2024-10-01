@@ -1,0 +1,27 @@
+{
+    "id": "chatcmpl-ADPqpjKknhCAoeXQ9fKJizWVLo56o",
+    "object": "chat.completion",
+    "created": 1727760999,
+    "model": "gpt-4o-2024-05-13",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "### Inclusion Criteria for Source\n\n1. **Population**: The study must focus on elderly individuals aged 65 years or older.\n2. **Setting**: The elderly individuals must reside in residential aged care facilities that provide long-term residence and support for daily living and nursing care.\n3. **Intervention**: The study must involve the use of therapy alpacas as part of the care program in the residential aged care facility.\n4. **Outcomes**: The study must evaluate the impact of therapy alpacas on mental health, emotional well-being, stress reduction, overall life satisfaction, or similar outcomes.\n5. **Study Type**: The study must be primary research.\n\n### Exclusion Criteria for Source\n\n1. **Population**: Studies involving individuals younger than 65 years.\n2. **Setting**: Studies conducted in settings that do not provide daily living and nursing support, such as independent living villages, hospitals, or hospices.\n3. **Intervention**: Studies that do not involve therapy alpacas.\n4. **Outcomes**: Studies that do not evaluate mental health or emotional well-being outcomes.\n5. **Study Type**: Reviews, meta-analyses, or secondary research articles.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 1031,
+        "completion_tokens": 245,
+        "total_tokens": 1276,
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_c17d3befe7"
+}

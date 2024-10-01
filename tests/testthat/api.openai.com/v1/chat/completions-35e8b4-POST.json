@@ -1,0 +1,27 @@
+{
+    "id": "chatcmpl-ADPqPsbIuKtj0ucBF1dS3PthS8v3j",
+    "object": "chat.completion",
+    "created": 1727760973,
+    "model": "gpt-4o-2024-05-13",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "### Review Objective:\nTo determine the effectiveness of animal-assisted interventions (AAI) in reducing symptoms of depression, anxiety, and stress (DAS) in elderly populations living in nursing homes.\n\n### Inclusion Criteria:\n1. **Population**: Studies focusing on nursing home residents or elderly individuals living in assisted living facilities.\n2. **Intervention**: Studies evaluating animal-assisted interventions, such as therapy animals, visitation programs, etc.\n3. **Comparison**: Studies must have a control or comparison group (e.g., standard care, other forms of therapy).\n4. **Outcomes**: Studies measuring outcomes related to depression, anxiety, or stress.\n5. **Study Design**: Randomized controlled trials (RCTs), quasi-experimental designs, or observational studies with a control group.\n6. **Publication Type**: Peer-reviewed articles published in English.\n\n### Exclusion Criteria:\n1. **Population**: Studies focusing on elderly individuals living independently.\n2. **Intervention**: Studies not involving animal-assisted interventions.\n3. **Outcomes**: Studies not measuring depression, anxiety, or stress outcomes.\n4. **Study Design**: Case reports, qualitative studies, and reviews.\n5. **Publication Type**: Non-peer-reviewed articles, theses, dissertations, and articles not published in English.\n\n### Source Screening:\n\n**Title**: Therapy Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing Home Residents\n\n**Abstract Summary**: The study examines the effects of therapy alpaca visits on depression, anxiety, and stress in nursing home residents. It is a randomized control trial involving 8,124 residents across 17 nursing homes in Australia, comparing a weekly 2-hour therapy alpaca visit to a control group with television viewing. The intervention showed significant reductions in DAS scores.\n\n### Screening Decision:\n\n**Meets Inclusion Criteria**:\n1. **Population**: The population studied is nursing home residents.\n2. **Intervention**: The intervention is therapy animal visits (therapy alpacas).\n3. **Comparison**: There is a control group (television viewing).\n4. **Outcomes**: The study measures outcomes on depression, anxiety, and stress.\n5. **Study Design**: The study is a randomized control trial (RCT).\n6. **Publication Type**: Based on the abstract, it appears to be a peer-reviewed article.\n\n**Does Not Meet Exclusion Criteria**:\n1. **Population**: Does not focus on independently living elderly.\n2. **Intervention**: Involves animal-assisted intervention.\n3. **Outcomes**: Measures DAS outcomes.\n4. **Study Design**: Not a case report, qualitative study, or review.\n5. **Publication Type**: Presumably a peer-reviewed article.\n\n### Decision: **Include**\n\nThis source meets all the inclusion criteria and does not meet any of the exclusion criteria for the scoping review.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 586,
+        "total_tokens": 928,
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_5796ac6771"
+}
