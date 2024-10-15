@@ -1,0 +1,16 @@
+{
+    "model": "llama3.2",
+    "created_at": "2024-10-15T02:57:12.201492Z",
+    "message": {
+        "role": "assistant",
+        "content": "Based on the provided review criteria, I will screen this source against the inclusion and exclusion criteria.\n\nInclusion criteria:\n- The study is primary research.\n- The study examines the role of therapy alpacas in enhancing the mental health and emotional well-being of elderly residential aged care facility residents.\n- The study involves residential aged care facilities that have used therapy alpacas as part of their programme of care for residents.\n\nThe source matches the inclusion criteria. \n\nExclusion criteria:\n- Other types of settings (e.g., independent living villages, hospitals, hospices) that do not provide daily living or nursing supports.\n- Non-long-term residential settings.\n\nThe source does not match the exclusion criteria because it involves a long-term residential setting and uses therapy alpacas as part of their programme of care for residents."
+    },
+    "done_reason": "stop",
+    "done": true,
+    "total_duration": 4524044250,
+    "load_duration": 11812250,
+    "prompt_eval_count": 631,
+    "prompt_eval_duration": 948670000,
+    "eval_count": 163,
+    "eval_duration": 3559747000
+}

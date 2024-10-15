@@ -1,0 +1,30 @@
+{
+    "id": "chatcmpl-AIS3CHK32CYO01xQIBYZm1Wyd0OUD",
+    "object": "chat.completion",
+    "created": 1728961094,
+    "model": "gpt-4o-2024-08-06",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Here is the numbered list of criteria that must be met for a source to be included in the scoping review:\n\n1. **Population Criterion**: The study must focus on elderly people living in residential aged care facilities. 'Elderly' is defined as individuals 65 years of age or older.\n\n2. **Concept Criterion**: The study must involve residential aged care facilities that have used therapy alpacas as part of their programme of care for residents. 'Residential aged care facility' is defined as a residential setting intended as a long-term place of residence for elderly people which includes provision of support for activities of daily living (e.g. meal preparation, bathing, housekeeping) and nursing support (e.g. medication management).\n\n3. **Context Criterion**: The study must investigate the impact of therapy alpaca programmes on outcomes related to stress reduction, emotional well-being, mental health, overall life satisfaction, or similar outcomes for residents.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 811,
+        "completion_tokens": 188,
+        "total_tokens": 999,
+        "prompt_tokens_details": {
+            "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_a20a4ee344"
+}

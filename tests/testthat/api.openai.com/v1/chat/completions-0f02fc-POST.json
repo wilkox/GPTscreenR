@@ -1,0 +1,30 @@
+{
+    "id": "chatcmpl-AIS2oFwNv6BzcTnNTHuDYHyCuFQi6",
+    "object": "chat.completion",
+    "created": 1728961070,
+    "model": "gpt-4o-2024-08-06",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "1. **Population Criterion**: TRUE  \n   The study involves nursing home residents, which typically implies an elderly population, likely 65 years or older, in residential aged care facilities.\n\n2. **Concept Criterion**: TRUE  \n   The study is conducted in nursing homes and explores the use of therapy alpacas as part of the nursing home care program, aligning with the concept of residential aged care facilities.\n\n3. **Context Criterion**: TRUE  \n   The study examines the impact of therapy alpaca visits on outcomes such as depression, anxiety, and stress reduction, which are directly related to emotional well-being and mental health improvements specified in the review criteria.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 1051,
+        "completion_tokens": 131,
+        "total_tokens": 1182,
+        "prompt_tokens_details": {
+            "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_6b68a8204b"
+}

@@ -1,14 +1,14 @@
 {
-    "id": "chatcmpl-AISCO7SMGesGQtWPqEfs52mDY6Bq9",
+    "id": "chatcmpl-AISBpVh670RW5SQKuSKowO4BssIcb",
     "object": "chat.completion",
-    "created": 1728961664,
+    "created": 1728961629,
     "model": "gpt-4o-2024-08-06",
     "choices": [
         {
             "index": 0,
             "message": {
                 "role": "assistant",
-                "content": "Understood! Please provide the review objective and the inclusion and exclusion criteria first.",
+                "content": "INCLUDE",
                 "refusal": null
             },
             "logprobs": null,
@@ -16,11 +16,11 @@
         }
     ],
     "usage": {
-        "prompt_tokens": 64,
-        "completion_tokens": 16,
-        "total_tokens": 80,
+        "prompt_tokens": 1290,
+        "completion_tokens": 2,
+        "total_tokens": 1292,
         "prompt_tokens_details": {
-            "cached_tokens": 0
+            "cached_tokens": 1024
         },
         "completion_tokens_details": {
             "reasoning_tokens": 0

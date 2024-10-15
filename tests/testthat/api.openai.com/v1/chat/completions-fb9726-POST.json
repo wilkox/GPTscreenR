@@ -1,0 +1,30 @@
+{
+    "id": "chatcmpl-AISBe4dWpemKb0M6PymGU3v9CuADB",
+    "object": "chat.completion",
+    "created": 1728961618,
+    "model": "gpt-4o-2024-08-06",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Certainly! Here is a numbered list of criteria based on the review objective and inclusion criteria:\n\n1. **Population Criterion**: The study must involve elderly people, defined as those who are 65 years of age or older, living in residential aged care facilities.\n\n2. **Concept Criterion**: The study must focus on residential aged care facilities that have used therapy alpacas as part of their program of care for residents. The facility must provide support for activities of daily living and nursing support.\n\n3. **Context Criterion**: The study must evaluate the impact of therapy alpaca programs on outcomes related to stress reduction, emotional well-being, mental health, overall life satisfaction, or similar outcomes for the residents.\n\nNow, let's move on to check if the given source meets these criteria, step by step.",
+                "refusal": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 870,
+        "completion_tokens": 160,
+        "total_tokens": 1030,
+        "prompt_tokens_details": {
+            "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+            "reasoning_tokens": 0
+        }
+    },
+    "system_fingerprint": "fp_6b68a8204b"
+}

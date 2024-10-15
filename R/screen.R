@@ -6,10 +6,14 @@
 #' length 1
 #' @param abstract The abstract of the article to be screened, a character
 #' vector of length 1
+#' @param service The LLM service to use. Defaults to 'openaichat'. See the
+#' lemur package for full details.
+#' @param model The LLM model to use. Defaults to 'gpt-4o'. See the lemur
+#' package for full details.
 #' @param .verbose If FALSE, progress messages will be suppressed
 #'
 #' @export
-screen_source <- function(review_description, title, abstract, .verbose = TRUE) {
+screen_source <- function(review_description, title, abstract, service = "openaichat", model = "gpt-4o", .verbose = TRUE) {
 
   # Validate arguments
   validate_screening_param <- function(param, name) {
@@ -25,7 +29,7 @@ screen_source <- function(review_description, title, abstract, .verbose = TRUE) 
   # Initialise conversation with the system message providing instructions on
   # how to perform the screening
   if (.verbose) { cli::cli_progress_step("Initiating conversation with GPT") }
-  conversation <- lemur::chat()
+  conversation <- lemur::chat(service = service, model = model)
   conversation <- lemur::say(
     conversation,
     role = "system",

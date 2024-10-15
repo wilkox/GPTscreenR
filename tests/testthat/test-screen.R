@@ -19,6 +19,17 @@ test_that("review_description() works", {
 
 })
 
+with_mock_api({ test_that("ollama service works", {
+  expect_no_error(screen_source(
+    review_description = review_description,
+    title = title,
+    abstract = abstract,
+    service = "ollama",
+    model = "llama3.2",
+    .verbose = FALSE
+  ))
+}) })
+
 with_mock_api({ test_that("screen_source() inputs are correctly validated", {
 
   expect_no_error(screen_source(

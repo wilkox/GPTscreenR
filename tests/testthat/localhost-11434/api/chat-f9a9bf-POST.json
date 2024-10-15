@@ -1,0 +1,16 @@
+{
+    "model": "llama3.2",
+    "created_at": "2024-10-15T02:57:21.375835Z",
+    "message": {
+        "role": "assistant",
+        "content": "INCLUDE"
+    },
+    "done_reason": "stop",
+    "done": true,
+    "total_duration": 191467917,
+    "load_duration": 12253750,
+    "prompt_eval_count": 1336,
+    "prompt_eval_duration": 144823000,
+    "eval_count": 2,
+    "eval_duration": 24343000
+}
