@@ -1,0 +1,495 @@
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost/api/generate
+    body:
+      encoding: ''
+      string: '{"model":"llama3.2"}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      content-type: application/json; charset=utf-8
+      date: Tue, 15 Oct 2024 03:17:36 GMT
+      content-length: '110'
+    body:
+      encoding: ''
+      file: no
+      string: '{"model":"llama3.2","created_at":"2024-10-15T03:17:36.085845Z","response":"","done":true,"done_reason":"load"}'
+  recorded_at: 2024-10-15 03:17:56 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: http://localhost/api/chat
+    body:
+      encoding: ''
+      string: '{"model":"llama3.2","messages":[{"role":"user","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."}],"stream":false}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      content-type: application/json; charset=utf-8
+      date: Tue, 15 Oct 2024 03:17:37 GMT
+      content-length: '550'
+    body:
+      encoding: ''
+      file: no
+      string: '{"model":"llama3.2","created_at":"2024-10-15T03:17:37.340201Z","message":{"role":"assistant","content":"I''m
+        ready to help with the screening process. Please go ahead and provide the
+        review objective and the inclusion and exclusion criteria, as well as the
+        source title and abstract. I''ll assess whether the source aligns with the
+        review''s objectives and criteria."},"done_reason":"stop","done":true,"total_duration":1205473000,"load_duration":12036000,"prompt_eval_count":82,"prompt_eval_duration":195691000,"eval_count":51,"eval_duration":996683000}'
+  recorded_at: 2024-10-15 03:17:56 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: http://localhost/api/chat
+    body:
+      encoding: ''
+      string: '{"model":"llama3.2","messages":[{"role":"user","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"I''m
+        ready to help with the screening process. Please go ahead and provide the
+        review objective and the inclusion and exclusion criteria, as well as the
+        source title and abstract. I''ll assess whether the source aligns with the
+        review''s objectives and criteria."},{"role":"user","content":"STUDY OBJECTIVE:
+        This scoping review will examine the existing primary research on the role
+        of therapy alpacas in enhancing the mental health and emotional well-being
+        of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."}],"stream":false}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      content-type: application/json; charset=utf-8
+      date: Tue, 15 Oct 2024 03:17:43 GMT
+      content-length: '1514'
+    body:
+      encoding: ''
+      file: no
+      string: '{"model":"llama3.2","created_at":"2024-10-15T03:17:43.160672Z","message":{"role":"assistant","content":"Based
+        on the provided title and abstract, I will assess whether this source aligns
+        with the review''s objectives and criteria.\n\nThe study appears to examine
+        the impact of therapy alpacas on stress reduction, emotional well-being, mental
+        health, overall life satisfaction, or similar outcomes for residents in residential
+        aged care facilities. This is within the scope of the review objective.\n\nThe
+        target population (elderly people living in residential aged care facilities)
+        and context (context: impact of therapy alpaca programmes on various outcomes
+        for residents) also align with the inclusion criteria.\n\nHowever, I would
+        like to note that this study seems to be a randomized controlled trial rather
+        than primary research that focuses on qualitative or semi-quantitative aspects.
+        While it provides quantitative data on the effectiveness of therapy alpaca
+        visits in reducing depression, anxiety, and stress among nursing home residents,
+        its findings may not be directly relevant to the review''s objectives.\n\nConsidering
+        these points, I would classify this source as NOT meeting the inclusion criteria
+        due to its randomized controlled trial design and lack of focus on qualitative
+        or semi-quantitative aspects."},"done_reason":"stop","done":true,"total_duration":5779518916,"load_duration":13244666,"prompt_eval_count":635,"prompt_eval_duration":945027000,"eval_count":219,"eval_duration":4817181000}'
+  recorded_at: 2024-10-15 03:17:56 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: http://localhost/api/chat
+    body:
+      encoding: ''
+      string: '{"model":"llama3.2","messages":[{"role":"user","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"I''m
+        ready to help with the screening process. Please go ahead and provide the
+        review objective and the inclusion and exclusion criteria, as well as the
+        source title and abstract. I''ll assess whether the source aligns with the
+        review''s objectives and criteria."},{"role":"user","content":"STUDY OBJECTIVE:
+        This scoping review will examine the existing primary research on the role
+        of therapy alpacas in enhancing the mental health and emotional well-being
+        of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided title and abstract, I will assess whether this source aligns
+        with the review''s objectives and criteria.\n\nThe study appears to examine
+        the impact of therapy alpacas on stress reduction, emotional well-being, mental
+        health, overall life satisfaction, or similar outcomes for residents in residential
+        aged care facilities. This is within the scope of the review objective.\n\nThe
+        target population (elderly people living in residential aged care facilities)
+        and context (context: impact of therapy alpaca programmes on various outcomes
+        for residents) also align with the inclusion criteria.\n\nHowever, I would
+        like to note that this study seems to be a randomized controlled trial rather
+        than primary research that focuses on qualitative or semi-quantitative aspects.
+        While it provides quantitative data on the effectiveness of therapy alpaca
+        visits in reducing depression, anxiety, and stress among nursing home residents,
+        its findings may not be directly relevant to the review''s objectives.\n\nConsidering
+        these points, I would classify this source as NOT meeting the inclusion criteria
+        due to its randomized controlled trial design and lack of focus on qualitative
+        or semi-quantitative aspects."},{"role":"user","content":"You must work step
+        by step. FIRST, generate a numbered list of criteria that must be met for
+        a source to be included."}],"stream":false}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      content-type: application/json; charset=utf-8
+      date: Tue, 15 Oct 2024 03:17:48 GMT
+      content-length: '1413'
+    body:
+      encoding: ''
+      file: no
+      string: '{"model":"llama3.2","created_at":"2024-10-15T03:17:48.109738Z","message":{"role":"assistant","content":"Based
+        on the review objective and inclusion/exclusion criteria provided earlier,
+        here is a numbered list of criteria that must be met for a source to be included:\n\n1.
+        The study focuses on the role of therapy alpacas in enhancing mental health
+        and emotional well-being among elderly residential aged care facility residents.\n2.
+        The study targets the specific population of elderly people living in residential
+        aged care facilities, defined as 65 years of age or older.\n3. The study explores
+        the impact of therapy alpaca programmes on stress reduction, emotional well-being,
+        mental health, overall life satisfaction, or similar outcomes for residents.\n\nAdditionally,
+        based on the inclusion/exclusion criteria provided earlier, the following
+        categories should be excluded:\n\n4. Sources that do not focus on residential
+        aged care facilities as a setting (e.g. independent living villages, hospitals,
+        hospices).\n5. Sources that do not include therapy alpaca programmes as part
+        of their programme of care for residents.\n\nI will use this list to assess
+        each source against the inclusion criteria in subsequent steps."},"done_reason":"stop","done":true,"total_duration":4931869917,"load_duration":12394917,"prompt_eval_count":889,"prompt_eval_duration":133837000,"eval_count":209,"eval_duration":4780018000}'
+  recorded_at: 2024-10-15 03:17:56 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: http://localhost/api/chat
+    body:
+      encoding: ''
+      string: '{"model":"llama3.2","messages":[{"role":"user","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"I''m
+        ready to help with the screening process. Please go ahead and provide the
+        review objective and the inclusion and exclusion criteria, as well as the
+        source title and abstract. I''ll assess whether the source aligns with the
+        review''s objectives and criteria."},{"role":"user","content":"STUDY OBJECTIVE:
+        This scoping review will examine the existing primary research on the role
+        of therapy alpacas in enhancing the mental health and emotional well-being
+        of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided title and abstract, I will assess whether this source aligns
+        with the review''s objectives and criteria.\n\nThe study appears to examine
+        the impact of therapy alpacas on stress reduction, emotional well-being, mental
+        health, overall life satisfaction, or similar outcomes for residents in residential
+        aged care facilities. This is within the scope of the review objective.\n\nThe
+        target population (elderly people living in residential aged care facilities)
+        and context (context: impact of therapy alpaca programmes on various outcomes
+        for residents) also align with the inclusion criteria.\n\nHowever, I would
+        like to note that this study seems to be a randomized controlled trial rather
+        than primary research that focuses on qualitative or semi-quantitative aspects.
+        While it provides quantitative data on the effectiveness of therapy alpaca
+        visits in reducing depression, anxiety, and stress among nursing home residents,
+        its findings may not be directly relevant to the review''s objectives.\n\nConsidering
+        these points, I would classify this source as NOT meeting the inclusion criteria
+        due to its randomized controlled trial design and lack of focus on qualitative
+        or semi-quantitative aspects."},{"role":"user","content":"You must work step
+        by step. FIRST, generate a numbered list of criteria that must be met for
+        a source to be included."},{"role":"assistant","content":"Based on the review
+        objective and inclusion/exclusion criteria provided earlier, here is a numbered
+        list of criteria that must be met for a source to be included:\n\n1. The study
+        focuses on the role of therapy alpacas in enhancing mental health and emotional
+        well-being among elderly residential aged care facility residents.\n2. The
+        study targets the specific population of elderly people living in residential
+        aged care facilities, defined as 65 years of age or older.\n3. The study explores
+        the impact of therapy alpaca programmes on stress reduction, emotional well-being,
+        mental health, overall life satisfaction, or similar outcomes for residents.\n\nAdditionally,
+        based on the inclusion/exclusion criteria provided earlier, the following
+        categories should be excluded:\n\n4. Sources that do not focus on residential
+        aged care facilities as a setting (e.g. independent living villages, hospitals,
+        hospices).\n5. Sources that do not include therapy alpaca programmes as part
+        of their programme of care for residents.\n\nI will use this list to assess
+        each source against the inclusion criteria in subsequent steps."},{"role":"user","content":"NEXT,
+        for each numbered criterion, decide whether the criterion is TRUE or FALSE
+        for the source. It is normal for the title and abstract to not have enough
+        information to make a clear decision for every statement. For these situations,
+        give your best guess. After giving your response of TRUE or FALSE, give a
+        one sentence explanation for your response."}],"stream":false}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      content-type: application/json; charset=utf-8
+      date: Tue, 15 Oct 2024 03:17:56 GMT
+      content-length: '2024'
+    body:
+      encoding: ''
+      file: no
+      string: '{"model":"llama3.2","created_at":"2024-10-15T03:17:56.518478Z","message":{"role":"assistant","content":"Here
+        are my assessments:\n\n1. The study focuses on the role of therapy alpacas
+        in enhancing mental health and emotional well-being among elderly residential
+        aged care facility residents.\nTRUE. The title explicitly states that \"Therapy
+        Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing
+        Home Residents\", suggesting a focus on the therapeutic benefits of alpacas
+        for mental health.\n\n2. The study targets the specific population of elderly
+        people living in residential aged care facilities, defined as 65 years of
+        age or older.\nTRUE. The abstract states that \"Elderly\" is defined as 65
+        years of age or older, which implies that the target population meets this
+        criterion.\n\n3. The study explores the impact of therapy alpaca programmes
+        on stress reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\nTRUE. The title explicitly states that
+        \"Therapy Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian
+        Nursing Home Residents\", suggesting an exploration of these specific outcomes.\n\nRegarding
+        the inclusion/exclusion criteria, I will reassess based on the full text:\n\n4.
+        Sources that do not focus on residential aged care facilities as a setting
+        (e.g. independent living villages, hospitals, hospices).\nTRUE. The abstract
+        explicitly states that \"Residential aged care facility\" is defined as a
+        specific type of long-term care facility.\n\n5. Sources that do not include
+        therapy alpaca programmes as part of their programme of care for residents.\nFALSE.
+        The abstract states that the study involved residents who received a weekly
+        2-hour therapy alpaca visit, indicating that this criterion does not apply
+        to this source."},"done_reason":"stop","done":true,"total_duration":8392408791,"load_duration":12414541,"prompt_eval_count":1175,"prompt_eval_duration":200535000,"eval_count":337,"eval_duration":8171803000}'
+  recorded_at: 2024-10-15 03:17:56 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: http://localhost/api/chat
+    body:
+      encoding: ''
+      string: '{"model":"llama3.2","messages":[{"role":"user","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"I''m
+        ready to help with the screening process. Please go ahead and provide the
+        review objective and the inclusion and exclusion criteria, as well as the
+        source title and abstract. I''ll assess whether the source aligns with the
+        review''s objectives and criteria."},{"role":"user","content":"STUDY OBJECTIVE:
+        This scoping review will examine the existing primary research on the role
+        of therapy alpacas in enhancing the mental health and emotional well-being
+        of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided title and abstract, I will assess whether this source aligns
+        with the review''s objectives and criteria.\n\nThe study appears to examine
+        the impact of therapy alpacas on stress reduction, emotional well-being, mental
+        health, overall life satisfaction, or similar outcomes for residents in residential
+        aged care facilities. This is within the scope of the review objective.\n\nThe
+        target population (elderly people living in residential aged care facilities)
+        and context (context: impact of therapy alpaca programmes on various outcomes
+        for residents) also align with the inclusion criteria.\n\nHowever, I would
+        like to note that this study seems to be a randomized controlled trial rather
+        than primary research that focuses on qualitative or semi-quantitative aspects.
+        While it provides quantitative data on the effectiveness of therapy alpaca
+        visits in reducing depression, anxiety, and stress among nursing home residents,
+        its findings may not be directly relevant to the review''s objectives.\n\nConsidering
+        these points, I would classify this source as NOT meeting the inclusion criteria
+        due to its randomized controlled trial design and lack of focus on qualitative
+        or semi-quantitative aspects."},{"role":"user","content":"You must work step
+        by step. FIRST, generate a numbered list of criteria that must be met for
+        a source to be included."},{"role":"assistant","content":"Based on the review
+        objective and inclusion/exclusion criteria provided earlier, here is a numbered
+        list of criteria that must be met for a source to be included:\n\n1. The study
+        focuses on the role of therapy alpacas in enhancing mental health and emotional
+        well-being among elderly residential aged care facility residents.\n2. The
+        study targets the specific population of elderly people living in residential
+        aged care facilities, defined as 65 years of age or older.\n3. The study explores
+        the impact of therapy alpaca programmes on stress reduction, emotional well-being,
+        mental health, overall life satisfaction, or similar outcomes for residents.\n\nAdditionally,
+        based on the inclusion/exclusion criteria provided earlier, the following
+        categories should be excluded:\n\n4. Sources that do not focus on residential
+        aged care facilities as a setting (e.g. independent living villages, hospitals,
+        hospices).\n5. Sources that do not include therapy alpaca programmes as part
+        of their programme of care for residents.\n\nI will use this list to assess
+        each source against the inclusion criteria in subsequent steps."},{"role":"user","content":"NEXT,
+        for each numbered criterion, decide whether the criterion is TRUE or FALSE
+        for the source. It is normal for the title and abstract to not have enough
+        information to make a clear decision for every statement. For these situations,
+        give your best guess. After giving your response of TRUE or FALSE, give a
+        one sentence explanation for your response."},{"role":"assistant","content":"Here
+        are my assessments:\n\n1. The study focuses on the role of therapy alpacas
+        in enhancing mental health and emotional well-being among elderly residential
+        aged care facility residents.\nTRUE. The title explicitly states that \"Therapy
+        Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing
+        Home Residents\", suggesting a focus on the therapeutic benefits of alpacas
+        for mental health.\n\n2. The study targets the specific population of elderly
+        people living in residential aged care facilities, defined as 65 years of
+        age or older.\nTRUE. The abstract states that \"Elderly\" is defined as 65
+        years of age or older, which implies that the target population meets this
+        criterion.\n\n3. The study explores the impact of therapy alpaca programmes
+        on stress reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\nTRUE. The title explicitly states that
+        \"Therapy Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian
+        Nursing Home Residents\", suggesting an exploration of these specific outcomes.\n\nRegarding
+        the inclusion/exclusion criteria, I will reassess based on the full text:\n\n4.
+        Sources that do not focus on residential aged care facilities as a setting
+        (e.g. independent living villages, hospitals, hospices).\nTRUE. The abstract
+        explicitly states that \"Residential aged care facility\" is defined as a
+        specific type of long-term care facility.\n\n5. Sources that do not include
+        therapy alpaca programmes as part of their programme of care for residents.\nFALSE.
+        The abstract states that the study involved residents who received a weekly
+        2-hour therapy alpaca visit, indicating that this criterion does not apply
+        to this source."},{"role":"user","content":"FINALLY, consider your decisions
+        on whether the source meets the conclusion criteria. Respond with a single
+        word, either INCLUDE or EXCLUDE, representing your recommendation on whether
+        the source meets the inclusion criteria. Do not write anything other than
+        INCLUDE or EXCLUDE."}],"stream":false}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      content-type: application/json; charset=utf-8
+      date: Tue, 15 Oct 2024 03:17:56 GMT
+      content-length: '297'
+    body:
+      encoding: ''
+      file: no
+      string: '{"model":"llama3.2","created_at":"2024-10-15T03:17:56.760319Z","message":{"role":"assistant","content":"EXCLUDE"},"done_reason":"stop","done":true,"total_duration":223074583,"load_duration":12542500,"prompt_eval_count":1571,"prompt_eval_duration":147732000,"eval_count":3,"eval_duration":50710000}'
+  recorded_at: 2024-10-15 03:17:56 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0

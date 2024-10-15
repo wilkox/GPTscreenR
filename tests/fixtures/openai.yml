@@ -1,0 +1,2393 @@
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      access-control-expose-headers: X-Request-ID
+      alt-svc: h3=":443"; ma=86400
+      cf-cache-status: DYNAMIC
+      cf-ray: 8d2cae4eec205a4f-MEL
+      content-encoding: gzip
+      content-type: application/json
+      date: Tue, 15 Oct 2024 03:21:47 GMT
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '1003'
+      openai-version: '2020-10-01'
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=qzmZmPWTHtLCriML2pqCqoNwm9.mTRdan4eQM2PKB4E-1728962507-1.0.1.1-jUNRC3_xEUNp_XO.4Kb36hm8nFRFcFS9REja7WhUM5.XWLP5Uq._xyy8Cvuc5UnHYhI9MDOEe0Z72CbHQ2UaNg;
+        path=/; expires=Tue, 15-Oct-24 03:51:47 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=HkSsjvzoYR3vxpDiM1GqjxWTo68oe3gs6Rgk_6tPM_M-1728962507289-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      x-content-type-options: nosniff
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999905'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 2ms
+      x-request-id: req_5ef8c06b9305982e0630446b1d530ce3
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISPylkaaqQST2BEryimtC8ZN58lp",
+          "object": "chat.completion",
+          "created": 1728962506,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Understood! Please provide the review objective and the inclusion and exclusion criteria.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 64,
+            "completion_tokens": 15,
+            "total_tokens": 79,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood!
+        Please provide the review objective and the inclusion and exclusion criteria."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:21:54 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '6786'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999242'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 22ms
+      x-request-id: req_b2294fb4c81371b1947e3ec573616d56
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2cae58dc135a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQ0Nyo9cpNDtXzNv8aSzZDt8CAJ",
+          "object": "chat.completion",
+          "created": 1728962508,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Based on the provided study objective, inclusion and exclusion criteria, and the source title and abstract, here is the evaluation:\n\n1. **Population**: The source focuses on nursing home residents, which fits the definition of elderly people living in residential aged care facilities. Therefore, it meets the population criterion of being 65 years or older.\n\n2. **Concept**: The study mentions \"nursing homes,\" which align with the concept of residential aged care facilities as defined in the criteria (providing daily living and nursing support and structured programs). It specifically involves therapy alpacas as part of the care program, which meets the inclusion criteria.\n\n3. **Context**: The impact of therapy alpaca visits on depression, anxiety, and stress (DAS) is directly related to emotional well-being and mental health, fitting the context criterion of assessing outcomes like stress reduction and emotional well-being for residents.\n\nGiven these points, the source does match the inclusion criteria for the scoping review, as it discusses primary research on the role of therapy alpacas in enhancing mental health and emotional well-being among elderly residents in aged care facilities. Therefore, the source should be included in the review.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 565,
+            "completion_tokens": 235,
+            "total_tokens": 800,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood!
+        Please provide the review objective and the inclusion and exclusion criteria."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided study objective, inclusion and exclusion criteria, and the
+        source title and abstract, here is the evaluation:\n\n1. **Population**: The
+        source focuses on nursing home residents, which fits the definition of elderly
+        people living in residential aged care facilities. Therefore, it meets the
+        population criterion of being 65 years or older.\n\n2. **Concept**: The study
+        mentions \"nursing homes,\" which align with the concept of residential aged
+        care facilities as defined in the criteria (providing daily living and nursing
+        support and structured programs). It specifically involves therapy alpacas
+        as part of the care program, which meets the inclusion criteria.\n\n3. **Context**:
+        The impact of therapy alpaca visits on depression, anxiety, and stress (DAS)
+        is directly related to emotional well-being and mental health, fitting the
+        context criterion of assessing outcomes like stress reduction and emotional
+        well-being for residents.\n\nGiven these points, the source does match the
+        inclusion criteria for the scoping review, as it discusses primary research
+        on the role of therapy alpacas in enhancing mental health and emotional well-being
+        among elderly residents in aged care facilities. Therefore, the source should
+        be included in the review."},{"role":"system","content":"You must work step
+        by step. FIRST, generate a numbered list of criteria that must be met for
+        a source to be included."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:01 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '5748'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1998894'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 33ms
+      x-request-id: req_0b4547a85893ff631189f0412e224220
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2cae89e9f25a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQ70WiQxLBVsu3H6h4XRJwOKRHL",
+          "object": "chat.completion",
+          "created": 1728962515,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Certainly! Here is a numbered list of criteria that must be met for a source to be included in the scoping review:\n\n1. **Population Criterion**: The study must focus on elderly individuals defined as 65 years of age or older who are living in residential aged care facilities.\n\n2. **Concept Criterion**: The study must involve residential aged care facilities that have implemented therapy alpacas as part of their care program for residents. The facility should provide support for activities of daily living and nursing support.\n\n3. **Context Criterion**: The study should examine the impact of therapy alpaca programs on outcomes related to stress reduction, emotional well-being, mental health, overall life satisfaction, or similar outcomes for residents.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 143,
+            "total_tokens": 977,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood!
+        Please provide the review objective and the inclusion and exclusion criteria."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided study objective, inclusion and exclusion criteria, and the
+        source title and abstract, here is the evaluation:\n\n1. **Population**: The
+        source focuses on nursing home residents, which fits the definition of elderly
+        people living in residential aged care facilities. Therefore, it meets the
+        population criterion of being 65 years or older.\n\n2. **Concept**: The study
+        mentions \"nursing homes,\" which align with the concept of residential aged
+        care facilities as defined in the criteria (providing daily living and nursing
+        support and structured programs). It specifically involves therapy alpacas
+        as part of the care program, which meets the inclusion criteria.\n\n3. **Context**:
+        The impact of therapy alpaca visits on depression, anxiety, and stress (DAS)
+        is directly related to emotional well-being and mental health, fitting the
+        context criterion of assessing outcomes like stress reduction and emotional
+        well-being for residents.\n\nGiven these points, the source does match the
+        inclusion criteria for the scoping review, as it discusses primary research
+        on the role of therapy alpacas in enhancing mental health and emotional well-being
+        among elderly residents in aged care facilities. Therefore, the source should
+        be included in the review."},{"role":"system","content":"You must work step
+        by step. FIRST, generate a numbered list of criteria that must be met for
+        a source to be included."},{"role":"assistant","content":"Certainly! Here
+        is a numbered list of criteria that must be met for a source to be included
+        in the scoping review:\n\n1. **Population Criterion**: The study must focus
+        on elderly individuals defined as 65 years of age or older who are living
+        in residential aged care facilities.\n\n2. **Concept Criterion**: The study
+        must involve residential aged care facilities that have implemented therapy
+        alpacas as part of their care program for residents. The facility should provide
+        support for activities of daily living and nursing support.\n\n3. **Context
+        Criterion**: The study should examine the impact of therapy alpaca programs
+        on outcomes related to stress reduction, emotional well-being, mental health,
+        overall life satisfaction, or similar outcomes for residents."},{"role":"system","content":"NEXT,
+        for each numbered criterion, decide whether the criterion is TRUE or FALSE
+        for the source. It is normal for the title and abstract to not have enough
+        information to make a clear decision for every statement. For these situations,
+        give your best guess. After giving your response of TRUE or FALSE, give a
+        one sentence explanation for your response."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:04 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '2928'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1998614'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 41ms
+      x-request-id: req_9682f723f523956bbe97b6003074bf98
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caeaffb8d5a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQDKcPTlbLtSe0KB8OOsQtQgVEb",
+          "object": "chat.completion",
+          "created": 1728962521,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "1. **Population Criterion**: TRUE  \n   The source focuses on nursing home residents, which typically consist of elderly individuals aged 65 or older, fitting the population criterion for the study.\n\n2. **Concept Criterion**: TRUE  \n   The study involves \"nursing homes,\" which is consistent with the definition of residential aged care facilities providing daily living and nursing support, and it includes therapy alpacas in their care program.\n\n3. **Context Criterion**: TRUE  \n   The study evaluates the impact of therapy alpaca visits on depression, anxiety, and stress, directly aligning with the context criterion of assessing outcomes related to emotional well-being and mental health.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1053,
+            "completion_tokens": 131,
+            "total_tokens": 1184,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood!
+        Please provide the review objective and the inclusion and exclusion criteria."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided study objective, inclusion and exclusion criteria, and the
+        source title and abstract, here is the evaluation:\n\n1. **Population**: The
+        source focuses on nursing home residents, which fits the definition of elderly
+        people living in residential aged care facilities. Therefore, it meets the
+        population criterion of being 65 years or older.\n\n2. **Concept**: The study
+        mentions \"nursing homes,\" which align with the concept of residential aged
+        care facilities as defined in the criteria (providing daily living and nursing
+        support and structured programs). It specifically involves therapy alpacas
+        as part of the care program, which meets the inclusion criteria.\n\n3. **Context**:
+        The impact of therapy alpaca visits on depression, anxiety, and stress (DAS)
+        is directly related to emotional well-being and mental health, fitting the
+        context criterion of assessing outcomes like stress reduction and emotional
+        well-being for residents.\n\nGiven these points, the source does match the
+        inclusion criteria for the scoping review, as it discusses primary research
+        on the role of therapy alpacas in enhancing mental health and emotional well-being
+        among elderly residents in aged care facilities. Therefore, the source should
+        be included in the review."},{"role":"system","content":"You must work step
+        by step. FIRST, generate a numbered list of criteria that must be met for
+        a source to be included."},{"role":"assistant","content":"Certainly! Here
+        is a numbered list of criteria that must be met for a source to be included
+        in the scoping review:\n\n1. **Population Criterion**: The study must focus
+        on elderly individuals defined as 65 years of age or older who are living
+        in residential aged care facilities.\n\n2. **Concept Criterion**: The study
+        must involve residential aged care facilities that have implemented therapy
+        alpacas as part of their care program for residents. The facility should provide
+        support for activities of daily living and nursing support.\n\n3. **Context
+        Criterion**: The study should examine the impact of therapy alpaca programs
+        on outcomes related to stress reduction, emotional well-being, mental health,
+        overall life satisfaction, or similar outcomes for residents."},{"role":"system","content":"NEXT,
+        for each numbered criterion, decide whether the criterion is TRUE or FALSE
+        for the source. It is normal for the title and abstract to not have enough
+        information to make a clear decision for every statement. For these situations,
+        give your best guess. After giving your response of TRUE or FALSE, give a
+        one sentence explanation for your response."},{"role":"assistant","content":"1.
+        **Population Criterion**: TRUE  \n   The source focuses on nursing home residents,
+        which typically consist of elderly individuals aged 65 or older, fitting the
+        population criterion for the study.\n\n2. **Concept Criterion**: TRUE  \n   The
+        study involves \"nursing homes,\" which is consistent with the definition
+        of residential aged care facilities providing daily living and nursing support,
+        and it includes therapy alpacas in their care program.\n\n3. **Context Criterion**:
+        TRUE  \n   The study evaluates the impact of therapy alpaca visits on depression,
+        anxiety, and stress, directly aligning with the context criterion of assessing
+        outcomes related to emotional well-being and mental health."},{"role":"system","content":"FINALLY,
+        consider your decisions on whether the source meets the conclusion criteria.
+        Respond with a single word, either INCLUDE or EXCLUDE, representing your recommendation
+        on whether the source meets the inclusion criteria. Do not write anything
+        other than INCLUDE or EXCLUDE."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:05 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '360'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1998371'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 48ms
+      x-request-id: req_9a262f6add9542f5ca49eb195fb043f7
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caec41f325a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQHjuYZXNyao1c5AcmHbGr4zXUv",
+          "object": "chat.completion",
+          "created": 1728962525,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "INCLUDE",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1242,
+            "completion_tokens": 2,
+            "total_tokens": 1244,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:06 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '975'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999905'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 2ms
+      x-request-id: req_b9c738cf87f4516adc3db13aed9e6de2
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caec8cea95a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQHaU5fwb0HhCcfZN6fS9Tfiq9C",
+          "object": "chat.completion",
+          "created": 1728962525,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Understood. Please provide the review objective and inclusion and exclusion criteria, and then the source title and abstract for evaluation.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 64,
+            "completion_tokens": 24,
+            "total_tokens": 88,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood.
+        Please provide the review objective and inclusion and exclusion criteria,
+        and then the source title and abstract for evaluation."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:10 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '3596'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999228'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 23ms
+      x-request-id: req_7eab6a17440b0c1533333f48618a8f8c
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caed0ed745a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQJjckbnMRB2LDJsLANQDmvzP7y",
+          "object": "chat.completion",
+          "created": 1728962527,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Based on the provided review objective and criteria, let's evaluate if the source fits within the scope of the review:\n\n1. **Population**: The source focuses on nursing home residents, which aligns with the population criteria of elderly people living in residential aged care facilities. The mention of residents suggests they are likely 65 years or older, consistent with the definition of \"elderly.\"\n\n2. **Concept**: The study involves therapy alpacas being used as part of a program of care in nursing homes, which are facilities that provide activities of daily living and nursing support. This fits the concept criterion perfectly.\n\n3. **Context**: The study examines the impact of therapy alpacas on emotional well-being and mental health, focusing on depression, anxiety, and stress. This matches the context criteria related to stress reduction, emotional well-being, and mental health outcomes.\n\nBased on these points, the source titled \"Therapy Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing Home Residents\" seems to meet the inclusion criteria for the scoping review.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 574,
+            "completion_tokens": 210,
+            "total_tokens": 784,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood.
+        Please provide the review objective and inclusion and exclusion criteria,
+        and then the source title and abstract for evaluation."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided review objective and criteria, let''s evaluate if the source
+        fits within the scope of the review:\n\n1. **Population**: The source focuses
+        on nursing home residents, which aligns with the population criteria of elderly
+        people living in residential aged care facilities. The mention of residents
+        suggests they are likely 65 years or older, consistent with the definition
+        of \"elderly.\"\n\n2. **Concept**: The study involves therapy alpacas being
+        used as part of a program of care in nursing homes, which are facilities that
+        provide activities of daily living and nursing support. This fits the concept
+        criterion perfectly.\n\n3. **Context**: The study examines the impact of therapy
+        alpacas on emotional well-being and mental health, focusing on depression,
+        anxiety, and stress. This matches the context criteria related to stress reduction,
+        emotional well-being, and mental health outcomes.\n\nBased on these points,
+        the source titled \"Therapy Alpaca Visits Reduce Depression, Anxiety, and
+        Stress in Australian Nursing Home Residents\" seems to meet the inclusion
+        criteria for the scoping review."},{"role":"system","content":"You must work
+        step by step. FIRST, generate a numbered list of criteria that must be met
+        for a source to be included."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:13 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '2766'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1998920'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 32ms
+      x-request-id: req_cd179cf218b11f548ebd49eb49793e4b
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caeea08845a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQNxBnb0TdoPG7Z6vxqS2s5UYMd",
+          "object": "chat.completion",
+          "created": 1728962531,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "To determine if a source should be included in the scoping review, the following criteria must be met:\n\n1. **Population**:\n   - The study focuses on elderly people aged 65 years or older.\n   - The participants are residents of residential aged care facilities.\n\n2. **Concept**:\n   - The study involves the use of therapy alpacas as part of the care program.\n   - The setting is a residential aged care facility, which provides long-term residence and supports for daily living and nursing care.\n\n3. **Context**:\n   - The study examines the impact of therapy alpaca programs on stress reduction, emotional well-being, mental health, overall life satisfaction, or similar psychological outcomes.\n\nThe source must meet all these criteria for inclusion in the scoping review.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 818,
+            "completion_tokens": 156,
+            "total_tokens": 974,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood.
+        Please provide the review objective and inclusion and exclusion criteria,
+        and then the source title and abstract for evaluation."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided review objective and criteria, let''s evaluate if the source
+        fits within the scope of the review:\n\n1. **Population**: The source focuses
+        on nursing home residents, which aligns with the population criteria of elderly
+        people living in residential aged care facilities. The mention of residents
+        suggests they are likely 65 years or older, consistent with the definition
+        of \"elderly.\"\n\n2. **Concept**: The study involves therapy alpacas being
+        used as part of a program of care in nursing homes, which are facilities that
+        provide activities of daily living and nursing support. This fits the concept
+        criterion perfectly.\n\n3. **Context**: The study examines the impact of therapy
+        alpacas on emotional well-being and mental health, focusing on depression,
+        anxiety, and stress. This matches the context criteria related to stress reduction,
+        emotional well-being, and mental health outcomes.\n\nBased on these points,
+        the source titled \"Therapy Alpaca Visits Reduce Depression, Anxiety, and
+        Stress in Australian Nursing Home Residents\" seems to meet the inclusion
+        criteria for the scoping review."},{"role":"system","content":"You must work
+        step by step. FIRST, generate a numbered list of criteria that must be met
+        for a source to be included."},{"role":"assistant","content":"To determine
+        if a source should be included in the scoping review, the following criteria
+        must be met:\n\n1. **Population**:\n   - The study focuses on elderly people
+        aged 65 years or older.\n   - The participants are residents of residential
+        aged care facilities.\n\n2. **Concept**:\n   - The study involves the use
+        of therapy alpacas as part of the care program.\n   - The setting is a residential
+        aged care facility, which provides long-term residence and supports for daily
+        living and nursing care.\n\n3. **Context**:\n   - The study examines the impact
+        of therapy alpaca programs on stress reduction, emotional well-being, mental
+        health, overall life satisfaction, or similar psychological outcomes.\n\nThe
+        source must meet all these criteria for inclusion in the scoping review."},{"role":"system","content":"NEXT,
+        for each numbered criterion, decide whether the criterion is TRUE or FALSE
+        for the source. It is normal for the title and abstract to not have enough
+        information to make a clear decision for every statement. For these situations,
+        give your best guess. After giving your response of TRUE or FALSE, give a
+        one sentence explanation for your response."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:16 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '2302'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1998637'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 40ms
+      x-request-id: req_6edaf85910ad712f85fe5fb808a5df89
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caefdcbf75a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQQoEHArwHWa10A1H6AwQAora3e",
+          "object": "chat.completion",
+          "created": 1728962534,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "1. **Population**: TRUE  \n   The abstract states the research involves \"nursing home residents,\" who are typically elderly individuals, suggesting that the participants are likely 65 years or older.\n\n2. **Concept**: TRUE  \n   The study involves therapy alpaca visits within nursing homes, which provide necessary support and care, aligning with the defined concept of residential aged care facilities.\n\n3. **Context**: TRUE  \n   The study examines therapy alpaca programs' impact on depression, anxiety, and stress, which are relevant outcomes related to emotional well-being and mental health.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1050,
+            "completion_tokens": 116,
+            "total_tokens": 1166,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood.
+        Please provide the review objective and inclusion and exclusion criteria,
+        and then the source title and abstract for evaluation."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided review objective and criteria, let''s evaluate if the source
+        fits within the scope of the review:\n\n1. **Population**: The source focuses
+        on nursing home residents, which aligns with the population criteria of elderly
+        people living in residential aged care facilities. The mention of residents
+        suggests they are likely 65 years or older, consistent with the definition
+        of \"elderly.\"\n\n2. **Concept**: The study involves therapy alpacas being
+        used as part of a program of care in nursing homes, which are facilities that
+        provide activities of daily living and nursing support. This fits the concept
+        criterion perfectly.\n\n3. **Context**: The study examines the impact of therapy
+        alpacas on emotional well-being and mental health, focusing on depression,
+        anxiety, and stress. This matches the context criteria related to stress reduction,
+        emotional well-being, and mental health outcomes.\n\nBased on these points,
+        the source titled \"Therapy Alpaca Visits Reduce Depression, Anxiety, and
+        Stress in Australian Nursing Home Residents\" seems to meet the inclusion
+        criteria for the scoping review."},{"role":"system","content":"You must work
+        step by step. FIRST, generate a numbered list of criteria that must be met
+        for a source to be included."},{"role":"assistant","content":"To determine
+        if a source should be included in the scoping review, the following criteria
+        must be met:\n\n1. **Population**:\n   - The study focuses on elderly people
+        aged 65 years or older.\n   - The participants are residents of residential
+        aged care facilities.\n\n2. **Concept**:\n   - The study involves the use
+        of therapy alpacas as part of the care program.\n   - The setting is a residential
+        aged care facility, which provides long-term residence and supports for daily
+        living and nursing care.\n\n3. **Context**:\n   - The study examines the impact
+        of therapy alpaca programs on stress reduction, emotional well-being, mental
+        health, overall life satisfaction, or similar psychological outcomes.\n\nThe
+        source must meet all these criteria for inclusion in the scoping review."},{"role":"system","content":"NEXT,
+        for each numbered criterion, decide whether the criterion is TRUE or FALSE
+        for the source. It is normal for the title and abstract to not have enough
+        information to make a clear decision for every statement. For these situations,
+        give your best guess. After giving your response of TRUE or FALSE, give a
+        one sentence explanation for your response."},{"role":"assistant","content":"1.
+        **Population**: TRUE  \n   The abstract states the research involves \"nursing
+        home residents,\" who are typically elderly individuals, suggesting that the
+        participants are likely 65 years or older.\n\n2. **Concept**: TRUE  \n   The
+        study involves therapy alpaca visits within nursing homes, which provide necessary
+        support and care, aligning with the defined concept of residential aged care
+        facilities.\n\n3. **Context**: TRUE  \n   The study examines therapy alpaca
+        programs'' impact on depression, anxiety, and stress, which are relevant outcomes
+        related to emotional well-being and mental health."},{"role":"system","content":"FINALLY,
+        consider your decisions on whether the source meets the conclusion criteria.
+        Respond with a single word, either INCLUDE or EXCLUDE, representing your recommendation
+        on whether the source meets the inclusion criteria. Do not write anything
+        other than INCLUDE or EXCLUDE."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:17 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '370'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1998418'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 47ms
+      x-request-id: req_63e2f606e37d54966d5688fc775f4108
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caf0e6b8b5a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQTxzxniUM310xVQ2fxed3EGsp6",
+          "object": "chat.completion",
+          "created": 1728962537,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "INCLUDE",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1224,
+            "completion_tokens": 2,
+            "total_tokens": 1226,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:18 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '1183'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999905'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 2ms
+      x-request-id: req_4d4c6f5b92118c0d116a1d8342f13a76
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caf12fbd85a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQTYKE9wZArcX42PEGfx0ckEUcr",
+          "object": "chat.completion",
+          "created": 1728962537,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Understood! Please provide the review objective, inclusion and exclusion criteria, and then the source title and abstract.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 64,
+            "completion_tokens": 22,
+            "total_tokens": 86,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood!
+        Please provide the review objective, inclusion and exclusion criteria, and
+        then the source title and abstract."},{"role":"user","content":"\nTITLE: Therapy
+        Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing
+        Home Residents\nABSTRACT: Nursing home residents typically have rates of depression,
+        anxiety, and stress (DAS) significantly higher than those of equivalent populations
+        living independently. As well as reducing quality of life and increasing morbidity
+        and mortality, DAS significantly increases the burden on both nursing homes
+        and health systems in caring for the elderly. Recent pilot trials of the use
+        of therapy alpacas have shown promising initial results in reducing DAS among
+        nursing home residents. We conducted a randomised control trial involving
+        8,124 residents across 17 nursing homes in urban and rural Australia in which
+        residents were randomised to either a weekly 2-hour therapy alpaca visit or
+        equivalent time in a television viewing lounge. Residents receiving the alpaca
+        intervention had significantly (p < 0.01) reduced levels of depression (mean
+        DASS-21 score for depression reduction 8.2 points), anxiety (mean reduction
+        11 points) and stress (mean reduction 13 points) compared to the control arm.
+        This study represents the first large-scale randomised trial of alpaca therapy
+        for nursing home residents, and provides strong support for its effectiveness
+        in reducing DAS."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:19 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '466'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999552'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 13ms
+      x-request-id: req_994153eabcf2a52ccd6bcded2263c495
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caf1c9d8a5a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQVVqoPmCecs9BoRnUpU9rHztoX",
+          "object": "chat.completion",
+          "created": 1728962539,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Please provide the review objective and inclusion/exclusion criteria so I can effectively screen the provided source.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 336,
+            "completion_tokens": 19,
+            "total_tokens": 355,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_a20a4ee344"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood!
+        Please provide the review objective, inclusion and exclusion criteria, and
+        then the source title and abstract."},{"role":"user","content":"\nTITLE: Therapy
+        Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing
+        Home Residents\nABSTRACT: Nursing home residents typically have rates of depression,
+        anxiety, and stress (DAS) significantly higher than those of equivalent populations
+        living independently. As well as reducing quality of life and increasing morbidity
+        and mortality, DAS significantly increases the burden on both nursing homes
+        and health systems in caring for the elderly. Recent pilot trials of the use
+        of therapy alpacas have shown promising initial results in reducing DAS among
+        nursing home residents. We conducted a randomised control trial involving
+        8,124 residents across 17 nursing homes in urban and rural Australia in which
+        residents were randomised to either a weekly 2-hour therapy alpaca visit or
+        equivalent time in a television viewing lounge. Residents receiving the alpaca
+        intervention had significantly (p < 0.01) reduced levels of depression (mean
+        DASS-21 score for depression reduction 8.2 points), anxiety (mean reduction
+        11 points) and stress (mean reduction 13 points) compared to the control arm.
+        This study represents the first large-scale randomised trial of alpaca therapy
+        for nursing home residents, and provides strong support for its effectiveness
+        in reducing DAS."},{"role":"assistant","content":"Please provide the review
+        objective and inclusion/exclusion criteria so I can effectively screen the
+        provided source."},{"role":"system","content":"You must work step by step.
+        FIRST, generate a numbered list of criteria that must be met for a source
+        to be included."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:24 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '4840'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999492'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 15ms
+      x-request-id: req_fe2047ebb851023cd1d302a21e19bc76
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caf2258255a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQWTofrn6JqTYrKRy9jKRKZjdvd",
+          "object": "chat.completion",
+          "created": 1728962540,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Certainly, let's create a numbered list of criteria based on the typical format of a systematic review's inclusion criteria. However, note that I will need to adjust and specify these criteria precisely once I receive the specific review criteria. As a generic template, the list might include:\n\n1. **Population**: The study must focus on residents in nursing homes, or individuals living in similar assisted-living environments.\n2. **Intervention**: The study must involve the introduction or impact evaluation of an animal-assisted therapy intervention.\n3. **Comparison**: The study needs a control or comparison group, such as standard care or another form of intervention like television or leisure activities.\n4. **Outcomes**: The study must measure mental health outcomes specifically related to depression, anxiety, and/or stress.\n5. **Study Design**: Only randomised control trials should be included.\n6. **Setting**: The study should be conducted in a relevant geographic context or be applicable to the care systems of interest, such as those in developed countries.\n7. **Publication Date**: The study should be within a certain publication date range, if relevant.\n\nPlease provide the specific review objectives and actual criteria so I can capture any unique aspects of your review process.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 389,
+            "completion_tokens": 249,
+            "total_tokens": 638,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_a20a4ee344"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood!
+        Please provide the review objective, inclusion and exclusion criteria, and
+        then the source title and abstract."},{"role":"user","content":"\nTITLE: Therapy
+        Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing
+        Home Residents\nABSTRACT: Nursing home residents typically have rates of depression,
+        anxiety, and stress (DAS) significantly higher than those of equivalent populations
+        living independently. As well as reducing quality of life and increasing morbidity
+        and mortality, DAS significantly increases the burden on both nursing homes
+        and health systems in caring for the elderly. Recent pilot trials of the use
+        of therapy alpacas have shown promising initial results in reducing DAS among
+        nursing home residents. We conducted a randomised control trial involving
+        8,124 residents across 17 nursing homes in urban and rural Australia in which
+        residents were randomised to either a weekly 2-hour therapy alpaca visit or
+        equivalent time in a television viewing lounge. Residents receiving the alpaca
+        intervention had significantly (p < 0.01) reduced levels of depression (mean
+        DASS-21 score for depression reduction 8.2 points), anxiety (mean reduction
+        11 points) and stress (mean reduction 13 points) compared to the control arm.
+        This study represents the first large-scale randomised trial of alpaca therapy
+        for nursing home residents, and provides strong support for its effectiveness
+        in reducing DAS."},{"role":"assistant","content":"Please provide the review
+        objective and inclusion/exclusion criteria so I can effectively screen the
+        provided source."},{"role":"system","content":"You must work step by step.
+        FIRST, generate a numbered list of criteria that must be met for a source
+        to be included."},{"role":"assistant","content":"Certainly, let''s create
+        a numbered list of criteria based on the typical format of a systematic review''s
+        inclusion criteria. However, note that I will need to adjust and specify these
+        criteria precisely once I receive the specific review criteria. As a generic
+        template, the list might include:\n\n1. **Population**: The study must focus
+        on residents in nursing homes, or individuals living in similar assisted-living
+        environments.\n2. **Intervention**: The study must involve the introduction
+        or impact evaluation of an animal-assisted therapy intervention.\n3. **Comparison**:
+        The study needs a control or comparison group, such as standard care or another
+        form of intervention like television or leisure activities.\n4. **Outcomes**:
+        The study must measure mental health outcomes specifically related to depression,
+        anxiety, and/or stress.\n5. **Study Design**: Only randomised control trials
+        should be included.\n6. **Setting**: The study should be conducted in a relevant
+        geographic context or be applicable to the care systems of interest, such
+        as those in developed countries.\n7. **Publication Date**: The study should
+        be within a certain publication date range, if relevant.\n\nPlease provide
+        the specific review objectives and actual criteria so I can capture any unique
+        aspects of your review process."},{"role":"system","content":"NEXT, for each
+        numbered criterion, decide whether the criterion is TRUE or FALSE for the
+        source. It is normal for the title and abstract to not have enough information
+        to make a clear decision for every statement. For these situations, give your
+        best guess. After giving your response of TRUE or FALSE, give a one sentence
+        explanation for your response."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:29 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '4083'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999076'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 27ms
+      x-request-id: req_b35353e32fe2db6ab231207e1135ee3d
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caf42fb6a5a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQb15Epk3jNttYkqQhPJHfKGC9k",
+          "object": "chat.completion",
+          "created": 1728962545,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Based on the provided source title and abstract, here's an assessment based on generic inclusion criteria (note: specific criteria might require adjustments):\n\n1. **Population**: TRUE  \n   The study focuses on residents in nursing homes, which matches the typical population of interest in such reviews.\n\n2. **Intervention**: TRUE  \n   The study involves therapy alpaca visits, which constitutes an animal-assisted therapy intervention.\n\n3. **Comparison**: TRUE  \n   The study includes a control group who spent equivalent time in a television viewing lounge.\n\n4. **Outcomes**: TRUE  \n   The study measures specific mental health outcomes, namely depression, anxiety, and stress.\n\n5. **Study Design**: TRUE  \n   The study is a randomized control trial, as required by the criteria.\n\n6. **Setting**: TRUE  \n   The study is conducted in Australia, which is typically considered part of the relevant context for developed countries, assuming this aligns with the review's geographic scope.\n\n7. **Publication Date**: UNCERTAIN  \n   The abstract does not provide the publication date, so it is uncertain if it meets this criterion.\n\nPlease provide the specific criteria if there are additional or different considerations for your particular review process.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 714,
+            "completion_tokens": 244,
+            "total_tokens": 958,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_a20a4ee344"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Understood!
+        Please provide the review objective, inclusion and exclusion criteria, and
+        then the source title and abstract."},{"role":"user","content":"\nTITLE: Therapy
+        Alpaca Visits Reduce Depression, Anxiety, and Stress in Australian Nursing
+        Home Residents\nABSTRACT: Nursing home residents typically have rates of depression,
+        anxiety, and stress (DAS) significantly higher than those of equivalent populations
+        living independently. As well as reducing quality of life and increasing morbidity
+        and mortality, DAS significantly increases the burden on both nursing homes
+        and health systems in caring for the elderly. Recent pilot trials of the use
+        of therapy alpacas have shown promising initial results in reducing DAS among
+        nursing home residents. We conducted a randomised control trial involving
+        8,124 residents across 17 nursing homes in urban and rural Australia in which
+        residents were randomised to either a weekly 2-hour therapy alpaca visit or
+        equivalent time in a television viewing lounge. Residents receiving the alpaca
+        intervention had significantly (p < 0.01) reduced levels of depression (mean
+        DASS-21 score for depression reduction 8.2 points), anxiety (mean reduction
+        11 points) and stress (mean reduction 13 points) compared to the control arm.
+        This study represents the first large-scale randomised trial of alpaca therapy
+        for nursing home residents, and provides strong support for its effectiveness
+        in reducing DAS."},{"role":"assistant","content":"Please provide the review
+        objective and inclusion/exclusion criteria so I can effectively screen the
+        provided source."},{"role":"system","content":"You must work step by step.
+        FIRST, generate a numbered list of criteria that must be met for a source
+        to be included."},{"role":"assistant","content":"Certainly, let''s create
+        a numbered list of criteria based on the typical format of a systematic review''s
+        inclusion criteria. However, note that I will need to adjust and specify these
+        criteria precisely once I receive the specific review criteria. As a generic
+        template, the list might include:\n\n1. **Population**: The study must focus
+        on residents in nursing homes, or individuals living in similar assisted-living
+        environments.\n2. **Intervention**: The study must involve the introduction
+        or impact evaluation of an animal-assisted therapy intervention.\n3. **Comparison**:
+        The study needs a control or comparison group, such as standard care or another
+        form of intervention like television or leisure activities.\n4. **Outcomes**:
+        The study must measure mental health outcomes specifically related to depression,
+        anxiety, and/or stress.\n5. **Study Design**: Only randomised control trials
+        should be included.\n6. **Setting**: The study should be conducted in a relevant
+        geographic context or be applicable to the care systems of interest, such
+        as those in developed countries.\n7. **Publication Date**: The study should
+        be within a certain publication date range, if relevant.\n\nPlease provide
+        the specific review objectives and actual criteria so I can capture any unique
+        aspects of your review process."},{"role":"system","content":"NEXT, for each
+        numbered criterion, decide whether the criterion is TRUE or FALSE for the
+        source. It is normal for the title and abstract to not have enough information
+        to make a clear decision for every statement. For these situations, give your
+        best guess. After giving your response of TRUE or FALSE, give a one sentence
+        explanation for your response."},{"role":"assistant","content":"Based on the
+        provided source title and abstract, here''s an assessment based on generic
+        inclusion criteria (note: specific criteria might require adjustments):\n\n1.
+        **Population**: TRUE  \n   The study focuses on residents in nursing homes,
+        which matches the typical population of interest in such reviews.\n\n2. **Intervention**:
+        TRUE  \n   The study involves therapy alpaca visits, which constitutes an
+        animal-assisted therapy intervention.\n\n3. **Comparison**: TRUE  \n   The
+        study includes a control group who spent equivalent time in a television viewing
+        lounge.\n\n4. **Outcomes**: TRUE  \n   The study measures specific mental
+        health outcomes, namely depression, anxiety, and stress.\n\n5. **Study Design**:
+        TRUE  \n   The study is a randomized control trial, as required by the criteria.\n\n6.
+        **Setting**: TRUE  \n   The study is conducted in Australia, which is typically
+        considered part of the relevant context for developed countries, assuming
+        this aligns with the review''s geographic scope.\n\n7. **Publication Date**:
+        UNCERTAIN  \n   The abstract does not provide the publication date, so it
+        is uncertain if it meets this criterion.\n\nPlease provide the specific criteria
+        if there are additional or different considerations for your particular review
+        process."},{"role":"system","content":"FINALLY, consider your decisions on
+        whether the source meets the conclusion criteria. Respond with a single word,
+        either INCLUDE or EXCLUDE, representing your recommendation on whether the
+        source meets the inclusion criteria. Do not write anything other than INCLUDE
+        or EXCLUDE."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:30 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '287'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1998692'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 39ms
+      x-request-id: req_ec6d19fca3ee99ed011286069ec67aaf
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caf5f1d405a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQfqZ4KbjIakWXlGLYA8MxNb26n",
+          "object": "chat.completion",
+          "created": 1728962549,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "INCLUDE",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1016,
+            "completion_tokens": 2,
+            "total_tokens": 1018,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_a20a4ee344"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:31 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '582'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999905'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 2ms
+      x-request-id: req_e650e079d45948556600c2c37c9a4375
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caf62eb535a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQgPSTTfV3t8B0RtZE1ltXMDKKT",
+          "object": "chat.completion",
+          "created": 1728962550,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Please provide the review objective and the inclusion and exclusion criteria.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 64,
+            "completion_tokens": 12,
+            "total_tokens": 76,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Please
+        provide the review objective and the inclusion and exclusion criteria."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:36 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '5429'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999245'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 22ms
+      x-request-id: req_d47d236bdbe27e5e382fe57988469b5b
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caf68adac5a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQhfPhIMjjKm49MA8Xj7SRgRkcO",
+          "object": "chat.completion",
+          "created": 1728962551,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Based on the provided review objective and inclusion and exclusion criteria, here is an evaluation of the source:\n\n**Population:** The source focuses on nursing home residents, which aligns with the population specified in the scoping review criteria (elderly people living in residential aged care facilities and aged 65 or older).\n\n**Concept:** The study involves the use of therapy alpacas as part of care in nursing homes, which fits the concept of residential aged care facilities offering such therapy programs.\n\n**Context:** The outcomes measured in the study include depression, anxiety, and stress reduction, which align with the scoping review's focus on stress reduction, emotional well-being, and mental health impacts.\n\nTherefore, the source meets the inclusion criteria for the scoping review and should be included.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 562,
+            "completion_tokens": 152,
+            "total_tokens": 714,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Please
+        provide the review objective and the inclusion and exclusion criteria."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided review objective and inclusion and exclusion criteria, here
+        is an evaluation of the source:\n\n**Population:** The source focuses on nursing
+        home residents, which aligns with the population specified in the scoping
+        review criteria (elderly people living in residential aged care facilities
+        and aged 65 or older).\n\n**Concept:** The study involves the use of therapy
+        alpacas as part of care in nursing homes, which fits the concept of residential
+        aged care facilities offering such therapy programs.\n\n**Context:** The outcomes
+        measured in the study include depression, anxiety, and stress reduction, which
+        align with the scoping review''s focus on stress reduction, emotional well-being,
+        and mental health impacts.\n\nTherefore, the source meets the inclusion criteria
+        for the scoping review and should be included."},{"role":"system","content":"You
+        must work step by step. FIRST, generate a numbered list of criteria that must
+        be met for a source to be included."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:44 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '7081'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1999005'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 29ms
+      x-request-id: req_97c9c92ba6824eb5dbf5c27f8ba27cfb
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2caf8d3c475a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQnMabofCbclzFv2r9moBYpZmjQ",
+          "object": "chat.completion",
+          "created": 1728962557,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "To determine if a source should be included in the scoping review, the following criteria must be met:\n\n1. **Population Criteria:**\n   - The study must focus on elderly people living in residential aged care facilities.\n   - Participants must be 65 years of age or older.\n\n2. **Concept Criteria:**\n   - The study must involve therapy alpacas used as part of the care program in residential aged care facilities.\n   - The setting must be a residential aged care facility, defined as a long-term residence providing support for daily living and nursing care.\n\n3. **Context Criteria:**\n   - The study must address the impact of therapy alpaca programs on stress reduction, emotional well-being, mental health, overall life satisfaction, or similar outcomes for residents. \n\nThese criteria form the basis for determining whether the source aligns with the review's scope. Next, I will evaluate the provided source against each of these criteria.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 748,
+            "completion_tokens": 186,
+            "total_tokens": 934,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Please
+        provide the review objective and the inclusion and exclusion criteria."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided review objective and inclusion and exclusion criteria, here
+        is an evaluation of the source:\n\n**Population:** The source focuses on nursing
+        home residents, which aligns with the population specified in the scoping
+        review criteria (elderly people living in residential aged care facilities
+        and aged 65 or older).\n\n**Concept:** The study involves the use of therapy
+        alpacas as part of care in nursing homes, which fits the concept of residential
+        aged care facilities offering such therapy programs.\n\n**Context:** The outcomes
+        measured in the study include depression, anxiety, and stress reduction, which
+        align with the scoping review''s focus on stress reduction, emotional well-being,
+        and mental health impacts.\n\nTherefore, the source meets the inclusion criteria
+        for the scoping review and should be included."},{"role":"system","content":"You
+        must work step by step. FIRST, generate a numbered list of criteria that must
+        be met for a source to be included."},{"role":"assistant","content":"To determine
+        if a source should be included in the scoping review, the following criteria
+        must be met:\n\n1. **Population Criteria:**\n   - The study must focus on
+        elderly people living in residential aged care facilities.\n   - Participants
+        must be 65 years of age or older.\n\n2. **Concept Criteria:**\n   - The study
+        must involve therapy alpacas used as part of the care program in residential
+        aged care facilities.\n   - The setting must be a residential aged care facility,
+        defined as a long-term residence providing support for daily living and nursing
+        care.\n\n3. **Context Criteria:**\n   - The study must address the impact
+        of therapy alpaca programs on stress reduction, emotional well-being, mental
+        health, overall life satisfaction, or similar outcomes for residents. \n\nThese
+        criteria form the basis for determining whether the source aligns with the
+        review''s scope. Next, I will evaluate the provided source against each of
+        these criteria."},{"role":"system","content":"NEXT, for each numbered criterion,
+        decide whether the criterion is TRUE or FALSE for the source. It is normal
+        for the title and abstract to not have enough information to make a clear
+        decision for every statement. For these situations, give your best guess.
+        After giving your response of TRUE or FALSE, give a one sentence explanation
+        for your response."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:49 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '4541'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1998680'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 39ms
+      x-request-id: req_67e4586e762a41c560a1f58794388481
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2cafbbcccc5a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQuAXoKCuh17az52Wuc9T0P3MWY",
+          "object": "chat.completion",
+          "created": 1728962564,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "1. **Population Criteria: TRUE**  \n   The source specifically focuses on nursing home residents, which qualifies as a residential aged care facility for the elderly, and it is reasonable to infer these residents are 65 years or older.\n\n2. **Concept Criteria: TRUE**  \n   The study involves therapy alpacas used as a part of the care program in nursing homes, aligning with the review's focus on residential aged care facilities.\n\n3. **Context Criteria: TRUE**  \n   The outcomes measured include reductions in depression, anxiety, and stress, which are directly related to emotional well-being and mental health, as outlined in the review's criteria.",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1010,
+            "completion_tokens": 129,
+            "total_tokens": 1139,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: ''
+      string: '{"model":"gpt-4o","messages":[{"role":"system","content":"You are helping
+        academic researchers perform a scoping review. Your task is to screen a single
+        source against the review criteria. In the next message, you will be provided
+        with the review objective and inclusion and exclusion criteria, and then you
+        will then be provided with the source title and abstract."},{"role":"assistant","content":"Please
+        provide the review objective and the inclusion and exclusion criteria."},{"role":"user","content":"STUDY
+        OBJECTIVE: This scoping review will examine the existing primary research
+        on the role of therapy alpacas in enhancing the mental health and emotional
+        well-being of elderly residential aged care facility residents\n\nPOPULATION:Elderly
+        people living in residential aged care facilities. ''Elderly'' is defined
+        as 65 years of age or older.\n\nCONCEPT:Residential aged care facilities that
+        have used therapy alpacas as part of their programme of care for residents.
+        ''Residential aged care facility'' is defined as a residential setting intended
+        as a long-term place of residence for elderly people which includes provision
+        of support for activities of daily living (e.g. meal preparation, bathing,
+        housekeeping) and nursing support (e.g. medication management). Such facilities
+        will also typically offer other structured programmes and facilities to provide
+        entertainment, diversion, and wellbeing. It excludes other residential settings
+        intended for elderly people that do no provide daily living or nursing supports
+        (e.g. independent living villages) or that are not long-term (e.g. hospitals
+        or hospices).\n\nCONTEXT:The impact of therapy alpaca programmes on stress
+        reduction, emotional well-being, mental health, overall life satisfaction,
+        or similar outcomes for residents.\n\n\nTITLE: Therapy Alpaca Visits Reduce
+        Depression, Anxiety, and Stress in Australian Nursing Home Residents\nABSTRACT:
+        Nursing home residents typically have rates of depression, anxiety, and stress
+        (DAS) significantly higher than those of equivalent populations living independently.
+        As well as reducing quality of life and increasing morbidity and mortality,
+        DAS significantly increases the burden on both nursing homes and health systems
+        in caring for the elderly. Recent pilot trials of the use of therapy alpacas
+        have shown promising initial results in reducing DAS among nursing home residents.
+        We conducted a randomised control trial involving 8,124 residents across 17
+        nursing homes in urban and rural Australia in which residents were randomised
+        to either a weekly 2-hour therapy alpaca visit or equivalent time in a television
+        viewing lounge. Residents receiving the alpaca intervention had significantly
+        (p < 0.01) reduced levels of depression (mean DASS-21 score for depression
+        reduction 8.2 points), anxiety (mean reduction 11 points) and stress (mean
+        reduction 13 points) compared to the control arm. This study represents the
+        first large-scale randomised trial of alpaca therapy for nursing home residents,
+        and provides strong support for its effectiveness in reducing DAS."},{"role":"assistant","content":"Based
+        on the provided review objective and inclusion and exclusion criteria, here
+        is an evaluation of the source:\n\n**Population:** The source focuses on nursing
+        home residents, which aligns with the population specified in the scoping
+        review criteria (elderly people living in residential aged care facilities
+        and aged 65 or older).\n\n**Concept:** The study involves the use of therapy
+        alpacas as part of care in nursing homes, which fits the concept of residential
+        aged care facilities offering such therapy programs.\n\n**Context:** The outcomes
+        measured in the study include depression, anxiety, and stress reduction, which
+        align with the scoping review''s focus on stress reduction, emotional well-being,
+        and mental health impacts.\n\nTherefore, the source meets the inclusion criteria
+        for the scoping review and should be included."},{"role":"system","content":"You
+        must work step by step. FIRST, generate a numbered list of criteria that must
+        be met for a source to be included."},{"role":"assistant","content":"To determine
+        if a source should be included in the scoping review, the following criteria
+        must be met:\n\n1. **Population Criteria:**\n   - The study must focus on
+        elderly people living in residential aged care facilities.\n   - Participants
+        must be 65 years of age or older.\n\n2. **Concept Criteria:**\n   - The study
+        must involve therapy alpacas used as part of the care program in residential
+        aged care facilities.\n   - The setting must be a residential aged care facility,
+        defined as a long-term residence providing support for daily living and nursing
+        care.\n\n3. **Context Criteria:**\n   - The study must address the impact
+        of therapy alpaca programs on stress reduction, emotional well-being, mental
+        health, overall life satisfaction, or similar outcomes for residents. \n\nThese
+        criteria form the basis for determining whether the source aligns with the
+        review''s scope. Next, I will evaluate the provided source against each of
+        these criteria."},{"role":"system","content":"NEXT, for each numbered criterion,
+        decide whether the criterion is TRUE or FALSE for the source. It is normal
+        for the title and abstract to not have enough information to make a clear
+        decision for every statement. For these situations, give your best guess.
+        After giving your response of TRUE or FALSE, give a one sentence explanation
+        for your response."},{"role":"assistant","content":"1. **Population Criteria:
+        TRUE**  \n   The source specifically focuses on nursing home residents, which
+        qualifies as a residential aged care facility for the elderly, and it is reasonable
+        to infer these residents are 65 years or older.\n\n2. **Concept Criteria:
+        TRUE**  \n   The study involves therapy alpacas used as a part of the care
+        program in nursing homes, aligning with the review''s focus on residential
+        aged care facilities.\n\n3. **Context Criteria: TRUE**  \n   The outcomes
+        measured include reductions in depression, anxiety, and stress, which are
+        directly related to emotional well-being and mental health, as outlined in
+        the review''s criteria."},{"role":"system","content":"FINALLY, consider your
+        decisions on whether the source meets the conclusion criteria. Respond with
+        a single word, either INCLUDE or EXCLUDE, representing your recommendation
+        on whether the source meets the inclusion criteria. Do not write anything
+        other than INCLUDE or EXCLUDE."}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Bearer <<<my_api_key>>>
+      Content-Type: application/json
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Tue, 15 Oct 2024 03:22:50 GMT
+      content-type: application/json
+      access-control-expose-headers: X-Request-ID
+      openai-organization: user-xzxbylwbsz2obysv34wdfreh
+      openai-processing-ms: '398'
+      openai-version: '2020-10-01'
+      x-ratelimit-limit-requests: '10000'
+      x-ratelimit-limit-tokens: '2000000'
+      x-ratelimit-remaining-requests: '9999'
+      x-ratelimit-remaining-tokens: '1998446'
+      x-ratelimit-reset-requests: 6ms
+      x-ratelimit-reset-tokens: 46ms
+      x-request-id: req_79c8537b2e4645c4b8cecb3111633ee2
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      cf-cache-status: DYNAMIC
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 8d2cafdc0fe15a4f-MEL
+      content-encoding: gzip
+      alt-svc: h3=":443"; ma=86400
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "id": "chatcmpl-AISQzAXesNyF5Xu71t3xPX13sbgel",
+          "object": "chat.completion",
+          "created": 1728962569,
+          "model": "gpt-4o-2024-08-06",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "INCLUDE",
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1197,
+            "completion_tokens": 2,
+            "total_tokens": 1199,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_6b68a8204b"
+        }
+  recorded_at: 2024-10-15 03:22:50 GMT
+  recorded_with: vcr/1.2.2, webmockr/0.9.0

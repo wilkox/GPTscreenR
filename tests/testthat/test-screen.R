@@ -19,61 +19,67 @@ test_that("review_description() works", {
 
 })
 
-with_mock_api({ test_that("ollama service works", {
-  expect_no_error(screen_source(
-    review_description = review_description,
-    title = title,
-    abstract = abstract,
-    service = "ollama",
-    model = "llama3.2",
-    .verbose = FALSE
-  ))
-}) })
+vcr::use_cassette("ollama", { 
 
-with_mock_api({ test_that("screen_source() inputs are correctly validated", {
+  test_that("ollama service works", {
+    expect_no_error(screen_source(
+      review_description = review_description,
+      title = title,
+      abstract = abstract,
+      service = "ollama",
+      model = "llama3.2",
+      .verbose = FALSE
+    ))
+  } ) 
+} )
 
-  expect_no_error(screen_source(
-    review_description = review_description,
-    title = title,
-    abstract = abstract,
-    .verbose = FALSE
-  ))
+vcr::use_cassette("openai", { 
 
-  expect_no_warning(screen_source(
-    review_description = review_description,
-    title = title,
-    abstract = abstract,
-    .verbose = FALSE
-  ))
+  test_that("screen_source() inputs are correctly validated", {
 
-  expect_error(screen_source(
-    review_description = FALSE,
-    title = title,
-    abstract = abstract,
-    .verbose = FALSE
-  ))
+    expect_no_error(screen_source(
+      review_description = review_description,
+      title = title,
+      abstract = abstract,
+      .verbose = FALSE
+    ))
 
-  expect_error(screen_source(
-    title = title,
-    abstract = abstract,
-    .verbose = FALSE
-  ))
+    expect_no_warning(screen_source(
+      review_description = review_description,
+      title = title,
+      abstract = abstract,
+      .verbose = FALSE
+    ))
 
-  expect_warning(screen_source(
-    review_description = "",
-    title = title,
-    abstract = abstract,
-    .verbose = FALSE
-  ))
-}) })
+    expect_error(screen_source(
+      review_description = FALSE,
+      title = title,
+      abstract = abstract,
+      .verbose = FALSE
+    ))
 
-with_mock_api({ test_that("Screening works", {
+    expect_error(screen_source(
+      title = title,
+      abstract = abstract,
+      .verbose = FALSE
+    ))
 
-  expect_no_error(screen_source(review_description = review_description, title = title, 
-                                abstract = abstract, .verbose = FALSE))
+    expect_warning(screen_source(
+      review_description = "",
+      title = title,
+      abstract = abstract,
+      .verbose = FALSE
+    ))
+  })  
 
-  expect_no_error(
-    screen_sources(sources = sources, review_description = review_description,
-                   .verbose = FALSE)
-  ) 
-}) })
+  test_that("Screening works", {
+
+    expect_no_error(screen_source(review_description = review_description, title = title, 
+                                  abstract = abstract, .verbose = FALSE))
+
+    expect_no_error(
+      screen_sources(sources = sources, review_description = review_description,
+                     .verbose = FALSE)
+    ) 
+  } ) 
+} )
