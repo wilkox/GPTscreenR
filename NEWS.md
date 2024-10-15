@@ -1,15 +1,16 @@
-# GPTscreenR (development version)
+# GPTscreenR 0.1.0
 
 ## Major changes
 
 - OpenAI API code moved to the lemur package (https://github.com/wilkox/lemur)
+- Now supports alternative LLM services (OpenAI assistants, ollama) and models
 
 ## Minor changes
 
 - Users can now set the model to use with the `OPENAI_MODEL` environmental
   variable
-- Now using the httptest package for testing, all `.dry_run` arguments have
-  been removed
+- Now using the vcr package for testing, all `.dry_run` arguments have been
+  removed
 
 # GPTscreenR 0.0.3
 

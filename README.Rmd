@@ -69,10 +69,6 @@ If instead you see:
 
 this means the environmental variable has not been set correctly. Note that this does not check whether or not you have stored a valid key.
 
-## Model
-
-The 'gpt-4' model is used by default. To use a different model, set the name of the model in an R environmental variable called 'OPENAI\_MODEL' (see previous section for instructions on setting an environmental variable).
-
 ## Screening sources
 
 'Source' is the term used in GPTscreenR for any published scholarly work, such as an article, review, or letter, which might be considered for inclusion in a scoping review. There are three steps to use GPTscreenR to help screen source titles and abstracts for inclusion. First, you must write a description of your review, so that GPT knows what sorts of sources should be included and excluded. Second, you must prepare a data frame of your sources including their titles and abstracts. Third, you must ask GPT to screen each source against your review description.
@@ -137,6 +133,10 @@ knitr::kable(df)
 ```
 
 The output of `screen_sources()` is a data frame identical to the data frame of sources but with two additional columns. 'GPT_conversation' is a [list-column](https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html), each element of which is a `GPT_mssg` object containing the full conversation between the GPTscreenR packages and GPT. This can be useful for understanding how GPT came to a particular recommendation. The `GPT_recommendation` column contains either 'INCLUDE' or 'EXCLUDE', representing GPT's recommendation for each source.
+
+## LLM service and model
+
+By default, GPTscreenR uses the OpenAI chat API with the `gpt-4o` model. Alternative LLM services, including the OpenAI assistants API and local LLMs with ollama, can be selected using the `service` argument to `screen()`. The model can be set with the `model` argument to `screen()`.
 
 ## Please consider contributing your scoping review data
 
