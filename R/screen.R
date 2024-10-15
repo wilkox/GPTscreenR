@@ -28,12 +28,13 @@ screen_source <- function(review_description, title, abstract, service = "openai
 
   # Initialise conversation with the system message providing instructions on
   # how to perform the screening
-  if (.verbose) { cli::cli_progress_step("Initiating conversation with GPT") }
-  conversation <- lemur::chat(service = service, model = model)
+  if (.verbose) { cli::cli_progress_step("Initiating conversation with LLM") }
+  conversation <- lemur::chat(service = service, model = model, .verbose = .verbose)
   conversation <- lemur::say(
     conversation,
     role = "system",
-    content = "You are helping academic researchers perform a scoping review. Your task is to screen a single source against the review criteria. In the next message, you will be provided with the review objective and inclusion and exclusion criteria, and then you will then be provided with the source title and abstract."
+    content = "You are helping academic researchers perform a scoping review. Your task is to screen a single source against the review criteria. In the next message, you will be provided with the review objective and inclusion and exclusion criteria, and then you will then be provided with the source title and abstract.",
+    .verbose = .verbose
   )
 
   # Provide the review description and source
@@ -44,7 +45,8 @@ screen_source <- function(review_description, title, abstract, service = "openai
       review_description, "\n",
       "TITLE: ", title, "\n",
       "ABSTRACT: ", abstract
-    )
+    ),
+    .verbose = .verbose
   )
 
   # Instruct GPT to generate criteria
@@ -52,7 +54,8 @@ screen_source <- function(review_description, title, abstract, service = "openai
   conversation <- lemur::say(
     conversation,
     role = "system",
-    content = "You must work step by step. FIRST, generate a numbered list of criteria that must be met for a source to be included."
+    content = "You must work step by step. FIRST, generate a numbered list of criteria that must be met for a source to be included.",
+    .verbose = .verbose
   )
 
   # Instruct GPT to compare source against criteria
@@ -60,7 +63,8 @@ screen_source <- function(review_description, title, abstract, service = "openai
   conversation <- lemur::say(
     conversation,
     role = "system",
-    content = "NEXT, for each numbered criterion, decide whether the criterion is TRUE or FALSE for the source. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. For these situations, give your best guess. After giving your response of TRUE or FALSE, give a one sentence explanation for your response."
+    content = "NEXT, for each numbered criterion, decide whether the criterion is TRUE or FALSE for the source. It is normal for the title and abstract to not have enough information to make a clear decision for every statement. For these situations, give your best guess. After giving your response of TRUE or FALSE, give a one sentence explanation for your response.",
+    .verbose = .verbose
   )
 
   # Instruct GPT to give its final response
@@ -68,7 +72,8 @@ screen_source <- function(review_description, title, abstract, service = "openai
   conversation <- lemur::say(
     conversation,
     role = "system",
-    content = "FINALLY, consider your decisions on whether the source meets the conclusion criteria. Respond with a single word, either INCLUDE or EXCLUDE, representing your recommendation on whether the source meets the inclusion criteria. Do not write anything other than INCLUDE or EXCLUDE."
+    content = "FINALLY, consider your decisions on whether the source meets the conclusion criteria. Respond with a single word, either INCLUDE or EXCLUDE, representing your recommendation on whether the source meets the inclusion criteria. Do not write anything other than INCLUDE or EXCLUDE.",
+    .verbose = .verbose
   )
 
   # Check recommendation is in required format
@@ -136,19 +141,16 @@ review_description <- function(objective = NULL, population = NULL, concept = NU
 #' which sources are screened, defaults to TRUE
 #' @param cache_file A file in which the sources list cache is kept (as RDS),
 #' either fs::path() or character vector of length 1
+#' @param service The LLM service to use. Defaults to 'openaichat'. See the
+#' lemur package for full details.
+#' @param model The LLM model to use. Defaults to 'gpt-4o'. See the lemur
+#' package for full details.
 #' @param .verbose If FALSE, progress messages will be suppressed
 #'
 #' @export
-screen_sources <- function(sources, review_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), .verbose = TRUE) {
+screen_sources <- function(sources, review_description, n = NULL, random = TRUE, cache_file = fs::path("sources_cache.rds"), service = "openaichat", model = "gpt-4o", .verbose = TRUE) {
 
   if (.verbose) cli::cli_h1("Preparing to screen sources")
-
-  # Report the model being used
-  if (.verbose) {
-    model <- Sys.getenv("OPENAI_MODEL")
-    cli::cli_div(theme = list(span.model = list(color = "blue")))
-    cli::cli_alert_info("The model is set to {.model {model}}")
-  }
 
   # Validate arguments
   if (missing(sources) | missing(review_description)) {
@@ -187,7 +189,7 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
   if (fs::file_exists(cache_file)) {
     if (.verbose) cli::cli_alert_info("Loading cached results from {cache_file}")
     cached_sources <- readRDS(cache_file)
-    sources <- dplyr::left_join(sources, cached_sources)
+    sources <- dplyr::left_join(sources, cached_sources, by = c("title", "abstract"))
 
   # If cache file does not already exist, create it
   } else {
@@ -239,6 +241,7 @@ screen_sources <- function(sources, review_description, n = NULL, random = TRUE,
     # Screen the source and parse the response
     response <- screen_source(review_description, 
                               title = sources$title[next_i], abstract = sources$abstract[next_i], 
+                              service = service, model = model,
                               .verbose = .verbose)
     if (is.na(response$GPT_includes) & .verbose) {
       cli::cli_alert_warning(c("GPT's recommendation could not be parsed. Discarding this response."))
