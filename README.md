@@ -6,14 +6,20 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/wilkox/GPTscreenR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wilkox/GPTscreenR/actions/workflows/R-CMD-check.yaml)
+deprecated](https://img.shields.io/badge/lifecycle-deprecated-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
 <!-- badges: end -->
 
 GPTscreenR is an R package that uses [OpenAI’s GPT large language
 model](https://platform.openai.com/docs/guides/gpt) to screen titles and
 abstracts for [scoping
 reviews](https://en.wikipedia.org/wiki/Systematic_review#Scoping_reviews).
+
+## This package is no longer maintained
+
+GPTscreenR is no longer being developed, and this repository is
+archived. The package and its validation are described in the preprint
+[Automated title and abstract screening for scoping reviews using the
+GPT-4 Large Language Model](https://doi.org/10.48550/arXiv.2311.07918).
 
 ## Installation
 
@@ -185,26 +191,3 @@ Alternative LLM services, including the OpenAI assistants API and local
 LLMs with ollama, can be selected using the `service` argument to
 `screen()`. The model can be set with the `model` argument to
 `screen()`.
-
-## Please consider contributing your scoping review data
-
-If you’ve used GPTscreenR to help screen sources for a scoping review,
-please consider contributing some data to help monitor GPTscreenR’s
-performance in real-world screening and guide future improvements to the
-package. All you need to contribute are:
-
-- The review description
-- The list of sources that were screened at the title and abstract
-  level, including at least:
-  - The title
-  - The abstract
-  - The consensus decision by human reviewers to include or exclude the
-    source
-
-In recognition of your contribution, a citation to your review will be
-added to the GPTscreenR README. Of course, you are not expected to
-release data publicly until your review is published.
-
-If you have any questions, or to contribute data now, send an email to
-<gptscreenr@fastmail.fm> or [open a new
-issue](https://github.com/wilkox/GPTscreenR/issues/new).
